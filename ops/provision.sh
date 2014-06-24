@@ -29,4 +29,5 @@ echo "ruby installed"
 echo "install puppet"
 useradd --comment "Puppet" --no-create-home --system --shell /bin/false puppet -g puppet
 gem install puppet -v 3.6.2 --no-rdoc --no-ri
+puppet apply --verbose /etc/puppet/manifests/site.pp >/dev/null 2>&1
 echo "puppet installed"
