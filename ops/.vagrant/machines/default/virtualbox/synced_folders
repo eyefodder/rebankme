@@ -1,0 +1,1 @@
+{"virtualbox":{"/app":{"guestpath":"/app","hostpath":"/Users/pbh/Sites/rails_projects/rebankme","disabled":false},"/etc/puppet":{"guestpath":"/etc/puppet","hostpath":"/Users/pbh/Sites/rails_projects/rebankme/ops/puppet","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/pbh/Sites/rails_projects/rebankme/ops","disabled":false}}}
