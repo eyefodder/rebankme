@@ -1,0 +1,30 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/pbh/Sites/rails_projects/rebankme/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/pbh/Sites/rails_projects/rebankme/app/controllers/static_controller.rb": [
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/pbh/Sites/rails_projects/rebankme/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1403885229
+  }
+}

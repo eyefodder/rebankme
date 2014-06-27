@@ -6,7 +6,6 @@ ruby '2.1.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
-# Use sqlite3 as the database for Active Record
 gem 'pg'
 
 
@@ -26,9 +25,14 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# Clearer printing of error pages
 gem 'better_errors'
 gem 'binding_of_caller'
+
+# Annotates model files
 gem 'annotate', '>=2.5.0'
+
+
 gem 'rack-rewrite'
 gem 'rails_12factor' #prevents deprecation warnings on heroku
 
@@ -37,11 +41,40 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'quiet_assets', group: :development
+
 group :development, :test do
 	gem 'rspec-rails', '~> 2.14'
-  gem 'guard-rspec', '~> 4.1.0'
-  gem 'spork-rails', '4.0.0'
-  gem 'guard-spork', '1.5.0'
+	gem 'guard-rspec', require: false
+	gem 'spork-rails', '4.0.0'
+	gem 'guard-spork', '1.5.0'
+	gem 'sqlite3', '1.3.8'
+	gem 'ci_reporter'
+	gem 'launchy'
+	gem 'database_cleaner'
+end
+
+group :test do
+	gem 'selenium-webdriver', '~> 2.42.0'
+	gem 'capybara', '~> 2.3.0'
+	gem 'factory_girl_rails'
+
+
+	# Uncomment this line on OS X.
+	gem 'growl', '1.0.3'
+ 	# Uncomment these lines on Linux.
+	# gem 'libnotify', '0.8.0'
+
+	# Uncomment these lines on Windows.
+	# gem 'rb-notifu', '0.0.4'
+	# gem 'win32console', '1.3.2'
+	# gem 'wdm', '0.1.0'
+
+	gem 'simplecov'
+	gem 'simplecov-rcov'
+
+	gem 'shoulda-matchers'
+	gem 'rspec-html-matchers'
 end
 
 
