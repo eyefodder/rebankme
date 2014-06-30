@@ -1,0 +1,81 @@
+en:
+  demo:
+    v1:
+      select_yes:   "Yes"
+      select_no:    "No"
+      select_feature:
+        intro_text: "What do you want to use the account for?"
+        cash_checks: "I want to cash checks"
+        pay_bills: "I want to pay bills for free"
+        receive_paycheck: "I want to receive my paycheck or benefits"
+        savings_safe: "I want to keep my savings safe"
+        write_checks: "I want to write checks"
+        earn_interest: "I want to earn interest or rewards on my savings"
+        something_else: "Something else"
+      select_service:
+        intro_text: "What services do you want from your bank?"
+        nearby_branch: "The bank has a branch near my home"
+        many_locations: "The bank is big with many locations"
+        small_bank: "The bank is a small, friendly bank in my neighborhood"
+        nearby_atm: "The bank has an ATM near me so I can take out money"
+        home_deposit: "The bank lets me deposit checks from home"
+        high_savings_rate: "The bank offers a high interest rate on my savings"
+        safe_secure: "The bank is safe and secure"
+        lowest_prices: "The bank has the lowest prices"
+        customer_service: "The bank has great customer service"
+      note_concerns:
+        intro_text: "Is there anything that concerns you about trying to open a bank account?"
+        too_many_questions: "I'm worried the bank will ask a lot of questions"
+        high_fees: "I'm worried about being hit with a lot of fees"
+        owe_money: "I owe money and I'm worried about having my paycheck docked"
+        something_else: "I'm worried about something else"
+      bank_account_status:
+        intro_text: "Have you ever had a bank account?"
+        have_account_now: "Yes, I have a bank account now"
+        closed_account: "Yes, but I closed it a while ago"
+        delinquent_account: "Yes, but the bank closed it for me"
+        never_banked: "No, I've never had a bank account"
+      recent_account_open_attempt:
+        intro_text: "Have you tried to open an account in the past 3 months?"
+        no_attempt: "No, I haven't"
+        yes_fail: "Yes, and I was turned down"
+        yes_success: "Yes and I was successful"
+      ssn_confirmation:
+        intro_text: "Do you have a social security number? (You don't have to tell us what it is, just whether you have one)"
+        ssn_yes: "Yes I do"
+        ssn_no: "No I don't"
+        ssn_no_but: "No, but I have an ITIN (what's this?)"
+      chexsystems_ordering_intro:
+        intro_text: |
+          If you have been turned down for a bank account, it may be
+          because you have a negative history with a past bank. Banks
+          sometimes get information about customers trying to open an
+          account by checking a database called Chexsystems.
+
+          Chexsystems is like a credit report, but for your bank.
+        yes_cta: "Yes, help me order my free report"
+        maybe_cta: "Maybe, tell me more about the process first"
+        no_cta: "No thanks"
+      enter_zip:
+        intro_text: "You're almost done! Finally, give us your zipcode so we can find a bank near you"
+        zip_label: "Zip code"
+        cta: "Find me a bank already!"
+      account_results:
+        intro_text: "We've found the following accounts that would be great for you:"
+        result_0_bank: "Awesome Bank"
+        result_0_account: "Second Chance Bank"
+        result_0_description: "This account is designed for people who need a second chance to get back into the banking system."
+        result_1_bank: "Rather Good Bank"
+        result_1_account: "Good Times Account"
+        result_1_description: "This account is for people who are new to the banking system. No intrusive questions asked."
+        result_2_bank: "A.N.Other Bank"
+        result_2_account: "No Nonsense Account"
+        result_2_description: "This account is no-frills, no-nonsense, no-fees, no-waiting. Rated A++"
+        cta: "I want this account"
+      prepare_for_visit:
+        intro_text: "Next Steps"
+        next_step_1: "Call the Bank"
+        next_step_2: "Do another thing"
+        next_step_3: "Do something else"
+      order_chexsystems:
+        intro_text: "Ordering your Chexsystems report"

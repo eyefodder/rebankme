@@ -5,6 +5,10 @@
         1,
         null
       ],
+      "/Users/pbh/Sites/rails_projects/rebankme/app/helpers/demo_helper.rb": [
+        1,
+        null
+      ],
       "/Users/pbh/Sites/rails_projects/rebankme/app/controllers/static_controller.rb": [
         1,
         null,
@@ -25,6 +29,6 @@
         null
       ]
     },
-    "timestamp": 1403892676
+    "timestamp": 1404169004
   }
 }

@@ -1,0 +1,6 @@
+<%= content_tag :div, t('.intro_text') %>
+<%= form_tag(demo_path('v1','account_results'), method: "get") do %>
+  <%= label_tag(:zip, t('.zip_label')) %>
+  <%= text_field_tag(:zip) %>
+  <%= submit_tag(t('.cta')) %>
+<% end %>
