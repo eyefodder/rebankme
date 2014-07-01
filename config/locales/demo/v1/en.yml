@@ -84,3 +84,17 @@ en:
         next_step_3: "Do something else"
       order_chexsystems:
         intro_text: "Ordering your Chexsystems report"
+      account_top_pick:
+        heading: 'Account Matched!'
+        intro_text: "We've found a great account for you:"
+        bank_name: "Chase Bank"
+        account_name: "Premium Checking"
+        why_we_chose: "Why?"
+        choice_0_heading: "Convenience"
+        choice_0_text: "There's a location near you, at Pitkin Ave and Rockaway Ave"
+        choice_1_heading: "Fees"
+        choice_1_text: "If you deposit your paycheck automatically, there's no monthly fee"
+        choice_2_heading: "Home Banking"
+        choice_2_text: "Deposit Checks from home"
+        cta: "Help me open an account"
+        cta_more_options: "More Options"
