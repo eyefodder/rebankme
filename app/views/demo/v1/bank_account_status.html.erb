@@ -1,5 +1,5 @@
-<%= content_tag :h2, t('.intro_text') %>
-<ul>
+<% provide(:heading, t('.intro_text')) %>
+<ul class='action-links'>
 <li><%= link_to t('.have_account_now'),demo_path('v1','enter_zip') %></li>
 <li><%= link_to t('.closed_account'),demo_path('v1','recent_account_open_attempt') %></li>
 <li><%= link_to t('.delinquent_account'),demo_path('v1','chexsystems_ordering_intro') %></li>

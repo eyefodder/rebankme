@@ -1,3 +1,162 @@
 // Place all the styles related to the Demo controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$app-bg-color: #4ED8D8;
+$base-font-color: #fff;
+$link-hover-color: $base-font-color;
+$link-color: $base-font-color;
+
+$default-btn-color: #3CAFAC;
+$default-btn-color-hover: #319994;
+
+$no-btn-color: #FF1B00;
+$no-btn-color-hover: #B71B00;
+
+$yes-btn-color: #24BC2B;
+$yes-btn-color-hover: #24782B;
+
+$default-font: 'source-sans-pro';
+
+
+
+body{
+  color: $base-font-color;
+  background-color: $app-bg-color;
+  font-size: 16px;
+  font-family: $default-font, sans-serif;
+}
+
+.container{
+  padding-top: 17px;
+  padding-left: 27px;
+  padding-right: 27px;
+}
+
+form{
+  padding-top: 40px;
+}
+.form-control{
+  border-width: 0px;
+}
+
+a{
+  color: $link-color;
+  &:hover,
+  &:focus {
+    color: $link-hover-color;
+    text-decoration: underline;
+  }
+}
+
+// buttons
+.btn{
+  border-radius: 0px;
+}
+
+.btn-success {
+  color: $base-font-color;
+  background-color: $yes-btn-color;
+  border-color: $yes-btn-color;
+  &:hover,
+  &:focus,
+  &:active{
+    background-color: $yes-btn-color-hover;
+    border-color: $yes-btn-color-hover;
+  }
+}
+.btn-danger {
+  color: $base-font-color;
+  background-color: $no-btn-color;
+  border-color: $no-btn-color;
+  &:hover,
+  &:focus,
+  &:active{
+    background-color: $no-btn-color-hover;
+    border-color: $no-btn-color-hover;
+  }
+}
+.btn-default {
+  color: $base-font-color;
+  background-color: $default-btn-color;
+  border-color: $default-btn-color;
+  &:hover,
+  &:focus,
+  &:active{
+    background-color: $default-btn-color-hover;
+    border-color: $default-btn-color-hover;
+  }
+}
+.btn-primary {
+  color: $base-font-color;
+  background-color: $default-btn-color;
+  border-color: $default-btn-color;
+  &:hover,
+  &:focus,
+  &:active{
+    background-color: $default-btn-color-hover;
+    border-color: $default-btn-color-hover;
+
+  }
+}
+//
+
+// LISTS
+ul{
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+ul.action-links li{
+  padding-bottom: 20px;
+  background-image: url('right_arrow.png');
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: right top;
+  padding-right: 36px;
+}
+// END LISTS
+
+// LOGO & HEADER
+.header{
+
+}
+.header-copy{
+  padding-left: 0px;
+}
+.header-rebank{
+  text-transform: uppercase;
+  font-size: 28px;
+}
+.header-welcome{
+  font-size: 14px;
+  padding-top: 38px;
+}
+
+.header-image{
+}
+
+// END LOGO
+
+// Stuff on the bottom
+
+.navbar-fixed-bottom{
+  padding-left: 27px;
+  padding-right: 27px;
+  padding-bottom: 15px;
+}
+
+.navbar-fixed-bottom .row{
+  padding-top: 15px;
+}
+
+//
+
+// zip code form
+.enter-zip{
+  text-transform: uppercase;
+}
+//
+
+
+

@@ -1,8 +1,13 @@
 en:
+  action_next: "Next"
   demo:
     v1:
       select_yes:   "Yes"
       select_no:    "No"
+      open_account_start:
+        heading: 'Finding the right bank account'
+        intro_text: "Great! First, tell us what you want to do with your bank account so we can search for the perfect one for you."
+        task_duration: "This step should take about 2 minutes."
       select_feature:
         intro_text: "What do you want to use the account for?"
         cash_checks: "I want to cash checks"
@@ -59,7 +64,7 @@ en:
       enter_zip:
         intro_text: "You're almost done! Finally, give us your zipcode so we can find a bank near you"
         zip_label: "Zip code"
-        cta: "Find me a bank already!"
+        cta: ">"
       account_results:
         intro_text: "We've found the following accounts that would be great for you:"
         result_0_bank: "Awesome Bank"

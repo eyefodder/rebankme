@@ -1,6 +1,6 @@
-<h1>Rebank Me</h1>
-<h2>What do you need help with today?</h2>
-<ul>
+<% provide(:heading, "What do you need help with today?") %>
+
+<ul class='action-links'>
 <li><%= link_to("I want to open a bank account", demo_path('v1','open_account_start')) %></li>
 <li>I want to choose a prepaid card</li>
 <li>I have a prepaid card and I want to see how it ranks</li>

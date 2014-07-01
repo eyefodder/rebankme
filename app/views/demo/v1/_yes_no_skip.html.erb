@@ -1,0 +1,15 @@
+<div class="navbar navbar-fixed-bottom">
+  <div class='row'>
+    <div class='col-xs-6'>
+      <%= link_to t('demo.v1.select_yes'), yield(:next_link), class: 'btn btn-success btn-block' %>
+    </div>
+    <div class='col-xs-6'>
+    <%= link_to t('demo.v1.select_no'), yield(:next_link), class: 'btn btn-danger btn-block' %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <%= link_to t('demo.v1.next_section'), yield(:next_section_link), class: 'btn btn-primary btn-block' %>
+    </div>
+  </div>
+</div>

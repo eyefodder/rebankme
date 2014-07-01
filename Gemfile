@@ -32,6 +32,12 @@ gem 'binding_of_caller'
 # Annotates model files
 gem 'annotate', '>=2.5.0'
 
+# allow for SASSy bootstrap css
+gem 'bootstrap-sass', '~> 3.2.0'
+
+# add vendor prefixes in the asset pipeline
+gem 'autoprefixer-rails'
+
 
 gem 'rack-rewrite'
 gem 'rails_12factor' #prevents deprecation warnings on heroku

@@ -1,10 +1,16 @@
-<h2>Finding the right bank account</h2>
+<% provide(:heading, t('.heading')) %>
 <div class='intro'>
-<p>
-Great! First, tell us what you want to do with your bank account so we can search for the perfect one for you.
-</p>
-<p>This step should take about 2 minutes.</p>
+  <p>
+    <%= t('.intro_text') %>
+  </p>
+  <p><%= t('.task_duration')%></p>
 </div>
-<div class='button'>
-<%= link_to 'Next' ,  demo_path('v1','select_feature::write_checks') %>
+
+
+<div class="navbar navbar-fixed-bottom">
+  <div class='row'>
+  <div class='col-xs-12'>
+      <%= link_to t('action_next') ,  demo_path('v1','select_feature::write_checks'), class: 'btn btn-primary btn-lg btn-block' %>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,5 @@
-<%= content_tag :h2, t('demo.v1.note_concerns.intro_text') %>
+<% provide(:heading, t('demo.v1.note_concerns.intro_text')) %>
+<% provide(:next_section_link, demo_path('v1','bank_account_status')) %>
 <div class='account-feature-choice'><%= yield(:selection_copy) %></div>
-<button type='button' class='btn btn-success'><%= link_to t('demo.v1.select_yes'), yield(:next_link) %></button>
-<button type='button' class='btn btn-danger'><%= link_to t('demo.v1.select_no'), yield(:next_link) %></button>
-<button type='button' class='btn btn-primary'><%= link_to t('demo.v1.next_section'), demo_path('v1','bank_account_status') %></button>
+
+<%= render 'demo/v1/yes_no_skip' %>
