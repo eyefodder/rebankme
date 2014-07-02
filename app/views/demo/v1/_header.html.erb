@@ -1,4 +1,4 @@
-<% unless yield(:suppress_logo) %>
+<% unless try(:suppress_logo) %>
 <div class='row header'>
   <div class='col-xs-2 header-image'><%= image_tag 'littlegiraffe.png' %></div>
   <div class='col-xs-8 header-copy'>
