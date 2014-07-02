@@ -1,7 +1,7 @@
 <% provide(:heading, "Finding the right account") %>
 <% @suppress_logo = true %>
 <%= content_tag :div, t('.intro_text') %>
-<%= form_tag(demo_path('v2','account_results'), method: "get") do %>
+<%= form_tag(demo_path('v2','are_you_delinquent'), method: "get") do %>
 <div class="form-group row">
   <div class="input-group col-xs-8 col-xs-offset-2">
     <%= label_tag :zip, t('.zip_label'), class: 'sr-only' %>
