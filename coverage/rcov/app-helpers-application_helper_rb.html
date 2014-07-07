@@ -25,8 +25,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-helpers-application_helper_rb.html">app/helpers/application_helper.rb</a></td>
-            <td class='right_align'><tt>2</tt></td>
-            <td class='right_align'><tt>1</tt></td>
+            <td class='right_align'><tt>7</tt></td>
+            <td class='right_align'><tt>3</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
         <div class="covered" style="width:100px"></div>
@@ -54,12 +54,27 @@
           <td><pre><a name="line2">2</a> module ApplicationHelper</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line3">3</a> end</pre></td>
+          <td><pre><a name="line3">3</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   def typekit_include_tag apikey</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line5">5</a>     javascript_include_tag(&quot;http://use.typekit.com/#{apikey}.js&quot;) +</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>     javascript_tag(&quot;try{Typekit.load()}catch(e){}&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2014-06-30 18:56:44 -0400 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2014-07-07 16:56:44 -0400 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

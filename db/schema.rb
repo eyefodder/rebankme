@@ -11,6 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140707145901) do
+
+  create_table "account_types", force: true do |t|
+    t.string   "name_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "zipcode"
+    t.boolean  "is_delinquent"
+    t.boolean  "is_special_group"
+    t.boolean  "will_use_direct_deposit"
+    t.boolean  "has_predictable_income"
+    t.boolean  "needs_debit_card"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

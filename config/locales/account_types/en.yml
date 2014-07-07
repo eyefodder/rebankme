@@ -1,0 +1,13 @@
+en:
+  prepay_card:
+    name: 'Prepay Card'
+  second_chance:
+    name: 'Second Chance Account'
+  safe_account:
+    name: 'Safe Account'
+  special_group:
+    name: 'Special Group Account'
+  regular_account:
+    name: 'Regular Account'
+  credit_union:
+    name: 'Credit Union'

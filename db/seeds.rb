@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+account_types = AccountType.create([{name_id:'prepay_card'},
+                                    {name_id:'second_chance'},
+                                    {name_id:'safe_account'},
+                                    {name_id:'special_group'},
+                                    {name_id:'regular_account'},
+                                    {name_id:'credit_union'},
+                                    ])
+

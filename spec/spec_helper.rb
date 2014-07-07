@@ -1,5 +1,5 @@
 require 'rubygems'
- require 'spork'
+require 'spork'
 
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
@@ -13,8 +13,8 @@ Spork.prefork do
 
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
-  # require 'rspec/autorun'
-  require 'shoulda/matchers'
+   require 'shoulda/matchers'
+   require 'rspec/autorun'
   # require "rack_session_access/capybara"
 
   # Requires supporting ruby files with custom matchers and macros, etc,
@@ -74,6 +74,11 @@ Spork.prefork do
       DatabaseCleaner.clean
     end
 
+    config.before(:all) do
+      FactoryGirl.lint
+      Rails.application.load_seed
+    end
+
     # config.after(:each) { Warden.test_reset! }
 
     # config.before(:each) do
@@ -100,8 +105,8 @@ Spork.prefork do
 
    # config.include ApplicationHelper
 
-  end
-  Capybara.default_host = 'http://example.org'
+ end
+ Capybara.default_host = 'http://example.org'
 
   # OmniAuth.config.test_mode = true
   # OmniAuth.config.add_mock(:twitter, {
@@ -120,5 +125,6 @@ Spork.each_run do
     SimpleCov.start 'rails'
   end
   # This code will be run each time you run your specs.
-
+  # require 'rspec/rails'
+  # require 'shoulda/matchers'
 end
