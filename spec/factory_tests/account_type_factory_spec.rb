@@ -82,7 +82,30 @@ describe AccountTypeFactory do
           expect(AccountTypeFactory.account_type_for(user)).to eq AccountType.CREDIT_UNION
         end
 
-
+        describe 'and in NYC' do
+          before do
+            user.zipcode = '11205'
+          end
+          it 'returns nil on its own' do
+            expect(AccountTypeFactory.account_type_for(user)).to be_nil
+          end
+          describe 'needing a debit card' do
+            before do
+              user.needs_debit_card = true
+            end
+            it 'returns credit union' do
+              expect(AccountTypeFactory.account_type_for(user)).to eq AccountType.CREDIT_UNION
+            end
+          end
+          describe 'not needing a debit card' do
+            before do
+              user.needs_debit_card = false
+            end
+            it 'returns safe account' do
+              expect(AccountTypeFactory.account_type_for(user)).to eq AccountType.SAFE_ACCOUNT
+            end
+          end
+        end
       end
     end
   end

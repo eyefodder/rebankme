@@ -15,8 +15,16 @@ class AccountTypeFactory
     if user.is_delinquent == false && user.is_special_group == false && user.will_use_direct_deposit
       return AccountType.REGULAR_ACCOUNT
     end
-    if user.is_delinquent == false && user.is_special_group == false && user.will_use_direct_deposit == false && !user.in_new_york_city?
-      return AccountType.CREDIT_UNION
+    if user.is_delinquent == false && user.is_special_group == false && user.will_use_direct_deposit == false
+      if !user.in_new_york_city?
+        return AccountType.CREDIT_UNION
+      else
+        if user.needs_debit_card == false
+          return AccountType.SAFE_ACCOUNT
+        elsif user.needs_debit_card
+          return AccountType.CREDIT_UNION
+        end
+      end
     end
   end
-end
+  end
