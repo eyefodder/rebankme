@@ -66,6 +66,7 @@ group :development, :test do
 end
 
 group :test do
+	gem "codeclimate-test-reporter", require: nil
 	gem 'selenium-webdriver', '~> 2.42.0'
 	gem 'capybara', '~> 2.3.0'
 	gem 'factory_girl_rails'
