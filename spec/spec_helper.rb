@@ -13,8 +13,8 @@ Spork.prefork do
 
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
-   require 'shoulda/matchers'
-   require 'rspec/autorun'
+  require 'shoulda/matchers'
+  require 'rspec/autorun'
   # require "rack_session_access/capybara"
 
   # Requires supporting ruby files with custom matchers and macros, etc,
@@ -72,6 +72,31 @@ Spork.prefork do
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
       DatabaseCleaner.clean
+
+
+      Geocoder.configure(:lookup => :test)
+      Geocoder::Lookup::Test.set_default_stub([])
+      Geocoder::Lookup::Test.add_stub( '00000', [])
+      Geocoder::Lookup::Test.add_stub(
+        '34000', [
+          {
+            'latitude'     => 43.6047275,
+            'longitude'    => 3.941479699999999,
+            'country_code' => 'FR'
+          }
+        ]
+        )
+      Geocoder::Lookup::Test.add_stub(
+        '11205', [
+          {
+            'latitude'     => 43.6047275,
+            'longitude'    => 3.941479699999999,
+            'country_code' => 'US'
+          }
+        ]
+        )
+
+
     end
 
     config.before(:all) do

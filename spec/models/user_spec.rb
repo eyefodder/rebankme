@@ -43,23 +43,7 @@ describe User do
     let(:non_us_zip) {'ec1y0st'}
     let(:non_us_zip_with_us_format) {'34000'}
     before do
-      Geocoder.configure(:lookup => :test)
-      Geocoder::Lookup::Test.add_stub( nonexistant_zip, [])
-      Geocoder::Lookup::Test.set_default_stub([])
-      Geocoder::Lookup::Test.add_stub(
-        non_us_zip_with_us_format, [
-          {
-            'latitude'     => 43.6047275,
-            'longitude'    => 3.941479699999999,
-            'address'      => '34000 Montpellier, France',
-            'city'         => 'Montpellier',
-            'state'        => 'Languedoc-Roussillon',
-            'state_code'   => 'Languedoc-Roussillon',
-            'country'      => 'France',
-            'country_code' => 'FR'
-          }
-        ]
-        )
+
     end
     it 'isnt valid if no zipcode set' do
       user.zipcode = nil

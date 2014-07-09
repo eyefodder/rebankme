@@ -29,7 +29,6 @@ module Il8nSteps
   shared_examples "localized content" do
     it 'has specified Localizations' do
       parsed_tokens(expected_tokens) do |parsed_token|
-        puts parsed_token
         expect(parsed_token).to have_a_translation
       end
     end
