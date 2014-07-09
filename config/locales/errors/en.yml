@@ -1,0 +1,6 @@
+en:
+  errors:
+    messages:
+      zipcode_not_found: 'Zipcode not found'
+      invalid_zipcode_format: 'You need to enter a 5 or 9 digit US zipcode'
+      zipcode_wrong_country: "That doesnt seem to be a U.S. zipcode!"

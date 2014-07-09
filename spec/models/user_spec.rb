@@ -15,10 +15,91 @@
 
 require 'spec_helper'
 
+include Il8nSteps
+
 describe User do
   let(:user) {build(:user)}
+
+  RSpec::Matchers.define :have_a_translation do |expected|
+    match do |actual|
+      I18n.t(actual) != "translation missing: en.#{actual}"
+    end
+    failure_message_for_should do |actual|
+      "expected that #{actual} would be present in one of the locale files"
+    end
+
+    failure_message_for_should_not do |actual|
+      "expected that #{actual} would not be present in one of the locale files"
+    end
+
+    description do
+      "have a translation"
+    end
+  end
+
+  describe 'zipcode validation' do
+    let(:nonexistant_zip) {'00000'}
+    let(:incorrect_format_zip) {'qqww2'}
+    let(:non_us_zip) {'ec1y0st'}
+    let(:non_us_zip_with_us_format) {'34000'}
+    before do
+      Geocoder.configure(:lookup => :test)
+      Geocoder::Lookup::Test.add_stub( nonexistant_zip, [])
+      Geocoder::Lookup::Test.set_default_stub([])
+      Geocoder::Lookup::Test.add_stub(
+        non_us_zip_with_us_format, [
+          {
+            'latitude'     => 43.6047275,
+            'longitude'    => 3.941479699999999,
+            'address'      => '34000 Montpellier, France',
+            'city'         => 'Montpellier',
+            'state'        => 'Languedoc-Roussillon',
+            'state_code'   => 'Languedoc-Roussillon',
+            'country'      => 'France',
+            'country_code' => 'FR'
+          }
+        ]
+        )
+    end
+    it 'isnt valid if no zipcode set' do
+      user.zipcode = nil
+      expect(user).to_not be_valid
+    end
+
+    it 'isnt valid if junk string set' do
+      user.zipcode = incorrect_format_zip
+      expect(user).to_not be_valid
+      expect(user.errors_on(:zipcode)).to include(I18n.t('errors.messages.invalid_zipcode_format'))
+    end
+    it 'isnt valid with a non us zipcode' do
+      user.zipcode = non_us_zip
+      expect(user).to_not be_valid
+      expect(user.errors_on(:zipcode)).to include(I18n.t('errors.messages.invalid_zipcode_format'))
+      expect(user.errors_on(:zipcode)).not_to include(I18n.t('errors.messages.zipcode_not_found'))
+    end
+    it 'isnt valid with a valid format but non existant code' do
+      user.zipcode = nonexistant_zip
+      expect(user).to_not be_valid
+      expect(user.errors_on(:zipcode)).to include(I18n.t('errors.messages.zipcode_not_found'))
+    end
+    it 'isnt valid with a US formatted zip that belongs to another country' do
+      user.zipcode = non_us_zip_with_us_format
+      expect(user).to_not be_valid
+      expect(user.errors_on(:zipcode)).to include(I18n.t('errors.messages.zipcode_wrong_country'))
+    end
+    it 'has a localized error message for wrong format' do
+      expect('errors.messages.invalid_zipcode_format').to have_a_translation
+    end
+    it 'has a localized error message for not found' do
+      expect('errors.messages.zipcode_not_found').to have_a_translation
+    end
+    it 'has a localized error message for wrong country' do
+      expect('errors.messages.zipcode_wrong_country').to have_a_translation
+    end
+  end
   describe '#in_new_york_city' do
     it 'returns false if zip not set' do
+      user.zipcode = nil
       expect(user.in_new_york_city?).to be_false
     end
 
@@ -48,6 +129,6 @@ describe User do
         end
 
 
+      end
     end
   end
-end

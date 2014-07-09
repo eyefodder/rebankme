@@ -9,6 +9,7 @@
 #
 
 require 'spec_helper'
+include Il8nSteps
 
 shared_examples "a predefined type" do
   it 'exists' do
@@ -73,7 +74,4 @@ end
 
 
 
-def there_should_be_a_translation_for(token)
-  res = I18n.t(token)
-  expect(res).not_to eq "translation missing: en.#{token}"
-end
+

@@ -1,77 +1,17 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/pbh/Sites/rails_projects/rebankme/app/factories/account_type_factory.rb": [
-        1,
-        null,
-        1,
-        null,
-        null,
-        20,
-        2,
-        null,
-        18,
-        4,
-        null,
-        14,
-        2,
-        null,
-        12,
-        2,
-        null,
-        10,
-        2,
-        null,
-        null,
-        null
-      ],
       "/Users/pbh/Sites/rails_projects/rebankme/app/helpers/application_helper.rb": [
         1,
         null,
         1,
         null,
-        1,
+        0,
         null,
         null
       ],
       "/Users/pbh/Sites/rails_projects/rebankme/app/helpers/demo_helper.rb": [
         1,
-        null
-      ],
-      "/Users/pbh/Sites/rails_projects/rebankme/app/models/account_type.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        1,
-        7,
-        null,
-        null,
-        1,
-        7,
-        null,
-        1,
-        7,
-        null,
-        1,
-        7,
-        null,
-        1,
-        7,
-        null,
-        1,
-        7,
-        null,
         null
       ],
       "/Users/pbh/Sites/rails_projects/rebankme/app/models/user.rb": [
@@ -94,30 +34,11 @@
         1,
         null,
         1,
-        184,
+        0,
         null,
-        null
-      ],
-      "/Users/pbh/Sites/rails_projects/rebankme/app/controllers/static_controller.rb": [
-        1,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/pbh/Sites/rails_projects/rebankme/app/controllers/application_controller.rb": [
-        1,
-        null,
-        null,
-        1,
         null
       ]
     },
-    "timestamp": 1404766604
+    "timestamp": 1404918768
   }
 }

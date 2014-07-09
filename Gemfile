@@ -42,10 +42,15 @@ gem 'autoprefixer-rails'
 gem 'rack-rewrite'
 gem 'rails_12factor' #prevents deprecation warnings on heroku
 
+
+gem 'going_postal' #zipcode *format* validation
+gem 'geocoder' #address lookup
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
 
 gem 'quiet_assets', group: :development
 

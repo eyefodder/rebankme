@@ -8,6 +8,7 @@ FactoryGirl.define do
   end
 
   factory :user do
+    zipcode '11205'
   end
 
   factory :account_type do
