@@ -1,0 +1,15 @@
+<% present @user, AccountTypeFinderPresenter do |presenter| %>
+
+
+<% provide(:heading,  presenter.page_heading) %>
+<% provide(:page_title, presenter.page_title) %>
+
+<%= presenter.next_question_tag %>
+<%= form_for(@user, url: account_finder_path) do |f| %>
+  <%= f.hidden_field :zipcode %>
+  <%= f.hidden_field :is_delinquent %>
+  <%= f.hidden_field :has_predictable_income %>
+  <%= presenter.decision_buttons %>
+<% end %>
+
+<% end %>

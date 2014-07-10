@@ -32,18 +32,38 @@ describe 'Account Finder Pages', :type => :request do
           expect(page).to display_account_finder_question(:is_delinquent)
         end
         it 'has yes / no buttons' do
-          expect(page).to display_choice_buttons([:yes, :no])
+
+          expect(page).to display_choice_buttons([I18n.t('forms.actions.action_yes'), I18n.t('forms.actions.action_no')])
         end
       end
       describe 'clicking yes' do
         before do
-          click_button(:yes)
+          click_yes_button
         end
-        xit 'goes to the predictable income page' do
+        it 'goes to the predictable income page' do
            expect(page).to display_account_finder_content(:has_predictable_income)
         end
       end
 
+      describe 'clicking no' do
+        before do
+          click_no_button
+        end
+        xit 'goes to the special group page' do
+          expect(page).to display_account_finder_content(:is_special_group)
+        end
+
+      end
+
+    end
+    def click_no_button
+      click_form_button(:no)
+    end
+    def click_yes_button
+      click_form_button(:yes)
+    end
+    def click_form_button(action)
+       click_button(I18n.t("forms.actions.action_#{action}"))
     end
 
     RSpec::Matchers.define :display_choice_buttons do |choices|

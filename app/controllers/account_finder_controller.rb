@@ -4,18 +4,24 @@ class AccountFinderController < ApplicationController
     @user = User.new
   end
 
-  def next
-    @user  = User.new(user_params)
-    if @user.valid?
-      # figure out stuff
-      render :is_delinquent
-    else
-      redirect_to :back, flash:{error: @user.errors.full_messages}
-    end
+  # def next
+  #   @user  = User.new(user_params)
+  #   if @user.valid?
+  #     # figure out stuff
+  #     render :next_type_question
+  #   else
+  #     redirect_to :back, flash:{error: @user.errors.full_messages}
+  #   end
+  # end
+
+  def next_type_question
+     @user  = User.new(user_params)
+     redirect_to :back, flash:{error: @user.errors.full_messages} unless @user.valid?
   end
+
   private
 
   def user_params
-    params.require(:user).permit(:zipcode,)
+    params.require(:user).permit(:zipcode,:is_delinquent)
   end
 end

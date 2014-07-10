@@ -15,9 +15,15 @@ describe 'Static Page Content Localizations' do
       is_delinquent:
         title:
         question:
+      has_predictable_income:
+        title:
+        question:
     forms:
       labels:
-        enter_zipcode:"
+        enter_zipcode:
+      actions:
+        action_yes:
+        action_no:"
   }
   it_should_behave_like 'localized content'
 

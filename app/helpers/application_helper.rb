@@ -14,6 +14,13 @@ module ApplicationHelper
     end
   end
 
+  def present(object, klass = nil)
+    klass ||= "#{object.class}Presenter".constantize
+    presenter = klass.new(object, self)
+    yield presenter if block_given?
+    presenter
+  end
+
   def flash_block
     output = ''
     flash.each do |type, message|

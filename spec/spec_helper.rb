@@ -68,7 +68,7 @@ Spork.prefork do
     config.include I18n
 
 
-    # config.include ActionView::TestCase::Behavior, example_group: {file_path: %r{spec/requests}}
+    config.include ActionView::TestCase::Behavior, example_group: {file_path: %r{spec/presenters}}
 
 
     config.use_transactional_fixtures = true

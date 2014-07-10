@@ -2,6 +2,9 @@ en:
   forms:
     labels:
       enter_zipcode: 'Zip code'
+    actions:
+      action_yes: 'Yes'
+      action_no: 'No'
   static:
     home:
       title: "Welcome to Rebank Me!"
@@ -10,5 +13,8 @@ en:
     is_delinquent:
       title: "Delinquent Account?"
       question: "Have you ever walked away from a bank account owing money?"
+    has_predictable_income:
+      title: "Do you have a predictable income?"
+      question: "Do you get paid regularly, or do you sometimes go six weeks or more without getting paid?"
     start:
       title: "Finding an account type"
