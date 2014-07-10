@@ -10,11 +10,16 @@ en:
       title: "Welcome to Rebank Me!"
       account_finder_start: "Find the right account for me!"
   account_finder:
+    start:
+      title: "Finding an account type"
     is_delinquent:
       title: "Delinquent Account?"
       question: "Have you ever walked away from a bank account owing money?"
     has_predictable_income:
       title: "Do you have a predictable income?"
       question: "Do you get paid regularly, or do you sometimes go six weeks or more without getting paid?"
-    start:
-      title: "Finding an account type"
+    is_special_group:
+      title: "Are you special?"
+      question: "Are you a veteran etc?"
+    account_type_found:
+      title: "We recommend a %{product}"

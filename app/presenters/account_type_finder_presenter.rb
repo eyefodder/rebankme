@@ -4,6 +4,8 @@ class AccountTypeFinderPresenter < BasePresenter
   def next_property_token
     if user.is_delinquent
       :has_predictable_income
+    elsif user.is_delinquent == false
+      :is_special_group
     else
       :is_delinquent
     end

@@ -14,6 +14,10 @@ describe AccountTypeFinderPresenter do
       user.is_delinquent = true
       expect(presenter.next_property_token).to eq(:has_predictable_income)
     end
+    it 'returns :is_special_group if :is_delinquent is false' do
+      user.is_delinquent = false
+      expect(presenter.next_property_token).to eq(:is_special_group)
+    end
   end
 
   describe '#page_heading' do

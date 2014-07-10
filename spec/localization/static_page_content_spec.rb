@@ -18,6 +18,11 @@ describe 'Static Page Content Localizations' do
       has_predictable_income:
         title:
         question:
+      is_special_group:
+        title:
+        question:
+      account_type_found:
+        title:
     forms:
       labels:
         enter_zipcode:

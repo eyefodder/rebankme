@@ -1,27 +1,22 @@
 class AccountFinderController < ApplicationController
   def start
-    # flash.now[:error] = "Could not save client"
     @user = User.new
   end
 
-  # def next
-  #   @user  = User.new(user_params)
-  #   if @user.valid?
-  #     # figure out stuff
-  #     render :next_type_question
-  #   else
-  #     redirect_to :back, flash:{error: @user.errors.full_messages}
-  #   end
-  # end
 
   def next_type_question
-     @user  = User.new(user_params)
-     redirect_to :back, flash:{error: @user.errors.full_messages} unless @user.valid?
+    @user  = User.new(user_params)
+    @account_type =  AccountTypeFactory.account_type_for(@user)
+    if @account_type.nil?
+      redirect_to :back, flash:{error: @user.errors.full_messages} unless @user.valid?
+    else
+      render :account_type_found
+    end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:zipcode,:is_delinquent)
+    params.require(:user).permit(:zipcode,:is_delinquent, :has_predictable_income)
   end
 end
