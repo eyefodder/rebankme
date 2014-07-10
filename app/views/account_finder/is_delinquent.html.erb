@@ -1,0 +1,17 @@
+
+<% provide(:heading, t('.title')) %>
+<% provide(:page_title, t('.title')) %>
+<% provide(:question, t('.question')) %>
+
+<%= content_tag(:div, yield(:question), class: 'account-finder-question') %>
+<%= form_for(@user, url: account_finder_path) do |f| %>
+  <%= f.hidden_field :zipcode %>
+  <%= f.hidden_field :is_delinquent %>
+  <%= f.hidden_field :has_predictable_income %>
+  <%= f.button 'yes',  type: 'submit', name: 'user[is_delinquent]', value: true, class: 'btn btn-info' %>
+  <%= f.button 'no',  type: 'submit', name: 'user[is_delinquent]', value: false, class: 'btn btn-info' %>
+
+
+
+
+<% end %>

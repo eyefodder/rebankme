@@ -55,6 +55,9 @@ end
 
 gem 'quiet_assets', group: :development
 
+#monitoring
+gem 'newrelic_rpm'
+
 group :development, :test do
 	gem 'rspec-rails', '~> 2.14'
 	gem 'guard-rspec', require: false

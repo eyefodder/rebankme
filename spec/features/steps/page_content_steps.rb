@@ -14,6 +14,31 @@ module PageContentSteps
       end
     end
   end
+  RSpec::Matchers.define :display_any_errors do
+    match do |page|
+      have_css("#error-messages").matches?(page)
+    end
+  end
+  RSpec::Matchers.define :display_account_finder_content do |page_ref|
+    match do |page|
+      expected_heading = I18n.t("account_finder.#{page_ref}.title")
+      have_page_heading(expected_heading).matches?(page)
+      have_page_title(expected_heading).matches?(page)
+    end
+  end
+  RSpec::Matchers.define :display_account_finder_question do |page_ref|
+    content = I18n.t("account_finder.#{page_ref}.question")
+    failure_message_for_should do |actual|
+     "expected to find <div class='account-finder-question'> with content: \n#{content}"
+    end
+    match do |page|
+
+      have_css('div.account-finder-question', text: content).matches?(page)
+    end
+  end
+
+
+
 
   RSpec::Matchers.define :have_form_for do |form_ref|
     chain :with_field do |field|

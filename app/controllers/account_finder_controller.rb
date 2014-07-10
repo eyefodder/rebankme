@@ -8,7 +8,7 @@ class AccountFinderController < ApplicationController
     @user  = User.new(user_params)
     if @user.valid?
       # figure out stuff
-      puts @user.inspect
+      render :is_delinquent
     else
       redirect_to :back, flash:{error: @user.errors.full_messages}
     end

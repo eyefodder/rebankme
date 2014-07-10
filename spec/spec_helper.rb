@@ -68,7 +68,7 @@ Spork.prefork do
     config.include I18n
 
 
-
+    # config.include ActionView::TestCase::Behavior, example_group: {file_path: %r{spec/requests}}
 
 
     config.use_transactional_fixtures = true
@@ -92,6 +92,15 @@ Spork.prefork do
         )
       Geocoder::Lookup::Test.add_stub(
         '11205', [
+          {
+            'latitude'     => 43.6047275,
+            'longitude'    => 3.941479699999999,
+            'country_code' => 'US'
+          }
+        ]
+        )
+      Geocoder::Lookup::Test.add_stub(
+        '11205-4407', [
           {
             'latitude'     => 43.6047275,
             'longitude'    => 3.941479699999999,

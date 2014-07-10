@@ -12,6 +12,9 @@ describe 'Static Page Content Localizations' do
     account_finder:
       start:
         title:
+      is_delinquent:
+        title:
+        question:
     forms:
       labels:
         enter_zipcode:"
