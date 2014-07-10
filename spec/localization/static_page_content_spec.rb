@@ -4,9 +4,17 @@ include Il8nSteps
 describe 'Static Page Content Localizations' do
 
   let(:expected_tokens){
-    "static:
+   "
+    static:
       home:
-        title:"
+        title:
+        account_finder_start:
+    account_finder:
+      start:
+        title:
+    forms:
+      labels:
+        enter_zipcode:"
   }
   it_should_behave_like 'localized content'
 

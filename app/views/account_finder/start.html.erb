@@ -1,0 +1,13 @@
+<% provide(:heading, t('.title')) %>
+<% provide(:page_title, t('.title')) %>
+<%= form_for(@user, url: users_path) do |f| %>
+<div class="form-group row">
+  <div class="input-group col-xs-8 col-xs-offset-2">
+    <%= f.label :zipcode,t('forms.labels.enter_zipcode'),  class: 'sr-only' %>
+    <%= f.text_field :zipcode,  {placeholder: t('forms.labels.enter_zipcode'), class: 'form-control enter-zip'} %>
+    <span class="input-group-btn"><button type="submit" name="commit" id='submit' class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button></span>
+  </div>
+</div>
+
+<% end %>
+

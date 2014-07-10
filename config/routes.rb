@@ -2,6 +2,9 @@ Rebankme::Application.routes.draw do
 
   root 'static#home'
 
+  get 'start', to: 'account_finder#start', as: :account_finder_start
+  match 'account_finder', to: 'account_finder#next', as: :users, via: [:get, :post]
+
   get 'demo', to: 'demo#start', as: :demo_root
   get 'demo/v1', to: 'demo#show_page', defaults: { version: 'v1', page: 'start' }
   get 'demo/v2', to: 'demo#show_page', defaults: { version: 'v2', page: 'start' }

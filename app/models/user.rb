@@ -42,6 +42,5 @@ class User < ActiveRecord::Base
     else
       errors.add(:zipcode, I18n.t('errors.messages.invalid_zipcode_format'))
     end
-
   end
 end

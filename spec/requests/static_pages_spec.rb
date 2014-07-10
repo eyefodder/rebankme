@@ -14,37 +14,13 @@ describe 'Static Pages', :type => :request do
 		it 'has default page title' do
 			expect(page).to have_page_title('')
 		end
+
+    it 'has a link to start the account finding process' do
+      expect(page).to have_link('start-account-finder', href: account_finder_start_path)
+    end
 	end
 
-  describe 'Entering a zipcode' do
 
-    before do
-      visit root_path
-    end
-
-    describe 'with valid 5 digit code' do
-      before do
-        fill_in('zipcode', with: '11205')
-      end
-      it 'should pass validation'
-      it 'should display the next question'
-    end
-    describe 'with valid 9 digit code' do
-      before do
-        fill_in('zipcode', with: '11205-4407')
-      end
-      it 'should pass validation'
-      it 'should display the next question'
-    end
-    describe 'with invalid zipcode' do
-      before do
-        fill_in('zipcode', with: '34000')
-      end
-      it 'should fail validation and show an error'
-      it 'should display the zipcode form'
-    end
-
-  end
 
   #  def have_errors
   #   have_selector('div.alert.alert-error')

@@ -1,4 +1,11 @@
 en:
+  forms:
+    labels:
+      enter_zipcode: 'Zip code'
   static:
     home:
       title: "Welcome to Rebank Me!"
+      account_finder_start: "Find the right account for me!"
+  account_finder:
+    start:
+      title: "Finding an account type"

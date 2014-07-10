@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rebank Me</title>
+  <%= content_tag(:title, full_title(yield(:page_title)) )%>
+
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +11,8 @@
 </head>
 <body>
 <div class='container'>
-<%= render 'demo/v1/header' %>
+<%= render 'layouts/header' %>
+<%= flash_block %>
 <%= yield %>
 </div>
 </body>
