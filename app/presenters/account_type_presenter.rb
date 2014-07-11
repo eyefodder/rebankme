@@ -34,9 +34,9 @@ class AccountTypePresenter < BasePresenter
   def account_type_choice_reasons_for(user)
     case account_type
     when AccountType.PREPAY_CARD
-      [{is_delinquent: false}, {has_predictable_income: false}]
+      [{is_delinquent: true}, {has_predictable_income: false}]
     when AccountType.SECOND_CHANCE
-      [{is_delinquent: false}, {has_predictable_income: true}, {in_new_york_city: false}]
+      [{is_delinquent: true}, {has_predictable_income: true}, {in_new_york_city: false}]
     when AccountType.SPECIAL_GROUP
       [{is_delinquent: false}, {is_special_group: true}]
     when AccountType.REGULAR_ACCOUNT

@@ -54,7 +54,7 @@ describe '#why_account_type_chosen' do
     it_behaves_like 'explains why chosen' do
       let(:account_type){AccountType.SECOND_CHANCE}
       let(:user){build(:user)}
-      let(:reasons){[{is_delinquent: false}, {has_predictable_income: true}, {in_new_york_city: false}]}
+      let(:reasons){[{is_delinquent: true}, {has_predictable_income: true}, {in_new_york_city: false}]}
     end
   end
   describe 'with special account' do
