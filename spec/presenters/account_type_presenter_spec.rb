@@ -47,7 +47,7 @@ describe '#why_account_type_chosen' do
     it_behaves_like 'explains why chosen' do
       let(:account_type){AccountType.PREPAY_CARD}
       let(:user){build(:user)}
-      let(:reasons){[{is_delinquent: false}, {has_predictable_income: false}]}
+      let(:reasons){[{is_delinquent: true}, {has_predictable_income: false}]}
     end
   end
   describe 'with second_chance' do
