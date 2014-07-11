@@ -8,12 +8,12 @@ require 'spork'
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
 
-  unless ENV['DRB']
-    require 'simplecov'
-    require 'simplecov-rcov'
-    SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
-    SimpleCov.start 'rails'
-  end
+  # unless ENV['DRB']
+  #   require 'simplecov'
+  #   require 'simplecov-rcov'
+  #   SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
+  #   SimpleCov.start 'rails'
+  # end
 
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
@@ -165,12 +165,12 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  if ENV['DRB']
-    require 'simplecov'
-    require 'simplecov-rcov'
-    SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
-    SimpleCov.start 'rails'
-  end
+  # if ENV['DRB']
+  #   require 'simplecov'
+  #   require 'simplecov-rcov'
+  #   SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
+  #   SimpleCov.start 'rails'
+  # end
   # This code will be run each time you run your specs.
   # require 'rspec/rails'
   # require 'shoulda/matchers'
