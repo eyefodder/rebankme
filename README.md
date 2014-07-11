@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/repos/53baacb3e30ba0381a000625/badges/b91b5586aaa1a3ca4107/gpa.png)](https://codeclimate.com/repos/53baacb3e30ba0381a000625/feed)
+[![Code Climate](https://codeclimate.com/repos/53baacb3e30ba0381a000625/badges/b91b5586aaa1a3ca4107/coverage.png)](https://codeclimate.com/repos/53baacb3e30ba0381a000625/feed)
 # Rebank Me!
 ## Development Environment Setup
 The dev environment should be able to be setup in a couple of simple steps using vagrant. What this does is set up a virtual machine on your machine that the app will run in. This way it closely mimics the production environment and we can easily synchronize environments accross different users' machines.
