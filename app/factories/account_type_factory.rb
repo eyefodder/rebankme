@@ -16,19 +16,28 @@ class AccountTypeFactory
     if matches_regular_account_profile(user)
       return AccountType.REGULAR_ACCOUNT
     end
-    if user.is_delinquent == false && user.is_special_group == false && user.will_use_direct_deposit == false
-      if !user.in_new_york_city?
+    if matches_credit_union_or_safe_account(user)
+      return safe_or_credit_union(user)
+    end
+  end
+
+  private
+
+  def self.safe_or_credit_union(user)
+    if !user.in_new_york_city?
+      return AccountType.CREDIT_UNION
+    else
+      if user.needs_debit_card == false
+        return AccountType.SAFE_ACCOUNT
+      elsif user.needs_debit_card
         return AccountType.CREDIT_UNION
-      else
-        if user.needs_debit_card == false
-          return AccountType.SAFE_ACCOUNT
-        elsif user.needs_debit_card
-          return AccountType.CREDIT_UNION
-        end
       end
     end
   end
 
+  def self.matches_credit_union_or_safe_account(user)
+    user.is_delinquent == false && user.is_special_group == false && user.will_use_direct_deposit == false
+  end
   def self.safe_or_second_chance(user)
     user.in_new_york_city? ? AccountType.SAFE_ACCOUNT : AccountType.SECOND_CHANCE
   end
@@ -42,6 +51,6 @@ class AccountTypeFactory
     user.is_delinquent == false && user.is_special_group
   end
   def self.matches_regular_account_profile(user)
-user.is_delinquent == false && user.is_special_group == false && user.will_use_direct_deposit
+    user.is_delinquent == false && user.is_special_group == false && user.will_use_direct_deposit
   end
 end
