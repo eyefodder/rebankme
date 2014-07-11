@@ -18,6 +18,17 @@ describe AccountTypeFinderPresenter do
       user.is_delinquent = false
       expect(presenter.next_property_token).to eq(:is_special_group)
     end
+    it 'returns :will_use_direct_deposit if :is_delinquent -> false and :is_special_group -> false' do
+      user.is_delinquent = false
+      user.is_special_group = false
+      expect(presenter.next_property_token).to eq(:will_use_direct_deposit)
+    end
+    it 'returns :needs_debit_card if :is_delinquent, :is_special_group and :will_use_direct_deposit all false' do
+      user.is_delinquent = false
+      user.is_special_group = false
+      user.will_use_direct_deposit = false
+      expect(presenter.next_property_token).to eq(:needs_debit_card)
+    end
   end
 
   describe '#page_heading' do

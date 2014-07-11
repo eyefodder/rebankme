@@ -5,7 +5,15 @@ class AccountTypeFinderPresenter < BasePresenter
     if user.is_delinquent
       :has_predictable_income
     elsif user.is_delinquent == false
-      :is_special_group
+      if user.is_special_group == false
+        if user.will_use_direct_deposit == false
+          :needs_debit_card
+        else
+          :will_use_direct_deposit
+        end
+      else
+        :is_special_group
+      end
     else
       :is_delinquent
     end

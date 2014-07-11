@@ -19,33 +19,25 @@ module PageContentSteps
       have_css("#error-messages").matches?(page)
     end
   end
-  RSpec::Matchers.define :display_account_finder_content do |page_ref|
-    match do |page|
-      expected_heading = I18n.t("account_finder.#{page_ref}.title")
-      have_page_heading(expected_heading).matches?(page)
-      have_page_title(expected_heading).matches?(page)
-    end
+  def click_no_button
+    click_form_button(:no)
   end
-  RSpec::Matchers.define :display_account_finder_question do |page_ref|
-    content = I18n.t("account_finder.#{page_ref}.question")
-    failure_message_for_should do |actual|
-     "expected to find <div class='account-finder-question'> with content: \n#{content}"
-    end
-    match do |page|
+  def click_yes_button
+    click_form_button(:yes)
+  end
+  def click_form_button(action)
+   click_button(I18n.t("forms.actions.action_#{action}"))
+ end
 
-      have_css('div.account-finder-question', text: content).matches?(page)
-    end
+
+
+
+ RSpec::Matchers.define :have_form_for do |form_ref|
+  chain :with_field do |field|
+    @field = field
   end
 
-
-
-
-  RSpec::Matchers.define :have_form_for do |form_ref|
-    chain :with_field do |field|
-      @field = field
-    end
-
-    match do |page|
+  match do |page|
 
       # if form_ref.is_a?(Symbol)
       #   base_id = form_ref

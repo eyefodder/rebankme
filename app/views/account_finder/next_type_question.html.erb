@@ -8,7 +8,10 @@
 <%= form_for(@user, url: account_finder_path) do |f| %>
   <%= f.hidden_field :zipcode %>
   <%= f.hidden_field :is_delinquent %>
+  <%= f.hidden_field :is_special_group %>
+  <%= f.hidden_field :will_use_direct_deposit %>
   <%= f.hidden_field :has_predictable_income %>
+  <%= f.hidden_field :needs_debit_card %>
   <%= presenter.decision_buttons %>
 <% end %>
 

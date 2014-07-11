@@ -21,5 +21,11 @@ en:
     is_special_group:
       title: "Are you special?"
       question: "Are you a veteran etc?"
+    will_use_direct_deposit:
+      title: "Will you Direct Deposit?"
+      question: "Would you like to have your income or benefits directly deposited to your account?"
+    needs_debit_card:
+      title: "Do you need a debit card?"
+      question: "Do you need a debit card, or can you get by with an ATM card and cash?"
     account_type_found:
       title: "We recommend a %{product}"
