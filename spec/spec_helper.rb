@@ -17,7 +17,7 @@ Spork.prefork do
 
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
-  require 'shoulda/matchers'
+  # require 'shoulda/matchers'
   require 'rspec/autorun'
   # require "rack_session_access/capybara"
 
