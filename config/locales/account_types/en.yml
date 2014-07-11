@@ -27,7 +27,7 @@ en:
       needs_debit_card: "You need a debit card"
     negative:
       is_delinquent: "You don't have any delinquencies in your banking history"
-      has_predictable_income: "You don't have unpredictable income"
+      has_predictable_income: "You don't have predictable income"
       in_new_york_city: "You don't live in New York"
       is_special_group: "You aren't in a group that qualifies for waived fees"
       will_use_direct_deposit: "You will not deposit your paycheck with direct deposit"
