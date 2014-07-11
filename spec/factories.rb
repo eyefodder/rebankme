@@ -7,8 +7,11 @@ FactoryGirl.define do
     "#{n}test@test.com"
   end
 
-  factory :user do
+  factory :user, aliases: [:nyc_user] do
     zipcode '11205'
+    factory :non_nyc_user do
+      zipcode '90210'
+    end
   end
 
   factory :account_type do

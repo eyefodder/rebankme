@@ -31,4 +31,5 @@ en:
     account_type_found:
       title: "We recommend a %{product}"
       overview_heading: "What is it?"
+      why_we_chose_heading: "Why it's right for you"
 

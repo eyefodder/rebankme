@@ -3,10 +3,7 @@
 <% provide(:page_title, presenter.page_title) %>
 
 <%= presenter.account_type_overview %>
-<div class='why-we-chose'>
-<h3>Why?</h3>
-People who have walked away from a bank account should generally consider going for a second chance or safe account, but in your case, because....
-</div>
+<%= presenter.why_account_type_chosen_for @user %>
 <div class='account-finder-drilldown'>
 <%= link_to "Find me the right #{@account_type.name_id}" , '#', id: 'account-finder-drilldown-button', class: 'btn btn-primary' %>
 </div>
