@@ -34,6 +34,8 @@ class AccountTypeFinderPresenter < BasePresenter
     button_tag(:yes, true) + button_tag(:no, false)
   end
 
+
+
   private
 
   def button_tag(action_label, value)

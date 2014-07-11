@@ -34,7 +34,8 @@ describe 'Static Page Content Localizations' do
         enter_zipcode:
       actions:
         action_yes:
-        action_no:"
+        action_no:
+        start_over:"
   }
   it_should_behave_like 'localized content'
 

@@ -11,7 +11,7 @@ Based on what you told us, we think the best type of product for you is a ...
 People who have walked away from a bank account should generally consider going for a second chance or safe account, but in your case, because....
 </div>
 <div class='account-finder-drilldown'>
-<%= link_to 'Find me the right ...', '#', id: 'account-finder-drilldown-button', class: 'btn btn-primary' %>
+<%= link_to "Find me the right #{@account_type.name_id}" , '#', id: 'account-finder-drilldown-button', class: 'btn btn-primary' %>
 </div>
-
+<%= presenter.start_over_button %>
 <% end %>

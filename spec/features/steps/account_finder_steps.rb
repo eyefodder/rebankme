@@ -29,6 +29,10 @@ module AccountFinderSteps
     it 'has yes / no buttons' do
       expect(page).to display_choice_buttons([I18n.t('forms.actions.action_yes'), I18n.t('forms.actions.action_no')])
     end
+
+    it 'has start over button' do
+      expect(page).to have_link(I18n.t('forms.actions.start_over'))
+    end
     it 'goes to the right place on clicking yes' do
       click_yes_button
       it_should_be_at_right_destination(yes_destination)

@@ -5,6 +5,7 @@ en:
     actions:
       action_yes: 'Yes'
       action_no: 'No'
+      start_over: 'Start Over'
   static:
     home:
       title: "Welcome to Rebank Me!"

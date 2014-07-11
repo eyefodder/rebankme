@@ -31,6 +31,13 @@ describe AccountTypeFinderPresenter do
     end
   end
 
+  describe '#start_over_button' do
+    it 'returns a start over link' do
+      expected = view.link_to(I18n.t("forms.actions.start_over"), account_finder_start_path, class: 'btn btn-default')
+      expect(presenter.start_over_button).to eq(expected)
+    end
+  end
+
   describe '#page_heading' do
     let(:token){presenter.next_property_token}
     it 'returns title from localized file' do
