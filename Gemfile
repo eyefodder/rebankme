@@ -89,7 +89,7 @@ group :test do
 	gem 'simplecov'
 	gem 'simplecov-rcov'
 
-	gem 'shoulda-matchers'
+	gem 'shoulda-matchers', require: false
 	gem 'rspec-html-matchers'
 end
 

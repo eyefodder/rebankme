@@ -29,6 +29,7 @@ describe 'Static Page Content Localizations' do
         question:
       account_type_found:
         title:
+        overview_heading:
     forms:
       labels:
         enter_zipcode:

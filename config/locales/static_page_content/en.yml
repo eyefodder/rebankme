@@ -30,3 +30,5 @@ en:
       question: "Do you need a debit card, or can you get by with an ATM card and cash?"
     account_type_found:
       title: "We recommend a %{product}"
+      overview_heading: "What is it?"
+

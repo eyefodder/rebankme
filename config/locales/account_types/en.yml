@@ -1,13 +1,19 @@
 en:
   prepay_card:
     name: 'Prepay Card'
+    overview: 'A card that you can store money on and add money to again and again'
   second_chance:
     name: 'Second Chance Account'
+    overview: "A second chance account is an account helps you get back into the banking system after you've been shut out"
   safe_account:
     name: 'Safe Account'
+    overview: "A safe account is a low-cost account offered to New Yorkers"
   special_group:
     name: 'Special Group Account'
+    overview: "Because you are *special* you are eligible to get fees waived on a traditinal account"
   regular_account:
     name: 'Regular Account'
+    overview: "A high-street account is one at a bank that has a lot of branches around the country"
   credit_union:
     name: 'Credit Union'
+    overview: "This is an account at a local institution in your neighbourhood"

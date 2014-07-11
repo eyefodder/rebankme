@@ -6,7 +6,9 @@ describe 'Account Type Localizations' do
    %w{prepay_card second_chance safe_account special_group regular_account credit_union}
   }
   let(:token_template){
-    "name:"
+    "
+    name:
+    overview:"
   }
   it_should_behave_like 'templated localized content'
 end
