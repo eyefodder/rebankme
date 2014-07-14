@@ -1,0 +1,25 @@
+$lightGrey: #DBDBDB;
+$medGrey: #808080;
+$darkGrey: #666666;
+$default-font: 'source-sans-pro';
+
+$app-bg-color: #4ED8D8;
+$base-font-color: #fff;
+$link-hover-color: $base-font-color;
+$link-color: $base-font-color;
+
+$default-btn-color: #FFFFFF;
+$default-btn-color-hover:#EAEAEA;
+
+$primary-btn-color: #3CAFAC;
+$primary-btn-color-hover:  #319994;
+
+$no-btn-color: #FF1B00;
+$no-btn-color-hover: #B71B00;
+
+$yes-btn-color: #24BC2B;
+$yes-btn-color-hover: #24782B;
+
+input, .form-control{
+color: $darkGrey
+}

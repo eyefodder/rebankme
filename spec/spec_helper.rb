@@ -14,6 +14,11 @@ Spork.prefork do
   #   SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
   #   # SimpleCov.start 'rails'
   # end
+    require 'simplecov-rcov'
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    CodeClimate::TestReporter::Formatter,
+    SimpleCov::Formatter::RcovFormatter,
+  ]
 
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
@@ -174,4 +179,9 @@ Spork.each_run do
   # This code will be run each time you run your specs.
   # require 'rspec/rails'
   # require 'shoulda/matchers'
+  require 'simplecov-rcov'
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    CodeClimate::TestReporter::Formatter,
+    SimpleCov::Formatter::RcovFormatter,
+  ]
 end

@@ -29,6 +29,13 @@ module PageContentSteps
    click_button(I18n.t("forms.actions.action_#{action}"))
  end
 
+RSpec::Matchers.define :have_flash_message do |expected_message|
+  match do |page|
+    within("div.alert-#{expected_message.keys.first}") do
+      have_content(expected_message.values.first).matches?(page)
+    end
+  end
+end
 
 
 

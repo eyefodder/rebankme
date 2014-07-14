@@ -47,6 +47,9 @@ gem 'rails_12factor' #prevents deprecation warnings on heroku
 gem 'going_postal' #zipcode *format* validation
 gem 'geocoder' #address lookup
 
+gem 'devise' #authentication framework
+gem 'omniauth-facebook' #authentication using facebook oauth
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

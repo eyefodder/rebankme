@@ -5,11 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-account_types = AccountType.create([{name_id:'prepay_card'},
-                                    {name_id:'second_chance'},
-                                    {name_id:'safe_account'},
-                                    {name_id:'special_group'},
-                                    {name_id:'regular_account'},
-                                    {name_id:'credit_union'},
-                                    ])
+
+%w{prepay_card second_chance safe_account special_group regular_account credit_union}.each do |name_id|
+ AccountType.where(name_id: name_id).first_or_create!
+end
+
+%w{avi@significancelabs.org paul@significancelabs.org stephanie@significancelabs.org}.each do |email|
+ AdminUser.where(email: email).first_or_create!(password: 'changeme', password_confirmation: 'changeme')
+end
+
 
