@@ -1,56 +1,43 @@
 
 include PageContentSteps
+include AdminSteps
+
+
 
 describe 'Admin Pages', :type => :request do
 
   subject {page}
 
-  before do
-    visit admin_path
+  describe 'root admin page' do
+    include_context 'is an admin only page' do
+      let(:path_to_test){admin_path}
+    end
   end
 
-  it 'require users to login' do
-    expect(current_path).to eq(new_admin_user_session_path)
-  end
-  describe 'successfully logging in' do
+  describe 'admin nav' do
     before do
-      fill_in('admin_user_email', with: 'paul@significancelabs.org')
-      fill_in('admin_user_password', with: 'changeme')
-      click_button('Sign in')
+      as_admin
+      visit admin_path
     end
-    it 'displays a welcome message' do
-      expect(page).to show_signed_in_message
+    it 'has a link to admin home' do
+      expect(page).to have_admin_link(admin_path)
     end
-    it 'displays admin navigation' do
-      expect(page).to show_admin_nav
+    it 'has a link to admin home' do
+      expect(page).to have_admin_link(banks_path)
     end
-
-    describe 'then logging out' do
-      before do
-        click_link('logout')
-      end
-      it 'displays a signout message' do
-        expect(page).to show_signed_out_message
-      end
-      it 'is on root path' do
-        expect(current_path).to eq root_path
-      end
+    it 'has an edit profile link' do
+      expect(page).to have_admin_link(edit_admin_user_registration_path)
     end
-
+    it 'has a logout link' do
+      expect(page).to have_admin_link(destroy_admin_user_session_path)
+    end
 
   end
 
+
+
 end
 
-def show_admin_nav
-  have_css('#admin-nav')
-end
 
-def show_signed_in_message
-  have_flash_message(:notice => 'Signed in successfully.')
-end
 
-def show_signed_out_message
-  have_flash_message(:notice => 'Signed out successfully.')
-end
 

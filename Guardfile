@@ -83,6 +83,7 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' },
   watch('test/test_helper.rb') { :test_unit }
   watch(%r{features/support/}) { :cucumber }
   watch(%r{^spec/support/.+\.rb})
+  watch(%r{^spec/factories.rb})
   watch(%r{^spec/features/steps/.+\.rb})
 end
 

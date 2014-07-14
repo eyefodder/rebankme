@@ -1,0 +1,6 @@
+  <div class="span6 offset3">
+    <%= form_for(presenter.form_object) do |f| %>
+      <%= render 'fields', f: f, presenter: presenter %>
+      <%= f.submit  class: "btn btn-large btn-primary", id:'submit_button' %>
+    <% end %>
+  </div>

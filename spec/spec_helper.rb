@@ -140,6 +140,7 @@ Spork.prefork do
     # config.after(:each) do
     #   DatabaseCleaner.clean
     # end
+    config.after(:each) { Warden.test_reset! }
 
     # http://blog.zerosum.org/2011/03/19/easy-rails-outh-integration-testing.html
     # config.include IntegrationSpecHelper, :type => :request

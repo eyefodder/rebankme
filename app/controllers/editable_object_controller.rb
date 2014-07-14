@@ -1,0 +1,61 @@
+class EditableObjectController < ApplicationController
+  before_action :authenticate_admin_user!
+
+  def initialize
+    super
+  end
+
+  def index
+    @items = @item_class.all
+  end
+  def new
+    @item = @item_class.new
+  end
+  def create
+    @item = @item_class.new(item_params)
+    if @item.save
+      after_successful_create
+    else
+      after_failed_create
+    end
+  end
+  def edit
+    set_item_from_params
+  end
+  def show
+    set_item_from_params
+  end
+
+  def destroy
+    @item_class.find(params[:id]).destroy
+    flash[:success] = "Item deleted."
+    after_destroy
+  end
+  def update
+    set_item_from_params
+    if @item.update_attributes(item_params)
+      after_successful_update
+    else
+      after_failed_update
+    end
+  end
+
+  private
+
+  def set_item_from_params
+    @item = @item_class.find(params[:id])
+  end
+
+  def after_successful_create
+    flash[:success] = "Successfully created a new #{@item_class.name}"
+    redirect_to @item
+  end
+  def after_failed_create
+    render 'new'
+  end
+
+  def after_failed_update
+    render 'edit'
+  end
+
+end
