@@ -1,0 +1,7 @@
+{
+  "LICENSE": "06c0d6e9a1d5339a449f9f80e9b2356a",
+  "Modulefile": "b2839e742f2d5c29b7054ea77935d6b4",
+  "README.md": "31dbbfbd40c2e15fee409fc3b11cea93",
+  "manifests/app.pp": "654513b0989ee37d6f293648b7cf5005",
+  "manifests/init.pp": "14a1ee54b52dae732f6e08a7064e6bb6"
+}

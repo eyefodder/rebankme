@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-
+echo 'adding ruby repo for apt-get'
+apt-get install -y python-software-properties
+add-apt-repository ppa:brightbox/ruby-ng-experimental
+echo 'added'
 echo 'updating package list'
 apt-get update >/dev/null 2>&1
 echo 'updated'
@@ -14,19 +17,19 @@ echo "Installing dev libraries"
  apt-get install -y git-core curl libyaml-dev libcurl4-openssl-dev libsqlite-dev postgresql >/dev/null 2>&1
 echo "dev libraries installed"
 
-echo "Installing ruby 2.1.1"
-rm -rf /opt/vagrant_ruby
-echo 'downloading'
-curl --remote-name http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.tar.gz >/dev/null 2>&1
-tar zxf ruby-2.1.1.tar.gz >/dev/null 2>&1
-cd ruby-2.1.1/
-echo 'configure'
-./configure >/dev/null 2>&1
-echo 'make (this could take a while, while I make ruby, you should make tea...)'
-make  >/dev/null 2>&1
-echo 'install'
-make install >/dev/null 2>&1
-echo "ruby installed"
+# echo "Installing ruby 2.1.1"
+# rm -rf /opt/vagrant_ruby
+# echo 'downloading'
+# curl --remote-name http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.tar.gz >/dev/null 2>&1
+# tar zxf ruby-2.1.1.tar.gz >/dev/null 2>&1
+# cd ruby-2.1.1/
+# echo 'configure'
+# ./configure >/dev/null 2>&1
+# echo 'make (this could take a while, while I make ruby, you should make tea...)'
+# make  >/dev/null 2>&1
+# echo 'install'
+# make install >/dev/null 2>&1
+# echo "ruby installed"
 
 echo "install puppet"
 useradd --comment "Puppet" --no-create-home --system --shell /bin/false puppet -g puppet
@@ -34,6 +37,6 @@ gem install puppet -v 3.6.2 --no-rdoc --no-ri
 echo "puppet installed"
 
 echo 'applying puppet manifest'
-puppet apply --verbose /etc/puppet/manifests/default.pp >/dev/null 2>&1
+puppet apply --verbose /etc/puppet/manifests/default.pp
 echo 'BOOM! - done.'
 
