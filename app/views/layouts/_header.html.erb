@@ -1,3 +1,4 @@
+<%= render 'admin/admin_nav' if admin_user_signed_in? %>
 <% unless try(:suppress_logo) %>
 <div class='row header'>
   <div class='col-xs-2 header-image'><%= image_tag 'littlegiraffe.png' %></div>
