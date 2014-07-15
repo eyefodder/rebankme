@@ -4,8 +4,10 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 
+
 def as_admin(user=nil, &block)
-  current_admin_user = user || FactoryGirl.create(:admin_user)
+  current_admin_user = user || AdminUser.first
+  # current_admin_user = user || FactoryGirl.create(:admin_user)
   if !request.try(:nil?) && request.try(:present?)
     sign_in(current_admin_user)
   else
@@ -43,13 +45,13 @@ end
 # end
 
 
-# def as_visitor(user=nil, &block)
-#   current_user = user || FactoryGirl.stub(:user)
-#   if request.present?
-#     sign_out(current_user)
-#   else
-#     logout(:user)
-#   end
-#   block.call if block.present?
-#   return self
-# end
+def as_visitor(user=nil, &block)
+  current_admin_user = user || FactoryGirl.stub(:admin_user)
+  if request.present?
+    sign_out(current_user)
+  else
+    logout(:admin_user)
+  end
+  block.call if block.present?
+  return self
+end

@@ -1,30 +1,29 @@
 module DataEntrySteps
 
-  shared_examples "a page that creates a new item with valid information" do |clazz|
-  before do
-    populate_required_properties :with_valid
+  def object_class
+    type.to_s.camelize.constantize
   end
-  it "should  change item count" do
-    expect {click_submit_button}.to change(clazz, :count).by(1)
-  end
-  it 'should navigate to post create path' do
-    click_submit_button
-    expect(current_path).to eq post_create_path
-  end
-end
 
-shared_examples "a page that doesn't create with invalid information" do |clazz|
-  before do
-    populate_required_properties :with_invalid
+  shared_examples "a page that creates a new item with valid information" do
+    before do
+      populate_required_properties :with_valid
+    end
+    it "should  change item count" do
+      expect {click_submit_button}.to change(object_class, :count).by(1)
+    end
+    it 'should navigate to post create path' do
+      click_submit_button
+      expect(current_path).to eq post_create_path
+    end
   end
-  it "should not change item count" do
-    expect {click_submit_button}.not_to change(clazz, :count)
-  end
-  # it 'should go back to edit page' do
-  #   path = current_path
-  #   click_submit_button
-  #   expect(current_path).to eq path
-  # end
+
+  shared_examples "a page that doesn't create with invalid information" do
+    before do
+      populate_required_properties :with_invalid
+    end
+    it "should not change item count" do
+      expect {click_submit_button}.not_to change(object_class, :count)
+    end
 end
 
 

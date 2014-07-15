@@ -20,9 +20,4 @@ describe 'Static Pages', :type => :request do
     end
 	end
 
-
-
-  #  def have_errors
-  #   have_selector('div.alert.alert-error')
-  # end
 end

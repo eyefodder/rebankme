@@ -1,9 +1,54 @@
 module AdminSteps
   extend RSpec::Matchers::DSL
 
+
+shared_context 'has admin only pages' do
+    describe 'as visitor' do
+      before do
+        as_visitor
+      end
+      it 'displays login for each page' do
+        admin_paths.each do |action|
+          path = path_for_action action
+          visit path
+          expect(current_path).to eq(new_admin_user_session_path)
+        end
+      end
+    end
+    describe 'as admin' do
+      before do
+        as_admin
+      end
+      it 'displays page with admin nav' do
+        admin_paths.each do |action|
+          path = path_for_action action
+          visit path
+          expect(current_path).to eq(path)
+          expect(page).to have_css('#admin-nav')
+        end
+      end
+    end
+
+    def path_for_action(action)
+      case action
+      when :index
+        path = send("#{type.to_s.pluralize}_path")
+      when :new
+        path = send("new_#{type}_path")
+      when :edit
+        path = send("edit_#{type}_path", create(type))
+      else
+        return action
+      end
+      path
+    end
+  end
+
+
   shared_context 'is an admin only page' do
     subject {page}
     before do
+      as_visitor
       visit path_to_test
     end
 

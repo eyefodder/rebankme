@@ -34,7 +34,7 @@ FactoryGirl.define do
 
   factory :branch do
     bank_id 1
-    address_id 1
+    address
     name
   end
 
