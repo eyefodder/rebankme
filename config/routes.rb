@@ -15,8 +15,8 @@ Rebankme::Application.routes.draw do
 
   scope '/admin' do
     resources :banks
-    resources :addresses
     resources :branches
+    resources :bank_accounts
   end
 
   get 'demo', to: 'demo#start', as: :demo_root

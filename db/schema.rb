@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715123319) do
+ActiveRecord::Schema.define(version: 20140715185723) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "account_types", force: true do |t|
     t.string   "name_id"
@@ -45,8 +48,16 @@ ActiveRecord::Schema.define(version: 20140715123319) do
     t.datetime "updated_at"
   end
 
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "bank_accounts", force: true do |t|
+    t.integer  "account_type_id"
+    t.integer  "branch_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "banks", force: true do |t|
     t.string   "name"
@@ -62,6 +73,12 @@ ActiveRecord::Schema.define(version: 20140715123319) do
     t.integer  "bank_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "users", force: true do |t|

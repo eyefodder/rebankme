@@ -42,6 +42,20 @@ class EditableObjectController < ApplicationController
 
   private
 
+  def create_with_associations(association_sym)
+    param_key = "#{association_sym.to_s}_attributes".to_sym
+    obj_params = item_params
+    associations_params = obj_params.delete(param_key)
+
+    # child_class = sym.to_s.camelize.constantize
+
+    new_obj = @item_class.new obj_params
+    child_obj = new_obj.create_address(associations_params)
+    new_obj.save
+    new_obj
+
+  end
+
   def set_new_item
     @item = @item_class.new
   end

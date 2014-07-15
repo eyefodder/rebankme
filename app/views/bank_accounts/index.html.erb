@@ -1,0 +1,6 @@
+<% provide(:heading,  'All Bank Accounts') %>
+<% provide(:page_title, 'All Bank Accounts') %>
+<%= link_to('New Bank Account', new_bank_account_path, class: 'btn btn-primary') %>
+<ul class='editable-object-list'>
+<%= render @items %>
+</ul>

@@ -33,9 +33,15 @@ FactoryGirl.define do
   end
 
   factory :branch do
-    bank_id 1
-    address
+    bank
     name
+    zipcode '11205'
+  end
+  factory :bank_account do
+    name
+    account_type
+    branch
+
   end
 
 

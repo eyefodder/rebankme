@@ -1,0 +1,5 @@
+<% present @item do |presenter| %>
+<% provide(:heading,  'Edit Bank Account') %>
+<% provide(:page_title, 'Edit Bank Account') %>
+<%= render partial: 'layouts/new_edit_item', locals:{presenter:presenter} %>
+<% end %>

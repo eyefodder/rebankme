@@ -7,8 +7,8 @@ class AdminNavPresenter < BasePresenter
   def banks_link
     link_for('Banks', h.banks_path)
   end
-  def addresses_link
-    link_for('Addresses', h.addresses_path)
+  def bank_accounts_link
+    link_for('Bank Accounts', h.bank_accounts_path)
   end
   def branches_link
     link_for('Branches', h.branches_path)

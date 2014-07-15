@@ -1,5 +1,6 @@
 class BasePresenter
   def initialize(object, template)
+    create_templated_methods
     @object = object
     @template = template
   end
@@ -33,6 +34,21 @@ class BasePresenter
 
   private
 
+  def create_templated_methods
+
+  end
+
+  def text_field_tag(form_builder, id)
+    label = form_builder.label(id)
+    field = form_builder.text_field(id)
+    label + field
+  end
+  def select_field_tag(form_builder, id, options)
+    label = form_builder.label(id)
+    field = form_builder.select(id, options)
+    label + field
+  end
+
   def tag_id(tag_action)
     "#{tag_action}_#{presented}_#{@object.id}"
   end
@@ -53,6 +69,13 @@ class BasePresenter
     omitted_prefixes.include?(tag_action) ? suffix : "#{tag_action}_#{suffix}"
   end
 
+  def self.text_field_tags_for(names)
+    names.each do |field_name|
+      define_method("#{field_name}_field_tag") do |form_builder|
+        text_field_tag(form_builder, field_name)
+      end
+    end
+  end
 
   def self.presents(name)
     define_method(:presented) do

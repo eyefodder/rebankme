@@ -12,6 +12,10 @@ class AccountType < ActiveRecord::Base
   validates_presence_of :name_id
   validates_uniqueness_of :name_id
 
+  def name
+    I18n.t("#{name_id}.name")
+  end
+
   def self.PREPAY_CARD
     AccountType.where(name_id: 'prepay_card').first
   end

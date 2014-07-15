@@ -5,9 +5,8 @@
 <%= presenter.telephone_field_tag(f) %>
 <%= presenter.hours_field_tag(f) %>
 <div>
-<%= f.fields_for :address do |address_fields| %>
-<% present @item.address do |presenter| %>
-<%= render partial: 'addresses/fields', locals:{presenter:presenter, f: address_fields} %>
-<% end %>
-<% end %>
+<%= presenter.street_field_tag(f) %>
+<%= presenter.city_field_tag(f) %>
+<%= presenter.state_field_tag(f) %>
+<%= presenter.zipcode_field_tag(f) %>
 </div>
