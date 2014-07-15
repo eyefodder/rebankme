@@ -1,0 +1,6 @@
+<% provide(:heading,  'All Branches') %>
+<% provide(:page_title, 'All Branches') %>
+<%= link_to('New Branch', new_branch_path, class: 'btn btn-primary') %>
+<ul class='editable-object-list'>
+<%= render @items %>
+</ul>

@@ -9,7 +9,7 @@ class EditableObjectController < ApplicationController
     @items = @item_class.all
   end
   def new
-    @item = @item_class.new
+    set_new_item
   end
   def create
     @item = @item_class.new(item_params)
@@ -41,6 +41,12 @@ class EditableObjectController < ApplicationController
   end
 
   private
+
+  def set_new_item
+    @item = @item_class.new
+  end
+
+
 
   def set_item_from_params
     @item = @item_class.find(params[:id])

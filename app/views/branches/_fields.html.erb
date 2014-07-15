@@ -1,0 +1,13 @@
+<%= render partial: 'layouts/error_messages', locals:{presenter:presenter} %>
+
+<%= presenter.bank_field_tag(f) %>
+<%= presenter.name_field_tag(f) %>
+<%= presenter.telephone_field_tag(f) %>
+<%= presenter.hours_field_tag(f) %>
+<div>
+<%= f.fields_for :address do |address_fields| %>
+<% present @item.address do |presenter| %>
+<%= render partial: 'addresses/fields', locals:{presenter:presenter, f: address_fields} %>
+<% end %>
+<% end %>
+</div>

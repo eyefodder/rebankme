@@ -28,5 +28,15 @@ FactoryGirl.define do
     password_confirmation '12345678'
   end
 
+  factory :address do
+    zipcode '11205'
+  end
+
+  factory :branch do
+    bank_id 1
+    address_id 1
+    name
+  end
+
 
 end

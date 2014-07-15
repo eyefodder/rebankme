@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140714203015) do
+ActiveRecord::Schema.define(version: 20140715123319) do
 
   create_table "account_types", force: true do |t|
     t.string   "name_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "addresses", force: true do |t|
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -39,6 +50,16 @@ ActiveRecord::Schema.define(version: 20140714203015) do
 
   create_table "banks", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "branches", force: true do |t|
+    t.string   "name"
+    t.integer  "address_id"
+    t.string   "telephone"
+    t.string   "hours"
+    t.integer  "bank_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

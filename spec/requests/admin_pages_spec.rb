@@ -22,8 +22,11 @@ describe 'Admin Pages', :type => :request do
     it 'has a link to admin home' do
       expect(page).to have_admin_link(admin_path)
     end
-    it 'has a link to admin home' do
+    it 'has a link to banks' do
       expect(page).to have_admin_link(banks_path)
+    end
+    it 'has a link to branches' do
+      expect(page).to have_admin_link(branches_path)
     end
     it 'has an edit profile link' do
       expect(page).to have_admin_link(edit_admin_user_registration_path)

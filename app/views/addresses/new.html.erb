@@ -1,0 +1,5 @@
+<% present @item do |presenter| %>
+<% provide(:heading,  'New Address') %>
+<% provide(:page_title, 'New Address') %>
+<%= render partial: 'layouts/new_edit_item', locals:{presenter:presenter} %>
+<% end %>

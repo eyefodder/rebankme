@@ -27,6 +27,9 @@ class BasePresenter
     path_for(:edit),
     :class => 'action_edit', id: tag_id(:edit)
   end
+  def name_tag
+    h.content_tag(:span, @object.name, class: 'editable-object-name')
+  end
 
   private
 
