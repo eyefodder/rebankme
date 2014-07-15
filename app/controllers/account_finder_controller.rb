@@ -10,8 +10,15 @@ class AccountFinderController < ApplicationController
     if @account_type.nil?
       redirect_to :back, flash:{error: @user.errors.full_messages} unless @user.valid?
     else
+      @user.save!
       render :account_type_found
     end
+  end
+
+  def find_account
+    @user = User.find(params[:user_id])
+    @account_type = AccountTypeFactory.account_type_for(@user)
+    @results = BankAccount.accounts_near(@user.zipcode, @account_type)
   end
 
   private

@@ -9,7 +9,9 @@ Rebankme::Application.routes.draw do
   root 'static#home'
 
   get 'start', to: 'account_finder#start', as: :account_finder_start
-  match 'account_finder', to: 'account_finder#next_type_question', as: :account_finder, via: [:get, :post]
+  match 'account_finder', to: 'account_finder#next_type_question', as: :account_type_finder, via: [:get, :post]
+
+  match 'find_account/:user_id/:account_type_id', to: 'account_finder#find_account', as: :account_finder, via: [:get, :post]
 
   get 'admin', to: 'admin#home', as: :admin
 

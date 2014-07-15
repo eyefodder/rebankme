@@ -1,0 +1,15 @@
+<% provide(:heading,  'Finding a Bank Account') %>
+<% provide(:page_title, 'Finding a Bank Account') %>
+<div class="top-result">
+<h3>We've found the most convenient account for you</h3>
+<% account = @results.first %>
+<%= content_tag(:h4, account.name) %>
+<%= image_tag('dummy_map.png', size: "400") %>
+<h3>Why?</h3>
+<h4>Location!</h4>
+<%= content_tag(:div, "As all safe accounts offer the same features, we are showing you the account closest to your zipcode (#{@user.zipcode}). You can open a safe account at the #{account.branch.full_name} branch, located at #{account.branch.full_address}") %>
+<%= link_to('Help me open an account', demo_path('holding_content', 'prepare_to_open'), class: 'btn btn-primary') %>
+
+
+
+

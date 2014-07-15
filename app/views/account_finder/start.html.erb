@@ -1,6 +1,6 @@
 <% provide(:heading, t('.title')) %>
 <% provide(:page_title, t('.title')) %>
-<%= form_for(@user, url: account_finder_path) do |f| %>
+<%= form_for(@user, url: account_type_finder_path) do |f| %>
 <div class="form-group row">
   <div class="input-group col-xs-8 col-xs-offset-2">
     <%= f.label :zipcode,t('forms.labels.enter_zipcode'),  class: 'sr-only' %>
