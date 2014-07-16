@@ -19,8 +19,8 @@ class AccountFinderController < ApplicationController
     @user = User.find(params[:user_id])
     @account_type = AccountTypeFactory.account_type_for(@user)
     @results = BankAccount.accounts_near(@user.zipcode, @account_type)
-    if @results.size == 0 || @results.nil
-      @results = [BankAccount.first]
+    if @results.count == nil
+      @results = [BankAccount.where(account_type_id: @account_type.id).first]
     end
   end
 
