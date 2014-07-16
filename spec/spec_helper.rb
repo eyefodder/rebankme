@@ -14,7 +14,7 @@ Spork.prefork do
   #   SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
   #   # SimpleCov.start 'rails'
   # end
-    require 'simplecov-rcov'
+  require 'simplecov-rcov'
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
     CodeClimate::TestReporter::Formatter,
     SimpleCov::Formatter::RcovFormatter,
@@ -98,8 +98,17 @@ Spork.prefork do
       Geocoder::Lookup::Test.add_stub(
         '11205', [
           {
-            'latitude'     => 43.6047275,
-            'longitude'    => 3.941479699999999,
+            'latitude'     => 40.6945036,
+            'longitude'    => -73.9565551,
+            'country_code' => 'US'
+          }
+        ]
+        )
+      Geocoder::Lookup::Test.add_stub(
+        '10463', [
+          {
+            'latitude'     => 40.8803247,
+            'longitude'    => -73.9095279,
             'country_code' => 'US'
           }
         ]
@@ -116,8 +125,8 @@ Spork.prefork do
       Geocoder::Lookup::Test.add_stub(
         '11205-4407', [
           {
-            'latitude'     => 43.6047275,
-            'longitude'    => 3.941479699999999,
+            'latitude'     => 40.6945036,
+            'longitude'    => -73.9565551,
             'country_code' => 'US'
           }
         ]
