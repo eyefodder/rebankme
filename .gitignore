@@ -26,3 +26,4 @@
 
 #ignore herouk created db dump
 latest.dump
+.env
