@@ -29,14 +29,32 @@ class AccountTypeFinderPresenter < BasePresenter
     h.content_tag(:div, I18n.t("account_finder.#{next_property_token}.question"), class: 'account-finder-question')
   end
 
+  def next_question_bullets_tag
+    bullets = I18n.t("account_finder.#{next_property_token}.question_bullets", default:{}).to_a.map{|obj| obj[1]}
+    # puts "bullets: #{bullets}"
+    unless bullets.empty?
+      h.content_tag(:ul, class: 'list-group section') do
+        res = ""
+        bullets.each do |bullet|
+          res << h.content_tag(:li, bullet, class: 'list-group-item')
+        end
+        res.html_safe
+      end
+    end
+
+  end
+
   def decision_buttons
 
     # h.content_tag(:button, I18n.t('forms.actions.action_yes'), class: 'btn btn-info', name: "user[#{next_property_token}]", type: 'submit', value: true)
     yes_button = button_tag(:yes, true)
     no_button = button_tag(:no, false)
     h.content_tag(:div, class: 'row') do
-      h.content_tag(:div, yes_button, class: 'col-xs-5') + h.content_tag(:div, no_button, class: 'col-xs-5 col-xs-offset-2')
+      # h.content_tag(:div, yes_button, class: 'col-xs-6') + h.content_tag(:div, no_button, class: 'col-xs-6')
+      h.content_tag(:div, class: 'col-xs-12') do
 
+        yes_button + no_button
+      end
     end
 
   end
@@ -45,8 +63,9 @@ class AccountTypeFinderPresenter < BasePresenter
 
   private
 
-  def button_tag(action_label, value)
-    h.content_tag(:button, I18n.t("forms.actions.action_#{action_label}"), class: 'btn btn-info btn-block', name: "user[#{next_property_token}]", type: 'submit', value: value)
+  def button_tag(action, value)
+    label = I18n.t("account_finder.#{next_property_token}.action_#{action}", default: I18n.t("forms.actions.action_#{action}"))
+    h.content_tag(:button, label, class: 'btn btn-info btn-block', name: "user[#{next_property_token}]", type: 'submit', value: value, id: "next_question_#{action}" )
   end
 
 end

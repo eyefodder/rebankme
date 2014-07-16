@@ -26,7 +26,7 @@ module PageContentSteps
     click_form_button(:yes)
   end
   def click_form_button(action)
-   click_button(I18n.t("forms.actions.action_#{action}"))
+   click_button("next_question_#{action}")
  end
 
 RSpec::Matchers.define :have_flash_message do |expected_message|

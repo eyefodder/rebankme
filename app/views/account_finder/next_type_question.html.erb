@@ -5,6 +5,7 @@
 <% provide(:page_title, presenter.page_title) %>
 
 <%= presenter.next_question_tag %>
+<%= presenter.next_question_bullets_tag %>
 <%= form_for(@user, url: account_type_finder_path) do |f| %>
 <%= f.hidden_field :zipcode %>
 <%= f.hidden_field :is_delinquent %>
@@ -17,13 +18,11 @@
 <%= presenter.decision_buttons %>
 <% end %>
 
-<nav class="navbar-fixed-bottom" role="navigation">
-  <div class="container row">
-    <div class='col-xs-8 col-xs-offset-2'>
+  <div class="section row">
+    <div class='col-xs-10 col-xs-offset-1'>
       <%= presenter.start_over_button %>
     </div>
   </div>
-</nav>
 
 
 <% end %>
