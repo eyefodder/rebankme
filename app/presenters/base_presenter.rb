@@ -69,6 +69,15 @@ class BasePresenter
     omitted_prefixes.include?(tag_action) ? suffix : "#{tag_action}_#{suffix}"
   end
 
+  def select_field_tag_with_options(form_builder, association, name_method=nil)
+    name_method ||= :name
+    assoc_id = "#{association}_id".to_sym
+    klass = association.to_s.camelize.constantize
+    list = klass.all.map {|obj| [obj.send(name_method), obj.id]}
+    options = h.options_for_select(list, selected: @object[assoc_id])
+    select_field_tag(form_builder, assoc_id, options)
+  end
+
   def self.text_field_tags_for(names)
     names.each do |field_name|
       define_method("#{field_name}_field_tag") do |form_builder|

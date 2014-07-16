@@ -3,9 +3,7 @@ class BranchPresenter < BasePresenter
   text_field_tags_for [:city, :zipcode, :state, :name, :telephone, :hours, :street]
 
   def bank_field_tag(form_builder)
-    banks = Bank.all.map {|bank| [bank.name, bank.id]}
-    options = h.options_for_select(banks, selected: branch.bank_id)
-    select_field_tag(form_builder, :bank_id, options)
+    select_field_tag_with_options(form_builder, :bank)
   end
 
   def state_field_tag(form_builder)
