@@ -6,8 +6,8 @@ include DataEntrySteps
 include EditableObjectSteps
 
 describe 'Branch Pages', :type => :request do
-  let (:required_properties) {[:name]}
-
+  let (:required_properties) {[:name, :zipcode]}
+  let(:post_create_path){branches_path}
   let(:type){:branch}
   let(:admin_paths) {[:index, :new, :edit]}
 
@@ -17,9 +17,12 @@ describe 'Branch Pages', :type => :request do
   include_context 'has admin only pages'
 
   describe 'new' do
-    pending 'havent sorted testing nested forms' do
-      include_context '#new creates objects'
-    end
+
+    include_context '#new creates objects'
+  end
+
+  describe 'edit' do
+    include_context '#edit edits objects'
   end
 
 end
