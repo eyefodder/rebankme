@@ -27,6 +27,6 @@ class AccountFinderController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:zipcode,:is_delinquent, :has_predictable_income, :is_special_group, :will_use_direct_deposit, :needs_debit_card)
+    params.require(:user).permit(:zipcode,:is_delinquent, :has_predictable_income, :is_special_group, :will_use_direct_deposit, :needs_debit_card, :latitude, :longitude)
   end
 end

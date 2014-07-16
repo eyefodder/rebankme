@@ -4,7 +4,12 @@
 <h3>We've found the most convenient account for you</h3>
 <% account = @results.first %>
 <%= content_tag(:h4, account.name) %>
-<%= image_tag('dummy_map.png', size: "400") %>
+<!--<iframe width="270" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=-73.9191699028015%2C40.69659132697178%2C-73.90708923339844%2C40.70384674101426&amp;layer=transportmap&amp;marker=40.700219132775985%2C-73.91312956809998" style="border: 1px solid black"></iframe>
+
+<br/><small><a href="http://www.openstreetmap.org/?mlat=40.70022&amp;mlon=-73.91313#map=17/40.70022/-73.91313&amp;layers=T">View Larger Map</a></small> -->
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=270x350&sensor=false&zoom=15&markers=#{account.branch.latitude}%2C#{account.branch.longitude}" %>
+
 <h3>Why?</h3>
 <h4>Location!</h4>
 <%= content_tag(:div, "As all safe accounts offer the same features, we are showing you the account closest to your zipcode (#{@user.zipcode}). You can open a safe account at the #{account.branch.full_name} branch, located at #{account.branch.full_address}") %>

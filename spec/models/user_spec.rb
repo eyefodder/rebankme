@@ -11,6 +11,8 @@
 #  needs_debit_card        :boolean
 #  created_at              :datetime
 #  updated_at              :datetime
+#  latitude                :float
+#  longitude               :float
 #
 
 require 'spec_helper'

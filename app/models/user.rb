@@ -11,6 +11,8 @@
 #  needs_debit_card        :boolean
 #  created_at              :datetime
 #  updated_at              :datetime
+#  latitude                :float
+#  longitude               :float
 #
 
 class User < ActiveRecord::Base
@@ -41,6 +43,9 @@ class User < ActiveRecord::Base
         errors.add(:zipcode, I18n.t('errors.messages.zipcode_not_found'))
       elsif result.country_code != 'US'
         errors.add(:zipcode, I18n.t('errors.messages.zipcode_wrong_country'))
+      else
+        self.latitude = result.latitude
+        self.longitude = result.longitude
       end
     else
       errors.add(:zipcode, I18n.t('errors.messages.invalid_zipcode_format'))
