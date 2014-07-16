@@ -8,11 +8,13 @@ en:
       start_over: 'Start Over'
   static:
     home:
-      title: "Welcome to Rebank Me!"
+      title: "Welcome!"
+      body_copy: "Rebank me can help find an account just right for you in a few simple steps. No bull, just giraffe."
       account_finder_start: "Find the right account for me!"
   account_finder:
     start:
       title: "Finding an account type"
+      body_copy: "Enter your zip code so we can find accounts convenient for you"
     is_delinquent:
       title: "Delinquent Account?"
       question: "Have you ever walked away from a bank account owing money?"

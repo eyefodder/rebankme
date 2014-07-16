@@ -21,9 +21,9 @@ class AccountTypePresenter < BasePresenter
     body = ""
     reasons.each do |reason|
       token = "deciding_factors.#{reason.values.first ? 'positive' : 'negative'}.#{reason.keys.first}"
-      body = body + h.content_tag(:li, I18n.t(token))
+      body = body + h.content_tag(:li, I18n.t(token), class: 'list-group-item list-group-item-info')
     end
-    heading + h.content_tag(:ul, body.html_safe)
+    heading + h.content_tag(:ul, body.html_safe, class: 'list-group')
   end
 
   alias_method :page_title, :page_heading

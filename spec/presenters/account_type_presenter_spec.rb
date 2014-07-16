@@ -35,9 +35,9 @@ shared_examples 'explains why chosen' do
     expected_body = ""
     reasons.each do |reason|
       token = "deciding_factors.#{reason.values.first ? 'positive' : 'negative'}.#{reason.keys.first}"
-      expected_body = expected_body + view.content_tag(:li, I18n.t(token))
+      expected_body = expected_body + view.content_tag(:li, I18n.t(token), class: 'list-group-item list-group-item-info')
     end
-    expected = expected_heading + view.content_tag(:ul, expected_body.html_safe)
+    expected = expected_heading + view.content_tag(:ul, expected_body.html_safe, class: 'list-group')
     expect(presenter.why_account_type_chosen_for user).to eq(expected)
   end
 end

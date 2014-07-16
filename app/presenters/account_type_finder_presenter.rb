@@ -30,8 +30,15 @@ class AccountTypeFinderPresenter < BasePresenter
   end
 
   def decision_buttons
+
     # h.content_tag(:button, I18n.t('forms.actions.action_yes'), class: 'btn btn-info', name: "user[#{next_property_token}]", type: 'submit', value: true)
-    button_tag(:yes, true) + button_tag(:no, false)
+    yes_button = button_tag(:yes, true)
+    no_button = button_tag(:no, false)
+    h.content_tag(:div, class: 'row') do
+      h.content_tag(:div, yes_button, class: 'col-xs-5') + h.content_tag(:div, no_button, class: 'col-xs-5 col-xs-offset-2')
+
+    end
+
   end
 
 
@@ -39,7 +46,7 @@ class AccountTypeFinderPresenter < BasePresenter
   private
 
   def button_tag(action_label, value)
-    h.content_tag(:button, I18n.t("forms.actions.action_#{action_label}"), class: 'btn btn-info', name: "user[#{next_property_token}]", type: 'submit', value: value)
+    h.content_tag(:button, I18n.t("forms.actions.action_#{action_label}"), class: 'btn btn-info btn-block', name: "user[#{next_property_token}]", type: 'submit', value: value)
   end
 
 end

@@ -33,7 +33,7 @@ describe AccountTypeFinderPresenter do
 
   describe '#start_over_button' do
     it 'returns a start over link' do
-      expected = view.link_to(I18n.t("forms.actions.start_over"), account_finder_start_path, class: 'btn btn-default')
+      expected = view.link_to(I18n.t("forms.actions.start_over"), account_finder_start_path, class: 'btn btn-default btn-block')
       expect(presenter.start_over_button).to eq(expected)
     end
   end
@@ -62,9 +62,17 @@ describe AccountTypeFinderPresenter do
   end
 
   describe '#decision_buttons' do
+
+
+
+
     it 'returns tags for the yes and no buttons' do
-      expected = view.content_tag(:button, I18n.t('forms.actions.action_yes'), class: 'btn btn-info', name: "user[#{token}]", type: 'submit', value: true)
-      expected = expected + view.content_tag(:button, I18n.t('forms.actions.action_no'), class: 'btn btn-info', name: "user[#{token}]", type: 'submit', value: false)
+      yes_button  = view.content_tag(:button, I18n.t('forms.actions.action_yes'), class: 'btn btn-info btn-block', name: "user[#{token}]", type: 'submit', value: true)
+      no_button = view.content_tag(:button, I18n.t('forms.actions.action_no'), class: 'btn btn-info btn-block', name: "user[#{token}]", type: 'submit', value: false)
+      expected = view.content_tag(:div, class: 'row') do
+        view.content_tag(:div, yes_button, class: 'col-xs-5') + view.content_tag(:div, no_button, class: 'col-xs-5 col-xs-offset-2')
+      end
+      # expected = expected + view.content_tag(:button, I18n.t('forms.actions.action_no'), class: 'btn btn-info', name: "user[#{token}]", type: 'submit', value: false)
       expect(presenter.decision_buttons).to eq(expected)
 
     end

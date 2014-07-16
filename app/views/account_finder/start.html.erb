@@ -1,5 +1,9 @@
 <% provide(:heading, t('.title')) %>
 <% provide(:page_title, t('.title')) %>
+
+<div class='row'>
+<%= content_tag(:div, t('.body_copy'), class:'col-xs-12') %>
+</div>
 <%= form_for(@user, url: account_type_finder_path) do |f| %>
 <div class="form-group row">
   <div class="input-group col-xs-8 col-xs-offset-2">

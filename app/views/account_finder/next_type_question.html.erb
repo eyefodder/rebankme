@@ -6,18 +6,24 @@
 
 <%= presenter.next_question_tag %>
 <%= form_for(@user, url: account_type_finder_path) do |f| %>
-  <%= f.hidden_field :zipcode %>
-  <%= f.hidden_field :is_delinquent %>
-  <%= f.hidden_field :is_special_group %>
-  <%= f.hidden_field :will_use_direct_deposit %>
-  <%= f.hidden_field :has_predictable_income %>
-  <%= f.hidden_field :needs_debit_card %>
-  <%= f.hidden_field :latitude %>
-  <%= f.hidden_field :longitude %>
-  <%= presenter.decision_buttons %>
+<%= f.hidden_field :zipcode %>
+<%= f.hidden_field :is_delinquent %>
+<%= f.hidden_field :is_special_group %>
+<%= f.hidden_field :will_use_direct_deposit %>
+<%= f.hidden_field :has_predictable_income %>
+<%= f.hidden_field :needs_debit_card %>
+<%= f.hidden_field :latitude %>
+<%= f.hidden_field :longitude %>
+<%= presenter.decision_buttons %>
 <% end %>
 
+<nav class="navbar-fixed-bottom" role="navigation">
+  <div class="container row">
+    <div class='col-xs-8 col-xs-offset-2'>
+      <%= presenter.start_over_button %>
+    </div>
+  </div>
+</nav>
 
 
-<%= presenter.start_over_button %>
 <% end %>

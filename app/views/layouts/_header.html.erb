@@ -1,5 +1,5 @@
 <%= render 'admin/admin_nav' if admin_user_signed_in? %>
-<% unless try(:suppress_logo) %>
+<% unless  @no_logo %>
 <div class='row header'>
   <div class='col-xs-2 header-image'><%= image_tag 'littlegiraffe.png' %></div>
   <div class='col-xs-8 header-copy'>
@@ -9,6 +9,13 @@
 </div>
 
 <% end %>
-<h2 class='page-heading'><%= yield(:heading) %></h2>
-
-<hr/>
+<div class='row'>
+<h2 class='page-heading col-xs-12'>
+<%= yield(:heading) %>
+</h2>
+</div>
+<div class='row'>
+<div class='col-xs-12'>
+<hr />
+</div>
+</div>
