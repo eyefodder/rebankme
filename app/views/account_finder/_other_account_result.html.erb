@@ -1,0 +1,6 @@
+<% present item do |presenter| %>
+<a href='#' class='list-group-item'>
+<%= item.branch.full_name %>
+<%= presenter.distance_tag(user) %>
+</a>
+<% end %>

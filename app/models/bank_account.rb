@@ -15,6 +15,8 @@ class BankAccount < ActiveRecord::Base
   belongs_to :branch
   belongs_to :account_type
 
+  delegate :latitude, :longitude, to: :branch
+
   scope :ordered_by_branch_ids, ->(branch_ids) { order(branch_ordering_statement(branch_ids))}
   scope :having_account_type, ->(account_type) { where(account_type_id: account_type.id)}
   scope :available_at_branches, ->(branch_ids) { where(branch_id: branch_ids)}

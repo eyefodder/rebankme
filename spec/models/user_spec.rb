@@ -39,6 +39,18 @@ describe User do
     end
   end
 
+  describe '#distance_to' do
+    let(:brooklyn_user){create(:user, latitude: 40.6945036, longitude: -73.9565551, zipcode: '11205')}
+    let(:bronx_branch) {create(:branch, latitude: 40.8522159, longitude: -73.907912, zipcode: '10453')}
+    let(:bronx_safe_account) {create(:bank_account, branch: bronx_branch, name: 'bronx safe account')}
+    it 'gives distance_to a branch' do
+      expect(brooklyn_user.distance_to(bronx_branch)).to be_within(0.01).of(11.19)
+    end
+    # xit 'gives distance to an account' do
+    #   expect(brooklyn_user.distance_to(bronx_safe_account)).to be_within(0.01).of(11.19)
+    # end
+  end
+
   describe 'zipcode validation' do
     let(:nonexistant_zip) {'00000'}
     let(:incorrect_format_zip) {'qqww2'}
