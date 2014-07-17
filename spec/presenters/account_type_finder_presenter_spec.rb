@@ -33,8 +33,12 @@ describe AccountTypeFinderPresenter do
 
   describe '#start_over_button' do
     it 'returns a start over link' do
-      expected = view.link_to(I18n.t("forms.actions.start_over"), account_finder_start_path, class: 'btn btn-default btn-block')
-      expect(presenter.start_over_button).to eq(expected)
+      # expected = view.link_to(I18n.t("forms.actions.start_over"), account_finder_start_path, class: 'btn btn-default btn-block')
+      expect(presenter.start_over_button).to have_tag(:a, with:{href: account_finder_start_path}, text: I18n.t("forms.actions.start_over") )
+    end
+    it 'returns a start over link with styling' do
+      options = {class: 'btn btn-default btn-block'}
+      expect(presenter.start_over_button options).to have_tag(:a, with: options)
     end
   end
 

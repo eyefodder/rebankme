@@ -10,8 +10,9 @@ class BasePresenter
   end
 
 
-  def start_over_button
-    h.link_to(I18n.t("forms.actions.start_over"), h.account_finder_start_path, class: 'btn btn-default btn-block')
+  def start_over_button options=nil
+# 'btn btn-default btn-block'
+    h.link_to(I18n.t("forms.actions.start_over"), h.account_finder_start_path, options)
   end
 
   def delete_tag
