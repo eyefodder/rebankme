@@ -33,6 +33,11 @@ test:
   # username: rebankme
   # password: dbpass
 
+ci_build:
+  adapter: postgresql
+  database: rebank_me_ci
+  host: localhost
+
 # test:
 #   adapter: sqlite3
 #   database: db/test.sqlite3
