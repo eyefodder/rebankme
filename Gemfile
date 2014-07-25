@@ -61,7 +61,7 @@ gem 'quiet_assets', group: :development
 #monitoring
 gem 'newrelic_rpm'
 
-group :development, :test do
+group :development, :test, :ci_build do
 	gem 'rspec-rails', '~> 2.14'
 	gem 'guard-rspec', require: false
 	gem 'spork-rails', '4.0.0'
@@ -73,7 +73,7 @@ group :development, :test do
 	gem "therubyracer"
 end
 
-group :test do
+group :test, :ci_build do
 	gem "codeclimate-test-reporter", require: nil
 	gem 'selenium-webdriver', '~> 2.42.0'
 	gem 'capybara', '~> 2.3.0'
