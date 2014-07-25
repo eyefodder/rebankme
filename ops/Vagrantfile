@@ -11,8 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #with guest additions
   # config.vm.box = "bkersten/precise64"
 
-  config.vm.box = "precise64_vb_guest_4_3_12"
-  config.vm.box_url = "https://s3.amazonaws.com/eyefodder-vagrant-boxes/precise64_vb_guest_4_3_12.box"
+  config.vm.box = "precise64_vb_4_3_12_utf8"
+  config.vm.box_url = "https://s3.amazonaws.com/eyefodder-vagrant-boxes/precise64_vb_4_3_12_utf8.box"
 
 
   # config.vm.box = "precise64"
@@ -34,19 +34,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # FIRST-RUN PROVISIONING
-   config.vm.provision 'shell', path: 'provision.sh'
+   # config.vm.provision 'shell', path: 'set_locale.sh'
+   config.vm.provision 'shell', path: 'provision_2.sh'
+
    config.vm.provision 'shell', path: 'init_rails_environment.sh', privileged: false
 
-  # EACH UP PROVISIONING
-   config.vm.provision 'shell', path: 'start_app.sh', privileged: false, run: 'always'
+  # # EACH UP PROVISIONING
+      config.vm.provision 'shell', path: 'start_app.sh', privileged: false, run: 'always'
 
 
-  # config.vm.provision :puppet do |puppet|
-  #   puppet.manifests_path = "puppet/manifests"
-  #   puppet.manifest_file = 'test.pp'
-  #   puppet.options = ['--verbose']
-  #   puppet.hiera_config_path = 'puppet/hiera.yaml'
-  #   puppet.working_directory = '/etc/puppet'
-  # end
+
 
 end
