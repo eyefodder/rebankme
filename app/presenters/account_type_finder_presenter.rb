@@ -29,10 +29,10 @@ class AccountTypeFinderPresenter < BasePresenter
     h.content_tag(:div, I18n.t("account_finder.#{next_property_token}.question"), class: 'account-finder-question')
   end
 
-  def next_question_bullets_tag
+  def next_question_bullets_tag(options={})
     bullets = I18n.t("account_finder.#{next_property_token}.question_bullets", default:{}).to_a.map{|obj| obj[1]}
-    # puts "bullets: #{bullets}"
     unless bullets.empty?
+
       h.content_tag(:ul, class: 'list-group section') do
         res = ""
         bullets.each do |bullet|

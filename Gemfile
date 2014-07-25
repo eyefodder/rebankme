@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.1'
+ruby '2.1.2'
 #ruby-gemset=rebankme
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -70,6 +70,7 @@ group :development, :test do
 	gem 'ci_reporter'
 	gem 'launchy'
 	gem 'database_cleaner'
+	gem "therubyracer"
 end
 
 group :test do

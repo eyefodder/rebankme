@@ -1,0 +1,13 @@
+# /etc/hiera.yaml
+---
+:backends:
+  - yaml
+
+:hierarchy:
+  - "%{::clientcert}"
+  - "%{::environment}"
+  - "virtual_%{::is_virtual}"
+  - common
+
+:yaml:
+  :datadir: /etc/puppet/data

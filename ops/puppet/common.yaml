@@ -1,0 +1,7 @@
+---
+
+bundler::install::app_root: '/app'
+bundler::install::app_user: vagrant
+bundler::install::app_group: vagrant
+ruby::params::gem_binpath: '/opt/vagrant_ruby/bin'
+poop: 'fsds'
