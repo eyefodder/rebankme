@@ -1,7 +1,11 @@
 production:
+  google_universal:
+    key: '***REMOVED***'
+    domain: 'rebankme-staging.herokuapp.com'
 development:
   google_universal:
-    key: ***REMOVED***
-    domain: dev.rebankme.com
+    key: '***REMOVED***'
+    domain: 'dev.rebankme.com'
+  console:
+    garbage: true
 test:
-staging:
