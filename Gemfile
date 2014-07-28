@@ -66,7 +66,7 @@ gem 'logging'
 
 #tracking
 # NB using git commit SHA to be able to use google universal tracking
-gem 'analytical', :git => 'git://github.com/jkrall/analytical.git', :ref => '56f4d88112cda3b8403c13f3bcb3364e6d576c73'
+gem 'analytical'
 
 group :development, :test, :ci_build do
 	gem 'rspec-rails', '~> 2.14'

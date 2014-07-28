@@ -21,5 +21,7 @@ module Rebankme
     config.i18n.enforce_available_locales = true
     config.i18n.default_locale = :en
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+
+    config.autoload_paths << Rails.root.join('lib')
 end
 end
