@@ -64,6 +64,9 @@ gem 'newrelic_rpm'
 #logging
 gem 'logging'
 
+#tracking
+gem 'analytical'
+
 group :development, :test, :ci_build do
 	gem 'rspec-rails', '~> 2.14'
 	gem 'guard-rspec', require: false
