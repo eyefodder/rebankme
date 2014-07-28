@@ -68,7 +68,7 @@ gem 'logging'
 # NB using git commit SHA to be able to use google universal tracking
 gem 'analytical'
 
-group :development, :test, :ci_build do
+group :development, :test do
 	gem 'rspec-rails', '~> 2.14'
 	gem 'guard-rspec', require: false
 	gem 'spork-rails', '4.0.0'
@@ -80,7 +80,7 @@ group :development, :test, :ci_build do
 	gem "therubyracer"
 end
 
-group :test, :ci_build do
+group :test do
 	gem "codeclimate-test-reporter", require: nil
 	gem 'selenium-webdriver', '~> 2.42.0'
 	gem 'capybara', '~> 2.3.0'
