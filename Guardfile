@@ -1,3 +1,7 @@
+
+# notification :gntp
+ notification :gntp, :sticky => false, :host => '10.0.1.28', :password => 'password'
+
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 require 'active_support/core_ext'

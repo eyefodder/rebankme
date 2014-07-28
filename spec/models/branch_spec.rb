@@ -30,6 +30,9 @@ describe Branch do
     it 'should require a name' do
       expect(branch).to validate_presence_of(:name)
     end
+    it 'should require a unique name per bank' do
+       # expect(branch).to validate_uniqueness_of(:name).scoped_to(:bank_id)
+    end
     it 'should require a zipcode' do
       expect(branch).to validate_presence_of(:zipcode)
     end

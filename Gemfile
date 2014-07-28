@@ -61,6 +61,9 @@ gem 'quiet_assets', group: :development
 #monitoring
 gem 'newrelic_rpm'
 
+#logging
+gem 'logging'
+
 group :development, :test, :ci_build do
 	gem 'rspec-rails', '~> 2.14'
 	gem 'guard-rspec', require: false
@@ -84,6 +87,7 @@ group :test, :ci_build do
 	gem 'growl', '1.0.3'
  	# Uncomment these lines on Linux.
 	# gem 'libnotify', '0.8.0'
+	gem 'ruby_gntp'
 
 	# Uncomment these lines on Windows.
 	# gem 'rb-notifu', '0.0.4'

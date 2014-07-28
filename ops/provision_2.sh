@@ -2,7 +2,7 @@
 echo "Installing dev libraries"
 apt-get install -y build-essential zlib1g-dev libssl-dev libreadline-dev >/dev/null 2>&1
 apt-get install -y git-core curl libyaml-dev libcurl4-openssl-dev libsqlite-dev postgresql  >/dev/null 2>&1
-apt-get install -y libpq-dev sqlite3 libsqlite3-dev bcrypt>/dev/null 2>&1
+apt-get install -y libpq-dev sqlite3 libsqlite3-dev bcrypt libnotify-bin >/dev/null 2>&1
 
 echo "dev libraries installed"
 

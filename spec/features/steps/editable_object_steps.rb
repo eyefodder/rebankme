@@ -1,4 +1,4 @@
-include DataEntrySteps
+# include DataEntrySteps
 module EditableObjectSteps
   shared_context 'has index pages' do
     let!(:objects) {[create(type), create(type), create(type)]}

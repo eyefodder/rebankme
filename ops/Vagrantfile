@@ -23,8 +23,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, id: 'ssh', guest: 22, host: 2222
   # config.vm.define "web" do |web|
 
-  config.vm.synced_folder "../", "/app"
+  # config.vm.synced_folder "../", "/app"
   config.vm.synced_folder "./puppet", "/etc/puppet"
+  config.vm.synced_folder "../", "/app", type: "rsync", rsync__exclude: [".git/", "ops/*", "tmp/", "log/"]
   # end
 
   config.vm.provider 'virtualbox' do |vb|
