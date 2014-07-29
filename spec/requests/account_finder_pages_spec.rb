@@ -1,11 +1,64 @@
 
 include PageContentSteps
 include AccountFinderSteps
+include DataEntrySteps
+include PathMatchers
 describe 'Account Finder Pages', :type => :request do
 
   subject {page}
 
 
+
+
+
+
+
+  describe 'Safe Account' do
+    let(:good_zipcode) {'11205'}
+    before do
+      visit account_finder_start_path
+
+      # enter zipcode
+      populate_form_field(:user, :zipcode, good_zipcode)
+
+      click_submit_button
+
+      # yes to delinquent
+      click_yes_button
+
+      # yes to regular income
+      click_yes_button
+    end
+    it 'should display a find me the right account button' do
+      expect(page).to have_find_account_button(:safe_account)
+    end
+    describe 'clicking the button (user without email)' do
+      before do
+        click_link('account-finder-drilldown-button')
+      end
+      it 'goes to enter email page' do
+        expect(current_path).to be_request_email_path
+      end
+      describe 'and entering good email' do
+        before do
+          fill_in :email, with: 'eyefodder@gmail.com'
+          click_submit_button
+        end
+        it 'will display results page' do
+          expect(current_path).to be_find_account_path
+        end
+      end
+      describe 'and clicking skip button' do
+        before do
+          click_link('skip-email-request')
+        end
+        it 'displays results page' do
+          expect(current_path).to be_find_account_path
+        end
+      end
+    end
+
+  end
 
 
   describe 'Start' do
@@ -26,7 +79,7 @@ describe 'Account Finder Pages', :type => :request do
     describe 'entering a non NYC zipcode' do
       before do
         populate_form_field(:user, :zipcode, non_nyc_zipcode)
-        click_button('submit')
+        click_submit_button
       end
       describe '> is not delinquent > is not special group' do
         before do
@@ -58,7 +111,7 @@ describe 'Account Finder Pages', :type => :request do
     describe '> is user delinquent:' do
       before do
         populate_form_field(:user, :zipcode, good_zipcode)
-        click_button('submit')
+        click_submit_button
       end
       it_behaves_like 'a question page' do
         let(:question_token){:is_delinquent}

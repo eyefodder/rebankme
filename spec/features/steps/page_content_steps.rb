@@ -7,6 +7,9 @@ module PageContentSteps
   def have_page_heading(heading)
     have_css('h2.page-heading', text: heading)
   end
+
+
+
   RSpec::Matchers.define :display_error_message do |expected_error|
     match do |page|
       within("#error-messages") do
@@ -29,7 +32,7 @@ module PageContentSteps
    click_button("next_question_#{action}")
  end
 
-RSpec::Matchers.define :have_flash_message do |expected_message|
+ RSpec::Matchers.define :have_flash_message do |expected_message|
   match do |page|
     within("div.alert-#{expected_message.keys.first}") do
       have_content(expected_message.values.first).matches?(page)
@@ -39,7 +42,7 @@ end
 
 
 
- RSpec::Matchers.define :have_form_for do |form_ref|
+RSpec::Matchers.define :have_form_for do |form_ref|
   chain :with_field do |field|
     @field = field
   end

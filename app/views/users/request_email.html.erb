@@ -1,0 +1,26 @@
+<% provide(:heading, t('.title')) %>
+<% provide(:title, t('.title')) %>
+<% present @user do |presenter| %>
+<div class='row'>
+  <div class='col-xs-12'>
+    <%= t('.body_copy') %>
+  </div>
+</div>
+<%= form_for @user do |f| %>
+<%= render partial: 'shared/error_messages', locals:{presenter:presenter} %>
+<%= hidden_field_tag :redirect_path, @redirect_path %>
+<div class="form-group row">
+  <div class="input-group col-xs-8 col-xs-offset-2">
+    <%= f.label :email,t('forms.labels.enter_email'),  class: 'sr-only' %>
+    <%= f.email_field :email,  {placeholder: t('forms.labels.enter_email'), class: 'form-control'} %>
+    <span class="input-group-btn"><button type="submit" name="commit" id='submit_button' class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button></span>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-xs-8 col-xs-offset-2 input-group'>
+    <%= link_to t('.skip_email_request'), @redirect_path, id: 'skip-email-request' %>
+  </div>
+</div>
+<% end %>
+
+<% end %>

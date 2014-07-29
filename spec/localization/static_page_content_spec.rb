@@ -9,6 +9,11 @@ describe 'Static Page Content Localizations' do
       home:
         title:
         account_finder_start:
+    users:
+      request_email:
+        title:
+        body_copy:
+        opt_out:
     account_finder:
       start:
         title:
@@ -34,9 +39,11 @@ describe 'Static Page Content Localizations' do
     forms:
       labels:
         enter_zipcode:
+        enter_email:
       actions:
         action_yes:
         action_no:
+        action_go:
         start_over:"
   }
   it_should_behave_like 'localized content'

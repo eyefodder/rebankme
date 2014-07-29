@@ -100,6 +100,7 @@ def valid_string
 end
 
 def click_submit_button
+  # click_link('submit_button')
   click_button('submit_button')
 end
 

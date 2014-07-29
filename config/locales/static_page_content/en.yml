@@ -2,15 +2,23 @@ en:
   forms:
     labels:
       enter_zipcode: 'Zip code'
+      enter_email: 'email'
     actions:
       action_yes: 'Yes'
       action_no: 'No'
+      action_go: 'Go'
       start_over: 'Start Over'
   static:
     home:
       title: "Welcome!"
       body_copy: "Rebank me can help find an account just right for you in a few simple steps. No bull, just giraffe."
       account_finder_start: "Find the right account for me!"
+  users:
+    request_email:
+      title: "Enter your email"
+      body_copy: "Enter your email so we can help you find the right account. We will never spam you, sell your email or do anything out of order"
+      opt_out: "Skip this, just show me the results"
+      skip_email_request: 'No thanks, just show me the results'
   account_finder:
     start:
       title: "Finding an account type"
@@ -52,4 +60,5 @@ en:
       title: "We recommend a %{product}"
       overview_heading: "What is it?"
       why_we_chose_heading: "Why it's right for you"
+      cta: "Find me the right %{product}"
 

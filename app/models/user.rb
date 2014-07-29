@@ -15,6 +15,8 @@
 #  longitude               :float
 #
 
+
+
 class User < ActiveRecord::Base
 
   # devise :omniauthable, :omniauth_providers => [:facebook]
@@ -25,6 +27,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :zipcode
   validate :existing_us_zipcode, :if => :zipcode_changed?
+  validate :validate_email, :if => :email?
 
 
   def in_new_york_city?
@@ -36,6 +39,18 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def validate_email
+    errors.add(:email, I18n.t('errors.messages.invalid_email_format')) unless
+      email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  end
+
+  # class EmailValidator < ActiveModel::EachValidator
+  #   def validate_each(record, attribute, value)
+  #     record.errors.add attribute, (options[:message] || "is not an email") unless
+  #     (value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i) || value.nil?
+  #   end
+  # end
 
   def existing_us_zipcode
     if zipcode_valid?
@@ -63,4 +78,8 @@ class User < ActiveRecord::Base
       # ALSO @see https://github.com/mkdynamic/omniauth-facebook for more oauth data from FB
     end
   end
+
+
 end
+
+

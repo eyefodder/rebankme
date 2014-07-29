@@ -13,6 +13,9 @@ Rebankme::Application.routes.draw do
 
   match 'find_account/:user_id', to: 'account_finder#find_account', as: :account_finder, via: [:get, :post]
 
+  resources :users
+  get 'users/:user_id/request_email', to: 'users#request_email', as: :request_user_email
+
   get 'admin', to: 'admin#home', as: :admin
 
   scope '/admin' do

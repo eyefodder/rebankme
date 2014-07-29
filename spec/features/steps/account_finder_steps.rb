@@ -2,6 +2,16 @@ module AccountFinderSteps
   extend RSpec::Matchers::DSL
 
 
+  RSpec::Matchers.define :have_find_account_button do |page_ref|
+    match do |page|
+      product_name = I18n.t("#{page_ref}.name")
+      expected_text = I18n.t("account_finder.account_type_found.cta", product: product_name)
+      have_link(expected_text).matches?(page)
+    end
+  end
+
+
+
   RSpec::Matchers.define :display_account_finder_content do |page_ref|
     match do |page|
       expected_heading = I18n.t("account_finder.#{page_ref}.title")
@@ -75,7 +85,7 @@ module AccountFinderSteps
     before do
 
       populate_form_field(:user, :zipcode, zipcode)
-      click_button('submit')
+      click_submit_button
 
     end
     it 'should be on the start page' do
@@ -92,7 +102,7 @@ module AccountFinderSteps
   shared_examples 'a successful zipcode entry' do
     before do
       populate_form_field(:user, :zipcode, zipcode)
-      click_button('submit')
+      click_submit_button
     end
     it 'should pass validation' do
       expect(page).not_to display_any_errors

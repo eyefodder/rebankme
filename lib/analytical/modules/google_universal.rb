@@ -10,6 +10,11 @@ module Analytical
 
       def init_javascript(location)
         init_location(location) do
+          if options[:domain] =='localhost'
+            ga_create = "ga('create', '#{options[:key]}', {'cookieDomain': 'none'});"
+          else
+            ga_create = "ga('create', '#{options[:key]}', '#{options[:domain]}');"
+          end
           js = <<-HTML
           <!-- Analytical Init: Google Universal -->
           <script>
@@ -18,7 +23,8 @@ module Analytical
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            ga('create', '#{options[:key]}', '#{options[:domain]}');
+
+            #{ga_create}
             ga('send', 'pageview');
 
           </script>
@@ -26,7 +32,7 @@ module Analytical
           js
         end
       end
-
+            # ga('create', '#{options[:key]}', '#{options[:domain]}');
       def event(name, *args)
         data = args.first || {}
         data = data[:value] if data.is_a?(Hash)

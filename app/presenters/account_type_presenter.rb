@@ -2,9 +2,14 @@ class AccountTypePresenter < BasePresenter
   presents :account_type
 
 
+  def find_right_account_link_for(user, options=nil)
+    link_text = I18n.t("account_finder.account_type_found.cta", product: product_name)
+    link_path = user.email? ? h.account_finder_path(user) :  h.request_user_email_path(user,redirect_path: h.account_finder_path(user) )
+    h.link_to link_text , link_path, options
+  end
 
   def page_heading
-    product_name = I18n.t("#{account_type.name_id}.name")
+
     I18n.t("account_finder.account_type_found.title", product: product_name)
   end
 
@@ -30,6 +35,10 @@ class AccountTypePresenter < BasePresenter
 
 
   private
+
+  def product_name
+    I18n.t("#{account_type.name_id}.name")
+  end
 
   def account_type_choice_reasons_for(user)
     case account_type
