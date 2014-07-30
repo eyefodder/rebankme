@@ -35,3 +35,19 @@ vagrant ssh
 cd /app
 sh ./stop_server.sh
 ```
+
+### Running the test suite
+
+1. To run the tests once:
+```shell
+vagrant ssh
+cd /app
+rspec
+```
+2. If you are actively devloping, you probably want to have the tests run everytime you make a change. To do this, we use [Guard (https://github.com/guard/guard)] which watches files for changes and just runs the tests you need. To have this running (the -n f) disables system notifications, which arent working well just now:
+```shell
+vagrant ssh
+cd /app
+bundle exec guard -n f
+```
+
