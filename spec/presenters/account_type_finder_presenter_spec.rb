@@ -71,26 +71,7 @@ describe AccountTypeFinderPresenter do
     end
   end
 
-  # describe '#decision_buttons' do
 
-
-  #   it 'returns tags for the yes and no buttons' do
-
-  #     yes_button  = view.content_tag(:button, expected_label_for(:yes), class: 'btn btn-info btn-block', name: "user[#{token}]", type: 'submit', value: true, id: 'next_question_yes')
-  #     no_button = view.content_tag(:button, expected_label_for(:no), class: 'btn btn-info btn-block', name: "user[#{token}]", type: 'submit', value: false, id: 'next_question_no')
-  #     expected = view.content_tag(:div, class: 'row') do
-  #       # view.content_tag(:div, yes_button, class: 'col-xs-5') + view.content_tag(:div, no_button, class: 'col-xs-5 col-xs-offset-2')
-  #       view.content_tag(:div, class: 'col-xs-12') do
-  #         yes_button + no_button
-  #       end
-  #     end
-  #     # expected = expected + view.content_tag(:button, I18n.t('forms.actions.action_no'), class: 'btn btn-info', name: "user[#{token}]", type: 'submit', value: false)
-  #     expect(presenter.decision_buttons).to eq(expected)
-
-  #   end
-
-
-  # end
 
   describe '#yes_button' do
     it 'returns default stuff' do
