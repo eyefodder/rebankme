@@ -60,35 +60,61 @@ describe AccountTypeFinderPresenter do
     let(:token){presenter.next_property_token}
     it 'returns a tag with from localized content' do
       expected_content = I18n.t("account_finder.#{token}.question")
-      expected = view.content_tag(:div,expected_content , class: 'account-finder-question')
+      expected = view.content_tag(:div,expected_content)
       expect(presenter.next_question_tag).to eq(expected)
+    end
+    it 'adds options to the tag' do
+      options = {class: 'someclass', id: 'someid'}
+      expected_content = I18n.t("account_finder.#{token}.question")
+      expected = view.content_tag(:div,expected_content , options)
+      expect(presenter.next_question_tag(options)).to eq(expected)
     end
   end
 
-  describe '#decision_buttons' do
+  # describe '#decision_buttons' do
 
 
+  #   it 'returns tags for the yes and no buttons' do
+
+  #     yes_button  = view.content_tag(:button, expected_label_for(:yes), class: 'btn btn-info btn-block', name: "user[#{token}]", type: 'submit', value: true, id: 'next_question_yes')
+  #     no_button = view.content_tag(:button, expected_label_for(:no), class: 'btn btn-info btn-block', name: "user[#{token}]", type: 'submit', value: false, id: 'next_question_no')
+  #     expected = view.content_tag(:div, class: 'row') do
+  #       # view.content_tag(:div, yes_button, class: 'col-xs-5') + view.content_tag(:div, no_button, class: 'col-xs-5 col-xs-offset-2')
+  #       view.content_tag(:div, class: 'col-xs-12') do
+  #         yes_button + no_button
+  #       end
+  #     end
+  #     # expected = expected + view.content_tag(:button, I18n.t('forms.actions.action_no'), class: 'btn btn-info', name: "user[#{token}]", type: 'submit', value: false)
+  #     expect(presenter.decision_buttons).to eq(expected)
+
+  #   end
 
 
-    it 'returns tags for the yes and no buttons' do
+  # end
 
-      yes_button  = view.content_tag(:button, expected_label_for(:yes), class: 'btn btn-info btn-block', name: "user[#{token}]", type: 'submit', value: true, id: 'next_question_yes')
-      no_button = view.content_tag(:button, expected_label_for(:no), class: 'btn btn-info btn-block', name: "user[#{token}]", type: 'submit', value: false, id: 'next_question_no')
-      expected = view.content_tag(:div, class: 'row') do
-        # view.content_tag(:div, yes_button, class: 'col-xs-5') + view.content_tag(:div, no_button, class: 'col-xs-5 col-xs-offset-2')
-        view.content_tag(:div, class: 'col-xs-12') do
-          yes_button + no_button
-        end
-      end
-      # expected = expected + view.content_tag(:button, I18n.t('forms.actions.action_no'), class: 'btn btn-info', name: "user[#{token}]", type: 'submit', value: false)
-      expect(presenter.decision_buttons).to eq(expected)
-
+  describe '#yes_button' do
+    it 'returns default stuff' do
+      expect(presenter.yes_button).to have_tag(:button, text: expected_label_for(:yes), with:{ name: "user[#{token}]", type: 'submit', value: true, id: 'next_question_yes' })
     end
-
-    def expected_label_for(action)
-        token = presenter.next_property_token
-        I18n.t("account_finder.#{token}.action_#{action}", default: I18n.t("forms.actions.action_#{action}"))
+    it 'allows you to pass html options' do
+      options = {class: 'someclass'}
+      expect(presenter.yes_button(options)).to have_tag(:button, with: options)
     end
+  end
+
+  describe '#no_button' do
+    it 'returns default stuff' do
+      expect(presenter.no_button).to have_tag(:button, text: expected_label_for(:no), with:{ name: "user[#{token}]", type: 'submit', value: false, id: 'next_question_no' })
+    end
+    it 'allows you to pass html options' do
+      options = {class: 'someclass'}
+      expect(presenter.no_button(options)).to have_tag(:button, with: options)
+    end
+  end
+
+  def expected_label_for(action)
+    token = presenter.next_property_token
+    I18n.t("account_finder.#{token}.action_#{action}", default: I18n.t("forms.actions.action_#{action}"))
   end
 
 

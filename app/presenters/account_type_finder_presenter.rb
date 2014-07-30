@@ -25,18 +25,18 @@ class AccountTypeFinderPresenter < BasePresenter
 
   alias_method :page_title, :page_heading
 
-  def next_question_tag
-    h.content_tag(:div, I18n.t("account_finder.#{next_property_token}.question"), class: 'account-finder-question')
+  def next_question_tag(options={})
+    h.content_tag(:div, I18n.t("account_finder.#{next_property_token}.question"), options)
   end
 
-  def next_question_bullets_tag(options={})
+  def next_question_bullets_tag(list_options={}, bullet_options={})
+    # list_options = {}.merge(list_options) <-- if you want defaults
     bullets = I18n.t("account_finder.#{next_property_token}.question_bullets", default:{}).to_a.map{|obj| obj[1]}
     unless bullets.empty?
-
-      h.content_tag(:ul, class: 'list-group section') do
+      h.content_tag(:ul,list_options) do
         res = ""
         bullets.each do |bullet|
-          res << h.content_tag(:li, bullet, class: 'list-group-item')
+          res << h.content_tag(:li, bullet, bullet_options )
         end
         res.html_safe
       end
@@ -44,28 +44,25 @@ class AccountTypeFinderPresenter < BasePresenter
 
   end
 
-  def decision_buttons
 
-    # h.content_tag(:button, I18n.t('forms.actions.action_yes'), class: 'btn btn-info', name: "user[#{next_property_token}]", type: 'submit', value: true)
-    yes_button = button_tag(:yes, true)
-    no_button = button_tag(:no, false)
-    h.content_tag(:div, class: 'row') do
-      # h.content_tag(:div, yes_button, class: 'col-xs-6') + h.content_tag(:div, no_button, class: 'col-xs-6')
-      h.content_tag(:div, class: 'col-xs-12') do
 
-        yes_button + no_button
-      end
-    end
-
+  def yes_button(options={})
+    button_tag(:yes, true, options)
+  end
+  def no_button(options={})
+    button_tag(:no, false, options)
   end
 
 
 
   private
 
-  def button_tag(action, value)
+
+  def button_tag(action, value, options)
+    defaults = { name: "user[#{next_property_token}]", type: 'submit', value: value, id: "next_question_#{action}"}
+    button_options = defaults.merge(options)
     label = I18n.t("account_finder.#{next_property_token}.action_#{action}", default: I18n.t("forms.actions.action_#{action}"))
-    h.content_tag(:button, label, class: 'btn btn-info btn-block', name: "user[#{next_property_token}]", type: 'submit', value: value, id: "next_question_#{action}" )
+    h.content_tag(:button, label, button_options )
   end
 
 end

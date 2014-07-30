@@ -1,6 +1,12 @@
-
+puts "IP: #{ENV['growl_ip']}"
+puts "PASS: #{ENV['growl_password']}"
 # notification :gntp
- notification :gntp, :sticky => false, :host => '10.0.1.28', :password => 'password'
+# growl_host = ENV['growl_ip']
+# growl_password = ENV['growl_password']
+# growl_host ||= '10.0.1.28'
+# growl_password ||= 'password'
+
+notification :gntp, :sticky => false, :host => '10.0.1.28', :password => 'password'
 
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
