@@ -5,7 +5,10 @@
 <% provide(:page_title, presenter.page_title) %>
 
 <%= presenter.next_question_tag class: 'account-finder-question' %>
+
 <%= presenter.next_question_bullets_tag( {class: 'list-group section'}, {class: 'list-group-item'}) %>
+
+
 <%= form_for(@user, url: account_type_finder_path) do |f| %>
 <%= f.hidden_field :zipcode %>
 <%= f.hidden_field :is_delinquent %>
@@ -15,6 +18,10 @@
 <%= f.hidden_field :needs_debit_card %>
 <%= f.hidden_field :latitude %>
 <%= f.hidden_field :longitude %>
+
+<%= presenter.question_specific_form_content %>
+
+
 
 <div class='row'>
   <div class='col-xs-12'>

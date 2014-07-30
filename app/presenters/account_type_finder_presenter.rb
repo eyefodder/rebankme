@@ -1,29 +1,21 @@
 class AccountTypeFinderPresenter < BasePresenter
   presents :user
 
-  def next_property_token
-    if user.is_delinquent
-      :has_predictable_income
-    elsif user.is_delinquent == false
-      if user.is_special_group == false
-        if user.will_use_direct_deposit == false
-          :needs_debit_card
-        else
-          :will_use_direct_deposit
-        end
-      else
-        :is_special_group
-      end
-    else
-      :is_delinquent
-    end
-  end
+
 
   def page_heading
     I18n.t("account_finder.#{next_property_token}.title")
   end
 
   alias_method :page_title, :page_heading
+
+
+  def question_specific_form_content
+    partial = next_property_token
+    if h.lookup_context.template_exists?(partial, h.lookup_context.prefixes, true)
+      h.render(partial: partial.to_s )
+    end
+  end
 
   def next_question_tag(options={})
     h.content_tag(:div, I18n.t("account_finder.#{next_property_token}.question"), options)
@@ -57,6 +49,9 @@ class AccountTypeFinderPresenter < BasePresenter
 
   private
 
+  def next_property_token
+    UserPropertyQuestionFactory.next_property_for(user)
+  end
 
   def button_tag(action, value, options)
     defaults = { name: "user[#{next_property_token}]", type: 'submit', value: value, id: "next_question_#{action}"}

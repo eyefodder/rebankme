@@ -3,31 +3,18 @@ require 'spec_helper'
 describe AccountTypeFinderPresenter do
   let(:user){build(:user)}
   let(:presenter){AccountTypeFinderPresenter.new(user,view)}
-  let(:token){presenter.next_property_token}
+  let(:token){UserPropertyQuestionFactory.next_property_for(user)}
 
-  describe '#next_property_token' do
-    it 'returns :is_delinquent first' do
-      expect(presenter.next_property_token).to eq(:is_delinquent)
+  describe '#question_specific_form_content' do
+    it 'returns nothing if no special template' do
+      expect(presenter.question_specific_form_content).to be_nil
     end
+    xit 'returns rendered partial if one exists' do
+      expected = 'sgfhjsgdkfwerkgfwr'
+      view.stub(:template_exists?).and_return(true)
+      view.stub(:render).and_return(expected)
+      expect(presenter.question_specific_form_content).to eq(expected)
 
-    it 'returns :has_predictable_income if :is_delinquent is true' do
-      user.is_delinquent = true
-      expect(presenter.next_property_token).to eq(:has_predictable_income)
-    end
-    it 'returns :is_special_group if :is_delinquent is false' do
-      user.is_delinquent = false
-      expect(presenter.next_property_token).to eq(:is_special_group)
-    end
-    it 'returns :will_use_direct_deposit if :is_delinquent -> false and :is_special_group -> false' do
-      user.is_delinquent = false
-      user.is_special_group = false
-      expect(presenter.next_property_token).to eq(:will_use_direct_deposit)
-    end
-    it 'returns :needs_debit_card if :is_delinquent, :is_special_group and :will_use_direct_deposit all false' do
-      user.is_delinquent = false
-      user.is_special_group = false
-      user.will_use_direct_deposit = false
-      expect(presenter.next_property_token).to eq(:needs_debit_card)
     end
   end
 
@@ -43,21 +30,21 @@ describe AccountTypeFinderPresenter do
   end
 
   describe '#page_heading' do
-    let(:token){presenter.next_property_token}
+    # let(:token){presenter.next_property_token}
     it 'returns title from localized file' do
       expect(presenter.page_heading).to eq(I18n.t("account_finder.#{token}.title"))
     end
   end
 
   describe '#page_title' do
-    let(:token){presenter.next_property_token}
+    # let(:token){presenter.next_property_token}
     it 'returns title from localized file' do
       expect(presenter.page_title).to eq(I18n.t("account_finder.#{token}.title"))
     end
   end
 
   describe '#next_question_tag' do
-    let(:token){presenter.next_property_token}
+    # let(:token){presenter.next_property_token}
     it 'returns a tag with from localized content' do
       expected_content = I18n.t("account_finder.#{token}.question")
       expected = view.content_tag(:div,expected_content)
@@ -94,7 +81,7 @@ describe AccountTypeFinderPresenter do
   end
 
   def expected_label_for(action)
-    token = presenter.next_property_token
+    token = UserPropertyQuestionFactory.next_property_for(user)
     I18n.t("account_finder.#{token}.action_#{action}", default: I18n.t("forms.actions.action_#{action}"))
   end
 

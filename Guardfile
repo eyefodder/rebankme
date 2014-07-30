@@ -1,15 +1,7 @@
-puts "IP: #{ENV['growl_ip']}"
-puts "PASS: #{ENV['growl_password']}"
-# notification :gntp
-# growl_host = ENV['growl_ip']
-# growl_password = ENV['growl_password']
-# growl_host ||= '10.0.1.28'
-# growl_password ||= 'password'
+
 
 notification :gntp, :sticky => false, :host => '10.0.1.28', :password => 'password'
 
-# A sample Guardfile
-# More info at https://github.com/guard/guard#readme
 require 'active_support/core_ext'
 
 guard 'rspec', all_after_pass: false, failed_mode: :none , cmd: 'rspec --fail-fast --drb' do
@@ -17,7 +9,6 @@ guard 'rspec', all_after_pass: false, failed_mode: :none , cmd: 'rspec --fail-fa
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
 
-  # Rails example
   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
   watch(%r{^app/(.*)(\.erb|\.haml|\.slim)$})          { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/acceptance/#{m[1]}_spec.rb"] }
@@ -25,18 +16,20 @@ guard 'rspec', all_after_pass: false, failed_mode: :none , cmd: 'rspec --fail-fa
   watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
 
-   #custom specs -- maps controller changes to 'requests' folder integration tests
-  #if any integration tests require js, then they are run separately as they are slower and can sometimes be avoided
-  watch(%r{^app/controllers/(.+)_(controller)\.rb$}) do |m|
-    ["spec/routing/#{m[1]}_routing_spec.rb",
-    "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb",
-    "spec/acceptance/#{m[1]}_spec.rb",
-    (m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" :
-     "spec/requests/#{m[1].singularize}_pages_spec.rb"),
-    (m[1][/_pages/] ? "spec/requests/js_specific/#{m[1]}_spec.rb" :
-     "spec/requests/js_specific/#{m[1].singularize}_pages_spec.rb")
-
+  watch(%r{^app/presenters/(.+)_presenter\.rb$}) do |m|
+    ["spec/presenters/#{m[1]}_presenter_spec.rb",
+    (m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" : "spec/requests/#{m[1].singularize}_pages_spec.rb"),
+    (m[1][/_pages/] ? "spec/requests/js_specific/#{m[1]}_spec.rb" : "spec/requests/js_specific/#{m[1].singularize}_pages_spec.rb")
   ]
+end
+
+watch(%r{^app/controllers/(.+)_(controller)\.rb$}) do |m|
+  ["spec/routing/#{m[1]}_routing_spec.rb",
+  "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb",
+  "spec/acceptance/#{m[1]}_spec.rb",
+  (m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" : "spec/requests/#{m[1].singularize}_pages_spec.rb"),
+  (m[1][/_pages/] ? "spec/requests/js_specific/#{m[1]}_spec.rb" : "spec/requests/js_specific/#{m[1].singularize}_pages_spec.rb")
+]
 end
 watch(%r{^app/views/(.+)/}) do |m|
   [(m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" :
@@ -46,15 +39,7 @@ watch(%r{^app/views/(.+)/}) do |m|
 ]
 end
 
-watch(%r{^app/presenters/(.+)_(presenter)\.rb$}) do |m|
-  ["spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb",
-  (m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" :
-   "spec/requests/#{m[1].singularize}_pages_spec.rb"),
-  (m[1][/_pages/] ? "spec/requests/js_specific/#{m[1]}_spec.rb" :
-   "spec/requests/js_specific/#{m[1].singularize}_pages_spec.rb")
 
-]
-end
 
 watch(%r{^app/factories/(.+)\.rb$}) do |m|
 
