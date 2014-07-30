@@ -3,8 +3,14 @@
 <% provide(:heading,  presenter.page_heading) %>
 <% provide(:page_title, presenter.page_title) %>
 
-<%= presenter.account_type_overview %>
-<%= presenter.why_account_type_chosen_for @user %>
+<!-- What is it? -->
+<%= content_tag(:h3, t(".overview_heading")) %>
+<%= content_tag(:div, I18n.t("#{@account_type.name_id}.overview")) %>
+
+
+<!-- Why its right for you -->
+<%= content_tag(:h3, t(".why_we_chose_heading")) %>
+<%= presenter.why_account_type_chosen_for @user, {class: 'list-group'}, {class: 'list-group-item list-group-item-info'} %>
 
 <% if @account_type == AccountType.SAFE_ACCOUNT %>
 <div class='account-finder-drilldown row'>

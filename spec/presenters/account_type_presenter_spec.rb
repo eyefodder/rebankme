@@ -17,28 +17,39 @@ describe AccountTypePresenter do
   end
 end
 
-describe '#account_type_overview' do
-  it 'gives the account type overview rendered as html' do
+# describe '#account_type_overview' do
+#   it 'gives the account type overview rendered as html' do
 
-    expected_heading = I18n.t("account_finder.account_type_found.overview_heading")
-    expected_content = I18n.t("#{account_type.name_id}.overview")
-    expected = view.content_tag(:h3, expected_heading) + view.content_tag(:div, expected_content)
-    expect(presenter.account_type_overview).to eq(expected)
-  end
-end
+#     expected_heading = I18n.t("account_finder.account_type_found.overview_heading")
+#     expected_content = I18n.t("#{account_type.name_id}.overview")
+#     expected = view.content_tag(:h3, expected_heading) + view.content_tag(:div, expected_content)
+#     expect(presenter.account_type_overview).to eq(expected)
+#   end
+# end
 
 shared_examples 'explains why chosen' do
   it 'provides a list item for each explanation' do
     presenter = AccountTypePresenter.new(account_type, view)
-
-    expected_heading = view.content_tag(:h3, I18n.t("account_finder.account_type_found.why_we_chose_heading"))
-    expected_body = ""
+    result = presenter.why_account_type_chosen_for user
+    expect(result).to have_tag(:ul)
     reasons.each do |reason|
       token = "deciding_factors.#{reason.values.first ? 'positive' : 'negative'}.#{reason.keys.first}"
-      expected_body = expected_body + view.content_tag(:li, I18n.t(token), class: 'list-group-item list-group-item-info')
+      expect(result).to have_tag(:li, text: I18n.t(token))
     end
-    expected = expected_heading + view.content_tag(:ul, expected_body.html_safe, class: 'list-group')
-    expect(presenter.why_account_type_chosen_for user).to eq(expected)
+  end
+
+  it 'lets you pass in class info for the list and bullets' do
+    list_options = {class: 'list-gdsdsroup'}
+    bullet_options = {class: 'list-group-itesdsdm list-group-item-info'}
+    presenter = AccountTypePresenter.new(account_type, view)
+    result = presenter.why_account_type_chosen_for user, list_options, bullet_options
+    expect(result).to have_tag(:ul, with: list_options)
+    reasons.each do |reason|
+      token = "deciding_factors.#{reason.values.first ? 'positive' : 'negative'}.#{reason.keys.first}"
+      expect(result).to have_tag(:li, text: I18n.t(token), with: bullet_options)
+    end
+
+
   end
 end
 

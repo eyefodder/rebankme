@@ -13,22 +13,17 @@ class AccountTypePresenter < BasePresenter
     I18n.t("account_finder.account_type_found.title", product: product_name)
   end
 
-  def account_type_overview
-    heading = h.content_tag(:h3, I18n.t("account_finder.account_type_found.overview_heading"))
-    content = h.content_tag(:div, I18n.t("#{account_type.name_id}.overview"))
-    heading + content
-  end
 
-  def why_account_type_chosen_for(user)
+
+  def why_account_type_chosen_for(user,list_options={}, bullet_options={})
+    # list_options = {class:'default-class'}.merge(list_options) <-- if you want defaults
     reasons = account_type_choice_reasons_for user
-
-    heading = h.content_tag(:h3, I18n.t("account_finder.account_type_found.why_we_chose_heading"))
     body = ""
     reasons.each do |reason|
       token = "deciding_factors.#{reason.values.first ? 'positive' : 'negative'}.#{reason.keys.first}"
-      body = body + h.content_tag(:li, I18n.t(token), class: 'list-group-item list-group-item-info')
+      body = body + h.content_tag(:li, I18n.t(token), bullet_options)
     end
-    heading + h.content_tag(:ul, body.html_safe, class: 'list-group')
+    h.content_tag(:ul, body.html_safe, list_options)
   end
 
   alias_method :page_title, :page_heading
