@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   end
 
   def set_option(key, value)
-    association = key.to_s.sub(/^is_/,'')
+    association = key.sub(/^is_/,'')
     set_assoc_method = "#{association}=".to_sym
     assoc_class = association.to_s.camelize.constantize
 

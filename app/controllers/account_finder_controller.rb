@@ -8,9 +8,9 @@ class AccountFinderController < ApplicationController
     @user  = User.new(user_params)
 
     if params[:option_submit]
-      key = params[:option_submit].keys.first.to_sym
+      key = params[:option_submit].keys.first
       value = params[:option_submit].values.first
-      if key == :special_group
+      if key == 'special_group'
         @user.set_option(key, value)
       else
         @user[key] = (value != 'false')

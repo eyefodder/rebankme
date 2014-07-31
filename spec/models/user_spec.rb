@@ -68,13 +68,13 @@ describe User do
     describe 'is_special_group' do
       let(:special_group){create(:special_group)}
       it 'sets a special group and returns is_special_group to be true' do
-        user.set_option(:special_group, special_group.name_id)
+        user.set_option('special_group', special_group.name_id)
         user.save!
         expect(user.special_group).to eq(special_group)
         expect(user.is_special_group).to be_true
       end
       it 'sets a special group and returns is_special_group to be false if not special sent' do
-        user.set_option(:special_group, 'false')
+        user.set_option('special_group', 'false')
         user.save!
         expect(user.special_group).to eq(SpecialGroup.NOT_SPECIAL)
         expect(user.is_special_group).to be_false
