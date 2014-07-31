@@ -13,6 +13,8 @@
 #  updated_at              :datetime
 #  latitude                :float
 #  longitude               :float
+#  email                   :string(255)
+#  special_group_id        :integer
 #
 
 require 'spec_helper'
@@ -36,6 +38,47 @@ describe User do
 
     description do
       "have a translation"
+    end
+  end
+
+  describe 'associations' do
+    it 'should belong to special group' do
+      expect(user).to belong_to(:special_group)
+    end
+  end
+
+  describe 'is_special_group' do
+    let(:special_group) {create(:special_group)}
+    it 'should have is_special_group be null if nothing set' do
+      expect(user.is_special_group).to be_nil
+    end
+    it 'should have is_special_group be true if a special group id set' do
+      user.special_group = special_group
+      user.save!
+      expect(user.is_special_group).to be_true
+    end
+    it 'should have is_special_group be false if SpecialGroup.NOT_SPECIAL' do
+      user.special_group = SpecialGroup.NOT_SPECIAL
+      user.save!
+      expect(user.is_special_group).to be_false
+    end
+  end
+
+  describe '#set_option' do
+    describe 'is_special_group' do
+      let(:special_group){create(:special_group)}
+      it 'sets a special group and returns is_special_group to be true' do
+        user.set_option(:special_group, special_group.name_id)
+        user.save!
+        expect(user.special_group).to eq(special_group)
+        expect(user.is_special_group).to be_true
+      end
+      it 'sets a special group and returns is_special_group to be false if not special sent' do
+        user.set_option(:special_group, 'false')
+        user.save!
+        expect(user.special_group).to eq(SpecialGroup.NOT_SPECIAL)
+        expect(user.is_special_group).to be_false
+      end
     end
   end
 

@@ -9,13 +9,7 @@ describe AccountTypeFinderPresenter do
     it 'returns nothing if no special template' do
       expect(presenter.question_specific_form_content).to be_nil
     end
-    xit 'returns rendered partial if one exists' do
-      expected = 'sgfhjsgdkfwerkgfwr'
-      view.stub(:template_exists?).and_return(true)
-      view.stub(:render).and_return(expected)
-      expect(presenter.question_specific_form_content).to eq(expected)
 
-    end
   end
 
   describe '#start_over_button' do

@@ -23,9 +23,10 @@ describe 'Static Page Content Localizations' do
       has_predictable_income:
         title:
         question:
-      is_special_group:
+      special_group:
         title:
         question:
+        question_options:
       will_use_direct_deposit:
         title:
         question:

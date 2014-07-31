@@ -13,9 +13,9 @@
 #  updated_at              :datetime
 #  latitude                :float
 #  longitude               :float
+#  email                   :string(255)
+#  special_group_id        :integer
 #
-
-
 
 class User < ActiveRecord::Base
 
@@ -28,10 +28,26 @@ class User < ActiveRecord::Base
   validates_presence_of :zipcode
   validate :existing_us_zipcode, :if => :zipcode_changed?
   validate :validate_email, :if => :email?
+  belongs_to :special_group
 
 
   def in_new_york_city?
     ZIPS.include? zipcode if zipcode?
+  end
+
+  def set_option(key, value)
+    association = key.to_s.sub(/^is_/,'')
+    set_assoc_method = "#{association}=".to_sym
+    assoc_class = association.to_s.camelize.constantize
+
+    option = value == 'false' ? assoc_class.FALSE_VALUE : assoc_class.find_by(name_id: value)
+    self.send(set_assoc_method, option)
+  end
+
+  def is_special_group
+     unless special_group_id.nil?
+      special_group != SpecialGroup.NOT_SPECIAL
+     end
   end
 
   def country_code

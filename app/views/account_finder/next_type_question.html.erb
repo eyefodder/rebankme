@@ -12,21 +12,24 @@
 <%= form_for(@user, url: account_type_finder_path) do |f| %>
 <%= f.hidden_field :zipcode %>
 <%= f.hidden_field :is_delinquent %>
-<%= f.hidden_field :is_special_group %>
+<%= f.hidden_field :special_group_id %>
 <%= f.hidden_field :will_use_direct_deposit %>
 <%= f.hidden_field :has_predictable_income %>
 <%= f.hidden_field :needs_debit_card %>
 <%= f.hidden_field :latitude %>
 <%= f.hidden_field :longitude %>
 
-<%= presenter.question_specific_form_content %>
+
 
 
 
 <div class='row'>
   <div class='col-xs-12'>
-  <%= presenter.yes_button({class: 'btn btn-info btn-block',}) %>
-  <%= presenter.no_button({class: 'btn btn-info btn-block',}) %>
+  <%= presenter.decision_buttons(yes_no_button_options: {class: 'btn btn-info btn-block',},
+                                grouped_container_options: {class: 'list-group section',},
+                                grouped_item_options:{class: 'list-group-item btn-block'}) %>
+ <!--  <%= presenter.yes_button({class: 'btn btn-info btn-block',}) %>
+  <%= presenter.no_button({class: 'btn btn-info btn-block',}) %> -->
   </div>
 </div>
 

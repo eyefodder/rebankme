@@ -17,6 +17,9 @@ FactoryGirl.define do
   factory :account_type do
     name_id
   end
+  factory :special_group do
+    name_id
+  end
 
   factory :bank do
     name

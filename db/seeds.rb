@@ -11,6 +11,12 @@
  AccountType.where(name_id: name_id).first_or_create!
 end
 
+#Special Group Types
+%w{veteran student senior not_special}.each do |name_id|
+ SpecialGroup.where(name_id: name_id).first_or_create!
+end
+
+#Admin Users
 %w{avi@significancelabs.org paul@significancelabs.org stephanie@significancelabs.org}.each do |email|
  AdminUser.where(email: email).first_or_create!(password: 'changeme', password_confirmation: 'changeme')
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716023412) do
+ActiveRecord::Schema.define(version: 20140731150221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,12 @@ ActiveRecord::Schema.define(version: 20140716023412) do
     t.float    "longitude"
   end
 
+  create_table "special_groups", force: true do |t|
+    t.string   "name_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "zipcode"
     t.boolean  "is_delinquent"
@@ -81,6 +87,8 @@ ActiveRecord::Schema.define(version: 20140716023412) do
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "email"
+    t.integer  "special_group_id"
   end
 
 end

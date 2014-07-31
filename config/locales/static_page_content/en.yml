@@ -26,9 +26,13 @@ en:
     is_delinquent:
       title: "Delinquent Account?"
       question: "Have any of these happened to you:"
-      question_bullets:
-        0: "I walked away from a bank account owing money"
-        1: "The bank closed my account on me"
+      # question_bullets:
+      #   walked_away: "I walked away from a bank account owing money"
+      #   bank_closed: "The bank closed my account on me"
+      question_options:
+        walked_away: "I walked away from a bank account owing money"
+        bank_closed: "The bank closed my account on me"
+        false: "Nope, none of these has happened to me"
       action_yes: "Yes, that's happened"
       action_no: "No they haven't"
     has_predictable_income:
@@ -36,16 +40,28 @@ en:
       question: "Do you get paid regularly, or do you sometimes go six weeks or more without getting paid?"
       action_yes: "I get regular income"
       action_no: "Maybe not so much"
-    is_special_group:
-      title: "Are you special?"
+    special_group:
+      title: "Qualify for free checking?"
       question: "Are you in one of these groups:"
-      question_bullets:
-        0: 'A Veteran'
-        1: 'A High School Student'
-        2: 'Under 23'
-        3: 'Over 65'
-      action_yes: "I'm in one of those groups, yes"
-      action_no: "Not me"
+      question_options:
+        student: "A student"
+        veteran: "A veteran"
+        senior: "Over 65"
+        false: "None of these"
+    # is_special_group:
+    #   title: "Are you special?"
+    #   question: "Are you in one of these groups:"
+    #   # question_bullets:
+    #   #   0: 'A Student'
+    #   #   1: 'A Veteran (thank you!)'
+    #   #   3: 'Over 65'
+    #   question_options:
+    #     student: "A student"
+    #     veteran: "A veteran (thank you for your service)"
+    #     senior: "Over 65"
+    #     false: "None of these"
+    #   action_yes: "I'm in one of those groups, yes"
+    #   action_no: "Not me"
     will_use_direct_deposit:
       title: "Will you Direct Deposit?"
       question: "Would you like to have your income or benefits directly deposited to your account? Doing this could make your banking free!"

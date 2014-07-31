@@ -116,7 +116,7 @@ describe 'Account Finder Pages', :type => :request do
       it_behaves_like 'a question page' do
         let(:question_token){:is_delinquent}
         let(:yes_destination){:has_predictable_income}
-        let(:no_destination){:is_special_group}
+        let(:no_destination){:special_group}
       end
       describe 'YES: > Has predictable income' do
         before do
@@ -133,7 +133,7 @@ describe 'Account Finder Pages', :type => :request do
           click_no_button
         end
         it_behaves_like 'a question page' do
-          let(:question_token) {:is_special_group}
+          let(:question_token) {:special_group}
           let(:no_destination){:will_use_direct_deposit}
           let(:yes_destination){{account_type: :special_group}}
         end

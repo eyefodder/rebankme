@@ -36,6 +36,28 @@ class AccountTypeFinderPresenter < BasePresenter
 
   end
 
+  def decision_buttons(options={})
+    bullets = I18n.t("account_finder.#{next_property_token}.question_options", default:{}).to_a
+    if bullets.empty?
+      yes_button(options[:yes_no_button_options]) + no_button(options[:yes_no_button_options])
+    else
+      #optiosn button
+      h.content_tag(:div, options[:grouped_container_options]) do
+        res = ""
+        bullets.each do |bullet|
+          value = bullet[0]
+          button_id = value==false ? 'next_question_no' : 'next_question_yes'
+          defaults = { name: "option_submit[#{next_property_token}]", type: 'submit', value: value, id: button_id}
+          button = h.content_tag(:button, bullet[1], defaults.merge(options[:grouped_item_options]) )
+          # res << h.link_to(bullet[1], "#", options[:grouped_item_options] )
+          res << button
+          # res << h.content_tag(:li, bullet, options[:grouped_item_options] )
+        end
+        res.html_safe
+      end
+      # next_question_bullets_tag(options[:grouped_container_options], options[:grouped_item_options])
+    end
+  end
 
 
   def yes_button(options={})

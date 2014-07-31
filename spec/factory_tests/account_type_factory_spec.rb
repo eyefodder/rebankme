@@ -51,7 +51,7 @@ describe AccountTypeFactory do
     end
     describe 'special group member' do
       before do
-        user.is_special_group = true
+        user.special_group = create(:special_group)
       end
       it 'returns special group account' do
         expect(AccountTypeFactory.account_type_for(user)).to eq AccountType.SPECIAL_GROUP
@@ -59,7 +59,7 @@ describe AccountTypeFactory do
     end
     describe 'non special group' do
       before do
-        user.is_special_group = false
+        user.special_group = SpecialGroup.NOT_SPECIAL
       end
       it 'returns nil on its own' do
         expect(AccountTypeFactory.account_type_for(user)).to be_nil
