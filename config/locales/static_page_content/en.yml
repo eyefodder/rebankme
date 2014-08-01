@@ -10,8 +10,8 @@ en:
       start_over: 'Start Over'
   static:
     home:
-      title: "Welcome!"
-      body_copy: "Rebank me can help find an account just right for you in a few simple steps. No bull, just giraffe."
+      title: "Hello!"
+      body_copy: "Rebank me finds a bank account that has all the features you need, without all the fees.   No bull, just giraffe."
       account_finder_start: "Find the right account for me!"
   users:
     request_email:
