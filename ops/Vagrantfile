@@ -41,7 +41,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
    config.vm.provision 'shell', path: 'init_rails_environment.sh', privileged: false
 
   # # EACH UP PROVISIONING
-      config.vm.provision 'shell', path: 'start_app.sh', privileged: false, run: 'always'
+  config.vm.provision 'shell', path: 'start_app.sh', privileged: false, run: 'always'
+
+  if File.exists?('guest_bash_profile')
+    config.vm.provision 'file', source: 'guest_bash_profile', destination: '~/.bash_profile' , run: 'always'
+  end
 
 
 

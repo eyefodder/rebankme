@@ -27,4 +27,7 @@
 #ignore herouk created db dump
 latest.dump
 .env
+
+ops/.vagrant
 ops/.vagrant/*
+ops/guest_bash_profile

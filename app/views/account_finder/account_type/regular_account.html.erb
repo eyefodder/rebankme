@@ -1,1 +1,11 @@
-regualr account
+<% @no_logo = true %>
+<% present @account_type do |presenter| %>
+<% provide(:heading,  t('.title')) %>
+<% provide(:page_title, t('.title')) %>
+<h3>Keep it Free!</h3>
+<div class='explanation'>Based on what you've told us, you should be eligible for a free checking account. </div>
+
+<%= link_to 'Find out more', 'https://www.chase.com/debit-reloadable-cards/liquid-prepaid-card', target: '_blank' %>
+
+
+<% end %>

@@ -14,6 +14,14 @@ class AccountTypePresenter < BasePresenter
   end
 
 
+  def google_maps_tag_for_account(account)
+     # image_tag "http://maps.google.com/maps/api/staticmap?size=270x270&sensor=false&zoom=15&markers=#{account.branch.latitude}%2C#{account.branch.longitude}"
+  h.content_tag(:iframe, nil, width: 270, height: 270, frameborder: 0, style: 'border:0', src: google_maps_src_for_account(account))
+  end
+
+  def google_maps_src_for_account(account)
+    URI::encode("https://www.google.com/maps/embed/v1/search?key=#{ApiKeys.google_maps}&q=#{account.branch.bank.name}+#{account.branch.full_address}")
+  end
 
   def why_account_type_chosen_for(user,list_options={}, bullet_options={})
     # list_options = {class:'default-class'}.merge(list_options) <-- if you want defaults

@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  sequence :name, aliases: [:name_id] do |n|
+  sequence :name, aliases: [:name_id, :code] do |n|
     "Name#{n}"
   end
   sequence :email do |n|
@@ -29,6 +29,11 @@ FactoryGirl.define do
     email
     password '12345678'
     password_confirmation '12345678'
+  end
+
+  factory :state do
+    code
+    name
   end
 
 

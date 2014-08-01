@@ -45,3 +45,5 @@ en:
     account_type:
       prepay_card:
         title: "Finding the right prepay card"
+      regular_account:
+        title: "Finding the right Main Street checking account"

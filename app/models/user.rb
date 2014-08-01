@@ -15,6 +15,7 @@
 #  longitude               :float
 #  email                   :string(255)
 #  special_group_id        :integer
+#  state_id                :integer
 #
 
 class User < ActiveRecord::Base
@@ -29,6 +30,7 @@ class User < ActiveRecord::Base
   validate :existing_us_zipcode, :if => :zipcode_changed?
   validate :validate_email, :if => :email?
   belongs_to :special_group
+  belongs_to :state
 
 
   def in_new_york_city?
@@ -45,21 +47,21 @@ class User < ActiveRecord::Base
   end
 
   def is_special_group
-     unless special_group_id.nil?
-      special_group != SpecialGroup.NOT_SPECIAL
-     end
+   unless special_group_id.nil?
+    special_group != SpecialGroup.NOT_SPECIAL
   end
+end
 
-  def country_code
-    'US'
-  end
+def country_code
+  'US'
+end
 
-  private
+private
 
-  def validate_email
-    errors.add(:email, I18n.t('errors.messages.invalid_email_format')) unless
-      email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-  end
+def validate_email
+  errors.add(:email, I18n.t('errors.messages.invalid_email_format')) unless
+  email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+end
 
   # class EmailValidator < ActiveModel::EachValidator
   #   def validate_each(record, attribute, value)
@@ -78,6 +80,7 @@ class User < ActiveRecord::Base
       else
         self.latitude = result.latitude
         self.longitude = result.longitude
+        self.state = State.find_by(code: result.state_code)
       end
     else
       errors.add(:zipcode, I18n.t('errors.messages.invalid_zipcode_format'))
