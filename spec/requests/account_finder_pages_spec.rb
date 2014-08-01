@@ -132,7 +132,7 @@ describe 'Account Finder Pages', :type => :request do
         before do
           click_no_button
         end
-        it_behaves_like 'a question page' do
+        it_behaves_like 'a multi choice question page' do
           let(:question_token) {:special_group}
           let(:no_destination){:will_use_direct_deposit}
           let(:yes_destination){{account_type: :special_group}}

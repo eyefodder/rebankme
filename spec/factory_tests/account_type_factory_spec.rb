@@ -49,6 +49,38 @@ describe AccountTypeFactory do
     it 'returns nil on its own' do
       expect(AccountTypeFactory.account_type_for(user)).to be_nil
     end
+    describe 'student' do
+      before do
+        user.special_group = SpecialGroup.STUDENT
+      end
+      it 'returns student account' do
+        expect(AccountTypeFactory.account_type_for(user)).to eq AccountType.STUDENT_ACCOUNT
+      end
+    end
+    describe 'student via option set' do
+      before do
+        user.set_option('special_group', SpecialGroup.STUDENT.name_id)
+      end
+      it 'returns student account' do
+        expect(AccountTypeFactory.account_type_for(user)).to eq AccountType.STUDENT_ACCOUNT
+      end
+    end
+    describe 'veteran' do
+      before do
+        user.special_group = SpecialGroup.VETERAN
+      end
+      it 'returns student account' do
+        expect(AccountTypeFactory.account_type_for(user)).to eq AccountType.VETERANS_ACCOUNT
+      end
+    end
+    describe 'senior' do
+      before do
+        user.special_group = SpecialGroup.SENIOR
+      end
+      it 'returns student account' do
+        expect(AccountTypeFactory.account_type_for(user)).to eq AccountType.SENIORS_ACCOUNT
+      end
+    end
     describe 'special group member' do
       before do
         user.special_group = create(:special_group)

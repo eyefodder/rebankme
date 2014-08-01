@@ -5,24 +5,31 @@ class AccountFinderController < ApplicationController
 
 
   def next_type_question
-    @user  = User.new(user_params)
-
-    if params[:option_submit]
-      key = params[:option_submit].keys.first
-      value = params[:option_submit].values.first
-      if key == 'special_group'
-        @user.set_option(key, value)
-      else
-        @user[key] = (value != 'false')
+    begin
+      @user  = User.new(user_params)
+      if params[:option_submit]
+        key = params[:option_submit].keys.first
+        value = params[:option_submit].values.first
+        if key == 'special_group'
+          @user.set_option(key, value)
+        else
+          @user[key] = (value != 'false')
+        end
       end
+      @account_type =  AccountTypeFactory.account_type_for(@user)
+      if @account_type.nil?
+        redirect_to :back, flash:{error: @user.errors.full_messages} unless @user.valid?
+      else
+        @user.save!
+        render :account_type_found
+      end
+    rescue ActionController::ParameterMissing => e
+      log.warn('user parameters missing; have to go back to start')
+      redirect_to account_finder_start_path
     end
-    @account_type =  AccountTypeFactory.account_type_for(@user)
-    if @account_type.nil?
-      redirect_to :back, flash:{error: @user.errors.full_messages} unless @user.valid?
-    else
-      @user.save!
-      render :account_type_found
-    end
+
+
+
   end
 
   def find_account
@@ -32,6 +39,8 @@ class AccountFinderController < ApplicationController
     if @results.count == 0
       @results = [BankAccount.where(account_type_id: @account_type.id).first]
     end
+    template = "account_finder/account_type/#{@account_type.name_id}"
+    render template
   end
 
   private

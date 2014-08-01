@@ -29,6 +29,29 @@ module AccountFinderSteps
       have_css('div.account-finder-question', text: content).matches?(page)
     end
   end
+    shared_examples 'a multi choice question page' do
+    it 'has expected content' do
+      expect(page).to display_account_finder_content(question_token)
+    end
+    it 'has correct question' do
+      expect(page).to display_account_finder_question(question_token)
+    end
+    it 'has yes / no buttons' do
+      expect(page).to display_choice_buttons([I18n.t('forms.actions.action_yes'), I18n.t('forms.actions.action_no')])
+    end
+
+    it 'has start over button' do
+      expect(page).to have_link(I18n.t('forms.actions.start_over'))
+    end
+    xit 'goes to the right place on clicking yes' do
+      click_yes_button
+      it_should_be_at_right_destination(yes_destination)
+    end
+    it 'goes to the right place on clicking no' do
+      click_no_button
+      it_should_be_at_right_destination(no_destination)
+    end
+  end
   shared_examples 'a question page' do
     it 'has expected content' do
       expect(page).to display_account_finder_content(question_token)

@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #account types
-%w{prepay_card second_chance safe_account special_group regular_account credit_union}.each do |name_id|
+%w{prepay_card second_chance safe_account special_group regular_account credit_union student_account seniors_account veterans_account}.each do |name_id|
  AccountType.where(name_id: name_id).first_or_create!
 end
 

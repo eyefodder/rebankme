@@ -11,10 +11,11 @@ Rebankme::Application.routes.draw do
   get 'start', to: 'account_finder#start', as: :account_finder_start
   match 'account_finder', to: 'account_finder#next_type_question', as: :account_type_finder, via: [:get, :post]
 
-  match 'find_account/:user_id', to: 'account_finder#find_account', as: :account_finder, via: [:get, :post]
+  match 'users/:user_id/find_account', to: 'account_finder#find_account', as: :account_finder, via: [:get, :post]
 
   resources :users
   get 'users/:user_id/request_email', to: 'users#request_email', as: :request_user_email
+  # match 'users/:user_id/find_account/:account_type_id', as:
 
   get 'admin', to: 'admin#home', as: :admin
 

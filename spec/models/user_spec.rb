@@ -65,7 +65,7 @@ describe User do
   end
 
   describe '#set_option' do
-    describe 'is_special_group' do
+    describe 'special_group' do
       let(:special_group){create(:special_group)}
       it 'sets a special group and returns is_special_group to be true' do
         user.set_option('special_group', special_group.name_id)

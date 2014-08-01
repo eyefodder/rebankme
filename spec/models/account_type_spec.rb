@@ -13,7 +13,7 @@ include Il8nSteps
 
 shared_examples "a predefined type" do
   it 'exists' do
-    expect(account_type).to_not be_nil
+    expect(account_type).to_not be_nil, "no account type object returned for #{name_id}"
     expect(account_type).to be_an(AccountType)
   end
   it 'has a name id' do
@@ -58,13 +58,31 @@ describe AccountType do
       it_behaves_like 'a predefined type'
     end
 
-    describe 'special group account' do
+    describe 'student account' do
+      let(:account_type){AccountType.STUDENT_ACCOUNT}
+      let(:name_id) {'student_account'}
+      it_behaves_like 'a predefined type'
+    end
+
+    describe 'veterans account' do
+      let(:account_type){AccountType.VETERANS_ACCOUNT}
+      let(:name_id) {'veterans_account'}
+      it_behaves_like 'a predefined type'
+    end
+
+    describe 'seniors account' do
+      let(:account_type){AccountType.SENIORS_ACCOUNT}
+      let(:name_id) {'seniors_account'}
+      it_behaves_like 'a predefined type'
+    end
+
+    describe 'regular account' do
       let(:account_type){AccountType.REGULAR_ACCOUNT}
       let(:name_id) {'regular_account'}
       it_behaves_like 'a predefined type'
     end
 
-    describe 'special group account' do
+    describe 'credit union account' do
       let(:account_type){AccountType.CREDIT_UNION}
       let(:name_id) {'credit_union'}
       it_behaves_like 'a predefined type'

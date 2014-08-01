@@ -41,7 +41,7 @@ class AccountTypePresenter < BasePresenter
       [{is_delinquent: true}, {has_predictable_income: false}]
     when AccountType.SECOND_CHANCE
       [{is_delinquent: true}, {has_predictable_income: true}, {in_new_york_city: false}]
-    when AccountType.SPECIAL_GROUP
+    when AccountType.SPECIAL_GROUP, AccountType.STUDENT_ACCOUNT, AccountType.VETERANS_ACCOUNT, AccountType.SENIORS_ACCOUNT
       [{is_delinquent: false}, {is_special_group: true}]
     when AccountType.REGULAR_ACCOUNT
       [{is_delinquent: false}, {is_special_group: false}, {will_use_direct_deposit: true}]

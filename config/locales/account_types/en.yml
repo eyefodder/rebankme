@@ -17,6 +17,15 @@ en:
   credit_union:
     name: 'Credit Union'
     overview: "This is an account at a local institution in your neighbourhood"
+  student_account:
+    name: 'Student Account'
+    overview: "This is an account for students. Fees are usually waived, yay studying!"
+  veterans_account:
+    name: 'Veterans Account'
+    overview: "This is an account for veterans. As a thank-you for your service, some banks waive fees"
+  seniors_account:
+    name: 'Seniors Account'
+    overview: "You've worked hard and you deserve a break from those pesky fees. Many accounts offer seniors fee-free banking"
   deciding_factors:
     positive:
       is_delinquent: "You have banking history that makes it tough to get a regular account"
@@ -32,3 +41,7 @@ en:
       is_special_group: "You aren't in a group that qualifies for waived fees"
       will_use_direct_deposit: "You will not deposit your paycheck with direct deposit"
       needs_debit_card: "You don't need a debit card"
+  account_finder:
+    account_type:
+      prepay_card:
+        title: "Finding the right prepay card"

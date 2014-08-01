@@ -47,6 +47,24 @@ describe SpecialGroup do
         let(:name_id) {'not_special'}
       end
     end
+    describe 'student' do
+      let(:special_group){SpecialGroup.STUDENT}
+      it_behaves_like 'a predefined type' do
+        let(:name_id) {'student'}
+      end
+    end
+    describe 'veteran' do
+      let(:special_group){SpecialGroup.VETERAN}
+      it_behaves_like 'a predefined type' do
+        let(:name_id) {'veteran'}
+      end
+    end
+    describe 'senior' do
+      let(:special_group){SpecialGroup.SENIOR}
+      it_behaves_like 'a predefined type' do
+        let(:name_id) {'senior'}
+      end
+    end
   end
 
 end

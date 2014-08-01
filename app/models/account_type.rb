@@ -35,4 +35,13 @@ class AccountType < ActiveRecord::Base
   def self.CREDIT_UNION
     AccountType.where(name_id: 'credit_union').first
   end
+  def self.STUDENT_ACCOUNT
+    AccountType.where(name_id: 'student_account').first
+  end
+  def self.SENIORS_ACCOUNT
+    AccountType.where(name_id: 'seniors_account').first
+  end
+  def self.VETERANS_ACCOUNT
+    AccountType.where(name_id: 'veterans_account').first
+  end
 end

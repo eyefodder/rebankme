@@ -1,0 +1,24 @@
+<% @no_logo = true %>
+<% present @account_type do |presenter| %>
+<% provide(:heading,  t('.title')) %>
+<% provide(:page_title, t('.title')) %>
+<h3>Two simple choices</h3>
+<div class='explanation'>There are lots of prepaid cards out there, and it can seem tough to choose between them. Overall we have found that there are two stand-out choices, based on what you're looking for:</div>
+<h4>Amex Serve</h4>
+<ul>
+<li>$1 Monthly Fee</li>
+<li>No overdraft fees</li>
+<li>Savings Account Featurs</li>
+<li>Surprise surprise, it uses the Amex network</li>
+</ul>
+<%= link_to 'Find out more', 'https://www.serve.com/home/', target: '_blank' %>
+<h4>Chase Liquid</h4>
+<ul>
+<li>$5 Monthly Fee</li>
+<li>No overdraft Fee</li>
+<li>Uses the Visa Network</li>
+</ul>
+<%= link_to 'Find out more', 'https://www.chase.com/debit-reloadable-cards/liquid-prepaid-card', target: '_blank' %>
+
+
+<% end %>

@@ -11,7 +11,7 @@ class AccountTypeFactory
       return safe_or_second_chance(user)
     end
     if matches_special_group_profile(user)
-      return AccountType.SPECIAL_GROUP
+      return special_account_for(user)
     end
     if matches_regular_account_profile(user)
       return AccountType.REGULAR_ACCOUNT
@@ -33,6 +33,20 @@ class AccountTypeFactory
         return AccountType.CREDIT_UNION
       end
     end
+  end
+
+  def self.special_account_for(user)
+    case user.special_group
+    when SpecialGroup.STUDENT
+      AccountType.STUDENT_ACCOUNT
+    when SpecialGroup.VETERAN
+      AccountType.VETERANS_ACCOUNT
+    when SpecialGroup.SENIOR
+      AccountType.SENIORS_ACCOUNT
+    else
+      AccountType.SPECIAL_GROUP
+    end
+
   end
 
   def self.matches_credit_union_or_safe_account(user)
