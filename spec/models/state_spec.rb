@@ -28,6 +28,19 @@ describe State do
     end
   end
 
+  describe 'chase_states' do
+    let(:in_states){%w{AZ CA CO CT FL GA HI ID IL IN KY LA MA MI NJ NV NY OH OK OR TX UT WA WI WV}}
+
+
+    it 'returns false for the rest' do
+      State.all.each do |state|
+        expected = in_states.include?(state.code) ? true : false
+        expect(state.chase_state?).to eq(expected), "Expected chase_state for #{state.code} to be #{expected}"
+      end
+    end
+
+  end
+
   describe 'seeded content' do
     let(:states)  {[{code: 'AL', name: 'Alabama'},
       {code: 'LA', name: 'Louisiana'},

@@ -47,3 +47,17 @@ en:
         title: "Finding the right prepay card"
       regular_account:
         title: "Finding the right Main Street checking account"
+      veterans_account:
+        title: 'Finding a great account for veterans'
+        chase_states:
+          sub_heading: 'Chase bank accounts for veterans'
+          explanation: >
+                        Chase currently offers the best product on the market for military personnel and veterans.
+                        Not only do they offer fee-free checking, but also offer additional perks like a free safety deposit box,
+                        fee-free money orders, and a few fee-free ATM withdrawls each month.
+        non_chase_states:
+          sub_heading: 'USAA bank accounts for veterans'
+          explanation: >
+                        USAA offers a great account for the military and veterans. You will have to call or fax to open up an account,
+                        but once you're over that hump you can look forward to free checking!
+
