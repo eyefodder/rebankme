@@ -11,48 +11,48 @@ en:
   static:
     home:
       title: "Hello!"
-      body_copy: "Rebank me finds a bank account that has all the features you need, without all the fees.   No bull, just giraffe."
+      body_copy: "Tell Rebank about your banking wants and needs.  We'll give you a personalized recommendation for a bank account that has all the features you need, without all the fees - whether or not you've been turned down for an account in the past."
       account_finder_start: "Find the right account for me!"
   users:
     request_email:
       title: "Enter your email"
-      body_copy: "Enter your email so we can help you find the right account. We will never spam you, sell your email or do anything out of order"
+      body_copy: "Enter your email so we can help you find the right account. We'll never spam you or sell your email."
       opt_out: "Skip this, just show me the results"
-      skip_email_request: 'No thanks, just show me the results'
+      skip_email_request: 'No thanks, just show me my results'
   account_finder:
     start:
-      title: "Finding an account type"
-      body_copy: "Enter your zip code so we can find accounts convenient for you"
+      title: "Location"
+      body_copy: "Enter your zip code so we can find banks in your neighborhood"
     is_delinquent:
-      title: "Delinquent Account?"
-      question: "Have any of these happened to you:"
+      title: "Banking History"
+      question: "Have any of these things happened to you:"
       question_options:
         walked_away: "I walked away from a bank account owing money"
-        bank_closed: "The bank closed my account on me"
-        false: "Nope, none of these has happened to me"
+        bank_closed: "I tried to open a bank account and was turned down"
+        false: "None of these things has happened to me"
       action_yes: "Yes, that's happened"
       action_no: "No they haven't"
     has_predictable_income:
-      title: "Do you have a predictable income?"
-      question: "Do you get paid regularly, or do you sometimes go six weeks or more without getting paid?"
+      title: "Income?"
+      question: "Do you get regular income or benefits from the same company, or do you sometimes go six weeks or more without getting paid?"
       action_yes: "I get regular income"
-      action_no: "Maybe not so much"
+      action_no: "I don't get income regularly"
     special_group:
       title: "Qualify for free checking?"
       question: "Are you in one of these groups:"
       question_options:
-        student: "A student"
-        veteran: "A veteran"
-        senior: "Over 65"
-        false: "None of these"
+        student: "I am a student"
+        veteran: "I am a veteran"
+        senior: "I am 65 years old or older"
+        false: "I don't fit into any of these groups"
     will_use_direct_deposit:
       title: "Will you Direct Deposit?"
-      question: "Would you like to have your income or benefits directly deposited to your account? Doing this could make your banking free!"
+      question: "You told us you receive regular income or benefits. Would you like to have your income or benefits directly deposited to your account? Your account could be free if you set up direct deposit."
       action_yes: "I will if it saves me money"
       action_no: "No thanks"
     needs_debit_card:
-      title: "Do you need a debit card?"
-      question: "Do you need a debit card, or can you get by with an ATM card and cash? If you don't need or want a debit card, you may have access to less expensive accounts"
+      title: "Card or Cash?"
+      question: "Do you need a debit card to shop online, or do you prefer to withdraw cash at the teller or ATM? If you don't need or want a debit card, you may have access to less expensive accounts"
       action_yes: "I need a debit card"
       action_no: "I will be fine with an ATM card"
     account_type_found:
