@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # config.vm.synced_folder "../", "/app"
   config.vm.synced_folder "./puppet", "/etc/puppet"
-  config.vm.synced_folder "../", "/app", type: "rsync", rsync__exclude: [".git/", "ops/*", "tmp/", "log/"]
+  config.vm.synced_folder "../", "/app", type: "rsync", rsync__exclude: [".git/", "ops/*", "tmp/", "log/", ".#*"]
   # end
 
   config.vm.provider 'virtualbox' do |vb|
