@@ -18,4 +18,8 @@ class State < ActiveRecord::Base
   def chase_state?
     %w{AZ CA CO CT FL GA HI ID IL IN KY LA MA MI NJ NV NY OH OK OR TX UT WA WI WV}.include? code
   end
+
+  def us_bank_state?
+    %w{AZ AR CA CO ID IL IN IA KA KY MN MO MT NE NV ND OH OR SD TN UT WA WI WY}.include? code
+  end
 end

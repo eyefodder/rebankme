@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AccountTypePresenter do
-  let(:account_type){build(:account_type, name_id: 'prepay_card')}
+  let(:account_type){AccountType.PREPAY_CARD}
   let(:presenter){AccountTypePresenter.new(account_type,view)}
 
 
@@ -36,6 +36,12 @@ shared_examples 'explains why chosen' do
       token = "deciding_factors.#{reason.values.first ? 'positive' : 'negative'}.#{reason.keys.first}"
       expect(result).to have_tag(:li, text: I18n.t(token))
     end
+    if defined? excluded_reasons
+      excluded_reasons.each do |reason|
+      token = "deciding_factors.#{reason.values.first ? 'positive' : 'negative'}.#{reason.keys.first}"
+      expect(result).not_to have_tag(:li, text: I18n.t(token))
+    end
+    end
   end
 
   it 'lets you pass in class info for the list and bullets' do
@@ -59,6 +65,14 @@ describe '#why_account_type_chosen' do
       let(:account_type){AccountType.PREPAY_CARD}
       let(:user){build(:user)}
       let(:reasons){[{is_delinquent: true}, {has_predictable_income: false}]}
+    end
+  end
+  describe 'with prepay_card (non new york, delinquent, regular income) {TEMP SECOND CHANCE PATH}' do
+    it_behaves_like 'explains why chosen' do
+      let(:account_type){AccountType.PREPAY_CARD}
+      let(:user){build(:user, zipcode: '90210', is_delinquent: true, has_predictable_income: true)}
+      let(:reasons){[{is_delinquent: true}]}
+      let(:excluded_reasons) {[{has_predictable_income:false}]}
     end
   end
   describe 'with second_chance' do

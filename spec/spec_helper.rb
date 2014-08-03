@@ -80,8 +80,10 @@ Spork.prefork do
 
     config.use_transactional_fixtures = true
 
+    DatabaseCleaner.strategy = :truncation
+
     config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation
+
       DatabaseCleaner.clean
 
 
@@ -144,13 +146,13 @@ Spork.prefork do
 
     # config.after(:each) { Warden.test_reset! }
 
-    # config.before(:each) do
-    #   DatabaseCleaner.start
-    # end
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
 
-    # config.after(:each) do
-    #   DatabaseCleaner.clean
-    # end
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
     config.after(:each) { Warden.test_reset! }
 
     # http://blog.zerosum.org/2011/03/19/easy-rails-outh-integration-testing.html

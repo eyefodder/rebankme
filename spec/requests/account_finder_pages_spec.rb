@@ -99,10 +99,16 @@ describe 'Account Finder Pages', :type => :request do
           click_yes_button
         end
         describe '> has predictable income ' do
+          it 'temporarily sends yes also to prepay_card' do
+            click_yes_button
+            pending("non nyc ppl should eventually get sent to second chance accounts") do
+              expect(page).to display_account_type_found_content(:second_chance)
+            end
+          end
           it_behaves_like 'a question page' do
             let(:question_token) {:has_predictable_income}
             let(:no_destination){{account_type: :prepay_card}}
-            let(:yes_destination){{account_type: :second_chance}}
+            let(:yes_destination){{account_type: :prepay_card}}
           end
         end
       end

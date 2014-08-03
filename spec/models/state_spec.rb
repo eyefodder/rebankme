@@ -28,17 +28,23 @@ describe State do
     end
   end
 
-  describe 'chase_states' do
+  describe 'chase_state?' do
     let(:in_states){%w{AZ CA CO CT FL GA HI ID IL IN KY LA MA MI NJ NV NY OH OK OR TX UT WA WI WV}}
-
-
     it 'returns false for the rest' do
       State.all.each do |state|
         expected = in_states.include?(state.code) ? true : false
         expect(state.chase_state?).to eq(expected), "Expected chase_state for #{state.code} to be #{expected}"
       end
     end
-
+  end
+  describe 'us_bank_states?' do
+    let(:in_states){%w{AZ AR CA CO ID IL IN IA KA KY MN MO MT NE NV ND OH OR SD TN UT WA WI WY}}
+    it 'returns false for the rest' do
+      State.all.each do |state|
+        expected = in_states.include?(state.code) ? true : false
+        expect(state.us_bank_state?).to eq(expected), "Expected us_bank_state? for #{state.code} to be #{expected}"
+      end
+    end
   end
 
   describe 'seeded content' do
@@ -96,8 +102,8 @@ describe State do
       it 'has an entry for each state' do
        states.each do |state|
         expect(State.find_by(name: state[:name], code: state[:code])).not_to be_nil, "Couldnt find a state with code #{state[:code]} and name #{state[:name]}"
-       end
-     end
+      end
+    end
 
-   end
- end
+  end
+end

@@ -60,4 +60,16 @@ en:
           explanation: >
                         USAA offers a great account for the military and veterans. You will have to call or fax to open up an account,
                         but once you're over that hump you can look forward to free checking!
+      seniors_account:
+        title: 'Finding an account for Seniors'
+        us_bank_states:
+          sub_heading: 'US Bank free checking for seniors'
+          explanation: >
+                        U.S. Bank is the only large bank that offers free checking to seniors aged 65 or over. You may be able to find
+                        other smaller banks and credit unions locally too.
+        non_us_bank_states:
+          sub_heading: 'Keep it local, keep it free'
+          explanation: >
+                        Many small local banks and credit unions offer free checking and other perks for seniors. Here's a map showing
+                        credit unions in your area
 

@@ -1,6 +1,19 @@
 class AccountTypePresenter < BasePresenter
   presents :account_type
 
+  def best_seniors_account_title_for(user, options={})
+    state_token = seniors_state_token_for(user)
+    h.content_tag(:h4, I18n.t("account_finder.account_type.seniors_account.#{state_token}.sub_heading"), options)
+  end
+    def best_seniors_account_explanation_for(user, options={})
+    state_token = seniors_state_token_for(user)
+    h.content_tag(:div, I18n.t("account_finder.account_type.seniors_account.#{state_token}.explanation"), options)
+  end
+  def call_to_action_for_seniors(user, button_options={})
+    search_term = user.state.us_bank_state? ? "USBank Branches near #{user.zipcode}" : "Credit Unions near #{user.zipcode}"
+    google_maps_iframe(google_map_search(search_term))
+  end
+
   def best_veterans_account_title_for(user, options={})
     state_token = veteran_state_toke_for(user)
     h.content_tag(:h4, I18n.t("account_finder.account_type.veterans_account.#{state_token}.sub_heading"), options)
@@ -72,6 +85,9 @@ class AccountTypePresenter < BasePresenter
   def veteran_state_toke_for(user)
     user.state.chase_state? ? 'chase_states' : 'non_chase_states'
   end
+  def seniors_state_token_for(user)
+    user.state.us_bank_state? ? 'us_bank_states' : 'non_us_bank_states'
+  end
 
   def search_term_for_account_type(user)
     case account_type
@@ -91,7 +107,7 @@ class AccountTypePresenter < BasePresenter
   def account_type_choice_reasons_for(user)
     case account_type
     when AccountType.PREPAY_CARD
-      [{is_delinquent: true}, {has_predictable_income: false}]
+      (user.has_predictable_income?) ? [{is_delinquent: true}] : [{is_delinquent: true}, {has_predictable_income: false}]
     when AccountType.SECOND_CHANCE
       [{is_delinquent: true}, {has_predictable_income: true}, {in_new_york_city: false}]
     when AccountType.SPECIAL_GROUP, AccountType.STUDENT_ACCOUNT, AccountType.VETERANS_ACCOUNT, AccountType.SENIORS_ACCOUNT
