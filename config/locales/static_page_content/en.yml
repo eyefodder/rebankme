@@ -10,13 +10,15 @@ en:
       start_over: 'Start Over'
   static:
     home:
-      title: "Hello!"
-      body_copy: "Tell Rebank about your banking wants and needs.  We'll give you a personalized recommendation for a bank account that has all the features you need, without all the fees - whether or not you've been turned down for an account in the past."
-      account_finder_start: "Find the right account for me!"
+      title: "Welcome to Rebank!"
+      body_copy: "Tell Rebank about your banking wants and needs.  
+      
+      We'll find you abank account that has all the features you need, without all the fees - whether or not you've been turned down for an account in the past."
+      account_finder_start: "Find my account"
   users:
     request_email:
       title: "Enter your email"
-      body_copy: "Enter your email so we can help you find the right account. We'll never spam you or sell your email."
+      body_copy: "Enter your email so we can help you through the process of opening your account.  (We'll only use your email to contact you about Rebank and we won't share it with anyone.)"
       opt_out: "Skip this, just show me the results"
       skip_email_request: 'No thanks, just show me my results'
   account_finder:
@@ -25,16 +27,16 @@ en:
       body_copy: "Enter your zip code so we can find banks in your neighborhood"
     is_delinquent:
       title: "Banking History"
-      question: "Have any of these things happened to you:"
+      question: "Have any of these things happened to you in the last 5 years:"
       question_options:
-        walked_away: "I walked away from a bank account owing money"
-        bank_closed: "I tried to open a bank account and was turned down"
-        false: "None of these things has happened to me"
+        walked_away: "I overdrafted and didn't pay it back"
+        bank_closed: "I was turned down for a bank account"
+        false: "Neither of these have happened"
       action_yes: "Yes, that's happened"
       action_no: "No they haven't"
     has_predictable_income:
       title: "Income?"
-      question: "Do you get regular income or benefits from the same company, or do you sometimes go six weeks or more without getting paid?"
+      question: "Do you get regular income or benefits from the same place, or do you sometimes go six weeks or more without getting paid?"
       action_yes: "I get regular income"
       action_no: "I don't get income regularly"
     special_group:
