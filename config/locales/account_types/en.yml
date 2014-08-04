@@ -2,6 +2,7 @@ en:
   prepay_card:
     name: 'Prepaid Card'
     overview: "A high quality prepaid card lets you store, spend and add money and charges lower fees than a bank account.  You can only spend as much as you have, so you won't be charged overdraft fees."
+  second_chance:
     name: 'Second Chance Account'
     overview: "A second chance account is an account that helps you get back into the banking system after you've been shut out.  "
   safe_account:
