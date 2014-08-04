@@ -43,8 +43,27 @@ en:
       needs_debit_card: "You don't need a debit card"
   account_finder:
     account_type:
+      help_to_open_cta: "Help me open an account"
       prepay_card:
         title: "Finding the right prepay card"
+        sub_heading: "Two simple choices"
+        intro: >
+                It can seem tough to find the right prepay card, and if you're not careful, the fees can really stack up.
+                Based on our current research, there are two products on the market that are worth a second look right now. The
+                main difference between them is the network they run on.
+        options:
+          option_0:
+            title: "Amex Serve"
+            description: >
+                          This prepay card has the lowest monthly fee at $1. There are also no overdraft fees and some savings
+                          features. If you are good with the Amex network, this is a great choice.
+            cta_link: 'https://www.serve.com/home/'
+          option_1:
+            title: "Chase Liquid"
+            description: >
+                          This card is more expensive at $5 per month. It also has no overdraft fees, but uses the Visa network
+                          which has more national coverage.
+            cta_link: 'https://www.chase.com/debit-reloadable-cards/liquid-prepaid-card'
       regular_account:
         title: "Finding the right Main Street checking account"
       veterans_account:

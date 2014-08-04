@@ -21,6 +21,8 @@ module ApplicationHelper
     presenter
   end
 
+
+
   def flash_block
     output = ''
     flash.each do |type, message|

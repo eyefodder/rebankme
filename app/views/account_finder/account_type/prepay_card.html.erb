@@ -1,9 +1,17 @@
 <% @no_logo = true %>
-<% present @account_type do |presenter| %>
+<% present @account_type, FindAnAccountPresenter do |presenter| %>
 <% provide(:heading,  t('.title')) %>
 <% provide(:page_title, t('.title')) %>
-<h3>Two simple choices</h3>
-<div class='explanation'>There are lots of prepaid cards out there, and it can seem tough to choose between them. Overall we have found that there are two stand-out choices, based on what you're looking for:</div>
+<% presenter.user = @user %>
+
+<%= presenter.sub_heading %>
+<%= presenter.intro_copy %>
+<div class='row section'>
+  <div class='col-xs-10 col-xs-offset-1'>
+    <%= presenter.cta_button class: 'btn btn-primary btn-block' %>
+  </div>
+</div>
+
 <h4>Amex Serve</h4>
 <ul>
 <li>$1 Monthly Fee</li>
