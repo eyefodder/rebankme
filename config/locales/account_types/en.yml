@@ -1,34 +1,33 @@
 en:
   prepay_card:
-    name: 'Prepay Card'
-    overview: 'A card that you can store money on and add money to again and again'
-  second_chance:
+    name: 'Prepaid Card'
+    overview: "A high quality prepaid card lets you store, spend and add money and charges lower fees than a bank account.  You can only spend as much as you have, so you won't be charged overdraft fees."
     name: 'Second Chance Account'
-    overview: "A second chance account is an account helps you get back into the banking system after you've been shut out"
+    overview: "A second chance account is an account that helps you get back into the banking system after you've been shut out.  "
   safe_account:
     name: 'Safe Account'
-    overview: "A safe account is a low-cost account offered to New Yorkers"
+    overview: "A NYC Safe account is a low-cost account offered to New Yorkers who have had trouble getting a bank account in the past."
   special_group:
     name: 'Special Group Account'
-    overview: "Because you are *special* you are eligible to get fees waived on a traditinal account"
+    overview: "Because you are *special* you are eligible to get fees waived on a traditional account"
   regular_account:
-    name: 'Regular Account'
-    overview: "A high-street account is one at a bank that has a lot of branches around the country"
+    name: 'Big Bank Account'
+    overview: "You're a candidate for an account at a big bank.  By choosing a bank with a lot of branches and ATMs, you can minimize your ATM fees."
   credit_union:
     name: 'Credit Union'
-    overview: "This is an account at a local institution in your neighbourhood"
+    overview: "This is an account at a local institution in your neighbourhood.  Credit unions charge a small membership fee, but offer low costs and good service"
   student_account:
     name: 'Student Account'
-    overview: "This is an account for students. Fees are usually waived, yay studying!"
+    overview: "Because you are a student, we can find you an account that will waive your account fee while you're studying.  You'll need to show a student ID."
   veterans_account:
     name: 'Veterans Account'
-    overview: "This is an account for veterans. As a thank-you for your service, some banks waive fees"
+    overview: "Because you are a veteran, we can find you an account that will waive your account fee as a thank you for your service. You'll need to bring evidence of your military service to the bank."
   seniors_account:
     name: 'Seniors Account'
-    overview: "You've worked hard and you deserve a break from those pesky fees. Many accounts offer seniors fee-free banking"
+    overview: "Because you are aged over 65, we can find you an account that will waive your account fee.  You'll need to bring a document to the bank that shows your date of birth."
   deciding_factors:
     positive:
-      is_delinquent: "You have banking history that makes it tough to get a regular account"
+      is_delinquent: "You have banking history that makes it hard to get a regular account"
       has_predictable_income: "You have predictable income"
       in_new_york_city: "You live in New York"
       is_special_group: "You are in a group that qualifies for having fees waived"
@@ -45,7 +44,7 @@ en:
     account_type:
       help_to_open_cta: "Help me open an account"
       prepay_card:
-        title: "Finding the right prepay card"
+        title: "Finding the right prepaid card"
         sub_heading: "Two simple choices"
         intro: >
                 It can seem tough to find the right prepay card, and if you're not careful, the fees can really stack up.
