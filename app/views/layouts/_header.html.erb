@@ -1,21 +1,25 @@
 <%= render 'admin/admin_nav' if admin_user_signed_in? %>
 <% unless  @no_logo %>
-<div class='row header'>
-  <div class='col-xs-2 header-image'><%= image_tag 'littlegiraffe.png' %></div>
-  <div class='col-xs-8 header-copy'>
-    <div class='header-welcome'>Welcome to</div>
-    <div class='header-rebank'>Rebank me</div>
+<div class="row header">
+  <div class="center-header clearfix center-block">
+    <div class='pull-left header-image'><%= image_tag 'littlegiraffe.png' %></div>
+    <div class='pull-left header-copy'>
+      <div class='header-welcome'>Welcome to</div>
+      <div class='header-rebank'>Rebank me</div>
+    </div>
   </div>
 </div>
 
 <% end %>
-<div class='row'>
-<h2 class='page-heading col-xs-12'>
-<%= yield(:heading) %>
-</h2>
-</div>
-<div class='row'>
-<div class='col-xs-12'>
-<hr />
-</div>
+<div class="row">
+  <div class='row'>
+    <h2 class='page-heading col-xs-12'>
+      <%= yield(:heading) %>
+    </h2>
+  </div>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <hr />
+    </div>
+  </div>
 </div>

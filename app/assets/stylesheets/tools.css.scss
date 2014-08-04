@@ -62,57 +62,8 @@
   border-radius: 50%;
 }
 
-.medium {
-  width: 30px;
-  height: 30px;
-}
-
-.auto {
-  margin: auto;
-}
-
-.auto-horiz {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.center-horiz {
-  text-align: center;
-}
-
-.center-vert {
-  /* Internet Explorer 10 */
-  display:-ms-flexbox;
-  -ms-flex-pack:center;
-  -ms-flex-align:center;
-
-  /* Firefox */
-  display:-moz-box;
-  -moz-box-pack:center;
-  -moz-box-align:center;
-
-  /* Safari, Opera, and Chrome */
-  display:-webkit-box;
-  -webkit-box-pack:center;
-  -webkit-box-align:center;
-
-  /* W3C */
-  display:box;
-  box-pack:center;
-  box-align:center;
-}
-
 .nowrap {
   white-space: nowrap;
-}
-
-.warning-sign {
-  color: red;
-  opacity: 0.5;
-}
-.thumbs-up {
-  color: green;
-  opacity: 0.5;
 }
 
 .nowrap {
