@@ -1,8 +1,9 @@
+<% present @user, AccountTypeFinderPresenter do |presenter| %>
 <% provide(:heading, t('.title')) %>
 <% provide(:page_title, t('.title')) %>
 <% @no_start_over = true %>
 <div class='row'>
-<%= content_tag(:div, t('.body_copy'), class:'col-xs-12') %>
+<%= presenter.body_copy('account_finder.start', class: 'col-xs-12') %>
 </div>
 <%= form_for(@user, url: account_type_finder_path) do |f| %>
 <div class="form-group row">
@@ -14,3 +15,4 @@
 </div>
 <% end %>
 
+<% end %>

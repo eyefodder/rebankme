@@ -18,7 +18,8 @@ class AccountTypeFinderPresenter < BasePresenter
   end
 
   def next_question_tag(options={})
-    h.content_tag(:div, I18n.t("account_finder.#{next_property_token}.question"), options)
+    formatted_copy("account_finder.#{next_property_token}.question", options)
+    # h.content_tag(:div, I18n.t("account_finder.#{next_property_token}.question"), options)
   end
 
   def next_question_bullets_tag(list_options={}, bullet_options={})

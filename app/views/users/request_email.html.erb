@@ -2,9 +2,7 @@
 <% provide(:title, t('.title')) %>
 <% present @user do |presenter| %>
 <div class='row'>
-  <div class='col-xs-12'>
-    <%= t('.body_copy') %>
-  </div>
+  <%= presenter.body_copy('users.request_email', class: 'col-xs-12') %>
 </div>
 <%= form_for @user do |f| %>
 <%= render partial: 'shared/error_messages', locals:{presenter:presenter} %>

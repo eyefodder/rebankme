@@ -5,7 +5,7 @@
 
 <!-- What is it? -->
 <%= content_tag(:h3, t(".overview_heading")) %>
-<%= content_tag(:div, I18n.t("#{@account_type.name_id}.overview")) %>
+<%= presenter.account_type_overview %>
 
 
 <!-- Why its right for you -->

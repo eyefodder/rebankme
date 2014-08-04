@@ -40,13 +40,13 @@ describe AccountTypeFinderPresenter do
   describe '#next_question_tag' do
     # let(:token){presenter.next_property_token}
     it 'returns a tag with from localized content' do
-      expected_content = I18n.t("account_finder.#{token}.question")
+      expected_content = view.simple_format(I18n.t("account_finder.#{token}.question"))
       expected = view.content_tag(:div,expected_content)
       expect(presenter.next_question_tag).to eq(expected)
     end
     it 'adds options to the tag' do
       options = {class: 'someclass', id: 'someid'}
-      expected_content = I18n.t("account_finder.#{token}.question")
+      expected_content = view.simple_format(I18n.t("account_finder.#{token}.question"))
       expected = view.content_tag(:div,expected_content , options)
       expect(presenter.next_question_tag(options)).to eq(expected)
     end

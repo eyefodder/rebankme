@@ -14,6 +14,9 @@ class BasePresenter
     @object
   end
 
+  def body_copy(token_path, options=nil)
+    formatted_copy("#{token_path}.body_copy",options)
+  end
 
   def start_over_button options=nil
     h.link_to(I18n.t("forms.actions.start_over"), h.account_finder_start_path, options)
@@ -38,6 +41,10 @@ class BasePresenter
   end
 
   private
+
+  def formatted_copy(token, options,tag=:div)
+    h.content_tag(tag, h.simple_format(I18n.t(token)), options)
+  end
 
   def create_templated_methods
 

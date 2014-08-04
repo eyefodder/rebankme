@@ -1,11 +1,15 @@
 class AccountTypePresenter < BasePresenter
   presents :account_type
 
+  def account_type_overview(options=nil)
+    formatted_copy("#{account_type.name_id}.overview", options)
+  end
+
   def best_seniors_account_title_for(user, options={})
     state_token = seniors_state_token_for(user)
     h.content_tag(:h4, I18n.t("account_finder.account_type.seniors_account.#{state_token}.sub_heading"), options)
   end
-    def best_seniors_account_explanation_for(user, options={})
+  def best_seniors_account_explanation_for(user, options={})
     state_token = seniors_state_token_for(user)
     h.content_tag(:div, I18n.t("account_finder.account_type.seniors_account.#{state_token}.explanation"), options)
   end
