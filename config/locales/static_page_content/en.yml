@@ -11,9 +11,8 @@ en:
   static:
     home:
       title: "Welcome to Rebank!"
-      body_copy: "Tell Rebank about your banking wants and needs.  
-      
-      We'll find you abank account that has all the features you need, without all the fees - whether or not you've been turned down for an account in the past."
+      body_copy:  "Tell Rebank about your banking wants and needs.  
+      We'll find you a bank account that has all the features you need, without all the fees - whether or not you've been turned down for an account in the past."
       account_finder_start: "Find my account"
   users:
     request_email:

@@ -1,10 +1,10 @@
 en:
   prepay_card:
     name: 'Prepaid Card'
-    overview: "A high quality prepaid card lets you store, spend and add money and charges lower fees than a bank account.  You can only spend as much as you have, so you won't be charged overdraft fees."
-  second_chance:
+    overview:  "A high quality prepaid card lets you store, spend and add money. The best ones charge lower fees than a bank account.  You can only spend as much as you have, so you won't be charged overdraft fees."
+  second_chance:  
     name: 'Second Chance Account'
-    overview: "A second chance account is an account that helps you get back into the banking system after you've been shut out.  "
+    overview: "A second chance account is an account that helps you get back into the banking system after you've been shut out."
   safe_account:
     name: 'Safe Account'
     overview: "A NYC Safe account is a low-cost account offered to New Yorkers who have had trouble getting a bank account in the past."
@@ -12,11 +12,11 @@ en:
     name: 'Special Group Account'
     overview: "Because you are *special* you are eligible to get fees waived on a traditional account"
   regular_account:
-    name: 'Big Bank Account'
-    overview: "You're a candidate for an account at a big bank.  By choosing a bank with a lot of branches and ATMs, you can minimize your ATM fees."
+    name: 'Traditional Bank Account'
+    overview: "You qualify to have monthly account fees waived at a big bank.  By choosing a bank with many branches and ATMs in your area, you can minimize your ATM fees."
   credit_union:
     name: 'Credit Union'
-    overview: "This is an account at a local institution in your neighbourhood.  Credit unions charge a small membership fee, but offer low costs and good service"
+    overview: "This is an account at a local institution in your neighbourhood.  Credit unions usually charge a small membership fee, but offer low costs and good service"
   student_account:
     name: 'Student Account'
     overview: "Because you are a student, we can find you an account that will waive your account fee while you're studying.  You'll need to show a student ID."
@@ -32,21 +32,21 @@ en:
       has_predictable_income: "You have predictable income"
       in_new_york_city: "You live in New York"
       is_special_group: "You are in a group that qualifies for having fees waived"
-      will_use_direct_deposit: "You will pay your income into the account with direct deposit"
+      will_use_direct_deposit: "You will pay your income or benefits into the account with direct deposit"
       needs_debit_card: "You need a debit card"
     negative:
       is_delinquent: "You don't have any delinquencies in your banking history"
       has_predictable_income: "You don't have predictable income"
       in_new_york_city: "You don't live in New York"
       is_special_group: "You aren't in a group that qualifies for waived fees"
-      will_use_direct_deposit: "You will not deposit your paycheck with direct deposit"
+      will_use_direct_deposit: "You don't plan to deposit your income  with direct deposit"
       needs_debit_card: "You don't need a debit card"
   account_finder:
     account_type:
       help_to_open_cta: "Help me open an account"
       prepay_card:
-        title: "Finding the right prepaid card"
-        sub_heading: "Two simple choices"
+        title: "The right prepaid card for you"
+        sub_heading: "Two great choices"
         intro: >
                 It can seem tough to find the right prepay card, and if you're not careful, the fees can really stack up.
                 Based on our current research, there are two products on the market that are worth a second look right now. The
@@ -65,30 +65,31 @@ en:
                           which has more national coverage.
             cta_link: 'https://www.chase.com/debit-reloadable-cards/liquid-prepaid-card'
       regular_account:
-        title: "Finding the right Main Street checking account"
+        title: "The right checking account for you"
       veterans_account:
-        title: 'Finding a great account for veterans'
+        title: 'A great account for veterans'
         chase_states:
           sub_heading: 'Chase bank accounts for veterans'
-          explanation: >
+          explanation: |
                         Chase currently offers the best product on the market for military personnel and veterans.
+                        
                         Not only do they offer fee-free checking, but also offer additional perks like a free safety deposit box,
-                        fee-free money orders, and a few fee-free ATM withdrawls each month.
+                        fee-free money orders, and a few fee-free ATM withdrawals each month.
         non_chase_states:
           sub_heading: 'USAA bank accounts for veterans'
           explanation: >
                         USAA offers a great account for the military and veterans. You will have to call or fax to open up an account,
                         but once you're over that hump you can look forward to free checking!
       seniors_account:
-        title: 'Finding an account for Seniors'
+        title: 'A low cost account for seniors'
         us_bank_states:
           sub_heading: 'US Bank free checking for seniors'
           explanation: >
-                        U.S. Bank is the only large bank that offers free checking to seniors aged 65 or over. You may be able to find
+                        U.S. Bank offers free checking to seniors aged 65 or over. You may be able to find
                         other smaller banks and credit unions locally too.
         non_us_bank_states:
-          sub_heading: 'Keep it local, keep it free'
+          sub_heading: 'Check out your local credit union'
           explanation: >
                         Many small local banks and credit unions offer free checking and other perks for seniors. Here's a map showing
-                        credit unions in your area
+                        credit unions in your area.
 
