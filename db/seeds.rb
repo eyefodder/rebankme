@@ -21,6 +21,8 @@ end
  AdminUser.where(email: email).first_or_create!(password: 'changeme', password_confirmation: 'changeme')
 end
 
+
+
 # banks and branches:
 branches = {}
 branches['Capital One'] = [
@@ -79,9 +81,65 @@ branches.each do |bank_name, bank_branches|
     # create a safe account for that branch
     safe_type = AccountType.SAFE_ACCOUNT
     account = BankAccount.where(account_type_id: safe_type.id,
-                                branch_id: branch.id).first_or_create!(name: "NYC Safe Account",
-                                                                        account_type_id: safe_type.id,
-                                                                        branch_id:branch.id)
+      branch_id: branch.id).first_or_create!(name: "NYC Safe Account",
+      account_type_id: safe_type.id,
+      branch_id:branch.id)
+    end
   end
-end
+
+#states
+states = [{code: 'AL', name: 'Alabama'},
+  {code: 'LA', name: 'Louisiana'},
+  {code: 'OH', name: 'Ohio'},
+  {code: 'AK', name: 'Alaska'},
+  {code: 'ME', name: 'Maine'},
+  {code: 'OK', name: 'Oklahoma'},
+  {code: 'AZ', name: 'Arizona'},
+  {code: 'MD', name: 'Maryland'},
+  {code: 'OR', name: 'Oregon'},
+  {code: 'AR', name: 'Arkansas'},
+  {code: 'MA', name: 'Massachusetts'},
+  {code: 'PA', name: 'Pennsylvania'},
+  {code: 'CA', name: 'California'},
+  {code: 'MI', name: 'Michigan'},
+  {code: 'RI', name: 'Rhode Island'},
+  {code: 'CO', name: 'Colorado'},
+  {code: 'MN', name: 'Minnesota'},
+  {code: 'SC', name: 'South Carolina'},
+  {code: 'CT', name: 'Connecticut'},
+  {code: 'MS', name: 'Mississippi'},
+  {code: 'SD', name: 'South Dakota'},
+  {code: 'DE', name: 'Delaware'},
+  {code: 'MO', name: 'Missouri'},
+  {code: 'TN', name: 'Tennessee'},
+  {code: 'FL', name: 'Florida'},
+  {code: 'MT', name: 'Montana'},
+  {code: 'TX', name: 'Texas'},
+  {code: 'GA', name: 'Georgia'},
+  {code: 'NE', name: 'Nebraska'},
+  {code: 'UT', name: 'Utah'},
+  {code: 'HI', name: 'Hawaii'},
+  {code: 'NV', name: 'Nevada'},
+  {code: 'VT', name: 'Vermont'},
+  {code: 'ID', name: 'Idaho'},
+  {code: 'NH', name: 'New Hampshire'},
+  {code: 'VA', name: 'Virginia'},
+  {code: 'IL', name: 'Illinois'},
+  {code: 'NJ', name: 'New Jersey'},
+  {code: 'WA', name: 'Washington'},
+  {code: 'IN', name: 'Indiana'},
+  {code: 'NM', name: 'New Mexico'},
+  {code: 'WV', name: 'West Virginia'},
+  {code: 'IA', name: 'Iowa'},
+  {code: 'NY', name: 'New York'},
+  {code: 'WI', name: 'Wisconsin'},
+  {code: 'KS', name: 'Kansas'},
+  {code: 'NC', name: 'North Carolina'},
+  {code: 'WY', name: 'Wyoming'},
+  {code: 'KY', name: 'Kentucky'},
+  {code: 'ND', name: 'North Dakota'},]
+
+  states.each do |state|
+    State.where(code: state[:code], name: state[:name]).first_or_create!(state)
+  end
 

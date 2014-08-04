@@ -1,1 +1,12 @@
-regualr account
+<% @no_logo = true %>
+<% present @account_type do |presenter| %>
+<% provide(:heading,  t('.title')) %>
+<% provide(:page_title, t('.title')) %>
+<h3>Keep it Free!</h3>
+<div class='explanation'>Based on what you've told us, you should be eligible for a free checking account. </div>
+
+<h4>Free Checking Near You</h3>
+<%= presenter.google_maps_tag_for_account_type_for_user(@user) %>
+
+
+<% end %>

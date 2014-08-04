@@ -53,7 +53,8 @@ class AccountTypeFactory
     user.is_delinquent == false && user.is_special_group == false && user.will_use_direct_deposit == false
   end
   def self.safe_or_second_chance(user)
-    user.in_new_york_city? ? AccountType.SAFE_ACCOUNT : AccountType.SECOND_CHANCE
+    user.in_new_york_city? ? AccountType.SAFE_ACCOUNT : AccountType.PREPAY_CARD
+    # user.in_new_york_city? ? AccountType.SAFE_ACCOUNT : AccountType.SECOND_CHANCE
   end
   def self.matches_safe_or_second_chance(user)
     user.is_delinquent && user.has_predictable_income

@@ -7,16 +7,10 @@ class AccountFinderController < ApplicationController
   def next_type_question
     begin
       @user  = User.new(user_params)
-      if params[:option_submit]
-        key = params[:option_submit].keys.first
-        value = params[:option_submit].values.first
-        if key == 'special_group'
-          @user.set_option(key, value)
-        else
-          @user[key] = (value != 'false')
-        end
-      end
+      set_optional_values(@user,params)
+
       @account_type =  AccountTypeFactory.account_type_for(@user)
+
       if @account_type.nil?
         redirect_to :back, flash:{error: @user.errors.full_messages} unless @user.valid?
       else
@@ -45,8 +39,20 @@ class AccountFinderController < ApplicationController
 
   private
 
+  def set_optional_values(user,params)
+    if params[:option_submit]
+      key = params[:option_submit].keys.first
+      value = params[:option_submit].values.first
+      if key == 'special_group'
+        user.set_option(key, value)
+      else
+        user[key] = (value != 'false')
+      end
+    end
+  end
+
   def user_params
-    params.require(:user).permit(:zipcode,:is_delinquent, :has_predictable_income, :special_group_id, :will_use_direct_deposit, :needs_debit_card, :latitude, :longitude)
+    params.require(:user).permit(:zipcode,:is_delinquent, :has_predictable_income, :special_group_id, :will_use_direct_deposit, :needs_debit_card, :latitude, :longitude, :state_id)
   end
 
 

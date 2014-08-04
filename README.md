@@ -26,7 +26,17 @@ When you are working like this, you now have a machine running all on its loneso
 3. `vagrant halt` This is like shutting the machine down. Takes longer to start than `suspend` but RAM isn't written to disk so it takes less space
 4. `vagrant destroy` This is like throwing the box out the window. You can always start afresh with `vagrant up` but it will have to go through that initial install which might take a few minutes...
 
-### Accessing the app 
+### Configuration
+In order for the app to access external APIs, you will need to set keys as environment variables. If you want to do this on heroku, check out [this article] (https://devcenter.heroku.com/articles/config-vars#setting-up-config-vars-for-a-deployed-application). To do this on your local machine, create a file inside of the ops folder called `guest_bash_profile`. It will need to have the following  in it:
+```shell
+export GOOGLE_MAPS_KEY=your_key_here
+export GOOGLE_ANALYTICS_KEY=your_key_here
+```
+
+When you have that file setup, run `vagrant provision --provision-with file`, and if needs be, restart the server.
+
+
+### Accessing the app
 
 1. The rails app should be up and running in development mode (that means if you change a file you will see the change in the app straight away). Go to http://localhost:3001 to see the app
 2. If for some reason you need to kill the rails app you can do it like this:

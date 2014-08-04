@@ -30,8 +30,11 @@ class BankAccount < ActiveRecord::Base
     end
 
 
-    def self.accounts_near(user, account_type)
-      branch_ids = Branch.near([user.latitude, user.longitude], 20, order: 'distance').map(&:id)
+    def self.accounts_near(user, account_type,limit=6)
+      branch_ids = Branch.near([user.latitude, user.longitude], 10, order: 'distance').limit(limit).map(&:id)
+      if branch_ids.count == 0
+        return []
+      end
       available_at_branches(branch_ids).having_account_type(account_type).ordered_by_branch_ids(branch_ids)
     end
 

@@ -1,1 +1,13 @@
-seniors account
+
+<% @no_logo = true %>
+<% present @account_type do |presenter| %>
+<% provide(:heading,  t('.title')) %>
+<% provide(:page_title, t('.title')) %>
+<%= presenter.best_seniors_account_title_for(@user) %>
+<div class='row'>
+<%= presenter.best_seniors_account_explanation_for(@user, {class: 'col-xs-12'}) %>
+</div>
+
+<%= presenter.call_to_action_for_seniors(@user, {class: 'btn btn-block btn-primary'}) %>
+
+<% end %>

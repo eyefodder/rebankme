@@ -15,6 +15,7 @@
 #  longitude               :float
 #  email                   :string(255)
 #  special_group_id        :integer
+#  state_id                :integer
 #
 
 require 'spec_helper'
@@ -44,6 +45,9 @@ describe User do
   describe 'associations' do
     it 'should belong to special group' do
       expect(user).to belong_to(:special_group)
+    end
+    it 'should belong to state' do
+      expect(user).to belong_to(:state)
     end
   end
 

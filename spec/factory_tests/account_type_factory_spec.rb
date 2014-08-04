@@ -37,8 +37,17 @@ describe AccountTypeFactory do
       end
       it 'returns 2nd chance account otherwise' do
         user.zipcode = '90210'
-        expect(AccountTypeFactory.account_type_for(user)).to eq AccountType.SECOND_CHANCE
+        pending("2nd chance accounts temporarily sent to prepay cards") do
+          expect(AccountTypeFactory.account_type_for(user)).to eq AccountType.SECOND_CHANCE
+        end
       end
+      it 'temporarily returns prepay card otherwise' do
+        user.zipcode = '90210'
+        expect(AccountTypeFactory.account_type_for(user)).to eq AccountType.PREPAY_CARD
+
+
+      end
+
     end
   end
 

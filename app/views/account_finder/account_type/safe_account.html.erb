@@ -9,29 +9,32 @@
   <%= content_tag(:div, "Available at #{account.branch.full_name}") %>
   <%= content_tag(:div, account.branch.full_address, class:'account-branch-address') %>
 
-  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=270x270&sensor=false&zoom=15&markers=#{account.branch.latitude}%2C#{account.branch.longitude}" %>
 
-  <h3>Why?</h3>
-  <h4>Location!</h4>
-  <%= content_tag(:div, "As all safe accounts offer the same features, we are showing you the account closest to your zipcode (#{@user.zipcode}).") %>
-  <div class='row section'>
-    <div class='col-xs-10 col-xs-offset-1'>
+<%= presenter.google_maps_tag_for_account(account) %>
 
-      <%= link_to('Help me open an account', demo_path('holding_content', 'prepare_to_open'), class: 'btn btn-primary btn-block') %>
-    </div>
+
+
+<h3>Why?</h3>
+<h4>Location!</h4>
+<%= content_tag(:div, "As all safe accounts offer the same features, we are showing you the account closest to your zipcode (#{@user.zipcode}).") %>
+<div class='row section'>
+  <div class='col-xs-10 col-xs-offset-1'>
+
+    <%= link_to('Help me open an account', demo_path('holding_content', 'prepare_to_open'), class: 'btn btn-primary btn-block') %>
   </div>
-  <div class='other-branches list-group section'>
-    <a href="#" class="list-group-item disabled">
-      <h4 class="list-group-item-heading">More Options</h4>
-      <p class="list-group-item-text">If this location doesn't work for you, here are some other branches that offer the same account:</p>
-    </a>
-    <%= render partial: "other_account_result", collection: @results, as: :item, locals: {user: @user} %>
-  </div>
+</div>
+<div class='other-branches list-group section'>
+  <a href="#" class="list-group-item disabled">
+    <h4 class="list-group-item-heading">More Options</h4>
+    <p class="list-group-item-text">If this location doesn't work for you, here are some other branches that offer the same account:</p>
+  </a>
+  <%= render partial: "other_account_result", collection: @results, as: :item, locals: {user: @user} %>
+</div>
 
-  <div class="section row">
-    <div class='col-xs-10 col-xs-offset-1'>
-      <%= presenter.start_over_button({class: 'btn btn-default btn-block'}) %>
-    </div>
+<div class="section row">
+  <div class='col-xs-10 col-xs-offset-1'>
+    <%= presenter.start_over_button({class: 'btn btn-default btn-block'}) %>
   </div>
+</div>
 
-  <% end %>
+<% end %>
