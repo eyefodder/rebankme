@@ -4,12 +4,11 @@
 <% provide(:title, t('.title')) %>
 <% @no_start_over = true %>
 <div class='row'>
-<%= presenter.body_copy('static.home', class: 'col-xs-12') %>
+  <%= presenter.body_copy('static.home', class: 'col-xs-12') %>
 </div>
 <div class='row section'>
-<div class='col-xs-12'>
-<%= link_to t(".account_finder_start"), account_finder_start_path, id: 'start-account-finder', class: 'btn btn-primary btn-block' %>
+  <div class='col-xs-12'>
+    <%= link_to t(".account_finder_start"), account_finder_start_path, id: 'start-account-finder', class: 'btn btn-primary btn-block' %>
+  </div>
 </div>
-</div>
-
 <% end %>

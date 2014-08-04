@@ -36,10 +36,17 @@ body{
   font-family: $default-font, sans-serif;
 }
 
+#nav {
+  background: $accent-color;
+  z-index: 100;
+}
+
+#content {
+  margin-top: 45px;
+}
+
 .container{
-  padding-top: 17px;
-  padding-left: 27px;
-  padding-right: 27px;
+  padding: 30px;
 }
 
 form{
