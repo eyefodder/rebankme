@@ -29,8 +29,8 @@ $yes-btn-color-hover: #24782B;
 body{
   color: $base-font-color;
   background-color: $app-bg-color;
-  font-size: 15px;
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 22px;
   font-family: $default-font, sans-serif;
 }
 
@@ -201,24 +201,25 @@ ul.action-links li{
 
 // LOGO & HEADER
 .header{
-
+  margin-top: 30px;
 }
 .header-copy{
   padding-left: 0px;
 }
 .header-rebank{
-  text-transform: uppercase;
-  font-size: 28px;
-  color: $accent-color;
 }
 .header-welcome{
-  font-size: 14px;
-  padding-top: 38px;
+  padding-top: 15px;
+  line-height: 20px;
   color: $accent-color;
 }
 
 .header-image{
   margin-right: 2px;
+
+  img {
+    height: 60px;
+  }
 }
 
 // END LOGO
