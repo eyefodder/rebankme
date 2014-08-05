@@ -8,6 +8,7 @@ class UserMailer < ActionMailer::Base
 
   def help_request_recipient
     @@rebank_recipient ||= ENV['MAILER_REBANK_RECIPIENT']
+    @@rebank_recipient ||= 'test@example.com'
   end
 
   def notify_of_user_help_request(user, account_type)
