@@ -11,6 +11,7 @@ gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'compass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -104,5 +105,3 @@ group :test do
 	gem 'shoulda-matchers', require: false
 	gem 'rspec-html-matchers'
 end
-
-
