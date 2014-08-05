@@ -50,11 +50,25 @@ body{
   padding: 30px;
 }
 
+.no_logo_margin {
+  margin-top: 45px;
+}
+
 form{
   padding-top: 40px;
 }
 .form-control{
   border-width: 0px;
+}
+
+input, .form-control{
+  color: $darkGrey;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: #e6e6e6;
+  border: none;
+  box-shadow: none !important;
+  border-radius: 0px !important;
 }
 
 a{
@@ -64,10 +78,6 @@ a{
     color: $link-hover-color;
     text-decoration: underline;
   }
-}
-
-hr {
-  border-width: 2px;
 }
 
 .color-accent {
@@ -80,6 +90,10 @@ hr {
 
 .center-header {
   width: 170px;
+}
+
+.content {
+  padding: 0px 10px;
 }
 
 // panels
@@ -167,6 +181,11 @@ hr {
     border-color: $default-btn-color-hover;
   }
 }
+.btn-input {
+  background: #e6e6e6;
+
+}
+
 .btn-primary {
   color: $app-bg-color;
   background-color: $primary-btn-color;

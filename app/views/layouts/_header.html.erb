@@ -11,8 +11,16 @@
 </div>
 
 <% end %>
-<div class="row padding-less padding-horiz">
+<% if @no_logo %>
+<div class="row content no_logo_margin">
+<% else %>
+<div class="row content">
+<% end %>
+<% if @no_logo %>
+  <div class='text-center margin-double margin-top color-accent'>
+<% else %>
   <div class='text-center margin-double margin-top'>
+<% end %>
     <div class='page-heading col-xs-12 font-large bold caps'>
       <%= yield(:heading) %>
     </div>
