@@ -7,7 +7,7 @@
 <%= presenter.body_copy('account_finder.start', class: 'col-xs-12') %>
 </div>
 <%= form_for(@user, url: account_type_finder_path) do |f| %>
-<div class="form-group ">
+<div class="form-group">
   <div class="input-group">
     <%= f.text_field :zipcode,  {placeholder: t('forms.labels.enter_zipcode'), class: 'form-control enter-zip'} %>
     <span class="input-group-btn"><button type="submit" name="commit" id='submit_button' class="btn btn-input"><span class="glyphicon glyphicon-chevron-right"></span></button></span>
