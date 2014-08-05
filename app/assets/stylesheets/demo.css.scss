@@ -50,12 +50,18 @@ body{
   padding: 30px;
 }
 
+
 .no_logo_margin {
-  margin-top: 45px;
+  margin-top: 0px;
+}
+@media all and (min-height: 500px) {
+  .no_logo_margin {
+    margin-top: 45px;
+  }
 }
 
 form{
-  padding-top: 40px;
+  padding-top: 30px;
 }
 .form-control{
   border-width: 0px;
@@ -146,6 +152,15 @@ a{
   border-radius: 0px;
   text-transform: uppercase;
   font-weight: bold;
+  white-space: normal;
+}
+
+.btn-wide {
+  padding: 6px 30px;
+}
+
+.btn-chevron {
+
 }
 
 .btn-success {

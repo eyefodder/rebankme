@@ -37,7 +37,7 @@ en:
       body_copy: "Enter your zip code so we can find banks in your neighborhood"
     is_delinquent:
       title: "Banking History"
-      question: Have any of these things happened to you in the last 5 years
+      question: "Have any of these things happened to you in the last 5 years?"
       question_options:
         walked_away: "I overdrafted and didn't pay it back"
         bank_closed: "I was turned down for a bank account"
@@ -49,7 +49,7 @@ en:
       action_no: "I don't get income regularly"
     special_group:
       title: "Qualify for free checking?"
-      question: "Are you in one of these groups:"
+      question: "Are you in one of these groups?"
       question_options:
         student: "I am a student"
         veteran: "I am a veteran"
@@ -62,7 +62,7 @@ en:
       action_no: "No thanks"
     needs_debit_card:
       title: "Card or Cash?"
-      question: "Do you need a debit card to shop online, or do you prefer to withdraw cash at the teller or ATM? If you don't need or want a debit card, you may have access to less expensive accounts"
+      question: "Do you need a debit card to shop online, or do you prefer to withdraw cash at the teller or ATM? If you don't need or want a debit card, you may have access to less expensive accounts."
       action_yes: "I need a debit card"
       action_no: "I will be fine with an ATM card"
     account_type_found:

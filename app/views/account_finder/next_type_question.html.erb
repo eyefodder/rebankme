@@ -1,10 +1,12 @@
 <% present @user, AccountTypeFinderPresenter do |presenter| %>
-
+<% @no_logo = true %>
 
 <% provide(:heading,  presenter.page_heading) %>
 <% provide(:page_title, presenter.page_title) %>
 
+<div class="content">
 <%= presenter.next_question_tag class: 'account-finder-question' %>
+</div>
 
 <%= presenter.next_question_bullets_tag( {class: 'list-group section'}, {class: 'list-group-item'}) %>
 
@@ -26,7 +28,7 @@
 
 <div class='row'>
   <div class='col-xs-12'>
-  <%= presenter.decision_buttons({class: 'btn btn-info btn-block',}) %>
+  <%= presenter.decision_buttons({class: 'btn btn-primary btn-wide btn-block btn-chevron',}) %>
  <!--  <%= presenter.yes_button({class: 'btn btn-info btn-block',}) %>
   <%= presenter.no_button({class: 'btn btn-info btn-block',}) %> -->
   </div>
