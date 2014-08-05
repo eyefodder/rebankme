@@ -76,6 +76,7 @@ Spork.prefork do
 
 
     config.include ActionView::TestCase::Behavior, example_group: {file_path: %r{spec/presenters}}
+    config.include ActionView::TestCase::Behavior, example_group: {file_path: %r{spec/requests}}
 
 
     config.use_transactional_fixtures = true

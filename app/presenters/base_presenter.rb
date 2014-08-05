@@ -14,7 +14,8 @@ class BasePresenter
     @object
   end
 
-  def body_copy(token_path, options=nil)
+  def body_copy(token_path, options={})
+    options = merge_tag_options({class: 'body_copy'}, options)
     formatted_copy("#{token_path}.body_copy",options)
   end
 
@@ -42,8 +43,33 @@ class BasePresenter
 
   private
 
+  def merge_tag_options(presenter_options, view_options)
+    presenter_options.merge(view_options) do |key, oldval, newval|
+      if key == :class
+        newval + ' ' + oldval
+      else
+        newval
+      end
+    end
+
+  end
+
+  def render_localized_list(token, list_options,bullet_options)
+    bullets = I18n.t(token, default:{}).to_a.map{|obj| obj[1]}
+    unless bullets.empty?
+      h.content_tag(:ul,list_options) do
+        res = ""
+        bullets.each do |bullet|
+          res << h.content_tag(:li, bullet, bullet_options )
+        end
+        res.html_safe
+      end
+    end
+
+  end
+
   def formatted_copy(token, options,tag=:div)
-    h.content_tag(tag, h.simple_format(I18n.t(token)), options)
+    h.content_tag(tag, h.simple_format(I18n.t(token, options)), options)
   end
 
   def create_templated_methods

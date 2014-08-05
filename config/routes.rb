@@ -15,6 +15,7 @@ Rebankme::Application.routes.draw do
 
   resources :users
   get 'users/:user_id/request_email', to: 'users#request_email', as: :request_user_email
+  get 'users/:user_id/:account_type_id/help_me_open', to: 'users#help_me_open', as: :account_opening_assistance
   # match 'users/:user_id/find_account/:account_type_id', as:
 
   get 'admin', to: 'admin#home', as: :admin

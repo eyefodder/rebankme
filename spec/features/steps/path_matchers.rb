@@ -7,7 +7,7 @@ module PathMatchers
     end
   end
 
-    RSpec::Matchers.define :be_find_account_path do
+  RSpec::Matchers.define :be_find_account_path do
     match do |current_path|
       current_path.match('^\/users\/[0-9]+\/find_account$')
     end

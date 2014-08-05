@@ -16,7 +16,7 @@
 </div>
 <div class='row'>
   <div class='col-xs-8 col-xs-offset-2 input-group'>
-    <%= link_to t('.skip_email_request'), @redirect_path, id: 'skip-email-request' %>
+    <%= presenter.skip_email_request @redirect_path, @allow_skip %>
   </div>
 </div>
 <% end %>

@@ -8,7 +8,15 @@ module PageContentSteps
     have_css('h2.page-heading', text: heading)
   end
 
-
+RSpec::Matchers.define :have_body_copy do |locale_content|
+  chain :with_id do |id|
+    @id = id
+  end
+  match do |page|
+    node = @id ? page.find("##{@id}.body_copy") : page.find('.body_copy')
+    node.native.inner_html == simple_format(locale_content)
+  end
+end
 
   RSpec::Matchers.define :display_error_message do |expected_error|
     match do |page|

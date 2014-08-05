@@ -23,18 +23,7 @@ class AccountTypeFinderPresenter < BasePresenter
   end
 
   def next_question_bullets_tag(list_options={}, bullet_options={})
-    # list_options = {}.merge(list_options) <-- if you want defaults
-    bullets = I18n.t("account_finder.#{next_property_token}.question_bullets", default:{}).to_a.map{|obj| obj[1]}
-    unless bullets.empty?
-      h.content_tag(:ul,list_options) do
-        res = ""
-        bullets.each do |bullet|
-          res << h.content_tag(:li, bullet, bullet_options )
-        end
-        res.html_safe
-      end
-    end
-
+     render_localized_list("account_finder.#{next_property_token}.question_bullets", list_options, bullet_options)
   end
 
   def decision_buttons(options={})

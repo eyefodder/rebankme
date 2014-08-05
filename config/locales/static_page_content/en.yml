@@ -19,8 +19,19 @@ en:
     request_email:
       title: "Enter your email"
       body_copy: "Enter your email so we can help you through the process of opening your account.  (We'll only use your email to contact you about Rebank and we won't share it with anyone.)"
-      opt_out: "Skip this, just show me the results"
       skip_email_request: 'No thanks, just show me my results'
+    help_me_open:
+      title: Opening a %{product}
+      body_copy: Opening a brand new %{product} can be daunting, but with a little know-how the process can be pretty smooth.
+      what_you_need:
+        title: "What you'll need"
+        things_needed:
+          1: Government Issued I.D.
+          2: Proof of Address
+          3: Opening Deposit
+      well_be_in_touch:
+        title: We'll be in touch!
+        body_copy: We will send you a note real soon to see how you're getting on and if there's anything we can help you with to get you started!
   account_finder:
     start:
       title: "Location"
@@ -32,8 +43,6 @@ en:
         walked_away: "I overdrafted and didn't pay it back"
         bank_closed: "I was turned down for a bank account"
         false: "Neither of these have happened"
-      action_yes: "Yes, that's happened"
-      action_no: "No they haven't"
     has_predictable_income:
       title: "Income?"
       question: "Do you get regular income or benefits from the same place, or do you sometimes go six weeks or more without getting paid?"

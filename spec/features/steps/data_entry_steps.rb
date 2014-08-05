@@ -87,8 +87,8 @@ def populate_required_properties valid_or_not
 end
 
 def get_field_identifier field
-  if defined? form_for
-    "#{form_for}_#{field}"
+  if defined? form_for_prefix
+    "#{form_for_prefix}_#{field}"
   else
     field.to_s.humanize
 

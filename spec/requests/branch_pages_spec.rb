@@ -17,7 +17,6 @@ describe 'Branch Pages', :type => :request do
   include_context 'has admin only pages'
 
   describe 'new' do
-
     include_context '#new creates objects'
   end
 
