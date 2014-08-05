@@ -1,13 +1,8 @@
 <% @no_logo = true %>
-<% present @account_type do |presenter| %>
-<% provide(:heading,  t('.title')) %>
-<% provide(:page_title, t('.title')) %>
-<h3>Keep it Free!</h3>
-<div class='explanation'>Based on what you've told us, you should be eligible for a free checking account. </div>
-
-<h4>Free Checking Near You</h3>
-<%= render partial: 'account_finder/account_type/help_me_open', locals: {user: @user, account_type: @account_type} %>
-<%= presenter.google_maps_tag_for_account_type_for_user(@user) %>
-
-
+<% present @account_type, FindAnAccountPresenter do |presenter| %>
+<% provide(:sub_heading, t('.sub_heading')) %>
+<% provide(:heading,  t('.heading')) %>
+<% provide(:page_title, t('.page_title')) %>
+<% presenter.user = @user %>
+<%= render partial: 'account_finder/account_type/find_account_page', locals: {presenter: presenter} %>
 <% end %>

@@ -1,0 +1,13 @@
+<div class='section online-option'>
+  <h3 class='title'><%= item[:title] %></h3>
+  <div class='description'><%= item[:description] %></div>
+  <%= presenter.online_option_feature_bullets item[:features], {class: 'yourliststylinghere'}, {class: 'yourbulletstylinghere'} %>
+  <div class='image'>
+  <%= image_tag item[:image_uri] %>
+  </div>
+  <div class='cta'>
+<%= link_to t('forms.actions.action_find_out_more'), item[:cta_link], target: '_blank', class: 'btn btn-primary btn-block'
+%>
+  </div>
+
+</div>

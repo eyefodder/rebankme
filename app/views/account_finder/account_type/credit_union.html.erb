@@ -1,10 +1,8 @@
-
-<% @no_header = true %>
-<% present @account_type do |presenter| %>
-<% provide(:heading,  'Finding a Credit Union') %>
-<% provide(:page_title, 'Finding a Credit Union') %>
-<h3>Credit Unions Near You</h3>
-<%= render partial: 'account_finder/account_type/help_me_open', locals: {user: @user, account_type: @account_type} %>
-<%= presenter.google_maps_tag_for_account_type_for_user(@user) %>
-
+<% @no_logo = true %>
+<% present @account_type, FindAnAccountPresenter do |presenter| %>
+<% provide(:sub_heading, t('.sub_heading')) %>
+<% provide(:heading,  t('.heading')) %>
+<% provide(:page_title, t('.page_title')) %>
+<% presenter.user = @user %>
+<%= render partial: 'account_finder/account_type/find_account_page', locals: {presenter: presenter} %>
 <% end %>

@@ -44,52 +44,115 @@ en:
   account_finder:
     account_type:
       help_to_open_cta: "Help me open an account"
+      veterans_account:
+        page_title: 'Free Checking for veterans'
+        sub_heading: 'Free Checking for'
+        heading: 'Veterans'
+        chase_states:
+          intro_heading: Chase bank accounts for veterans
+          intro: |
+                        Chase currently offers the best product on the market for military personnel and veterans.
+
+                        Not only do they offer fee-free checking, but also offer additional perks like a free safety deposit box,
+                        fee-free money orders, and a few fee-free ATM withdrawals each month.
+          option_heading: 'Chase Branches near %{zipcode}'
+        non_chase_states:
+          intro_heading: 'USAA bank accounts for veterans'
+          intro: >
+                  USAA offers a great account for the military and veterans. You will have to call or fax to open up an account,
+                  but once you're over that hump you can look forward to free checking!
+          online_options:
+            option_0:
+              title: 'USAA Secure Checking'
+              description: >
+                            USAA Secure Checking offers you online banking services,
+                            free nationwide ATM use, mobile deposits for qualifying members, and,
+                            to help protect you, instant security and fraud notifications.
+              image_uri: usaa-logo.jpg
+              features:
+                0: Free ATMs nationwide
+                1: Mobile Deposits
+                2: No monthly charge
+              cta_link: 'https://www.usaa.com/inet/pages/bank_main?wa_ref=aff_amvets_banking'
+
+      seniors_account:
+        page_title: 'Free Checking for Seniors'
+        sub_heading: "Free Checking for"
+        heading: "Seniors"
+        us_bank_states:
+          intro_heading: 'U.S. Bank free checking for seniors'
+          intro: >
+                  One of the best deals around for seniors is the free checking product offered by
+                  U.S. Bank. You may be able to find other local banks and credit unions too that offer
+                  free checking. If you'd like help, just click the button below and we'll reach out to you!
+          option_heading: 'U.S. Bank Branches near %{zipcode}'
+        non_us_bank_states:
+          intro_heading: 'Check out your local credit union'
+          intro: >
+                  Many small local banks and credit unions offer free checking and other perks for seniors.
+                  Here's a map showing credit unions in your area. If you'd like help just click the button below!
+          option_heading: 'Credit Unions near %{zipcode}'
+      regular_account:
+        page_title: "Free Checking"
+        sub_heading: 'Finding the right'
+        heading: Checking Account
+        intro_heading: Keep it Free!
+        intro: >
+                Based on what you've told us, you should qualify for free checking from a main-street
+                bank. Often this depends on direct depositing your income or benefits into the account,
+                so if you'd like help figuring things out, click the 'help me open button' below
+        option_heading: Free Checking near %{zipcode}
+      credit_union:
+        page_title: "Finding a local Credit Union"
+        sub_heading: "Finding a local"
+        heading: "Credit Union"
+        intro: >
+                Some of the best deals in banking can be had at Credi Unions. Eligibility requirements vary
+                from union to union, so we've shown you a search for credit unions near your zipcode. If you'd
+                like some help finding the right union for you, click the 'help me open' button below and we
+                will work with you to find what's right for you
+        option_heading: Credit Unions near %{zipcode}
+      student_account:
+        page_title: 'Free Student Checking'
+        sub_heading: 'Finding great free'
+        heading: 'Student checking'
+        intro_heading: 99 Problems and free checking aint one
+        intro: >
+              You study hard and party hard; banking shouldn't be hard. Fortunately many banks line
+              up for your business and will offer you great perks in the process. Here are some places
+              nearby to check out.
+        option_heading: Free student checking near %{zipcode}
       prepay_card:
-        title: "The right prepaid card for you"
-        sub_heading: "Choose between these high quality prepaid cards"
+        page_title: 'The right prepaid card for you'
+        sub_heading: 'Finding the right'
+        heading: "Prepaid Card"
+        intro_heading: "Choose between these high quality prepaid cards"
         intro: >
                 We estimate that your fees when using these prepaid cards will be lower than fees for a bank account.  They offer FDIC insurance, no overdraft fees,
                 The
                 main difference between them is the network they run on.
-        options:
+        online_options:
           option_0:
             title: "Amex Serve"
             description: >
                           This prepay card has the lowest monthly fee at $1. There are also no overdraft fees and some savings
                           features. If you are good with the Amex network, this is a great choice.
+            features:
+              0: $1 per month
+              1: Savings features
+              2: Uses the Amex network
+            image_uri: amex_serve.png
             cta_link: 'https://www.serve.com/home/'
           option_1:
             title: "Chase Liquid"
             description: >
                           This card is more expensive at $5 per month. It also has no overdraft fees, but uses the Visa network
                           which has more national coverage.
+            features:
+              0: $5 / month
+              1: No overdraft fees
+              2: Uses the VISA network
+            image_uri: chase_liquid.png
             cta_link: 'https://www.chase.com/debit-reloadable-cards/liquid-prepaid-card'
-      regular_account:
-        title: "The right checking account for you"
-      veterans_account:
-        title: 'A great account for veterans'
-        chase_states:
-          sub_heading: 'Chase bank accounts for veterans'
-          explanation: |
-                        Chase currently offers the best product on the market for military personnel and veterans.
 
-                        Not only do they offer fee-free checking, but also offer additional perks like a free safety deposit box,
-                        fee-free money orders, and a few fee-free ATM withdrawals each month.
-        non_chase_states:
-          sub_heading: 'USAA bank accounts for veterans'
-          explanation: >
-                        USAA offers a great account for the military and veterans. You will have to call or fax to open up an account,
-                        but once you're over that hump you can look forward to free checking!
-      seniors_account:
-        title: 'A low cost account for seniors'
-        us_bank_states:
-          sub_heading: 'US Bank free checking for seniors'
-          explanation: >
-                        U.S. Bank offers free checking to seniors aged 65 or over. You may be able to find
-                        other smaller banks and credit unions locally too.
-        non_us_bank_states:
-          sub_heading: 'Check out your local credit union'
-          explanation: >
-                        Many small local banks and credit unions offer free checking and other perks for seniors. Here's a map showing
-                        credit unions in your area.
 

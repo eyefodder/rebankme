@@ -1,28 +1,8 @@
 <% @no_logo = true %>
 <% present @account_type, FindAnAccountPresenter do |presenter| %>
-<% provide(:heading,  t('.title')) %>
-<% provide(:page_title, t('.title')) %>
+<% provide(:sub_heading, t('.sub_heading')) %>
+<% provide(:heading,  t('.heading')) %>
+<% provide(:page_title, t('.page_title')) %>
 <% presenter.user = @user %>
-
-<%= presenter.sub_heading %>
-<%= presenter.intro_copy %>
-<%= render partial: 'account_finder/account_type/help_me_open', locals: {user: @user, account_type: @account_type} %>
-
-<h4>Amex Serve</h4>
-<ul>
-<li>$1 Monthly Fee</li>
-<li>No overdraft fees</li>
-<li>Savings Account Featurs</li>
-<li>Surprise surprise, it uses the Amex network</li>
-</ul>
-<%= link_to 'Find out more', 'https://www.serve.com/home/', target: '_blank',class: 'btn btn-primary btn-block' %>
-<h4>Chase Liquid</h4>
-<ul>
-<li>$5 Monthly Fee</li>
-<li>No overdraft Fee</li>
-<li>Uses the Visa Network</li>
-</ul>
-<%= link_to 'Find out more', 'https://www.chase.com/debit-reloadable-cards/liquid-prepaid-card', target: '_blank',class: 'btn btn-primary btn-block' %>
-
-
+<%= render partial: 'account_finder/account_type/find_account_page', locals: {presenter: presenter} %>
 <% end %>
