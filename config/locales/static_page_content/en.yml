@@ -10,34 +10,42 @@ en:
       start_over: 'Start Over'
   static:
     home:
-      title: "Hello!"
+      title: "Welcome to Rebank"
       body_copy: |
-                Tell Rebank about your banking wants and needs. We'll find you a bank account that has all the features you need, without all the fees - whether or not you've been turned down for an account in the past.
+                  First, we'll ask a few questions about your banking wants and needs.
+
+                  Then we'll recommend a bank account or prepaid card that has all the features you need, without all the fees.
+
+                  Been turned down for an account in the past?  Don't worry, we've got you covered.
       account_finder_start: "Find my account"
   users:
     request_email:
       title: "Enter your email"
-      body_copy: "Enter your email so we can help you through the process of opening your account.  (We'll only use your email to contact you about Rebank and we won't share it with anyone.)"
-      skip_email_request: 'No thanks, just show me my results'
+      body_copy: |
+                  Enter your email so we can help you through the process of opening your account.
+
+                  (We'll only use your email to contact you about Rebank and we won't share it with anyone.)
+      opt_out: "Skip this, just show me the results"
+      skip_email_request: "No thanks, just show me my results"
     help_me_open:
-      title: Opening a %{product}
-      body_copy: Opening a brand new %{product} can be daunting, but with a little know-how the process can be pretty smooth.
+      title: "Opening a %{product}"
+      body_copy: "Opening a brand new %{product} can be daunting, but we'll help make sure the process goes smoothly."
       what_you_need:
         title: "What you'll need"
-        things_needed:
-          1: Government Issued I.D.
-          2: Proof of Address
-          3: Opening Deposit
+        things_needed: |
+                        1: Government Issued I.D.
+                        2: Proof of Address
+                        3: Opening Deposit
       well_be_in_touch:
-        title: We'll be in touch!
-        body_copy: We will send you a note real soon to see how you're getting on and if there's anything we can help you with to get you started!
+        title: "We'll be in touch!"
+        body_copy: "We will send you an email to remind you about opening your account and see if there's anything you need to get started."
   account_finder:
     start:
       title: "Location"
-      body_copy: "Enter your zip code so we can find banks in your neighborhood"
+      body_copy: "Enter your zip code so we can find banks in your neighborhood."
     is_delinquent:
-      title: "Banking History"
-      question: Have any of these things happened to you in the last 5 years
+      title: "Banking history"
+      question: "Have any of these things happened to you in the last 5 years?"
       question_options:
         walked_away: "I overdrafted and didn't pay it back"
         bank_closed: "I was turned down for a bank account"
@@ -56,13 +64,16 @@ en:
         senior: "I am 65 years old or older"
         false: "I don't fit into any of these groups"
     will_use_direct_deposit:
-      title: "Will you Direct Deposit?"
+      title: "Will you direct deposit?"
       question: "You told us you receive regular income or benefits. Would you like to have your income or benefits directly deposited to your account? Your account could be free if you set up direct deposit."
       action_yes: "I will if it saves me money"
       action_no: "No thanks"
     needs_debit_card:
-      title: "Card or Cash?"
-      question: "Do you need a debit card to shop online, or do you prefer to withdraw cash at the teller or ATM? If you don't need or want a debit card, you may have access to less expensive accounts"
+      title: "Card or cash?"
+      question: |
+                  Do you need a debit card to shop online, or do you prefer to withdraw cash at the teller or ATM?
+
+                  If you don't need or want a debit card, you may have access to less expensive accounts.
       action_yes: "I need a debit card"
       action_no: "I will be fine with an ATM card"
     account_type_found:

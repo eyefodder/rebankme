@@ -1,30 +1,30 @@
 en:
   prepay_card:
-    name: 'Prepaid Card'
+    name: 'Prepaid card'
     overview:  "A high quality prepaid card lets you store, spend and add money. The best ones charge lower fees than a bank account.  You can only spend as much as you have, so you won't be charged overdraft fees."
-  second_chance:  
-    name: 'Second Chance Account'
+  second_chance:
+    name: 'Second Chance account'
     overview: "A second chance account is an account that helps you get back into the banking system after you've been shut out."
   safe_account:
     name: 'Safe Account'
-    overview: "A NYC Safe account is a low-cost account offered to New Yorkers who have had trouble getting a bank account in the past."
+    overview: "A NYC Safe Account is a low-cost account offered to New Yorkers who have had trouble getting a bank account in the past."
   special_group:
     name: 'Special Group Account'
     overview: "Because you are *special* you are eligible to get fees waived on a traditional account"
   regular_account:
-    name: 'Traditional Bank Account'
-    overview: "You qualify to have monthly account fees waived at a big bank.  By choosing a bank with many branches and ATMs in your area, you can minimize your ATM fees."
+    name: 'Traditional bank account'
+    overview: "By choosing a bank with many branches and ATMs in your area, you can minimize your ATM fees. And you won't pay a monthly fee if you set up direct deposit."
   credit_union:
-    name: 'Credit Union'
+    name: 'Credit union'
     overview: "This is an account at a local institution in your neighbourhood.  Credit unions usually charge a small membership fee, but offer low costs and good service"
   student_account:
-    name: 'Student Account'
+    name: 'Student account'
     overview: "Because you are a student, we can find you an account that will waive your account fee while you're studying.  You'll need to show a student ID."
   veterans_account:
-    name: 'Veterans Account'
+    name: 'Veterans account'
     overview: "Because you are a veteran, we can find you an account that will waive your account fee as a thank you for your service. You'll need to bring evidence of your military service to the bank."
   seniors_account:
-    name: 'Seniors Account'
+    name: 'Seniors account'
     overview: "Because you are aged over 65, we can find you an account that will waive your account fee.  You'll need to bring a document to the bank that shows your date of birth."
   deciding_factors:
     positive:
@@ -46,10 +46,10 @@ en:
       help_to_open_cta: "Help me open an account"
       prepay_card:
         title: "The right prepaid card for you"
-        sub_heading: "Two great choices"
+        sub_heading: "Choose between these high quality prepaid cards"
         intro: >
-                It can seem tough to find the right prepay card, and if you're not careful, the fees can really stack up.
-                Based on our current research, there are two products on the market that are worth a second look right now. The
+                We estimate that your fees when using these prepaid cards will be lower than fees for a bank account.  They offer FDIC insurance, no overdraft fees,
+                The
                 main difference between them is the network they run on.
         options:
           option_0:
@@ -72,7 +72,7 @@ en:
           sub_heading: 'Chase bank accounts for veterans'
           explanation: |
                         Chase currently offers the best product on the market for military personnel and veterans.
-                        
+
                         Not only do they offer fee-free checking, but also offer additional perks like a free safety deposit box,
                         fee-free money orders, and a few fee-free ATM withdrawals each month.
         non_chase_states:
