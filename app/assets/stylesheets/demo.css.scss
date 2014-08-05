@@ -25,6 +25,7 @@ $yes-btn-color: #24BC2B;
 $yes-btn-color-hover: #24782B;
 
 
+@import "compass";
 
 body{
   color: $base-font-color;
@@ -38,6 +39,7 @@ body{
 #nav {
   background: $accent-color;
   z-index: 100;
+  @include single-box-shadow(#999, 0px, -1px, 10px, false, false)
 }
 
 #content {
@@ -48,11 +50,31 @@ body{
   padding: 30px;
 }
 
+
+.content_top_margin {
+  margin-top: 0px;
+}
+@media all and (min-height: 500px) {
+  .content_top_margin {
+    margin-top: 45px;
+  }
+}
+
 form{
-  padding-top: 40px;
+  padding-top: 30px;
 }
 .form-control{
   border-width: 0px;
+}
+
+input, .form-control{
+  color: $darkGrey;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: #e6e6e6;
+  border: none;
+  box-shadow: none !important;
+  border-radius: 0px !important;
 }
 
 a{
@@ -62,10 +84,9 @@ a{
     color: $link-hover-color;
     text-decoration: underline;
   }
-}
-
-hr {
-  border-width: 2px;
+  &.underline {
+    text-decoration: underline;
+  }
 }
 
 .color-accent {
@@ -78,6 +99,32 @@ hr {
 
 .center-header {
   width: 170px;
+}
+
+.content {
+  padding: 0px 10px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: $accent-color;
+  text-transform: uppercase;
+}
+
+//lists
+
+.list-group {
+  .list-group-item {
+    background: #f7f7f7;
+    border-color: #efefef;
+    list-style: disc inside none;
+    display: list-item;
+    padding: 15px;
+    border-radius: 0px !important;
+  }
 }
 
 // panels
@@ -130,6 +177,15 @@ hr {
   border-radius: 0px;
   text-transform: uppercase;
   font-weight: bold;
+  white-space: normal;
+}
+
+.btn-wide {
+  padding: 6px 30px;
+}
+
+.btn-chevron {
+
 }
 
 .btn-success {
@@ -165,6 +221,11 @@ hr {
     border-color: $default-btn-color-hover;
   }
 }
+.btn-input {
+  background: #e6e6e6;
+
+}
+
 .btn-primary {
   color: $app-bg-color;
   background-color: $primary-btn-color;

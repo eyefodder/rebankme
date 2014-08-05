@@ -4,7 +4,7 @@ class UserPresenter < BasePresenter
 
   def skip_email_request(redirect_path, allow_skip=true, options={})
     unless allow_skip == false
-      options = {id: 'skip-email-request'}.merge(options)
+      options = {id: 'skip-email-request', class:"underline"}.merge(options)
       h.link_to I18n.t('users.request_email.skip_email_request'), redirect_path, options
     end
   end

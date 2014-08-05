@@ -1,7 +1,13 @@
 .alert-error{
-  background-color:#f2dede;
-  border-color:#eed3d7;
-  color:#b94a48;
+  background-color:#ea8f96;
+  border-color:#ea8f96;
+  color:#fff;
+  text-transform: uppercase;
+
+  a {
+    color: #fff;
+    opacity: 0.7;
+  }
 }
 
 .alert-notice{
@@ -16,4 +22,8 @@
 
 body {
   padding-bottom: 20px;
+}
+
+hr {
+  border-width: 2px;
 }

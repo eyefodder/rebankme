@@ -29,7 +29,7 @@ en:
       skip_email_request: "No thanks, just show me my results"
     help_me_open:
       title: "Opening a %{product}"
-      body_copy: "Opening a brand new %{product} can be daunting, but we'll help make sure the process goes smoothly."
+      body_copy: "Ready to open a %{product}? We'll help make sure the process goes smoothly."
       what_you_need:
         title: "What you'll need"
         things_needed: |
@@ -57,7 +57,7 @@ en:
       action_no: "I don't get income regularly"
     special_group:
       title: "Qualify for free checking?"
-      question: "Are you in one of these groups:"
+      question: "Are you in one of these groups?"
       question_options:
         student: "I am a student"
         veteran: "I am a veteran"
