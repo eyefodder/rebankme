@@ -6,15 +6,16 @@ $medGrey: #808080;
 $darkGrey: #666666;
 $default-font: 'source-sans-pro';
 
-$app-bg-color: #4ED8D8;
-$base-font-color: #fff;
+$app-bg-color: #fff;
+$base-font-color: #999;
+$accent-color: #4ed8d8;
 $link-hover-color: $base-font-color;
 $link-color: $base-font-color;
 
 $default-btn-color: #FFFFFF;
 $default-btn-color-hover:#EAEAEA;
 
-$primary-btn-color: #3CAFAC;
+$primary-btn-color: $accent-color;
 $primary-btn-color-hover:  #319994;
 
 $no-btn-color: #FF1B00;
@@ -25,21 +26,26 @@ $yes-btn-color-hover: #24782B;
 
 
 
-
-
-
-
 body{
   color: $base-font-color;
   background-color: $app-bg-color;
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 22px;
   font-family: $default-font, sans-serif;
 }
 
+
+#nav {
+  background: $accent-color;
+  z-index: 100;
+}
+
+#content {
+  margin-top: 45px;
+}
+
 .container{
-  padding-top: 17px;
-  padding-left: 27px;
-  padding-right: 27px;
+  padding: 30px;
 }
 
 form{
@@ -57,6 +63,23 @@ a{
     text-decoration: underline;
   }
 }
+
+hr {
+  border-width: 2px;
+}
+
+.color-accent {
+  color: $accent-color;
+}
+
+.bg-accent {
+  background: $accent-color;
+}
+
+.center-header {
+  width: 170px;
+}
+
 // panels
 
 .panel-default{
@@ -105,6 +128,8 @@ a{
 // buttons
 .btn{
   border-radius: 0px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .btn-success {
@@ -119,7 +144,7 @@ a{
   }
 }
 .btn-danger {
-  color: $base-font-color;
+  color: $app-bg-color;
   background-color: $no-btn-color;
   border-color: $no-btn-color;
   &:hover,
@@ -130,7 +155,7 @@ a{
   }
 }
 .btn-default {
-  color: $medGrey;
+  color: $accent-color;
   background-color: $default-btn-color;
   border-color: $default-btn-color;
   &:hover,
@@ -141,7 +166,7 @@ a{
   }
 }
 .btn-primary {
-  color: $base-font-color;
+  color: $app-bg-color;
   background-color: $primary-btn-color;
   border-color: $primary-btn-color;
   &:hover,
@@ -151,6 +176,10 @@ a{
     border-color: $primary-btn-color-hover;
 
   }
+}
+.btn-small {
+  padding: 3px 7px;
+  font-size: 12px;
 }
 //
 
@@ -172,22 +201,25 @@ ul.action-links li{
 
 // LOGO & HEADER
 .header{
-
+  margin-top: 30px;
 }
 .header-copy{
   padding-left: 0px;
 }
 .header-rebank{
-  text-transform: uppercase;
-  font-size: 28px;
 }
 .header-welcome{
-  font-size: 14px;
-  padding-top: 38px;
+  padding-top: 15px;
+  line-height: 20px;
+  color: $accent-color;
 }
 
 .header-image{
+  margin-right: 2px;
 
+  img {
+    height: 60px;
+  }
 }
 
 // END LOGO
@@ -223,6 +255,3 @@ ul.action-links li{
 .page-bottom{
   padding-bottom: 10px;
 }
-
-
-
