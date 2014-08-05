@@ -79,6 +79,7 @@ input, .form-control{
 
 a{
   color: $link-color;
+  text-decoration: underline;
   &:hover,
   &:focus {
     color: $link-hover-color;
@@ -100,6 +101,28 @@ a{
 
 .content {
   padding: 0px 10px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: $accent-color;
+  text-transform: uppercase;
+}
+
+//lists
+
+.list-group {
+  .list-group-item {
+    background: #f7f7f7;
+    border-color: #efefef;
+    list-style: disc inside none;
+    display: list-item;
+    padding: 15px;
+    border-radius: 0px !important;
+  }
 }
 
 // panels
