@@ -18,7 +18,7 @@ en:
     request_email:
       title: "Enter your email"
       body_copy: "Enter your email so we can help you through the process of opening your account.  (We'll only use your email to contact you about Rebank and we won't share it with anyone.)"
-      skip_email_request: 'No thanks, just show me my results'
+      skip_email_request: 'No thanks, show me my results'
     help_me_open:
       title: Opening a %{product}
       body_copy: Opening a brand new %{product} can be daunting, but with a little know-how the process can be pretty smooth.
