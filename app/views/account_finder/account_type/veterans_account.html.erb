@@ -7,7 +7,7 @@
 <div class='row'>
 <%= presenter.best_veterans_account_explanation_for(@user, {class: 'col-xs-12'}) %>
 </div>
-
+<%= render partial: 'account_finder/account_type/help_me_open', locals: {user: @user, account_type: @account_type} %>
 <%= presenter.call_to_action_for_veterans(@user, {class: 'btn btn-block btn-primary'}) %>
 
 <% end %>

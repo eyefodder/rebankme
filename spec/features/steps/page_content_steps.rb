@@ -5,7 +5,7 @@ module PageContentSteps
 		have_title(title)
 	end
   def have_page_heading(heading)
-    have_css('div.page-heading', text: heading)
+    have_css('.page-heading', text: heading)
   end
 
 RSpec::Matchers.define :have_body_copy do |locale_content|
