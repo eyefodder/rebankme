@@ -39,6 +39,7 @@ body{
 #nav {
   background: $accent-color;
   z-index: 100;
+  @include single-box-shadow(#999, 0px, -1px, 10px, false, false)
 }
 
 #content {
