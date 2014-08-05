@@ -32,10 +32,10 @@ en:
       body_copy: "Ready to open a %{product}? We'll help make sure the process goes smoothly."
       what_you_need:
         title: "What you'll need"
-        things_needed: |
-                        1: Government Issued I.D.
-                        2: Proof of Address
-                        3: Opening Deposit
+        things_needed:
+          1: Government Issued I.D.
+          2: Proof of Address
+          3: Opening Deposit
       well_be_in_touch:
         title: "We'll be in touch!"
         body_copy: "We will send you an email to remind you about opening your account and see if there's anything you need to get started."

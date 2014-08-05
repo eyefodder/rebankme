@@ -3,6 +3,8 @@ include PageContentSteps
 include AccountFinderSteps
 include DataEntrySteps
 include PathMatchers
+include ActionView::Helpers::TextHelper
+
 describe 'Account Finder Pages', :type => :request do
 
   subject {page}

@@ -1,6 +1,8 @@
 module AccountFinderSteps
   extend RSpec::Matchers::DSL
 
+extend ActionView::Helpers::TextHelper
+
 
   RSpec::Matchers.define :have_find_account_button do |page_ref|
     match do |page|
@@ -20,13 +22,19 @@ module AccountFinderSteps
     end
   end
   RSpec::Matchers.define :display_account_finder_question do |page_ref|
-    content = I18n.t("account_finder.#{page_ref}.question")
+    locale_content = I18n.t("account_finder.#{page_ref}.question")
+    # content = simple_format(locale_content)
     failure_message_for_should do |actual|
-      "expected to find <div class='account-finder-question'> with content: \n#{content}"
+      "expected to find <div class='account-finder-question'> with content: \n#{locale_content}"
     end
     match do |page|
-
-      have_css('div.account-finder-question', text: content).matches?(page)
+      node = page.find('div.account-finder-question')
+      if node.nil?
+        false
+      else
+        node.native.inner_html == simple_format(locale_content)
+        # have_css('div.account-finder-question', text: content).matches?(page)
+      end
     end
   end
     shared_examples 'a multi choice question page' do
