@@ -79,10 +79,12 @@ input, .form-control{
 
 a{
   color: $link-color;
-  text-decoration: underline;
   &:hover,
   &:focus {
     color: $link-hover-color;
+    text-decoration: underline;
+  }
+  &.underline {
     text-decoration: underline;
   }
 }
