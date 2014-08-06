@@ -35,10 +35,9 @@ class AccountFinderController < ApplicationController
       @results = nil
     else
       @recommended_result = @results.first
-      @selected_result = @results.first # unless param passed
+
+      @selected_result = params[:selected_account_id] ? BankAccount.find(params[:selected_account_id]) : @results.first # unless param passed
     end
-    # template = "account_finder/account_type/#{@account_type.name_id}"
-    # render template
   end
 
   private
