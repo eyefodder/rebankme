@@ -181,10 +181,18 @@ class FindAnAccountPresenter < BasePresenter
     when AccountType.STUDENT_ACCOUNT
       "Free Student Checking near #{user.zipcode}"
     when AccountType.SENIORS_ACCOUNT
-      user.state.us_bank_state? ? "USBank Branches near #{user.zipcode}" : "Credit Unions near #{user.zipcode}"
+      seniors_search_term
     when AccountType.VETERANS_ACCOUNT
-      "Chase Branches near #{user.zipcode}" if user.state.chase_state?
+      veterans_search_term
     end
+  end
+
+  def veterans_search_term
+    "Chase Branches near #{user.zipcode}" if user.state.chase_state?
+  end
+
+  def seniors_search_term
+    user.state.us_bank_state? ? "USBank Branches near #{user.zipcode}" : "Credit Unions near #{user.zipcode}"
   end
 
 end
