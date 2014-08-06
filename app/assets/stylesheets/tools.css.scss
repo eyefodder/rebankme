@@ -26,14 +26,6 @@
   background: #fafafa;
 }
 
-.pull-left {
-  float: left;
-}
-
-.pull-right {
-  float: right;
-}
-
 .hidden {
   display: none;
 }
@@ -41,22 +33,6 @@
 .invisible {
   display: none;
 }
-
-.clearfix {
-  *zoom: 1;
-}
-
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  line-height: 0;
-  content: "";
-}
-
-.clearfix:after {
-  clear: both;
-}
-
 
 .circle {
   border-radius: 50%;
@@ -102,7 +78,7 @@
   font-size: 14px;
 }
 .font-mid {
-  font-size: 20px;
+  font-size: 18px;
 }
 .font-large {
   font-size: 28px;
@@ -145,6 +121,9 @@
 }
 .padding-after {
   padding-right: 7px;
+}
+.nudge-down {
+  margin-top: 2px;
 }
 
 .relative {

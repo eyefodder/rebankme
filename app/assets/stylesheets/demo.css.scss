@@ -33,6 +33,9 @@ body{
   font-size: 14px;
   line-height: 22px;
   font-family: $default-font, sans-serif;
+  padding-top: 45px;
+  padding-bottom: 0px;
+  height: 100vh;
 }
 
 
@@ -42,22 +45,8 @@ body{
   @include single-box-shadow(#999, 0px, -1px, 10px, false, false)
 }
 
-#content {
-  margin-top: 45px;
-}
-
 .container{
   padding: 30px;
-}
-
-
-.content_top_margin {
-  margin-top: 0px;
-}
-@media all and (min-height: 500px) {
-  .content_top_margin {
-    margin-top: 45px;
-  }
 }
 
 form{
@@ -98,7 +87,7 @@ a{
 }
 
 .center-header {
-  width: 170px;
+  width: 130px;
 }
 
 .content {

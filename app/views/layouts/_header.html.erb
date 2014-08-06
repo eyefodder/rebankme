@@ -12,18 +12,13 @@
 
 <% end %>
 
-<% if @top_margin %>
-  <div class="row content content_top_margin">
-<% else %>
-  <div class="row content">
-<% end %>
-
+<div class="row content">
 <% if @no_logo %>
-  <div class='text-center margin-double margin-top color-accent'>
-    <div class='page-sub-heading'>
+  <div class='text-center'>
+    <div class='page-sub-heading caps font-mid'>
       <%= yield(:sub_heading) %>
     </div>
-    <div class='page-heading col-xs-12 font-large bold caps'>
+    <div class='page-heading col-xs-12 font-large bold caps color-accent'>
       <%= yield(:heading) %>
     </div>
 <% else %>
