@@ -1,9 +1,9 @@
 <% @no_logo = true %>
-<% @top_margin = true %>
+<% @center_vert = true %>
 <% provide(:heading, t('.title')) %>
 <% provide(:title, t('.title')) %>
 <% present @user do |presenter| %>
-<div class='row content'>
+<div class='row content-padding'>
   <%= presenter.body_copy('users.request_email', class: 'col-xs-12') %>
 </div>
 <%= form_for @user do |f| %>
@@ -16,9 +16,11 @@
     <span class="input-group-btn"><button type="submit" name="commit" id='submit_button' class="btn btn-input"><span class="glyphicon glyphicon-chevron-right"></span></button></span>
   </div>
 </div>
-<div class='row'>
-  <div class='col-xs-8 col-xs-offset-2 input-group'>
-    <%= presenter.skip_email_request @redirect_path, @allow_skip %>
+<div class='row content-padding'>
+  <div class='col-xs-12'>
+    <div class='input-group full-width text-center'>
+      <%= presenter.skip_email_request @redirect_path, @allow_skip %>
+    </div>
   </div>
 </div>
 <% end %>

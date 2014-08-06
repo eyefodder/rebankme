@@ -12,28 +12,22 @@
 
 <% end %>
 
-<% if @top_margin %>
-  <div class="row content content_top_margin">
+
+<% if @header_background %>
+<div class="row header_background">
 <% else %>
-  <div class="row content">
+<div class="row content-padding">
 <% end %>
-
-<% if @no_logo %>
-  <div class='text-center margin-double margin-top color-accent'>
-    <div class='page-sub-heading'>
-      <%= yield(:sub_heading) %>
-    </div>
-    <div class='page-heading col-xs-12 font-large bold caps'>
-      <%= yield(:heading) %>
-    </div>
-<% else %>
-  <div class='text-center margin-double margin-top'>
-
-  <% end %>
-  </div>
-  <div class=''>
-    <div class='col-xs-12'>
-      <hr />
+  <div class="col-xs-12 margin margin-bottom">
+    <div class='col-xs-12 text-center header_wrapper border-bottom padding padding-vert'>
+      <% if @no_logo %>
+      <div class='page-sub-heading caps font-mid margin-least margin-bottom'>
+        <%= yield(:sub_heading) %>
+      </div>
+      <div class='page-heading col-xs-12 font-large bold caps color-accent'>
+        <%= yield(:heading) %>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>

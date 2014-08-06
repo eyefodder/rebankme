@@ -1,11 +1,11 @@
 <% present @user, AccountTypeFinderPresenter do |presenter| %>
 <% @no_logo = true %>
-<% @top_margin = true %>
+<% @center_vert = true %>
 
 <% provide(:heading,  presenter.page_heading) %>
 <% provide(:page_title, presenter.page_title) %>
 
-<div class="content">
+<div class="content-padding">
 <%= presenter.next_question_tag class: 'account-finder-question' %>
 </div>
 

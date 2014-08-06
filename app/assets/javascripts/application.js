@@ -15,3 +15,16 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function() {
+  var centerVert = function(selector) {
+    var el = $(selector);
+    var parent = el.parent();
+
+    el.css({
+      marginTop: (parent.height() - parseInt(el.css("height"), 10)) / 2
+    });
+  };
+
+  centerVert(".center_vert");
+});

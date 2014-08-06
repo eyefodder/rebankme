@@ -14,7 +14,11 @@
 <body>
 <%= raw analytical.body_prepend_javascript %>
 <%= render 'layouts/navigation' %>
+<% if @center_vert %>
+<div id="content" class='container center_vert'>
+<% else %>
 <div id="content" class='container'>
+<% end %>
 <%= render 'layouts/header' unless @no_header %>
 <%= flash_block %>
 <%= yield %>
