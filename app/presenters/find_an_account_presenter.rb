@@ -77,12 +77,25 @@ class FindAnAccountPresenter < BasePresenter
       h.render partial: 'account_finder/account_type/geolocated_options', locals: {presenter: self}
     end
   end
+  def geolocated_option_title(bank_account)
+    bank_account.branch.full_name
+  end
+  def geolocated_distance_from_user(bank_account,tag=:span, options=nil)
+    distance = user.distance_to(bank_account.branch)
+    h.content_tag(tag, h.number_to_human(distance, units: :miles),options)
+  end
 
   def geolocated_results_heading(options=nil)
     content_unless_nil(:geolocated_results_heading, options,interpolation_args,:h4)
   end
   def geolocated_results_subheading(options=nil)
     content_unless_nil(:geolocated_results_subheading, options,interpolation_args,:div)
+  end
+  def geolocated_result_link(bank_account,options=nil)
+    link = h.account_finder_path(user, selected_account_id: bank_account.id )
+    h.link_to(link, options) do
+      yield
+    end
   end
 
   def online_options
@@ -110,10 +123,7 @@ class FindAnAccountPresenter < BasePresenter
     end
   end
 
-  def distance_from_user(bank_account)
-    distance = user.distance_to(bank_account.branch)
-    h.content_tag(:span, h.number_to_human(distance, units: :miles), class: 'badge')
-  end
+
 
 
   private
