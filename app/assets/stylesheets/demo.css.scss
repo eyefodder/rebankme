@@ -50,7 +50,7 @@ body{
 }
 
 form{
-  padding-top: 30px;
+  padding-top: 15px;
 }
 .form-control{
   border-width: 0px;
@@ -94,7 +94,17 @@ hr {
   width: 130px;
 }
 
-.content {
+.header_wrapper {
+  border-bottom: 2px solid #e5e5e5;
+}
+.header_background {
+  .header_wrapper {
+    background: #f7f7f7;
+    border-bottom: none;
+  }
+}
+
+.content-padding {
   padding: 0px 10px;
 }
 
