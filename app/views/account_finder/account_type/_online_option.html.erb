@@ -3,7 +3,7 @@
   <div class='description'><%= item[:description] %></div>
   <%= presenter.online_option_feature_bullets item[:features], {class: 'yourliststylinghere'}, {class: 'yourbulletstylinghere'} %>
   <div class='image'>
-  <%= image_tag item[:image_uri] %>
+  <%= image_tag item[:image_uri], width: 100 %>
   </div>
   <div class='cta'>
 <%= link_to t('forms.actions.action_find_out_more'), item[:cta_link], target: '_blank', class: 'btn btn-primary btn-block'

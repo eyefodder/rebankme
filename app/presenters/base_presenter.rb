@@ -56,6 +56,10 @@ class BasePresenter
 
   def render_localized_list(token, list_options,bullet_options)
     bullets = I18n.t(token, default:{}).to_a.map{|obj| obj[1]}
+    render_bullets(bullets, list_options, bullet_options)
+  end
+
+  def render_bullets(bullets, list_options, bullet_options)
     unless bullets.empty?
       h.content_tag(:ul,list_options) do
         res = ""
@@ -65,7 +69,6 @@ class BasePresenter
         res.html_safe
       end
     end
-
   end
 
   def formatted_copy(token, options,tag=:div)

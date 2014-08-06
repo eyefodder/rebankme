@@ -103,16 +103,8 @@ class FindAnAccountPresenter < BasePresenter
   end
 
   def online_option_feature_bullets(bullets, list_options={}, bullet_options={})
-    unless bullets.empty?
-      bullets = bullets.to_a.map{|obj| obj[1]}
-      h.content_tag(:ul,list_options) do
-        res = ""
-        bullets.each do |bullet|
-          res << h.content_tag(:li, bullet, bullet_options )
-        end
-        res.html_safe
-      end
-    end
+    bullets = bullets.map{|obj| obj[1]}
+    render_bullets(bullets, list_options, bullet_options)
   end
 
   def google_map_search
