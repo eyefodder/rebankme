@@ -8,7 +8,6 @@ echo "dev libraries installed"
 
 
 
-
 echo "current ruby version: $(ruby -e 'print RUBY_VERSION')"
 if [ "$(ruby -e 'print RUBY_VERSION')" = '2.1.2' ]
   then
