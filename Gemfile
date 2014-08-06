@@ -72,6 +72,7 @@ gem 'analytical'
 gem 'delayed_job_active_record'
 #ui for delayed job
 gem "delayed_job_web"
+gem 'daemons'
 
 group :development, :test do
 	gem 'rspec-rails', '~> 2.14'
