@@ -48,7 +48,6 @@ en:
         page_title: 'New York City Safe Accounts'
         sub_heading: Finding a great
         heading: Safe Account
-        intro: New York City's Safe Accounts are a fantastic low-cost banking option for New Yorkers.
         we_recommend_heading: "We recommend:"
         recommended_available_at: "Available at "
         why_chosen_heading: 'Why?'
@@ -67,16 +66,15 @@ en:
         chase_states:
           intro_heading: Chase bank accounts for veterans
           intro: |
-                        Chase currently offers the best product on the market for military personnel and veterans.
+                        Chase's Premier Plus Checking account is free for military personnel and veterans That's a savings of $25 a month.
 
-                        Not only do they offer fee-free checking, but also offer additional perks like a free safety deposit box,
-                        fee-free money orders, and a few fee-free ATM withdrawals each month.
+                        You'll also qualify for a free safety deposit box,
+                        fee-free money orders, and four fee-free ATM withdrawals each month.
           option_heading: 'Chase Branches near %{zipcode}'
         non_chase_states:
           intro_heading: 'USAA bank accounts for veterans'
           intro: >
-                  USAA offers a great account for the military and veterans. You will have to call or fax to open up an account,
-                  but once you're over that hump you can look forward to free checking!
+                  USAA offers a great account for the military and veterans. You will have to join USAA to open an account.
           online_options:
             option_0:
               title: 'USAA Secure Checking'
@@ -98,15 +96,14 @@ en:
         us_bank_states:
           intro_heading: 'U.S. Bank free checking for seniors'
           intro: >
-                  One of the best deals around for seniors is the free checking product offered by
-                  U.S. Bank. You may be able to find other local banks and credit unions too that offer
-                  free checking. If you'd like help, just click the button below and we'll reach out to you!
+                  US Bank offers free checking accounts to those over 65.  You may be able to find other local banks and credit unions too that offer
+                  free checking. If you'd like help finding a bank that's just right for you, click the button below and we'll reach out to you!
           option_heading: 'U.S. Bank Branches near %{zipcode}'
         non_us_bank_states:
           intro_heading: 'Check out your local credit union'
           intro: >
-                  Many small local banks and credit unions offer free checking and other perks for seniors.
-                  Here's a map showing credit unions in your area. If you'd like help just click the button below!
+                  Many local banks and credit unions offer free checking and other perks for seniors.
+                  Here's a map showing credit unions in your area. If you'd like help finding a bank that's just right for you, click the button below!
           option_heading: 'Credit Unions near %{zipcode}'
       regular_account:
         page_title: "Free Checking"
@@ -114,29 +111,24 @@ en:
         heading: Checking Account
         intro_heading: Keep it Free!
         intro: >
-                Based on what you've told us, you should qualify for free checking from a main-street
-                bank. Often this depends on direct depositing your income or benefits into the account,
-                so if you'd like help figuring things out, click the 'help me open button' below
+                Based on your answers, you'll qualify for fee-free checking!  Here are some banks near you.  If you'd like help deciding which bank is right for you, click the 'help me open button' below.
         option_heading: Free Checking near %{zipcode}
       credit_union:
         page_title: "Finding a local Credit Union"
         sub_heading: "Finding a local"
         heading: "Credit Union"
         intro: >
-                Some of the best deals in banking can be had at Credi Unions. Eligibility requirements vary
-                from union to union, so we've shown you a search for credit unions near your zipcode. If you'd
-                like some help finding the right union for you, click the 'help me open' button below and we
-                will work with you to find what's right for you
+                Some of the best deals in banking can be had at Credit Unions. Eligibility requirements vary, so we've shown you a search for credit unions near your zipcode. Click the 'help me open' button below and we
+                will work with you to find an account that's right for you.
         option_heading: Credit Unions near %{zipcode}
       student_account:
         page_title: 'Free Student Checking'
         sub_heading: 'Finding great free'
         heading: 'Student checking'
-        intro_heading: 99 Problems and free checking aint one
+        intro_heading: Bank for free while you study
         intro: >
-              You study hard and party hard; banking shouldn't be hard. Fortunately many banks line
-              up for your business and will offer you great perks in the process. Here are some places
-              nearby to check out.
+              Many banks offer free checking for students. Here are some places
+              nearby to check out. If you need a hand, click the 'help me open' button below and we'll help you find an account that's right for you.
         option_heading: Free student checking near %{zipcode}
       prepay_card:
         page_title: 'The right prepaid card for you'
@@ -144,15 +136,12 @@ en:
         heading: "Prepaid Card"
         intro_heading: "Choose between these high quality prepaid cards"
         intro: >
-                We estimate that your fees when using these prepaid cards will be lower than fees for a bank account.  They offer FDIC insurance, no overdraft fees,
-                The
-                main difference between them is the network they run on.
+                These prepaid cards offer FDIC insurance on your balance so your money is safe, and do not charge overdraft fees.
         online_options:
           option_0:
             title: "Amex Serve"
             description: >
-                          This prepay card has the lowest monthly fee at $1. There are also no overdraft fees and some savings
-                          features. If you are good with the Amex network, this is a great choice.
+                          This prepaid card has a monthly fee of $1. You can set aside money using the Reserve feature. Use it at shops which accept American Express cards, or withdraw money at ATMs.
             features:
               0: $1 per month
               1: Savings features
@@ -162,10 +151,9 @@ en:
           option_1:
             title: "Chase Liquid"
             description: >
-                          This card is more expensive at $5 per month. It also has no overdraft fees, but uses the Visa network
-                          which has more national coverage.
+                          This card has a monthly fee of $4.95 per month. Use it at shops which accept Visa cards, or withdraw money at Chase ATMs.  You'll need to go into a bank to open it.
             features:
-              0: $5 / month
+              0: $4.95 per month
               1: No overdraft fees
               2: Uses the VISA network
             image_uri: chase_liquid.png

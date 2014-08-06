@@ -2,6 +2,6 @@ en:
   errors:
     messages:
       zipcode_not_found: 'not found'
-      invalid_zipcode_format: 'You need to enter a 5 or 9 digit US zipcode'
-      zipcode_wrong_country: "That doesnt seem to be a U.S. zipcode!"
+      invalid_zipcode_format: 'must be a 5 or 9 digit US zipcode'
+      zipcode_wrong_country: "doesnt seem to be a U.S. zipcode."
       invalid_email_format: "doesn't seem to be well formatted"
