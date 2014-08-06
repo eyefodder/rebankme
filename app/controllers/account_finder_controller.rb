@@ -30,11 +30,15 @@ class AccountFinderController < ApplicationController
     @user = User.find(params[:user_id])
     @account_type = AccountTypeFactory.account_type_for(@user)
     @results = BankAccount.accounts_near(@user, @account_type)
+
     if @results.count == 0
-      @results = [BankAccount.where(account_type_id: @account_type.id).first]
+      @results = nil
+    else
+      @recommended_result = @results.first
+      @selected_result = @results.first # unless param passed
     end
-    template = "account_finder/account_type/#{@account_type.name_id}"
-    render template
+    # template = "account_finder/account_type/#{@account_type.name_id}"
+    # render template
   end
 
   private

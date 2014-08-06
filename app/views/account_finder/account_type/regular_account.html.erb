@@ -1,8 +1,0 @@
-<% @no_logo = true %>
-<% present @account_type, FindAnAccountPresenter do |presenter| %>
-<% provide(:sub_heading, t('.sub_heading')) %>
-<% provide(:heading,  t('.heading')) %>
-<% provide(:page_title, t('.page_title')) %>
-<% presenter.user = @user %>
-<%= render partial: 'account_finder/account_type/find_account_page', locals: {presenter: presenter} %>
-<% end %>

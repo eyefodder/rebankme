@@ -44,6 +44,22 @@ en:
   account_finder:
     account_type:
       help_to_open_cta: "Help me open an account"
+      safe_account:
+        page_title: 'New York City Safe Accounts'
+        sub_heading: Finding a great
+        heading: Safe Account
+        intro: New York City's Safe Accounts are a fantastic low-cost banking option for New Yorkers.
+        we_recommend_heading: "We recommend:"
+        recommended_available_at: "Available at "
+        why_chosen_heading: 'Why?'
+        why_chosen_description_html: >
+                                      <strong>Location!</strong> As all safe accounts offer the same
+                                      features, we are showing you the account closest to your zipcode (%{zipcode}).
+                                      If this branch doesn't work for you, scroll down for some nearby options.
+        option_heading: "%{branch_name}"
+        option_subheading: "%{branch_address}"
+        geolocated_results_heading: "Safe accounts near %{zipcode}"
+        geolocated_results_subheading: "Here are the %{num_results} closest safe accounts to you"
       veterans_account:
         page_title: 'Free Checking for veterans'
         sub_heading: 'Free Checking for'
