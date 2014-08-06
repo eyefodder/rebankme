@@ -37,6 +37,10 @@ echo "puppet installed"
 echo "install bundler"
 gem install bundler -v 1.6.5
 
+echo 'install foreman'
+gem install foreman
+
+
  echo 'applying puppet manifest'
  puppet apply --verbose /etc/puppet/manifests/setup_postgres_role.pp
  echo 'BOOM! - done.'
