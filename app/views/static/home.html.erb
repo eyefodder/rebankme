@@ -1,7 +1,8 @@
 <% present nil, StaticPagePresenter do |presenter| %>
 
-<% provide(:heading, t('.title')) %>
-<% provide(:title, t('.title')) %>
+<% provide(:heading, t('.heading')) %>
+<% provide(:sub_heading, t('.sub_heading')) %>
+<% provide(:title, t('.page_title')) %>
 <% @no_start_over = true %>
 <div class='row content'>
   <%= presenter.body_copy('static.home', class: 'col-xs-12') %>

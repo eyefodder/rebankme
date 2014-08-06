@@ -1,6 +1,7 @@
 <%  @no_logo = true %>
 <% present @account_type do |presenter| %>
 <% provide(:heading,  presenter.page_heading) %>
+<% provide(:sub_heading,  presenter.page_subheading) %>
 <% provide(:page_title, presenter.page_title) %>
 
 <!-- What is it? -->

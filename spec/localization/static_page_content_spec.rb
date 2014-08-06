@@ -7,16 +7,21 @@ describe 'Static Page Content Localizations' do
    "
     static:
       home:
-        title:
+        page_title:
+        sub_heading:
+        heading:
         body_copy:
         account_finder_start:
     users:
       request_email:
         title:
         body_copy:
+        opt_out:
         skip_email_request:
       help_me_open:
-        title:
+        page_title:
+        sub_heading:
+        heading:
         body_copy:
         what_you_need:
           title:
@@ -52,7 +57,9 @@ describe 'Static Page Content Localizations' do
         action_yes:
         action_no:
       account_type_found:
-        title:
+        page_title:
+        sub_heading:
+        heading:
         overview_heading:
         why_we_chose_heading:
         cta:

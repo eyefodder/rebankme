@@ -1,7 +1,8 @@
 <% present @user do |presenter| %>
 <% @no_logo = true %>
-<% provide(:heading, t('.title', product: @account_type.name)) %>
-<% provide(:page_title, t('.title', product: @account_type.name)) %>
+<% provide(:heading, t('.heading', product: @account_type.name)) %>
+<% provide(:sub_heading, t('.sub_heading', product: @account_type.name)) %>
+<% provide(:page_title, t('.page_title', product: @account_type.name)) %>
 <div class='row'>
   <%= presenter.body_copy('users.help_me_open', product: @account_type.name, class: 'col-xs-12', id: 'intro_text') %>
 </div>

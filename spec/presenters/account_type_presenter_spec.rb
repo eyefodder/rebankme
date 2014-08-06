@@ -7,25 +7,23 @@ describe AccountTypePresenter do
 
   describe '#page_heading' do
     it 'returns title from localized file' do
-     expect(presenter.page_title).to eq(expected_title(account_type.name_id))
+     expect(presenter.page_heading).to eq(expected_value(:heading, account_type.name_id))
    end
  end
 
  describe '#page_title' do
   it 'returns title from localized file' do
-    expect(presenter.page_title).to eq(expected_title(account_type.name_id))
+    expect(presenter.page_title).to eq(expected_value(:page_title, account_type.name_id))
   end
 end
 
-# describe '#account_type_overview' do
-#   it 'gives the account type overview rendered as html' do
 
-#     expected_heading = I18n.t("account_finder.account_type_found.overview_heading")
-#     expected_content = I18n.t("#{account_type.name_id}.overview")
-#     expected = view.content_tag(:h3, expected_heading) + view.content_tag(:div, expected_content)
-#     expect(presenter.account_type_overview).to eq(expected)
-#   end
-# end
+def expected_value(token, name_id)
+  product_name = I18n.t("#{name_id}.name")
+  I18n.t("account_finder.account_type_found.#{token}", product: product_name)
+end
+
+
 
 shared_examples 'explains why chosen' do
   it 'provides a list item for each explanation' do
@@ -38,9 +36,9 @@ shared_examples 'explains why chosen' do
     end
     if defined? excluded_reasons
       excluded_reasons.each do |reason|
-      token = "deciding_factors.#{reason.values.first ? 'positive' : 'negative'}.#{reason.keys.first}"
-      expect(result).not_to have_tag(:li, text: I18n.t(token))
-    end
+        token = "deciding_factors.#{reason.values.first ? 'positive' : 'negative'}.#{reason.keys.first}"
+        expect(result).not_to have_tag(:li, text: I18n.t(token))
+      end
     end
   end
 
@@ -130,9 +128,6 @@ describe '#why_account_type_chosen' do
   end
 end
 
-def expected_title(name_id)
-  product_name = I18n.t("#{account_type.name_id}.name")
-  I18n.t("account_finder.account_type_found.title", product: product_name)
-end
+
 
 end

@@ -106,9 +106,10 @@ extend ActionView::Helpers::TextHelper
   RSpec::Matchers.define :display_account_type_found_content do |account_type_id|
     match do |page|
       product_name = I18n.t("#{account_type_id}.name")
-      expected_heading = I18n.t("account_finder.account_type_found.title", product: product_name)
+      expected_heading = I18n.t("account_finder.account_type_found.heading", product: product_name)
+      expected_title = I18n.t("account_finder.account_type_found.page_title", product: product_name)
       have_page_heading(expected_heading).matches?(page)
-      have_page_title(expected_heading).matches?(page)
+      have_page_title(expected_title).matches?(page)
     end
   end
 

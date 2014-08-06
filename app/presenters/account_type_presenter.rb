@@ -44,8 +44,13 @@ class AccountTypePresenter < BasePresenter
   end
 
   def page_heading
-
-    I18n.t("account_finder.account_type_found.title", product: product_name)
+    I18n.t("account_finder.account_type_found.heading", product: product_name)
+  end
+    def page_subheading
+    I18n.t("account_finder.account_type_found.sub_heading", product: product_name)
+  end
+      def page_title
+    I18n.t("account_finder.account_type_found.page_title", product: product_name)
   end
 
   def google_maps_tag_for_account_type_for_user(user)
@@ -77,7 +82,7 @@ class AccountTypePresenter < BasePresenter
     h.content_tag(:ul, body.html_safe, list_options)
   end
 
-  alias_method :page_title, :page_heading
+
 
 
   private

@@ -64,9 +64,10 @@ describe 'User Pages', :type => :request do
       end
 
       it 'has a title' do
-        expected_title = I18n.t('users.help_me_open.title', product: account_type.name)
+        expected_title = I18n.t('users.help_me_open.page_title', product: account_type.name)
+        expected_heading = I18n.t('users.help_me_open.heading', product: account_type.name)
         expect(page).to have_page_title(expected_title)
-        expect(page).to have_page_heading(expected_title)
+        expect(page).to have_page_heading(expected_heading)
       end
       it 'has body copy' do
         content = I18n.t('users.help_me_open.body_copy', product: account_type.name)

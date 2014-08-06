@@ -11,7 +11,9 @@ en:
       start_over: 'Start Over'
   static:
     home:
-      title: "Welcome to Rebank"
+      page_title: 'Welcome to Rebank'
+      sub_heading: Welcome to
+      heading: Rebank
       body_copy: |
                   First, we'll ask a few questions about your banking wants and needs.
 
@@ -29,7 +31,9 @@ en:
       opt_out: "Skip this, just show me the results"
       skip_email_request: "No thanks, just show me my results"
     help_me_open:
-      title: "Opening a %{product}"
+      page_title: "Opening a %{product}"
+      sub_heading: "Opening a"
+      heading: "%{product}"
       body_copy: "Ready to open a %{product}? We'll help make sure the process goes smoothly."
       what_you_need:
         title: "What you'll need"
@@ -78,7 +82,9 @@ en:
       action_yes: "I need a debit card"
       action_no: "I will be fine with an ATM card"
     account_type_found:
-      title: "We recommend a %{product}"
+      page_title: We recommend a %{product}
+      sub_heading: We recommend a
+      heading: "%{product}"
       overview_heading: "What is it?"
       why_we_chose_heading: "Why it's right for you"
       cta: "Find me the right %{product}"
