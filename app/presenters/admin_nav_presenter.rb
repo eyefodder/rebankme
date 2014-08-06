@@ -18,6 +18,10 @@ class AdminNavPresenter < BasePresenter
     link_for('Edit Account', h.edit_admin_user_registration_path)
   end
 
+  def job_queue_link
+    link_for('Job Queue', h.job_queue_path)
+  end
+
   def logout_link
     link = h.link_to('Log out', h.destroy_admin_user_session_path, method: :delete, id: 'logout')
     h.content_tag(:li, link)

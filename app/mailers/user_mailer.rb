@@ -15,9 +15,11 @@ class UserMailer < ActionMailer::Base
 
 
 
-  def notify_of_user_help_request(user, account_type)
-    @user = user
-    @account_type = account_type
-    mail( to: help_request_recipient, cc: cc_recipient,  subject: "#{account_type.name} help request from #{user.email}")
+  def notify_of_user_help_request(user_id, account_type_id)
+    @user = User.find(user_id)
+    @account_type = AccountType.find(account_type_id)
+    mail( to: help_request_recipient, cc: cc_recipient,  subject: "#{@account_type.name} help request from #{@user.email}")
   end
+
+
 end

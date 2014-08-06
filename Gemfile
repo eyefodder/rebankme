@@ -66,8 +66,12 @@ gem 'newrelic_rpm'
 gem 'logging'
 
 #tracking
-# NB using git commit SHA to be able to use google universal tracking
 gem 'analytical'
+
+#background processing - for sending emails
+gem 'delayed_job_active_record'
+#ui for delayed job
+gem "delayed_job_web"
 
 group :development, :test do
 	gem 'rspec-rails', '~> 2.14'

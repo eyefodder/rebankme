@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @account_type = AccountType.find(params[:account_type_id])
     @redirect_path = account_opening_assistance_path(@user, @account_type)
     if @user.email?
-      UserMailer.notify_of_user_help_request(@user, @account_type).deliver
+      EmailSender.delay.notify_of_user_help_request(@user.id, @account_type.id)
     else
       redirect_to request_user_email_path(@user, redirect_path: @redirect_path, allow_skip: 0)
     end

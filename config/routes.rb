@@ -24,12 +24,19 @@ Rebankme::Application.routes.draw do
     resources :banks
     resources :branches
     resources :bank_accounts
+    authenticated :admin_user do
+      match "/job_queue" => DelayedJobWeb, :anchor => false, via: [:get, :post], as: :job_queue
+    end
   end
+
+
 
   get 'demo', to: 'demo#start', as: :demo_root
   get 'demo/v1', to: 'demo#show_page', defaults: { version: 'v1', page: 'start' }
   get 'demo/v2', to: 'demo#show_page', defaults: { version: 'v2', page: 'start' }
   get 'demo/:version/:page', to: 'demo#show_page', as: :demo
+
+
 
   # resources :account_types
   # devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
