@@ -7,7 +7,8 @@
   </div>
 
   <div class="clearfix">
-    <%= presenter.recommended_available_at({class: 'recommended-avail-at pull-left space-after'}, {class: 'recommend-branch-name pull-left color-accent'})%>
+    <%= presenter.recommended_available_at({class: 'recommended-avail-at pull-left space-after'}) %>
+    <%= presenter.recommended_branch_name({class: 'recommend-branch-name pull-left color-accent'}) %>
 </div>
   <div class="italic bold">
     <%= presenter.recommended_branch_address %>

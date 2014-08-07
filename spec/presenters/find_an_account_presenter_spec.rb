@@ -345,6 +345,12 @@ describe FindAnAccountPresenter do
       end
     end
 
+    describe '#geolocated_option_street' do
+      it 'returns branch street' do
+        expect(presenter.geolocated_option_street bank_account_2).to eq bank_account_2.branch.street
+      end
+    end
+
     describe '#geolocated_distance_from_user' do
       it 'returns span tag' do
         distance = user.distance_to(bank_account_2.branch)
