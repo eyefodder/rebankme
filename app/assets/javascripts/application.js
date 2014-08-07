@@ -26,5 +26,9 @@ $(function() {
     });
   };
 
-  centerVert(".center_vert");
+  var doCenter = centerVert.bind(this, ".center_vert");
+
+  $(document).on("page:change", doCenter);
+
+  doCenter();
 });
