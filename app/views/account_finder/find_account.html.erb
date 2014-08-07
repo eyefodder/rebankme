@@ -27,9 +27,6 @@
 <!-- geo-located choice -->
 <%= presenter.geolocated_choice_map  %>
 
-<!-- online only options if any: -->
-<%= render partial: 'account_finder/account_type/online_option', collection: presenter.online_options, as: :item, locals:{presenter: presenter} %>
-
 <!-- why recommended -->
 <%= presenter.why_recommended_block %>
 
@@ -41,6 +38,9 @@
     </div>
   </div>
 </div>
+
+<!-- online only options if any: -->
+<%= render partial: 'account_finder/account_type/online_option', collection: presenter.online_options, as: :item, locals:{presenter: presenter} %>
 
 <!-- other geo-located options -->
 <%= presenter.geolocated_options_block %>
