@@ -3,7 +3,10 @@ class FindAnAccountPresenter < BasePresenter
   attr_accessor :user
   attr_accessor :recommended_option
   attr_accessor :results
+  attr_accessor :selected_result
 
+
+  ### I18n strings
 
   def sub_heading
     I18n.t(locale_token(:sub_heading))
@@ -15,36 +18,18 @@ class FindAnAccountPresenter < BasePresenter
     I18n.t(locale_token(:page_title))
   end
 
+  ##### LOCALIZED CONTENT UNLESS NIL METHODS
+
   def intro_heading(options=nil)
     content_unless_nil(:intro_heading,options)
   end
 
-  def intro_copy(options=nil)
+  def intro(options=nil)
     content_unless_nil(:intro, options, {}, :div)
   end
 
-  def recommended_option_block
-    unless recommended_option.nil?
-      h.render(partial: 'account_finder/account_type/recommended_option', locals:{presenter: self})
-    end
-  end
-  def recommended_heading(options=nil)
+  def we_recommend_heading(options=nil)
     content_unless_nil(:we_recommend_heading, options)
-  end
-  def recommended_account_name(options=nil)
-    h.content_tag(:h4, recommended_option.name, options)
-  end
-
-  def recommended_available_at(available_at_options={},branch_name_options={})
-    available_at = content_unless_nil(:recommended_available_at, available_at_options,{},:div)
-    branch_name = h.content_tag(:div, recommended_option.branch.full_name, branch_name_options)
-    available_at + branch_name
-  end
-
-
-
-  def recommended_branch_address(options=nil)
-    h.content_tag(:div, recommended_option.branch.full_address, options)
   end
 
   def why_chosen_heading(options=nil)
@@ -52,22 +37,82 @@ class FindAnAccountPresenter < BasePresenter
   end
 
   def why_chosen_description(options=nil)
-    content_unless_nil(:why_chosen_description_html, options, {zipcode: user.zipcode}, :div)
+    content_unless_nil(:why_chosen_description, options, interpolation_args, :div)
   end
+
+  def geolocated_results_heading(options=nil)
+    content_unless_nil(:geolocated_results_heading, options,interpolation_args,:h4)
+  end
+  def geolocated_results_subheading(options=nil)
+    content_unless_nil(:geolocated_results_subheading, options,interpolation_args,:div)
+  end
+
+  def recommended_available_at(options=nil)
+    content_unless_nil(:recommended_available_at, options,interpolation_args,:div)
+  end
+
+  def option_heading(options=nil)
+    content_unless_nil(:option_heading, options, interpolation_args)
+  end
+
+  def option_subheading(options=nil)
+    content_unless_nil(:option_subheading, options, interpolation_args, :div)
+  end
+
+
+
+  ########## WRAPPED CONTENT METHODS
+
+  def recommended_account_name(options=nil)
+    h.content_tag(:h4, recommended_option.name, options)
+  end
+
+  def recommended_branch_address(options=nil)
+    h.content_tag(:div, recommended_option.branch.full_address, options)
+  end
+
+  def recommended_branch_name(options=nil)
+    h.content_tag(:div, recommended_option.branch.full_name, options)
+  end
+
+
+  ########## MISC OTHER
+
+  def recommended_option_block
+    unless recommended_option.nil?
+      h.render(partial: 'account_finder/account_type/recommended_option', locals:{presenter: self})
+    end
+  end
+
   def cta_button(options=nil)
     h.link_to(I18n.t('account_finder.account_type.help_to_open_cta'), h.account_opening_assistance_path(user, account_type),options )
   end
 
-  def option_heading(selected_result=nil, options=nil)
-    content_unless_nil(:option_heading, options, interpolation_args(selected_result))
-  end
-  def option_subheading(selected_result=nil, options=nil)
-    content_unless_nil(:option_subheading, options, interpolation_args(selected_result), :div)
-  end
 
-  def geolocated_choice_map(bank_account)
-    unless bank_account.nil?
-      src = google_maps_src_for_account(bank_account)
+
+  ###########
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  def geolocated_choice_map()
+    unless selected_result.nil?
+      src = google_maps_src_for_account(selected_result)
       h.render partial: 'account_finder/account_type/google_map', locals: {src: src}
     end
   end
@@ -85,12 +130,7 @@ class FindAnAccountPresenter < BasePresenter
     h.content_tag(tag, h.number_to_human(distance, units: :miles),options)
   end
 
-  def geolocated_results_heading(options=nil)
-    content_unless_nil(:geolocated_results_heading, options,interpolation_args,:h4)
-  end
-  def geolocated_results_subheading(options=nil)
-    content_unless_nil(:geolocated_results_subheading, options,interpolation_args,:div)
-  end
+
   def geolocated_result_link(bank_account,options=nil)
     link = h.account_finder_path(user, selected_account_id: bank_account.id )
     h.link_to(link, options) do
@@ -120,7 +160,7 @@ class FindAnAccountPresenter < BasePresenter
 
   private
 
-  def interpolation_args(selected_result=nil)
+  def interpolation_args
     args = {zipcode: user.zipcode, branch_name: '', branch_address: '', num_results: 0}
     unless selected_result.nil?
       args.merge! branch_name: selected_result.branch.full_name, branch_address: selected_result.branch.full_address

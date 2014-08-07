@@ -51,10 +51,10 @@ en:
         we_recommend_heading: "We recommend:"
         recommended_available_at: "Available at "
         why_chosen_heading: 'Why?'
-        why_chosen_description_html: >
-                                      <strong>Location!</strong> As all safe accounts offer the same
-                                      features, we are showing you the account closest to your zipcode (%{zipcode}).
-                                      If this branch doesn't work for you, scroll down for some nearby options.
+        why_chosen_description: >
+                                Location! As all safe accounts offer the same
+                                features, we are showing you the account closest to your zipcode (%{zipcode}).
+                                If this branch doesn't work for you, scroll down for some nearby options.
         option_heading: "%{branch_name}"
         option_subheading: "%{branch_address}"
         geolocated_results_heading: "Safe accounts near %{zipcode}"
