@@ -36,7 +36,10 @@ class AccountTypeFinderPresenter < BasePresenter
         value = bullet[0]
         button_id = value==false ? 'next_question_no' : 'next_question_yes'
         defaults = { name: "option_submit[#{next_property_token}]", type: 'submit', value: value, id: button_id}
-        button = h.content_tag(:button, bullet[1], defaults.merge(options) )
+        icon = h.content_tag(:i, "", class: "glyphicon glyphicon-chevron-right color-white absolute full-height top right center-vert margin-less margin-right")
+        text = h.content_tag(:div, bullet[1]);
+
+        button = h.content_tag(:button, text + icon, defaults.merge(options) )
         res << button
       end
       res.html_safe
