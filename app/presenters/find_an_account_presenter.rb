@@ -28,6 +28,11 @@ class FindAnAccountPresenter < BasePresenter
       h.render(partial: 'account_finder/account_type/recommended_option', locals:{presenter: self})
     end
   end
+  def why_recommended_block
+    unless recommended_option.nil?
+      h.render(partial: 'account_finder/account_type/why_recommended', locals:{presenter: self})
+    end
+  end
   def recommended_heading(options=nil)
     content_unless_nil(:we_recommend_heading, options)
   end
