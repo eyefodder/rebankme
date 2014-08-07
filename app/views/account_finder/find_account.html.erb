@@ -5,26 +5,27 @@
 <% presenter.user = @user %>
 <% presenter.recommended_option = @recommended_result %>
 <% presenter.results = @results %>
+<% presenter.selected_result = @selected_result %>
 <% provide(:sub_heading, presenter.sub_heading) %>
 <% provide(:heading,  presenter.heading) %>
 <% provide(:page_title, presenter.page_title) %>
 
 <!-- below the header -->
 <%= presenter.intro_heading %>
-<%= presenter.intro_copy %>
+<%= presenter.intro %>
 
 <!-- recommended option -->
 <%= presenter.recommended_option_block %>
 
 <!-- heading for search / online / geolocated result -->
-<!-- <%= presenter.option_heading @selected_result %> -->
-<!-- <%= presenter.option_subheading @selected_result %> -->
+<!-- <%= presenter.option_heading  %> -->
+<!-- <%= presenter.option_subheading  %> -->
 
 <!-- map search if any: -->
 <%= presenter.google_map_search %>
 
 <!-- geo-located choice -->
-<%= presenter.geolocated_choice_map @selected_result %>
+<%= presenter.geolocated_choice_map  %>
 
 <!-- online only options if any: -->
 <%= render partial: 'account_finder/account_type/online_option', collection: presenter.online_options, as: :item, locals:{presenter: presenter} %>
