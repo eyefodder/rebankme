@@ -18,7 +18,8 @@ describe UserMailer do
       expect(ActionMailer::Base.deliveries.count).to eq(1)
     end
     it "sends mail to ENV['MAILER_REBANK_RECIPIENT']" do
-      expect(result.to).to include ENV['MAILER_REBANK_RECIPIENT']
+      expected = ENV['MAILER_REBANK_RECIPIENT'] || 'test@example.com'
+      expect(result.to).to include expected
     end
     it "cc's the mailer" do
       expect(result.cc).to include ActionMailer::Base.smtp_settings[:user_name]
