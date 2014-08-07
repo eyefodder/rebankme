@@ -1,6 +1,15 @@
-<div class='recommended_option'>
-  <%= presenter.recommended_heading %>
-  <%= presenter.recommended_account_name %>
-  <%= presenter.recommended_available_at({class: 'recommended-avail-at'}, {class: 'recommend-branch-name'})%>
-  <%= presenter.recommended_branch_address %>
+<div class='recommended_option bg-gray padding-less margin margin-bottom'>
+  <div class="caps">
+    <%= presenter.recommended_heading %>
+  </div>
+  <div class="caps bold font-mid">
+    <%= presenter.recommended_account_name %>
+  </div>
+
+  <div class="clearfix">
+    <%= presenter.recommended_available_at({class: 'recommended-avail-at pull-left space-after'}, {class: 'recommend-branch-name pull-left color-accent'})%>
+</div>
+  <div class="italic bold">
+    <%= presenter.recommended_branch_address %>
+  </div>
 </div>

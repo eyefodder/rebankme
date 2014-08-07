@@ -34,10 +34,10 @@ class FindAnAccountPresenter < BasePresenter
     end
   end
   def recommended_heading(options=nil)
-    content_unless_nil(:we_recommend_heading, options)
+    content_unless_nil(:we_recommend_heading, options, {}, :div)
   end
   def recommended_account_name(options=nil)
-    h.content_tag(:h4, recommended_option.name, options)
+    h.content_tag(:div, recommended_option.name, options)
   end
 
   def recommended_available_at(available_at_options={},branch_name_options={})

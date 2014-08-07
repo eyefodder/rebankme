@@ -1,6 +1,7 @@
 // Place all the styles related to the Demo controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$offWhite: #f7f7f7;
 $lightGrey: #DBDBDB;
 $medGrey: #808080;
 $darkGrey: #666666;
@@ -90,6 +91,10 @@ hr {
   background: $accent-color;
 }
 
+.bg-gray {
+  background: $offWhite;
+}
+
 .center-header {
   width: 130px;
 }
@@ -99,7 +104,7 @@ hr {
 }
 .header_background {
   .header_wrapper {
-    background: #f7f7f7;
+    background: $offWhite;
     border-bottom: none;
   }
 }
