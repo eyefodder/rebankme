@@ -1,7 +1,7 @@
 <div class='other-branches'>
-  <div class="heading">
-  <%= presenter.geolocated_results_heading %>
-  <%= presenter.geolocated_results_subheading %>
+  <div class="heading bg-gray-darker padding-less">
+  <%= presenter.geolocated_results_heading({class: "color-gray caps bold"}) %>
+  <%= presenter.geolocated_results_subheading({class: ""}) %>
   </div>
   <%= render partial: "account_finder/account_type/geolocated_result_list_item", collection: @results, as: :item, locals: {presenter: presenter} %>
 </div>

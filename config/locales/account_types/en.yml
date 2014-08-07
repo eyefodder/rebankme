@@ -48,7 +48,7 @@ en:
         page_title: 'New York City Safe Accounts'
         sub_heading: Finding a great
         heading: Safe Account
-        we_recommend_heading: "We recommend:"
+        we_recommend_heading: "We recommend"
         recommended_available_at: "Available at "
         why_chosen_heading: 'Why?'
         why_chosen_description: >
@@ -158,5 +158,3 @@ en:
               2: Uses the VISA network
             image_uri: chase_liquid.png
             cta_link: 'https://www.chase.com/debit-reloadable-cards/liquid-prepaid-card'
-
-

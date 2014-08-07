@@ -28,8 +28,27 @@ class FindAnAccountPresenter < BasePresenter
     content_unless_nil(:intro, options, {}, :div)
   end
 
+  def recommended_option_block
+    unless recommended_option.nil?
+      h.render(partial: 'account_finder/account_type/recommended_option', locals:{presenter: self})
+    end
+  end
+  def why_recommended_block
+    unless recommended_option.nil?
+      h.render(partial: 'account_finder/account_type/why_recommended', locals:{presenter: self})
+    end
+  end
   def we_recommend_heading(options=nil)
-    content_unless_nil(:we_recommend_heading, options)
+    content_unless_nil(:we_recommend_heading, options, {}, :div)
+  end
+  def recommended_account_name(options=nil)
+    h.content_tag(:div, recommended_option.name, options)
+  end
+
+  def recommended_available_at(available_at_options={},branch_name_options={})
+    available_at = content_unless_nil(:recommended_available_at, available_at_options,{},:div)
+    branch_name = h.content_tag(:div, recommended_option.branch.full_name, branch_name_options)
+    available_at + branch_name
   end
 
   def why_chosen_heading(options=nil)
@@ -45,10 +64,6 @@ class FindAnAccountPresenter < BasePresenter
   end
   def geolocated_results_subheading(options=nil)
     content_unless_nil(:geolocated_results_subheading, options,interpolation_args,:div)
-  end
-
-  def recommended_available_at(options=nil)
-    content_unless_nil(:recommended_available_at, options,interpolation_args,:div)
   end
 
   def option_heading(options=nil)
@@ -125,11 +140,20 @@ class FindAnAccountPresenter < BasePresenter
   def geolocated_option_title(bank_account)
     bank_account.branch.full_name
   end
+  def geolocated_option_street(bank_account)
+    bank_account.branch.street
+  end
   def geolocated_distance_from_user(bank_account,tag=:span, options=nil)
     distance = user.distance_to(bank_account.branch)
-    h.content_tag(tag, h.number_to_human(distance, units: :miles),options)
+    h.content_tag(tag, h.number_to_human(distance, units: {unit: "mi"}),options)
   end
 
+  def geolocated_results_heading(options=nil)
+    content_unless_nil(:geolocated_results_heading, options,interpolation_args,:div)
+  end
+  def geolocated_results_subheading(options=nil)
+    content_unless_nil(:geolocated_results_subheading, options,interpolation_args,:div)
+  end
 
   def geolocated_result_link(bank_account,options=nil)
     link = h.account_finder_path(user, selected_account_id: bank_account.id )
