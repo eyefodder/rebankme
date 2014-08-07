@@ -5,10 +5,10 @@
 <% provide(:title, t('.page_title')) %>
 <% @no_start_over = true %>
 <div class='row content-padding'>
-  <%= presenter.body_copy('static.home', class: 'col-xs-12') %>
+  <%= presenter.body_copy('static.home', class: 'col-xs-12 col-sm-4 col-sm-offset-4') %>
 </div>
 <div class='row section'>
-  <div class='col-xs-12'>
+  <div class='col-xs-12 col-sm-4 col-sm-offset-4'>
     <%= link_to t(".account_finder_start"), account_finder_start_path, id: 'start-account-finder', class: 'btn btn-primary btn-block' %>
   </div>
 </div>

@@ -4,12 +4,15 @@
 <% provide(:title, t('.title')) %>
 <% present @user do |presenter| %>
 <div class='row content-padding'>
-  <%= presenter.body_copy('users.request_email', class: 'col-xs-12') %>
+  <div class="col-sm-4 col-sm-offset-4">
+    <%= presenter.body_copy('users.request_email', class: 'col-xs-12') %>
+  </div>
 </div>
+
 <%= form_for @user do |f| %>
 <%= render partial: 'shared/error_messages', locals:{presenter:presenter} %>
 <%= hidden_field_tag :redirect_path, @redirect_path %>
-<div class="form-group">
+<div class="form-group col-sm-4 col-sm-offset-4">
   <div class="input-group">
     <%= f.label :email,t('forms.labels.enter_email'),  class: 'sr-only' %>
     <%= f.email_field :email,  {placeholder: t('forms.labels.enter_email'), class: 'form-control'} %>
