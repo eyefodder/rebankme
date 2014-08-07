@@ -87,12 +87,23 @@ hr {
   color: $accent-color;
 }
 
+.color-text {
+  color: $base-font-color;
+}
+
 .bg-accent {
   background: $accent-color;
 }
 
 .bg-gray {
   background: $offWhite;
+}
+.bg-gray-darker {
+  background: $lightGrey;
+}
+
+.border-light {
+  border: 1px solid #eeeeee;
 }
 
 .center-header {
