@@ -1,3 +1,4 @@
+<% present @user do |presenter| %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,21 +8,18 @@
   <h2>A user is asking for help!</h2>
   <div>This is what we know about them:</div>
   <ul>
-    <li><%= "email: #{@user.email}" %></li>
-    <li><%= "zipcode: #{@user.zipcode}" %></li>
-    <li><%= "is delinquent: #{@user.is_delinquent}" %></li>
-    <li><%= "is_special_group: #{@user.is_special_group}" %></li>
+    <%= presenter.user_property_list %>
+
+
     <% if @user.is_special_group %>
-    <li><%= "special group: #{@user.special_group.name_id}" %></li>
+    <li><%= "Special group: #{@user.special_group.name_id}" %></li>
     <% end %>
-    <li><%= "will use direct deposit: #{@user.will_use_direct_deposit}" %></li>
-    <li><%= "has_predictable_income: #{@user.has_predictable_income}" %></li>
-    <li><%= "needs_debit_card: #{@user.needs_debit_card}" %></li>
     <% if @user.state_id? %>
-    <li><%= "state: #{@user.state.name}" %></li>
+    <li><%= "State: #{@user.state.name}" %></li>
     <% end %>
   </ul>
   <h3><%= "This is the account type they asked about: #{@account_type.name}" %></h3>
 
 </body>
 </html>
+<% end %>

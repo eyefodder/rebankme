@@ -1,7 +1,9 @@
 class UserMailer < ActionMailer::Base
+  add_template_helper(ApplicationHelper)
 
 
-  @@rebank_recipient
+
+
   default from: ActionMailer::Base.smtp_settings[:user_name]
 
   def cc_recipient
@@ -9,8 +11,8 @@ class UserMailer < ActionMailer::Base
   end
 
   def help_request_recipient
-    @@rebank_recipient ||= ENV['MAILER_REBANK_RECIPIENT']
-    @@rebank_recipient ||= 'test@example.com'
+    @rebank_recipient ||= ENV['MAILER_REBANK_RECIPIENT']
+    @rebank_recipient ||= 'test@example.com'
   end
 
 

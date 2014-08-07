@@ -44,6 +44,16 @@ describe 'User Pages', :type => :request do
       end
     end
 
+    describe 'tells the backend' do
+      before do
+        user.email = good_email
+        user.save!
+      end
+      it 'via email' do
+        expect{visit account_opening_assistance_path(user, account_type)}.to change { ActionMailer::Base.deliveries.count }.by(1)
+      end
+    end
+
     describe 'a user with email' do
       before do
         user.email = good_email
@@ -53,7 +63,7 @@ describe 'User Pages', :type => :request do
       it 'displays the help me open page' do
         expect(current_path).to eq account_opening_assistance_path(user, account_type)
       end
-      it 'sends us an email'
+
     end
 
     describe 'page' do

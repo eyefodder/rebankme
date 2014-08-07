@@ -13,8 +13,24 @@ class UserPresenter < BasePresenter
     render_localized_list("users.help_me_open.what_you_need.things_needed", list_options, bullet_options)
   end
 
-  private
+  def user_property_list
+    res = ""
+    [:email,
+      :zipcode,
+      :is_delinquent,
+      :is_special_group,
+      :will_use_direct_deposit,
+      :has_predictable_income,
+      :needs_debit_card].each do |property|
+        value = user[property]
+        label = property.to_s.humanize
+        res << h.content_tag(:li, "#{label}: #{value}")
+      end
+    res.html_safe
+  end
+
+    private
 
 
 
-end
+  end
