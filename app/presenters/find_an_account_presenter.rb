@@ -129,7 +129,7 @@ class FindAnAccountPresenter < BasePresenter
   private
 
   def interpolation_args(selected_result=nil)
-    args = {zipcode: user.zipcode}
+    args = {zipcode: user.zipcode, branch_name: '', branch_address: '', num_results: 0}
     unless selected_result.nil?
       args.merge! branch_name: selected_result.branch.full_name, branch_address: selected_result.branch.full_address
     end

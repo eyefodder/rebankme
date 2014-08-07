@@ -105,7 +105,8 @@ Spork.prefork do
           {
             'latitude'     => 40.6945036,
             'longitude'    => -73.9565551,
-            'country_code' => 'US'
+            'country_code' => 'US',
+            'state_code'   => 'NY',
           }
         ]
         )
