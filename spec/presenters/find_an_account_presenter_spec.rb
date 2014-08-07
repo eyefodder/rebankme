@@ -61,9 +61,7 @@ describe FindAnAccountPresenter do
   end
 
   shared_examples 'a google map block' do
-        let(:query) {"#{bank_account.branch.bank.name}+#{bank_account.branch.full_address}"}
-        let(:api_method) {:place}
-        let(:method){:geolocated_choice_map}
+
     it 'with specified query' do
       src = URI::encode("https://www.google.com/maps/embed/v1/#{api_method}?key=#{ApiKeys.google_maps}&q=#{query}")
       expected = view.render(partial: 'account_finder/account_type/google_map', locals: {src: src})
@@ -103,6 +101,7 @@ describe FindAnAccountPresenter do
   describe 'branched content' do
 
     describe 'VETERANS ACCOUNT' do
+      let(:account_type){AccountType.VETERANS_ACCOUNT}
       describe 'chase state' do
         before do
           user.state =  State.find_by(code: 'NY')
@@ -110,8 +109,13 @@ describe FindAnAccountPresenter do
         end
         it_behaves_like 'a localized content wrapping method' do
           let(:token_branching_element) {"chase_states."}
-          let(:account_type){AccountType.VETERANS_ACCOUNT}
           let(:property) {:intro_heading}
+        end
+
+        it_behaves_like 'a google map block' do
+          let(:query) {"Chase Branches near #{user.zipcode}"}
+          let(:api_method) {:search}
+          let(:method){:google_map_search}
         end
       end
       describe 'non chase state' do
@@ -121,23 +125,32 @@ describe FindAnAccountPresenter do
         end
         it_behaves_like 'a localized content wrapping method' do
           let(:token_branching_element) {"non_chase_states."}
-          let(:account_type){AccountType.VETERANS_ACCOUNT}
           let(:property) {:intro_heading}
+        end
+        it 'returns nil for map search' do
+          expect(presenter.google_map_search).to be_nil
         end
       end
     end
 
     describe 'SENIORS_ACCOUNT' do
+      let(:account_type){AccountType.SENIORS_ACCOUNT}
       describe 'U.S. Bank States' do
         before do
           user.state =  State.find_by(code: 'ID')
           user.save!(validate: false)
         end
         it_behaves_like 'a localized content wrapping method' do
-          let(:account_type){AccountType.SENIORS_ACCOUNT}
           let(:token_branching_element) {"us_bank_states."}
           let(:property) {:intro_heading}
         end
+
+        it_behaves_like 'a google map block' do
+          let(:query) {"USBank Branches near #{user.zipcode}"}
+          let(:api_method) {:search}
+          let(:method){:google_map_search}
+        end
+
       end
       describe 'Non U.S. Bank States' do
         before do
@@ -145,9 +158,13 @@ describe FindAnAccountPresenter do
           user.save!(validate: false)
         end
         it_behaves_like 'a localized content wrapping method' do
-          let(:account_type){AccountType.SENIORS_ACCOUNT}
           let(:token_branching_element) {"non_us_bank_states."}
           let(:property) {:intro_heading}
+        end
+        it_behaves_like 'a google map block' do
+          let(:query) {"Credit Unions near #{user.zipcode}"}
+          let(:api_method) {:search}
+          let(:method){:google_map_search}
         end
       end
     end
@@ -299,6 +316,119 @@ describe FindAnAccountPresenter do
 
     end
   end
+
+  describe 'results' do
+    let(:bank_account_2){create(:bank_account)}
+    let(:results){[bank_account, bank_account_2]}
+
+    before do
+      presenter.results = results
+    end
+    describe '#geolocated_options_block' do
+      it 'returns rendered block' do
+        expected = view.render(partial: 'account_finder/account_type/geolocated_options', locals: {presenter: presenter})
+        expect(presenter.geolocated_options_block).to eq expected
+      end
+      describe 'with no results' do
+        before do
+          presenter.results = nil
+        end
+        it 'returns nothing' do
+          expect(presenter.geolocated_options_block).to be_nil
+        end
+      end
+    end
+
+    describe '#geolocated_option_title' do
+      it 'returns branch name' do
+        expect(presenter.geolocated_option_title bank_account_2).to eq bank_account_2.branch.full_name
+      end
+    end
+
+    describe '#geolocated_distance_from_user' do
+      it 'returns span tag' do
+        distance = user.distance_to(bank_account_2.branch)
+        content = view.number_to_human(distance, units: :miles)
+        expected = view.content_tag(:span, content)
+        expect(presenter.geolocated_distance_from_user(bank_account_2)).to eq expected
+      end
+    end
+
+    describe '#geolocated_result_link' do
+      it 'returns wrapped link' do
+        src = account_finder_path(user, selected_account_id: bank_account_2.id )
+        content = "thing"
+        expected = view.link_to(content, src)
+        result = presenter.geolocated_result_link(bank_account_2) do
+          content
+        end
+        expect(result).to eq expected
+      end
+    end
+  end
+
+  describe 'online only methods' do
+    let(:account_type){AccountType.PREPAY_CARD}
+    let(:presenter){FindAnAccountPresenter.new(account_type, view)}
+
+
+    describe 'online_options' do
+      it 'makes an array from localized content' do
+        expected = I18n.t("account_finder.account_type.#{account_type.name_id}.online_options").to_a.map{|obj| obj[1]}
+        expect(expected.empty?).to be_false
+        expect(presenter.online_options).to eq expected
+      end
+    end
+
+    describe '#online_option_feature_bullets' do
+      let(:list_options) {{class: 'listclass'}}
+      let(:bullet_options) {{class: 'bulletclass'}}
+      let(:bullets){{0=>"$4.95 per month", 1=>"No overdraft fees", 2=>"Uses the VISA network"}}
+      it 'returns list as rendered bullets' do
+        result = presenter.online_option_feature_bullets(bullets, list_options, bullet_options)
+        expect(result).to have_tag(:ul, with: list_options ) do
+          with_tag(:li, text: "$4.95 per month", with: bullet_options)
+          with_tag(:li, text: "No overdraft fees", with: bullet_options)
+          with_tag(:li, text: "Uses the VISA network", with: bullet_options)
+        end
+      end
+    end
+  end
+
+  describe 'google_map_search' do
+
+    describe 'credit union' do
+      let(:account_type) {AccountType.CREDIT_UNION}
+      it_behaves_like 'a google map block' do
+        let(:query) {"Credit Unions near #{user.zipcode}"}
+        let(:api_method) {:search}
+        let(:method){:google_map_search}
+      end
+    end
+
+    describe 'regular accounts' do
+      let(:account_type) {AccountType.REGULAR_ACCOUNT}
+      it_behaves_like 'a google map block' do
+        let(:query) {"Free Checking near #{user.zipcode}"}
+        let(:api_method) {:search}
+        let(:method){:google_map_search}
+      end
+    end
+    describe 'student accounts' do
+      let(:account_type) {AccountType.STUDENT_ACCOUNT}
+      it_behaves_like 'a google map block' do
+        let(:query) {"Free Student Checking near #{user.zipcode}"}
+        let(:api_method) {:search}
+        let(:method){:google_map_search}
+      end
+    end
+
+
+
+  end
+
+
+
 
 
 
