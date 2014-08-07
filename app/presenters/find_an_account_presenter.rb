@@ -90,7 +90,7 @@ class FindAnAccountPresenter < BasePresenter
   end
   def geolocated_distance_from_user(bank_account,tag=:span, options=nil)
     distance = user.distance_to(bank_account.branch)
-    h.content_tag(tag, h.number_to_human(distance, units: {unit: "mi"),options)
+    h.content_tag(tag, h.number_to_human(distance, units: {unit: "mi"}),options)
   end
 
   def geolocated_results_heading(options=nil)
