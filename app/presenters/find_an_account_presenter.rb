@@ -29,7 +29,7 @@ class FindAnAccountPresenter < BasePresenter
   end
 
   def we_recommend_heading(options=nil)
-    content_unless_nil(:we_recommend_heading, options)
+    content_unless_nil(:we_recommend_heading, options, {}, :div)
   end
 
   def why_chosen_heading(options=nil)
@@ -100,6 +100,12 @@ class FindAnAccountPresenter < BasePresenter
       h.render(partial: 'account_finder/account_type/recommended_option', locals:{presenter: self})
     end
   end
+  def why_recommended_block
+    unless recommended_option.nil?
+      h.render(partial: 'account_finder/account_type/why_recommended', locals:{presenter: self})
+    end
+  end
+
 
   def cta_button(options=nil)
     h.link_to(I18n.t('account_finder.account_type.help_to_open_cta'), h.account_opening_assistance_path(user, account_type),options )
