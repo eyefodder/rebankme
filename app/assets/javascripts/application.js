@@ -14,8 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require jquery.flot
-//= require jquery.flot.funnel
 //= require_tree .
 
 $(function() {

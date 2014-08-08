@@ -1,18 +1,11 @@
-<% present @metrics, MetricsPresenter do |presenter| %>
 <% provide(:heading,  'Admin') %>
 <% provide(:page_title, 'Admin') %>
 
-
-
 <h2>Funnel!</h2>
+<% @metrics.each do |metric_obj| %>
 
-<div class='table-responsive' >
-<%= presenter.metrics_table %>
-</div>
-
-
-
-
+<%= content_tag(:h4, metric_obj[:metric].name) %>
+<%= content_tag(:h5, metric_obj[:total]) %>
 
 
 <% end %>

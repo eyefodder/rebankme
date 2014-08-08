@@ -52,7 +52,6 @@ gem 'devise' #authentication framework
 gem 'omniauth-facebook' #authentication using facebook oauth
 
 gem 'vanity' #metrics tracking
-gem 'flot-rails', :git => "https://github.com/Kjarrigan/flot-rails.git" #javascript charts
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
