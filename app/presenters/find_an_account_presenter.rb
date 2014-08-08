@@ -192,26 +192,8 @@ class FindAnAccountPresenter < BasePresenter
   end
 
   def map_search_term
-    case account_type
-    when AccountType.CREDIT_UNION
-      "Credit Unions near #{user.zipcode}"
-    when AccountType.REGULAR_ACCOUNT
-      "Free Checking near #{user.zipcode}"
-    when AccountType.STUDENT_ACCOUNT
-      "Free Student Checking near #{user.zipcode}"
-    when AccountType.SENIORS_ACCOUNT
-      seniors_search_term
-    when AccountType.VETERANS_ACCOUNT
-      veterans_search_term
-    end
+    GoogleSearchTermFactory.map_search_term_for(account_type, user)
   end
 
-  def veterans_search_term
-    "Chase Branches near #{user.zipcode}" if user.state.chase_state?
-  end
-
-  def seniors_search_term
-    user.state.us_bank_state? ? "USBank Branches near #{user.zipcode}" : "Credit Unions near #{user.zipcode}"
-  end
 
 end
