@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/Kjarrigan/flot-rails.git
+  revision: c20cf50084856963f8554c762dd44cbb4a156c97
+  specs:
+    flot-rails (0.0.4)
+      jquery-rails (>= 2.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -317,6 +324,7 @@ DEPENDENCIES
   delayed_job_web
   devise
   factory_girl_rails
+  flot-rails!
   geocoder
   going_postal
   growl (= 1.0.3)
