@@ -115,7 +115,7 @@ class FindAnAccountPresenter < BasePresenter
     bank_account.branch.full_name
   end
 
-  def geolocated_option_street(bank_account)
+  def geolocated_option_street (bank_account)
     bank_account.branch.street
   end
 
@@ -125,7 +125,9 @@ class FindAnAccountPresenter < BasePresenter
     h.content_tag(tag, h.number_to_human(distance, units: :miles),options)
   end
 
-  def geolocated_result_link(bank_account,options=nil)
+  def geolocated_result_link(bank_account,options={})
+    options = merge_tag_options({class: 'recommended_option'}, options) if (bank_account==recommended_option)
+    options = merge_tag_options({class: 'selected_option'}, options) if (bank_account==selected_result)
     link = h.account_finder_path(user, selected_account_id: bank_account.id )
     h.link_to(link, options) do
       yield
@@ -145,40 +147,6 @@ class FindAnAccountPresenter < BasePresenter
 
 
   ###########
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   private
 
