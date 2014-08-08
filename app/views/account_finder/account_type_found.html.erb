@@ -5,18 +5,21 @@
 <% provide(:page_title, presenter.page_title) %>
 
 <!-- What is it? -->
-<%= content_tag(:h3, t(".overview_heading")) %>
-<%= presenter.account_type_overview %>
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <%= content_tag(:h3, t(".overview_heading")) %>
+    <%= presenter.account_type_overview %>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <!-- Why its right for you -->
+    <%= content_tag(:h3, t(".why_we_chose_heading")) %>
+    <%= presenter.why_account_type_chosen_for @user, {class: 'list-group'}, {class: 'list-group-item list-group-item-info'} %>
+  </div>
 
-
-<!-- Why its right for you -->
-<%= content_tag(:h3, t(".why_we_chose_heading")) %>
-<%= presenter.why_account_type_chosen_for @user, {class: 'list-group'}, {class: 'list-group-item list-group-item-info'} %>
-
-
-<div class='account-finder-drilldown row content-padding'>
-  <div class="col-xs-12">
-  <%= presenter.find_right_account_link_for(@user, {id: 'account-finder-drilldown-button', class: 'btn btn-primary btn-block'}) %>
+  <div class='account-finder-drilldown row content-padding'>
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+      <%= presenter.find_right_account_link_for(@user, {id: 'account-finder-drilldown-button', class: 'btn btn-primary btn-block'}) %>
+    </div>
   </div>
 </div>
 

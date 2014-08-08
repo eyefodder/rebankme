@@ -5,8 +5,10 @@
 <% provide(:heading,  presenter.page_heading) %>
 <% provide(:page_title, presenter.page_title) %>
 
-<div class="content-padding">
-<%= presenter.next_question_tag class: 'account-finder-question' %>
+<div class="row content-padding">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <%= presenter.next_question_tag class: 'account-finder-question' %>
+  </div>
 </div>
 
 <%= presenter.next_question_bullets_tag( {class: 'list-group section'}, {class: 'list-group-item'}) %>
@@ -28,8 +30,8 @@
 
 
 <div class='row'>
-  <div class='col-xs-12'>
-  <%= presenter.decision_buttons({class: 'btn btn-primary btn-wide btn-block btn-chevron',}) %>
+  <div class='col-xs-12 col-sm-4 col-sm-offset-4'>
+  <%= presenter.decision_buttons({class: 'btn btn-primary btn-wide btn-block btn-chevron relative'}) %>
  <!--  <%= presenter.yes_button({class: 'btn btn-info btn-block',}) %>
   <%= presenter.no_button({class: 'btn btn-info btn-block',}) %> -->
   </div>

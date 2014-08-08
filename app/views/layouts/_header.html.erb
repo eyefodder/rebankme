@@ -1,7 +1,7 @@
 <%= render 'admin/admin_nav' if admin_user_signed_in? %>
 <% unless  @no_logo %>
 <div class="row header">
-  <div class="center-header clearfix center-block color-accent">
+  <div class="col-xs-12 center-header clearfix center-block color-accent">
     <div class='pull-left header-image'><%= image_tag 'littlegiraffe.png' %></div>
     <div class='pull-left header-copy'>
       <div class='header-welcome'><%= yield(:sub_heading) %></div>
@@ -19,7 +19,7 @@
 <div class="row content-padding">
 <% end %>
   <div class="col-xs-12 margin margin-bottom">
-    <div class='col-xs-12 text-center header_wrapper border-bottom padding padding-vert'>
+    <div class='col-xs-12 col-sm-4 col-sm-offset-4 text-center header_wrapper border-bottom padding padding-vert'>
       <% if @no_logo %>
       <div class='page-sub-heading caps font-mid margin-least margin-bottom'>
         <%= yield(:sub_heading) %>

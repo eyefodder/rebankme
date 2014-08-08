@@ -11,38 +11,47 @@
 <% provide(:page_title, presenter.page_title) %>
 
 <!-- below the header -->
-<%= presenter.intro_heading %>
-<%= presenter.intro %>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <%= presenter.intro_heading %>
+    <%= presenter.intro %>
 
-<!-- recommended option -->
-<%= presenter.recommended_option_block %>
+    <!-- recommended option -->
+    <%= presenter.recommended_option_block %>
 
-<!-- heading for search / online / geolocated result -->
-<!-- <%= presenter.option_heading  %> -->
-<!-- <%= presenter.option_subheading  %> -->
+    <!-- heading for search / online / geolocated result -->
+    <!-- <%= presenter.option_heading  %> -->
+    <!-- <%= presenter.option_subheading  %> -->
 
-<!-- map search if any: -->
-<%= presenter.google_map_search %>
+    <!-- map search if any: -->
+    <div class="section">
+      <%= presenter.google_map_search %>
 
-<!-- geo-located choice -->
-<%= presenter.geolocated_choice_map  %>
+      <!-- geo-located choice -->
+      <%= presenter.geolocated_choice_map  %>
+    </div>
 
-<!-- why recommended -->
-<%= presenter.recommended_option_block %>
+    <!-- why recommended -->
+    <%= presenter.why_recommended_block %>
 
-<!-- CTA -->
-<div class="margin-more margin-vert">
-  <div class='row content-padding'>
-    <div class='col-xs-12'>
-      <%= presenter.cta_button class: 'btn btn-primary btn-block' %>
+    <!-- CTA -->
+    <div class="section">
+      <div class='row content-padding'>
+        <div class='col-xs-12 col-md-6 col-md-offset-3'>
+          <%= presenter.cta_button class: 'btn btn-primary btn-block' %>
+        </div>
+      </div>
     </div>
   </div>
+
+
+  <div class="section col-xs-12 col-md-6">
+    <!-- online only options if any: -->
+    <%= render partial: 'account_finder/account_type/online_option', collection: presenter.online_options, as: :item, locals:{presenter: presenter} %>
+
+    <!-- other geo-located options -->
+    <%= presenter.geolocated_options_block %>
+  </div>
 </div>
-
-<!-- online only options if any: -->
-<%= render partial: 'account_finder/account_type/online_option', collection: presenter.online_options, as: :item, locals:{presenter: presenter} %>
-
-<!-- other geo-located options -->
-<%= presenter.geolocated_options_block %>
 
 <% end %>
