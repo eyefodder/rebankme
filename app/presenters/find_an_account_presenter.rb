@@ -6,60 +6,42 @@ class FindAnAccountPresenter < BasePresenter
   attr_accessor :selected_result
 
 
+
+
   ### I18n strings
 
-  def sub_heading
-    I18n.t(locale_token(:sub_heading))
+  def self.returns_localized_content(properties)
+    properties.each do |property|
+      define_method(property) do
+        I18n.t(locale_token(property))
+      end
+    end
   end
-  def heading
-    I18n.t(locale_token(:heading))
-  end
-  def page_title
-    I18n.t(locale_token(:page_title))
-  end
+
+  returns_localized_content [:sub_heading, :heading, :page_title]
+
 
   ##### LOCALIZED CONTENT UNLESS NIL METHODS
 
-  def intro_heading(options=nil)
-    content_unless_nil(:intro_heading,options)
+  def self.wraps_localized_content(fields)
+    fields.each do |property, tag|
+      define_method(property) do |options={}|
+        content_unless_nil(property,options, interpolation_args, tag)
+      end
+
+    end
   end
 
-  def intro(options=nil)
-    content_unless_nil(:intro, options, {}, :div)
-  end
-
-  def we_recommend_heading(options=nil)
-    content_unless_nil(:we_recommend_heading, options, {}, :div)
-  end
-
-  def why_chosen_heading(options=nil)
-    content_unless_nil(:why_chosen_heading, options)
-  end
-
-  def why_chosen_description(options=nil)
-    content_unless_nil(:why_chosen_description, options, interpolation_args, :div)
-  end
-
-  def geolocated_results_heading(options=nil)
-    content_unless_nil(:geolocated_results_heading, options,interpolation_args,:h4)
-  end
-  def geolocated_results_subheading(options=nil)
-    content_unless_nil(:geolocated_results_subheading, options,interpolation_args,:div)
-  end
-
-  def recommended_available_at(options=nil)
-    content_unless_nil(:recommended_available_at, options,interpolation_args,:div)
-  end
-
-  def option_heading(options=nil)
-    content_unless_nil(:option_heading, options, interpolation_args)
-  end
-
-  def option_subheading(options=nil)
-    content_unless_nil(:option_subheading, options, interpolation_args, :div)
-  end
-
-
+  wraps_localized_content intro_heading: :h3,
+                          intro: :div,
+                          we_recommend_heading: :div,
+                          why_chosen_heading: :h3,
+                          why_chosen_description: :div,
+                          geolocated_results_heading: :h4,
+                          geolocated_results_subheading: :div,
+                          recommended_available_at: :div,
+                          option_heading: :h3,
+                          option_subheading: :div
 
   ########## WRAPPED CONTENT METHODS
 
@@ -77,45 +59,41 @@ class FindAnAccountPresenter < BasePresenter
 
   ########## MAP RENDERING
 
+
+
   def geolocated_choice_map
-    unless selected_result.nil?
-      src = google_maps_src_for_account(selected_result)
-      h.render partial: 'account_finder/account_type/google_map', locals: {src: src}
-    end
+    google_map_if_not_nil(selected_result, :google_maps_src_for_account)
   end
 
   def google_map_search
-    term = map_search_term
-    unless term.nil?
-      src = google_map_search_uri(term)
-      h.render partial: 'account_finder/account_type/google_map', locals: {src: src}
-    end
+    google_map_if_not_nil(map_search_term, :google_map_search_uri)
   end
+
+  ########## CONDITIONAL BLOCK RENDERING
+
+  def recommended_option_block
+    render_block_unless_nil(recommended_option, :recommended_option)
+  end
+  def why_recommended_block
+    render_block_unless_nil(recommended_option, :why_recommended)
+  end
+
+  def geolocated_options_block
+    render_block_unless_nil(results, :geolocated_options)
+  end
+
+
 
 
   ########## MISC OTHER
 
-  def recommended_option_block
-    unless recommended_option.nil?
-      h.render(partial: 'account_finder/account_type/recommended_option', locals:{presenter: self})
-    end
-  end
-  def why_recommended_block
-    unless recommended_option.nil?
-      h.render(partial: 'account_finder/account_type/why_recommended', locals:{presenter: self})
-    end
-  end
+
 
 
   def cta_button(options=nil)
     h.link_to(I18n.t('account_finder.account_type.help_to_open_cta'), h.account_opening_assistance_path(user, account_type),options )
   end
 
-  def geolocated_options_block
-    unless results.nil?
-      h.render partial: 'account_finder/account_type/geolocated_options', locals: {presenter: self}
-    end
-  end
 
   def geolocated_option_title(bank_account)
     bank_account.branch.full_name
@@ -176,6 +154,12 @@ class FindAnAccountPresenter < BasePresenter
     h.content_tag(tag, text, options) unless text == ''
   end
 
+  def render_block_unless_nil(property, partial)
+    unless property.nil?
+      h.render(partial: "account_finder/account_type/#{partial}", locals:{presenter: self})
+    end
+  end
+
   def locale_token(element)
     "account_finder.account_type.#{act_token}.#{branching_element(element)}#{element}"
   end
@@ -190,6 +174,13 @@ class FindAnAccountPresenter < BasePresenter
       end
     end
 
+  end
+
+  def google_map_if_not_nil(property, src_method)
+    unless property.nil?
+      src = self.send(src_method, property)
+      h.render partial: 'account_finder/account_type/google_map', locals: {src: src}
+    end
   end
 
   def google_maps_src_for_account(account)
