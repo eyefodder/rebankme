@@ -3,8 +3,10 @@ class StaticController < ApplicationController
 
   def home
 
-    track! :shown_home_page
+
   end
 
+	def index
 
+  end
 end

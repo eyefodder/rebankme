@@ -42,84 +42,57 @@ describe User do
     end
   end
 
-  describe '#answered_any_questions?' do
-    it 'returns false if no questions answered' do
-      expect(user.answered_any_questions?).to be_false
+  describe 'associations' do
+    it 'should belong to special group' do
+      expect(user).to belong_to(:special_group)
     end
-    it 'returns true if any boolean questions answered' do
-      [:is_delinquent,
-        :will_use_direct_deposit,
-        :has_predictable_income,
-        :needs_debit_card].each do |property|
-          user[property] = true
-          expect(user.answered_any_questions?).to be_true, "#{property} set should give answered_any_questions? true"
-          user[property] = false
-          expect(user.answered_any_questions?).to be_true, "#{property} set should give answered_any_questions? true"
-          user[property] = nil
-          expect(user.answered_any_questions?).to be_false, "#{property} unset should give answered_any_questions? false"
-        end
-      end
-      it 'returns true if a special group is set' do
-        user.special_group = SpecialGroup.VETERAN
-        expect(user.answered_any_questions?).to be_true
-      end
-      it 'returns true if a special group is not special' do
-        user.special_group = SpecialGroup.NOT_SPECIAL
-        expect(user.answered_any_questions?).to be_true
-      end
+    it 'should belong to state' do
+      expect(user).to belong_to(:state)
     end
+  end
 
-    describe 'associations' do
-      it 'should belong to special group' do
-        expect(user).to belong_to(:special_group)
-      end
-      it 'should belong to state' do
-        expect(user).to belong_to(:state)
-      end
+  describe 'is_special_group' do
+    let(:special_group) {create(:special_group)}
+    it 'should have is_special_group be null if nothing set' do
+      expect(user.is_special_group).to be_nil
     end
+    it 'should have is_special_group be true if a special group id set' do
+      user.special_group = special_group
+      user.save!
+      expect(user.is_special_group).to be_true
+    end
+    it 'should have is_special_group be false if SpecialGroup.NOT_SPECIAL' do
+      user.special_group = SpecialGroup.NOT_SPECIAL
+      user.save!
+      expect(user.is_special_group).to be_false
+    end
+  end
 
-    describe 'is_special_group' do
-      let(:special_group) {create(:special_group)}
-      it 'should have is_special_group be null if nothing set' do
-        expect(user.is_special_group).to be_nil
-      end
-      it 'should have is_special_group be true if a special group id set' do
-        user.special_group = special_group
+  describe '#set_option' do
+    describe 'special_group' do
+      let(:special_group){create(:special_group)}
+      it 'sets a special group and returns is_special_group to be true' do
+        user.set_option('special_group', special_group.name_id)
         user.save!
+        expect(user.special_group).to eq(special_group)
         expect(user.is_special_group).to be_true
       end
-      it 'should have is_special_group be false if SpecialGroup.NOT_SPECIAL' do
-        user.special_group = SpecialGroup.NOT_SPECIAL
+      it 'sets a special group and returns is_special_group to be false if not special sent' do
+        user.set_option('special_group', 'false')
         user.save!
+        expect(user.special_group).to eq(SpecialGroup.NOT_SPECIAL)
         expect(user.is_special_group).to be_false
       end
     end
+  end
 
-    describe '#set_option' do
-      describe 'special_group' do
-        let(:special_group){create(:special_group)}
-        it 'sets a special group and returns is_special_group to be true' do
-          user.set_option('special_group', special_group.name_id)
-          user.save!
-          expect(user.special_group).to eq(special_group)
-          expect(user.is_special_group).to be_true
-        end
-        it 'sets a special group and returns is_special_group to be false if not special sent' do
-          user.set_option('special_group', 'false')
-          user.save!
-          expect(user.special_group).to eq(SpecialGroup.NOT_SPECIAL)
-          expect(user.is_special_group).to be_false
-        end
-      end
+  describe '#distance_to' do
+    let(:brooklyn_user){create(:user, latitude: 40.6945036, longitude: -73.9565551, zipcode: '11205')}
+    let(:bronx_branch) {create(:branch, latitude: 40.8522159, longitude: -73.907912, zipcode: '10453')}
+    let(:bronx_safe_account) {create(:bank_account, branch: bronx_branch, name: 'bronx safe account')}
+    it 'gives distance_to a branch' do
+      expect(brooklyn_user.distance_to(bronx_branch)).to be_within(0.01).of(11.19)
     end
-
-    describe '#distance_to' do
-      let(:brooklyn_user){create(:user, latitude: 40.6945036, longitude: -73.9565551, zipcode: '11205')}
-      let(:bronx_branch) {create(:branch, latitude: 40.8522159, longitude: -73.907912, zipcode: '10453')}
-      let(:bronx_safe_account) {create(:bank_account, branch: bronx_branch, name: 'bronx safe account')}
-      it 'gives distance_to a branch' do
-        expect(brooklyn_user.distance_to(bronx_branch)).to be_within(0.01).of(11.19)
-      end
     # xit 'gives distance to an account' do
     #   expect(brooklyn_user.distance_to(bronx_safe_account)).to be_within(0.01).of(11.19)
     # end

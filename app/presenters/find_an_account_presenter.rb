@@ -194,4 +194,6 @@ class FindAnAccountPresenter < BasePresenter
   def map_search_term
     GoogleSearchTermFactory.map_search_term_for(account_type, user)
   end
+
+
 end

@@ -1,9 +1,0 @@
-development:
-  adapter: active_record
-  active_record_adapter: postgresql
-  database: rebank_me_dev
-test:
-  collecting: false
-  adapter: active_record
-  active_record_adapter: postgresql
-  database: rebank_me_test

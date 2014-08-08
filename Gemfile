@@ -51,8 +51,6 @@ gem 'geocoder' #address lookup
 gem 'devise' #authentication framework
 gem 'omniauth-facebook' #authentication using facebook oauth
 
-gem 'vanity' #metrics tracking
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
