@@ -47,21 +47,33 @@ class User < ActiveRecord::Base
   end
 
   def is_special_group
-   unless special_group_id.nil?
-    special_group != SpecialGroup.NOT_SPECIAL
+    unless special_group_id.nil?
+      special_group != SpecialGroup.NOT_SPECIAL
+    end
   end
-end
 
-def country_code
-  'US'
-end
+  def answered_any_questions?
+    questions =[:is_delinquent,
+        :will_use_direct_deposit,
+        :has_predictable_income,
+        :special_group_id,
+        :needs_debit_card]
+    questions.each do |property|
+          return true unless self[property].nil?
+        end
+    false
+  end
 
-private
+  def country_code
+    'US'
+  end
 
-def validate_email
-  errors.add(:email, I18n.t('errors.messages.invalid_email_format')) unless
-  email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-end
+  private
+
+  def validate_email
+    errors.add(:email, I18n.t('errors.messages.invalid_email_format')) unless
+    email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  end
 
   # class EmailValidator < ActiveModel::EachValidator
   #   def validate_each(record, attribute, value)
