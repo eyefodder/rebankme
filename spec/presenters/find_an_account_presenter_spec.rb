@@ -185,6 +185,7 @@ describe FindAnAccountPresenter do
     describe '#we_recommend_heading' do
       it_behaves_like 'a localized content wrapping method' do
         let(:property) {:we_recommend_heading}
+        let(:tag) {:div}
       end
     end
 
