@@ -3,3 +3,6 @@ development:
   connection: <%= ENV["REDISTOGO_URL"] %>
 test:
   collecting: false
+production:
+  adapter: redis
+  connection: <%= ENV["REDISTOGO_URL"] %>
