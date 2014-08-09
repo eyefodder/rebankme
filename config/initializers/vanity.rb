@@ -1,0 +1,1 @@
+puts "autoconnect: #{Vanity::Autoconnect.playground_should_autoconnect?}"

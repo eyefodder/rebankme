@@ -34,5 +34,10 @@ module Rebankme
         password:             ENV['MAILER_PASSWORD'],
         authentication:       'plain',
         enable_starttls_auto: true  }
+
+    #load redis gem
+    config.gem 'redis-namespace', :lib => 'redis/namespace'
+    config.gem 'redis'
     end
+
 end

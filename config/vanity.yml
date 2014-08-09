@@ -1,0 +1,5 @@
+development:
+  adapter: redis
+  connection: <%= ENV["REDISTOGO_URL"] %>
+test:
+  collecting: false

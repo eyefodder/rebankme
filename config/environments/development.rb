@@ -32,6 +32,6 @@ Rebankme::Application.configure do
 
   config.log_level = :debug
 
-
+  ENV["REDISTOGO_URL"] = 'redis://127.0.0.1:6900/0'
 
   end

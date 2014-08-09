@@ -44,4 +44,6 @@ Rebankme::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.log_level = :error
+
+  ENV["VANITY_DISABLED"] = 'true'
 end

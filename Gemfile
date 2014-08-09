@@ -51,6 +51,12 @@ gem 'geocoder' #address lookup
 gem 'devise' #authentication framework
 gem 'omniauth-facebook' #authentication using facebook oauth
 
+
+gem 'vanity', '2.0.0beta2' #metrics tracking
+gem 'redis' #redis
+gem 'redis-namespace'
+gem 'flot-rails', :git => "https://github.com/Kjarrigan/flot-rails.git" #javascript charts
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
