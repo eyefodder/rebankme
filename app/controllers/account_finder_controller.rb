@@ -1,6 +1,7 @@
 class AccountFinderController < ApplicationController
   def start
     @user = User.new
+    track! :shown_start_page if flash[:error].nil?
   end
 
 
@@ -13,12 +14,15 @@ class AccountFinderController < ApplicationController
 
       if @account_type.nil?
         redirect_to :back, flash:{error: @user.errors.full_messages} unless @user.valid?
+        track! :started_account_type_finder unless @user.answered_any_questions?
       else
         @user.save!
+        track! :shown_account_type
         render :account_type_found
       end
     rescue ActionController::ParameterMissing => e
       log.warn('user parameters missing; have to go back to start')
+      track! :errored_during_account_type_finder
       redirect_to account_finder_start_path
     end
 
@@ -38,6 +42,7 @@ class AccountFinderController < ApplicationController
 
       @selected_result = params[:selected_account_id] ? BankAccount.find(params[:selected_account_id]) : @results.first # unless param passed
     end
+    track! :shown_find_account
   end
 
   private

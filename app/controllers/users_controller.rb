@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @account_type = AccountType.find(params[:account_type_id])
     @redirect_path = account_opening_assistance_path(@user, @account_type)
     if @user.email?
+      track! :shown_help_me_open
       EmailSender.delay.notify_of_user_help_request(@user.id, @account_type.id)
     else
       redirect_to request_user_email_path(@user, redirect_path: @redirect_path, allow_skip: 0)
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:user_id])
     @redirect_path = params[:redirect_path]
     @allow_skip = params[:allow_skip] != '0'
+    track! :shown_request_email
   end
 
   def update
