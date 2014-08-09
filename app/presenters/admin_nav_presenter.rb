@@ -22,6 +22,10 @@ class AdminNavPresenter < BasePresenter
     link_for('Job Queue', h.job_queue_path)
   end
 
+  def vanity_link
+    link_for('Metrics', :controller => :vanity, :action => :index)
+  end
+
   def logout_link
     link = h.link_to('Log out', h.destroy_admin_user_session_path, method: :delete, id: 'logout')
     h.content_tag(:li, link)

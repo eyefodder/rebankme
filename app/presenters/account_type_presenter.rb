@@ -11,7 +11,8 @@ class AccountTypePresenter < BasePresenter
 
   def find_right_account_link_for(user, options=nil)
     link_text = I18n.t("account_finder.account_type_found.cta", product: product_name)
-    link_path = user.email? ? h.account_finder_path(user) :  h.request_user_email_path(user,redirect_path: h.account_finder_path(user) )
+    # link_path = user.email? ? h.account_finder_path(user) :  h.request_user_email_path(user,redirect_path: h.account_finder_path(user) )
+    link_path = h.account_finder_path(user)
     h.link_to link_text , link_path, options
   end
 

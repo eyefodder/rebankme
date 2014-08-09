@@ -26,6 +26,7 @@ Rebankme::Application.routes.draw do
     resources :bank_accounts
     authenticated :admin_user do
       match "/job_queue" => DelayedJobWeb, :anchor => false, via: [:get, :post], as: :job_queue
+      match '/vanity(/:action(/:id(.:format)))', :controller => :vanity, :via => [:get, :post], as: :vanity
     end
   end
 
