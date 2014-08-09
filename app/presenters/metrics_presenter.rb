@@ -6,10 +6,10 @@ class MetricsPresenter < BasePresenter
   end
 
   def min_count
-    metrics.last[:total]
+    metrics.min_by{ |x| x[:total] }
   end
   def max_count
-    metrics.first[:total]
+    metrics.max_by{ |x| x[:total] }
   end
 
   def metric_total(metric_obj)
