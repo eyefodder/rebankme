@@ -13,8 +13,11 @@ class AccountFinderController < ApplicationController
       @account_type =  AccountTypeFactory.account_type_for(@user)
 
       if @account_type.nil?
-        redirect_to :back, flash:{error: @user.errors.full_messages} unless @user.valid?
-        track! :started_account_type_finder unless @user.answered_any_questions?
+        if @user.valid?
+          track! :started_account_type_finder unless @user.answered_any_questions?
+        else
+          redirect_to :back, flash:{error: @user.errors.full_messages}
+        end
       else
         @user.save!
         track! :shown_account_type
