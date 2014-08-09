@@ -6,10 +6,12 @@ class MetricsPresenter < BasePresenter
   end
 
   def min_count
-    metrics.min_by{ |x| x[:total] }
+    min = metrics.min_by{ |x| x[:total] }
+    min[:total]
   end
   def max_count
-    metrics.max_by{ |x| x[:total] }
+    max = metrics.max_by{ |x| x[:total] }
+    max[:total]
   end
 
   def metric_total(metric_obj)
@@ -17,8 +19,8 @@ class MetricsPresenter < BasePresenter
   end
   def metric_pct_of_total(metric_obj)
     amt = metric_obj[:total].to_f
-    total = metrics.first[:total]
-    (amt/total) * 100
+
+    (amt/max_count) * 100
   end
 
   def metrics_prog_bar(metric_obj)
