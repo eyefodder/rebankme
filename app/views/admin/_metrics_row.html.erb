@@ -1,0 +1,7 @@
+<tr>
+<%= content_tag :td, metric[:metric].name %>
+<%= content_tag :td, presenter.metric_total(metric) %>
+<%= content_tag :td, presenter.metric_pct_of_total(metric) %>
+<%= content_tag :td, presenter.metric_drop_from_last(metric, metric_counter) %>
+
+</tr>
