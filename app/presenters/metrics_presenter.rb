@@ -5,13 +5,37 @@ class MetricsPresenter < BasePresenter
     h.render(partial: 'admin/metrics_table', locals: { presenter: self}) if metrics.length > 0
   end
 
+  def min_count
+    metrics.last[:total]
+  end
+  def max_count
+    metrics.first[:total]
+  end
+
   def metric_total(metric_obj)
     h.number_to_human(metric_obj[:total], precision: 0)
   end
   def metric_pct_of_total(metric_obj)
     amt = metric_obj[:total].to_f
     total = metrics.first[:total]
-    h.number_to_percentage((amt/total) * 100, precision: 1)
+    (amt/total) * 100
+  end
+
+  def metrics_prog_bar(metric_obj)
+    amt = metric_obj[:total]
+    h.content_tag(:div, class: 'progress') do
+      h.content_tag(:div,
+        amt,
+        class: 'progress-bar',
+          role: 'progressbar',
+          aria: {
+            valuenow: amt,
+            valuemin: min_count,
+            valuemax: max_count,
+          },
+          style: "width: #{metric_pct_of_total(metric_obj)}%; min-width: 20px;",
+            )
+    end
   end
 
   def metric_drop_from_last(metric_obj, counter)
