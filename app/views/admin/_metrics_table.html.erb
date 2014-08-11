@@ -1,5 +1,5 @@
 <div class='table-responsive' >
-  <table class='table table-striped table-condensed row'>
+  <table class='table table-striped table-condensed row' id='site-metrics-table'>
     <thead>
       <tr>
         <th class='col-xs-4'>Stage</th>
@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= render partial: 'admin/metrics_row', collection: @funnel.metrics, as: :metric, locals: { presenter: presenter} %>
+      <%= render partial: 'admin/metrics_row', collection: funnel.metrics, as: :metric, locals: { presenter: presenter} %>
     </tbody>
   </table>
 </div>

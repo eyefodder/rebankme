@@ -13,17 +13,10 @@ class AdminController < ApplicationController
      :shown_help_me_open]
 
      @funnel = MetricsFunnel.new
-     unless Rails.env.test?
-      metric_names.each do |metric_name|
-        metric = Vanity.playground.metric(metric_name)
-        total_count = Vanity::Metric.data(metric).to_a.inject(0){|sum, obj| sum + obj[1]}
-
-
-        @funnel.add_metric(metric.name, metric.description, total_count)
-      end
+     metric_names.each do |metric_name|
+      metric = Vanity.playground.metric(metric_name)
+      total_count = Vanity.playground.collecting? ? (Vanity::Metric.data(metric).to_a.inject(0){|sum, obj| sum + obj[1]}) : 0
+      @funnel.add_metric(metric.name, metric.description, total_count)
     end
   end
-
-
-
 end

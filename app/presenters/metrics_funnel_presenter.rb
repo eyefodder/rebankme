@@ -2,7 +2,7 @@ class MetricsFunnelPresenter < BasePresenter
   presents :metrics_funnel
 
   def metrics_table
-    h.render(partial: 'admin/metrics_table', locals: { presenter: self}) if metrics_funnel.has_metrics?
+    h.render(partial: 'admin/metrics_table', locals: { presenter: self, funnel: metrics_funnel}) if metrics_funnel.has_metrics?
   end
 
   def metric_as_prog_bar(funnel_metric)
