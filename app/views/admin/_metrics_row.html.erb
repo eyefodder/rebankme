@@ -1,8 +1,8 @@
 <tr>
-<%= content_tag :td, metric[:metric].name %>
+<%= content_tag :td, metric.name %>
 <td>
-<%= presenter.metrics_prog_bar(metric) %>
+<%= presenter.metric_as_prog_bar(metric) %>
 </td>
-<%= content_tag :td, presenter.metric_drop_from_last(metric, metric_counter) %>
+<%= content_tag :td, presenter.metric_retention(metric) %>
 
 </tr>

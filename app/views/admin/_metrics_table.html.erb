@@ -4,11 +4,11 @@
       <tr>
         <th class='col-xs-4'>Stage</th>
         <th  class='col-xs-7'># People</th>
-        <th class='col-xs-1'>% drop from last stage</th>
+        <th class='col-xs-1'>% retention from last stage</th>
       </tr>
     </thead>
     <tbody>
-      <%= render partial: 'admin/metrics_row', collection: @metrics, as: :metric, locals: { presenter: presenter, metrics: @metrics} %>
+      <%= render partial: 'admin/metrics_row', collection: @funnel.metrics, as: :metric, locals: { presenter: presenter} %>
     </tbody>
   </table>
 </div>

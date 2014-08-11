@@ -1,8 +1,8 @@
-<% present @metrics, MetricsPresenter do |presenter| %>
+<% present @funnel do |presenter| %>
 <% provide(:heading,  'Admin') %>
 <% provide(:page_title, 'Admin') %>
 <h2>Funnel</h2>
-<%= presenter.metrics_new %>
+<%= presenter.metrics_table %>
 
 
 
