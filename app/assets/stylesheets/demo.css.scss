@@ -59,12 +59,27 @@ form{
 
 input, .form-control{
   color: $darkGrey;
-  text-transform: uppercase;
   font-weight: bold;
   background: #e6e6e6;
   border: none;
   box-shadow: none !important;
   border-radius: 0px !important;
+}
+
+::-webkit-input-placeholder {
+   text-transform: uppercase;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-transform: uppercase;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-transform: uppercase;
+}
+
+:-ms-input-placeholder {
+   text-transform: uppercase;
 }
 
 a{
@@ -317,13 +332,6 @@ ul.action-links li{
   padding-top: 15px;
 }
 
-//
-
-// zip code form
-.enter-zip{
-  text-transform: uppercase;
-}
-//
 
 // account selection
 
