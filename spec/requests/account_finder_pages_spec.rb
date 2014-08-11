@@ -49,11 +49,22 @@ describe 'Account Finder Pages', :type => :request do
 
   describe 'find account page' do
     let(:good_zipcode) {'11205'}
-    let!(:account_1) {create(:bank_account, account_type: AccountType.SAFE_ACCOUNT )}
-    let!(:account_2) {create(:bank_account, account_type: AccountType.PREPAY_CARD )}
-    let!(:account_3) {create(:bank_account, account_type: AccountType.SAFE_ACCOUNT )}
+    let(:account_1) {create(:bank_account, account_type: AccountType.SAFE_ACCOUNT )}
+    let(:account_2) {create(:bank_account, account_type: AccountType.PREPAY_CARD )}
+    let(:account_3) {create(:bank_account, account_type: AccountType.SAFE_ACCOUNT )}
 
     before do
+      BankAccount.destroy_all
+
+      BankAccount.stub(:accounts_near).and_return([account_1, account_3])
+
+
+      account_1
+      account_2
+      account_3
+
+
+
       visit account_finder_start_path
       # enter zipcode
       populate_form_field(:user, :zipcode, good_zipcode)
@@ -67,6 +78,7 @@ describe 'Account Finder Pages', :type => :request do
     end
 
     it 'recommends the closest result' do
+
       within('div.recommended_option') do
         expect(page).to have_css('h4', text: account_1.name)
         expect(page).to have_css('div.recommend-branch-name', text: account_1.branch.full_name)
