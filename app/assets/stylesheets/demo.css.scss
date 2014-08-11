@@ -344,3 +344,14 @@ ul.action-links li{
 .page-bottom{
   padding-bottom: 10px;
 }
+
+.other-banking-option {
+  &.selected_option {
+    border-left: 5px solid #ddd;
+    padding-left: 5px;
+  }
+  &.recommended_option {
+    border-left: 5px solid $accent-color;
+    padding-left: 5px;
+  }
+}
