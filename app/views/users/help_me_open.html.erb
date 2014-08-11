@@ -7,7 +7,7 @@
   <%= presenter.body_copy('users.help_me_open', product: @account_type.name, class: 'col-xs-12', id: 'intro_text') %>
 </div>
 <h3><%= t('.what_you_need.title') %></h3>
-<%= presenter.what_you_need_bullets %>
+<%= presenter.what_you_need_bullets({class: "list-group"}, {class: "list-group-item list-group-item-info"}) %>
 <h3><%= t('.well_be_in_touch.title') %></h3>
 <div class='row'>
 <%= presenter.body_copy('users.help_me_open.well_be_in_touch', class: 'col-xs-12', id: 'in_touch_text') %>
