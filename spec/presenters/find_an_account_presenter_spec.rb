@@ -365,7 +365,7 @@ describe FindAnAccountPresenter do
       it 'returns wrapped link' do
         src = account_finder_path(user, selected_account_id: bank_account_2.id )
         content = "thing"
-        expected = view.link_to(content, src)
+        expected = view.link_to(content, src, id: "select_account_#{bank_account_2.id}"  )
         result = presenter.geolocated_result_link(bank_account_2) do
           content
         end

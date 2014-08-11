@@ -110,6 +110,7 @@ class FindAnAccountPresenter < BasePresenter
   end
 
   def geolocated_result_link(bank_account,options={})
+    options = merge_tag_options({id: "select_account_#{bank_account.id}"}, options)
     options = merge_tag_options({class: 'recommended_option'}, options) if (bank_account==recommended_option)
     options = merge_tag_options({class: 'selected_option'}, options) if (bank_account==selected_result)
     link = h.account_finder_path(user, selected_account_id: bank_account.id )

@@ -51,20 +51,48 @@ describe 'Account Finder Pages', :type => :request do
     let(:good_zipcode) {'11205'}
     let!(:account_1) {create(:bank_account, account_type: AccountType.SAFE_ACCOUNT )}
     let!(:account_2) {create(:bank_account, account_type: AccountType.PREPAY_CARD )}
-    let!(:account_2) {create(:bank_account, account_type: AccountType.SAFE_ACCOUNT )}
+    let!(:account_3) {create(:bank_account, account_type: AccountType.SAFE_ACCOUNT )}
 
     before do
       visit account_finder_start_path
       # enter zipcode
       populate_form_field(:user, :zipcode, good_zipcode)
-
       click_submit_button
-
       # yes to delinquent
       click_yes_button
-
       # yes to regular income
       click_yes_button
+      #view results
+      click_link('account-finder-drilldown-button')
+    end
+
+    it 'recommends the closest result' do
+      within('div.recommended_option') do
+        expect(page).to have_css('h4', text: account_1.name)
+        expect(page).to have_css('div.recommend-branch-name', text: account_1.branch.full_name)
+        expect(page).to have_css('div.recommended-branch-address', text: account_1.branch.full_address)
+      end
+    end
+
+    it 'displays other options heading' do
+      within('div.other-branches') do
+        expect(page).to have_css('h4', text: I18n.t('account_finder.account_type.safe_account.geolocated_results_heading', zipcode: good_zipcode))
+      end
+    end
+    it 'displays the recommended result as selected' do
+      within('a.recommended_option.selected_option') do
+        expect(page).to have_css('div', text:account_1.branch.full_name )
+      end
+    end
+    describe 'clicking the second option' do
+      before do
+        click_link("select_account_#{account_3.id}")
+      end
+      it 'displays new bank as selected' do
+        within('a.selected_option') do
+          expect(page).to have_css('div', text:account_3.branch.full_name )
+        end
+      end
     end
 
   end
