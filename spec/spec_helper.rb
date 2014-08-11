@@ -101,6 +101,15 @@ Spork.prefork do
         ]
         )
       Geocoder::Lookup::Test.add_stub(
+        '97206', [
+          {
+            'latitude'     => 44.2875783,
+            'longitude'    => -121.6724376,
+            'state_code' => 'OR'
+          }
+        ]
+        )
+      Geocoder::Lookup::Test.add_stub(
         '11205', [
           {
             'latitude'     => 40.6945036,

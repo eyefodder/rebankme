@@ -34,6 +34,7 @@ describe BankAccount do
     end
   end
   describe '.accounts_near' do
+    let(:oregon_user){create(:user, latitude: 44.0, longitude: -121.6724376, zipcode: '97206')}
     let(:bronx_user){create(:user, latitude: 40.8803247, longitude: -73.9095279, zipcode: '10463')}
     let(:brooklyn_user){create(:user, latitude: 40.6945036, longitude: -73.9565551, zipcode: '11205')}
     let(:bronx_branch) {create(:branch, latitude: 40.8522159, longitude: -73.907912, zipcode: '10453')}
@@ -53,6 +54,11 @@ describe BankAccount do
       brooklyn_prepay_account
       bronx_safe_account
       beverly_hills_safe_account
+    end
+
+    it 'returns an empty array if nothing nearby' do
+      results = BankAccount.accounts_near(oregon_user, AccountType.SAFE_ACCOUNT)
+      expect(results.length).to eq 0
     end
 
     it 'only includes specified account types' do
