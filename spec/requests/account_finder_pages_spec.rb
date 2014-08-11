@@ -43,6 +43,30 @@ describe 'Account Finder Pages', :type => :request do
       end
     end
 
+    # describe 'fin'
+
+  end
+
+  describe 'find account page' do
+    let(:good_zipcode) {'11205'}
+    let!(:account_1) {create(:bank_account, account_type: AccountType.SAFE_ACCOUNT )}
+    let!(:account_2) {create(:bank_account, account_type: AccountType.PREPAY_CARD )}
+    let!(:account_2) {create(:bank_account, account_type: AccountType.SAFE_ACCOUNT )}
+
+    before do
+      visit account_finder_start_path
+      # enter zipcode
+      populate_form_field(:user, :zipcode, good_zipcode)
+
+      click_submit_button
+
+      # yes to delinquent
+      click_yes_button
+
+      # yes to regular income
+      click_yes_button
+    end
+
   end
 
 
