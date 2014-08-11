@@ -4,14 +4,14 @@
       <div class='caps color-accent bold font-mid margin-more margin-vert'>
         <%= item[:title] %>
       </div>
-      <div class=''>
-        <%= presenter.online_option_feature_bullets item[:features], {class: 'yourliststylinghere'}, {class: 'yourbulletstylinghere'} %>
-      </div>
     </div>
     <div class='cta col-xs-4 clearifix'>
       <div class='image pull-right'>
         <%= image_tag item[:image_uri], width: 100 %>
       </div>
+    </div>
+    <div class='col-xs-12'>
+      <%= presenter.online_option_feature_bullets item[:features], {class: 'bullets'}, {class: 'yourbulletstylinghere'} %>
     </div>
   </div>
   <div class="">

@@ -283,6 +283,11 @@ h3 {
 ul{
   list-style-type: none;
   padding-left: 0px;
+
+  &.bullets {
+    list-style-type: disc;
+    padding-left: 15px;
+  }
 }
 
 ul.action-links li{
