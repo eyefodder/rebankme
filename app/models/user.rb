@@ -76,13 +76,6 @@ class User < ActiveRecord::Base
       email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
     end
 
-  # class EmailValidator < ActiveModel::EachValidator
-  #   def validate_each(record, attribute, value)
-  #     record.errors.add attribute, (options[:message] || "is not an email") unless
-  #     (value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i) || value.nil?
-  #   end
-  # end
-
   def existing_us_zipcode
     if zipcode_valid?
       result = Geocoder.search(zipcode).first
@@ -99,18 +92,6 @@ class User < ActiveRecord::Base
       errors.add(:zipcode, I18n.t('errors.messages.invalid_zipcode_format'))
     end
   end
-
-  def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
-      user.email = auth.info.email
-      # user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name   # assuming the user model has a name
-      #user.image = auth.info.image # assuming the user model has an image
-
-      # ALSO @see https://github.com/mkdynamic/omniauth-facebook for more oauth data from FB
-    end
-  end
-
 
 end
 
