@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def update
     set_item_from_params
-    @redirect_path = params[:redirect_path]
+    @redirect_path = URI.parse(params[:redirect_path]).path
     if @user.update_attributes(request_email_params)
       redirect_to @redirect_path, only_path: true
     else
