@@ -16,14 +16,13 @@ Rebankme::Application.routes.draw do
   resources :users
   get 'users/:user_id/request_email', to: 'users#request_email', as: :request_user_email
   get 'users/:user_id/:account_type_id/help_me_open', to: 'users#help_me_open', as: :account_opening_assistance
-  # match 'users/:user_id/find_account/:account_type_id', as:
+
 
   get 'admin', to: 'admin#home', as: :admin
 
   scope '/admin' do
-    resources :banks
-    resources :branches
-    resources :bank_accounts
+    resources :banks, :branches, :bank_accounts, only: [:index, :new, :create, :edit, :update, :destroy]
+
     authenticated :admin_user do
       match "/job_queue" => DelayedJobWeb, :anchor => false, via: [:get, :post], as: :job_queue
       match '/vanity(/:action(/:id(.:format)))', :controller => :vanity, :via => [:get, :post], as: :vanity
@@ -39,11 +38,4 @@ Rebankme::Application.routes.draw do
 
 
 
-  # resources :account_types
-  # devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-
-  # devise_scope :user do
-  #   get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
-  #   get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
-  # end
 end

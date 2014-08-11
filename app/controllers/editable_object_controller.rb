@@ -22,13 +22,12 @@ class EditableObjectController < ApplicationController
   def edit
     set_item_from_params
   end
-  def show
-    set_item_from_params
-  end
+  # def show
+  #   set_item_from_params
+  # end
 
   def destroy
     @item_class.find(params[:id]).destroy
-    flash[:success] = "Item deleted."
     after_destroy
   end
   def update
@@ -42,19 +41,15 @@ class EditableObjectController < ApplicationController
 
   private
 
-  def create_with_associations(association_sym)
-    param_key = "#{association_sym.to_s}_attributes".to_sym
-    obj_params = item_params
-    associations_params = obj_params.delete(param_key)
-
-    # child_class = sym.to_s.camelize.constantize
-
-    new_obj = @item_class.new obj_params
-    child_obj = new_obj.create_address(associations_params)
-    new_obj.save
-    new_obj
-
-  end
+  # def create_with_associations(association_sym)
+  #   param_key = "#{association_sym.to_s}_attributes".to_sym
+  #   obj_params = item_params
+  #   associations_params = obj_params.delete(param_key)
+  #   new_obj = @item_class.new obj_params
+  #   child_obj = new_obj.create_address(associations_params)
+  #   new_obj.save
+  #   new_obj
+  # end
 
   def set_new_item
     @item = @item_class.new
@@ -67,9 +62,25 @@ class EditableObjectController < ApplicationController
   end
 
   def after_successful_create
-    flash[:success] = "Successfully created a new #{@item_class.name}"
-    redirect_to @item
+    flash[:success] = "Successfully created a new #{@item_class.model_name.human}: #{@item.name}"
+    after_success
   end
+
+  def after_successful_update
+    flash[:success] = "Item updated"
+    after_success
+  end
+  def after_destroy
+    flash[:success] = "Item deleted"
+    after_success
+  end
+
+
+
+  def after_success
+    redirect_to polymorphic_path(@item_class)
+  end
+
   def after_failed_create
     render 'new'
   end

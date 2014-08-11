@@ -19,6 +19,10 @@ module EditableObjectSteps
         expect(page).to have_delete_link(object), "cant find the delete button for #{object.name}"
       end
     end
+    it 'lets me delete an item' do
+      klass = type.to_s.camelize.constantize
+      expect{click_link(tag_id(:delete, objects.first))}.to change{klass.count}.by(-1)
+    end
     it 'has edit link for each item' do
       objects.each do |object|
         expect(page).to have_edit_link(object)
