@@ -67,8 +67,6 @@ class AccountTypePresenter < BasePresenter
       user.in_new_york_city? ? [{is_delinquent: false}, {is_special_group: false}, {will_use_direct_deposit: false}, {in_new_york_city: true}, {needs_debit_card: true}] : [{is_delinquent: false}, {is_special_group: false}, {will_use_direct_deposit: false}, {in_new_york_city: false}]
     when AccountType.SAFE_ACCOUNT
       user.is_delinquent ? [{is_delinquent: true}, {has_predictable_income: true}, {in_new_york_city: true}] : [{is_delinquent: false}, {is_special_group: false}, {will_use_direct_deposit: false}, {in_new_york_city: true}, {needs_debit_card: false}]
-    else
-      []
     end
   end
 

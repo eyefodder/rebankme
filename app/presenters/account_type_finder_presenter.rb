@@ -10,16 +10,10 @@ class AccountTypeFinderPresenter < BasePresenter
   alias_method :page_title, :page_heading
 
 
-  def question_specific_form_content
-    partial = next_property_token
-    if h.lookup_context.template_exists?(partial, h.lookup_context.prefixes, true)
-      h.render(partial: partial.to_s )
-    end
-  end
+
 
   def next_question_tag(options={})
     formatted_copy("account_finder.#{next_property_token}.question", options)
-    # h.content_tag(:div, I18n.t("account_finder.#{next_property_token}.question"), options)
   end
 
   def next_question_bullets_tag(list_options={}, bullet_options={})

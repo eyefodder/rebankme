@@ -5,12 +5,7 @@ describe AccountTypeFinderPresenter do
   let(:presenter){AccountTypeFinderPresenter.new(user,view)}
   let(:token){UserPropertyQuestionFactory.next_property_for(user)}
 
-  describe '#question_specific_form_content' do
-    it 'returns nothing if no special template' do
-      expect(presenter.question_specific_form_content).to be_nil
-    end
 
-  end
 
   describe '#start_over_button' do
     it 'returns a start over link' do
