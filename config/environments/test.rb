@@ -46,4 +46,7 @@ Rebankme::Application.configure do
   config.log_level = :error
 
   ENV["VANITY_DISABLED"] = 'true'
+  ENV['SECRET_TOKEN'] = 'dd7d6bd0314aa5dddc0e74b2f6c39f1aac1d4e3e9835f60e4cc2a53a72aa0fbabfe1fff0f3246f8ff67dc470a2020eff369bc40449a0be04aafeefeecb161fd0'
+
+
 end
