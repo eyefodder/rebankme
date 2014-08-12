@@ -1,10 +1,10 @@
 production:
   google_universal:
-    key: '***REMOVED***'
-    domain: 'www.rebankme.com'
+    key: <%= ENV["GOOGLE_ANALYTICS_KEY"] %>
+    domain: <%= ENV["GOOGLE_ANALYTICS_DOMAIN"] %>
 development:
   google_universal:
-    key: '***REMOVED***'
+    key: <%= ENV["GOOGLE_ANALYTICS_KEY"] %>
     domain: 'localhost'
   console:
     garbage: true

@@ -1,4 +1,5 @@
 export GOOGLE_MAPS_KEY=your_key_here
+export GOOGLE_ANALYTICS_KEY=your_key_here
 
 export MAILER_ADDRESS=smtp.gmail.com
 export MAILER_PORT=587
@@ -6,6 +7,7 @@ export MAILER_DOMAIN=your_domain
 export MAILER_USERNAME=address_to_send_mail_from
 export MAILER_REBANK_RECIPIENT=address_to_receive_help_requests
 export MAILER_PASSWORD=password_for_mail_username
+
 
 export SECRET_TOKEN=db32a7a9cf40078c43c09e326df7c0381e23f70bd9eec937d7b2afc7c8db9574cdb3310fe2894cb608823de19edd12aace29f361329e2ebc9cffb4ae75ca0c9e
 
