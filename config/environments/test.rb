@@ -1,9 +1,10 @@
 Rebankme::Application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  # Settings specified here will take precedence over those in
+  # config/application.rb.
 
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that
-  # your test database is "scratch space" for the test suite and is wiped
+  # your test database is 'scratch space' for the test suite and is wiped
   # and recreated between test runs. Don't rely on the data there!
   config.cache_classes = true
 
@@ -14,7 +15,7 @@ Rebankme::Application.configure do
 
   # Configure static asset server for tests with Cache-Control for performance.
   config.serve_static_assets  = true
-  config.static_cache_control = "public, max-age=3600"
+  config.static_cache_control = 'public, max-age=3600'
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -39,14 +40,13 @@ Rebankme::Application.configure do
     authentication:       'plain',
     enable_starttls_auto: true  }
 
-
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
   config.log_level = :error
 
-  ENV["VANITY_DISABLED"] = 'true'
+  ENV['VANITY_DISABLED'] = 'true'
+  # rubocop:disable all
   ENV['SECRET_TOKEN'] = 'dd7d6bd0314aa5dddc0e74b2f6c39f1aac1d4e3e9835f60e4cc2a53a72aa0fbabfe1fff0f3246f8ff67dc470a2020eff369bc40449a0be04aafeefeecb161fd0'
-
-
+  # rubocop:enable all
 end

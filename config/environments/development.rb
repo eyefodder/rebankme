@@ -1,5 +1,6 @@
 Rebankme::Application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  # Settings specified here will take precedence over those in
+  # config/application.rb.
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -27,11 +28,11 @@ Rebankme::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  #devise setup:
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  # devise setup:
+  config.action_mailer.default_url_options = { host: 'localhost:5000' }
 
   config.log_level = :debug
 
-  ENV["REDISTOGO_URL"] = 'redis://127.0.0.1:6900/0'
+  ENV['REDISTOGO_URL'] = 'redis://127.0.0.1:6900/0'
 
-  end
+end

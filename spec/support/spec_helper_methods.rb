@@ -1,5 +1,5 @@
-  #https://coderwall.com/p/jsutlq
+  # @SEE https://coderwall.com/p/jsutlq
   def show_page
-    save_page Rails.root.join( 'public', 'capybara.html' )
-    %x(launchy http://localhost:3000/capybara.html)
+    save_page Rails.root.join('public', 'capybara.html')
+    %x(`launchy http://localhost:3000/capybara.html`)
   end

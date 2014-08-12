@@ -2,23 +2,6 @@ development:
   adapter: postgresql
   database: rebank_me_dev
   host: localhost
-  # template: template0
-  # encoding: latin1
-
-# development:
-#   adapter: postgresql
-#   database: rebank_me_dev
-#   host: localhost
-#   username: vagrant
-#   password: dbpass
-
-# development:
-#   adapter: sqlite3
-#   database: db/development.sqlite3
-#   pool: 5
-#   timeout: 5000
-
-
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,27 +11,6 @@ test:
   adapter: postgresql
   database: rebank_me_test
   host: localhost
-  # template: template0
-  # encoding: latin1
-  # username: rebankme
-  # password: dbpass
-
-# ci_build:
-#   adapter: postgresql
-#   database: rebank_me_ci
-#   host: localhost
-
-# test:
-#   adapter: sqlite3
-#   database: db/test.sqlite3
-#   pool: 5
-#   timeout: 5000
-
-
-
 
 # production:
-#   adapter: sqlite3
-#   database: db/production.sqlite3
-#   pool: 5
-#   timeout: 5000
+#   written by heroku
