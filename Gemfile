@@ -49,13 +49,11 @@ gem 'going_postal' #zipcode *format* validation
 gem 'geocoder' #address lookup
 
 gem 'devise' #authentication framework
-gem 'omniauth-facebook' #authentication using facebook oauth
 
 
 gem 'vanity', '2.0.0beta2' #metrics tracking
 gem 'redis' #redis
 gem 'redis-namespace'
-gem 'flot-rails', :git => "https://github.com/Kjarrigan/flot-rails.git" #javascript charts
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -65,8 +63,6 @@ end
 
 gem 'quiet_assets', group: :development
 
-#monitoring
-gem 'newrelic_rpm'
 
 #logging
 gem 'logging'
@@ -85,7 +81,6 @@ group :development, :test do
 	gem 'guard-rspec', require: false
 	gem 'spork-rails', '4.0.0'
 	gem 'guard-spork', '1.5.0'
-	gem 'sqlite3', '1.3.8'
 	gem 'ci_reporter'
 	gem 'launchy'
 	gem 'database_cleaner'
@@ -102,7 +97,6 @@ group :test do
 	# Uncomment this line on OS X.
 	gem 'growl', '1.0.3'
  	# Uncomment these lines on Linux.
-	# gem 'libnotify', '0.8.0'
 	gem 'ruby_gntp'
 
 	# Uncomment these lines on Windows.
