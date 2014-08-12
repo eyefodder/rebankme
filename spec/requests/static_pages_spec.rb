@@ -4,22 +4,23 @@
 
 include PageContentSteps
 
-describe 'Static Pages', :type => :request do
+describe 'Static Pages', type: :request do
 
-	subject {page}
+  subject { page }
 
-	describe 'Home Page' do
-		before do
-			visit root_path
-		end
+  describe 'Home Page' do
+    before do
+      visit root_path
+    end
 
-		it 'has default page title' do
-			expect(page).to have_page_title('')
-		end
+    it 'has default page title' do
+      expect(page).to have_page_title('')
+    end
 
     it 'has a link to start the account finding process' do
-      expect(page).to have_link('start-account-finder', href: account_finder_start_path)
+      expect(page).to have_link('start-account-finder',
+                                href: account_finder_start_path)
     end
-	end
+  end
 
 end

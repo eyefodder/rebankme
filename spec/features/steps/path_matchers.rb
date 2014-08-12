@@ -14,5 +14,4 @@ module PathMatchers
       current_path.match('^\/users\/[0-9]+\/find_account$')
     end
   end
-
 end

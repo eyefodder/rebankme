@@ -7,13 +7,13 @@ include DataEntrySteps
 
 include EditableObjectSteps
 
-describe 'Branch Pages', :type => :request do
-  let (:required_properties) {[:name, :zipcode]}
-  let(:post_create_path){branches_path}
-  let(:type){:branch}
-  let(:admin_paths) {[:index, :new, :edit]}
+describe 'Branch Pages', type: :request do
+  let(:required_properties) { [:name, :zipcode] }
+  let(:post_create_path) { branches_path }
+  let(:type) { :branch }
+  let(:admin_paths) { [:index, :new, :edit] }
 
-  subject {page}
+  subject { page }
 
   include_context 'has index pages'
   include_context 'has admin only pages'

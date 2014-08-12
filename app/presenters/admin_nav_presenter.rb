@@ -1,17 +1,18 @@
 # (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
 # This code is licensed under MIT license (see LICENSE.txt for details)
 class AdminNavPresenter < BasePresenter
-
-
   def admin_home_link
     link_for('Admin Home', h.admin_path)
   end
+
   def banks_link
     link_for('Banks', h.banks_path)
   end
+
   def bank_accounts_link
     link_for('Bank Accounts', h.bank_accounts_path)
   end
+
   def branches_link
     link_for('Branches', h.branches_path)
   end
@@ -25,14 +26,16 @@ class AdminNavPresenter < BasePresenter
   end
 
   def vanity_link
-    link_for('Metrics', :controller => :vanity, :action => :index)
+    link_for('Metrics', controller: :vanity, action: :index)
   end
 
   def logout_link
-    link = h.link_to('Log out', h.destroy_admin_user_session_path, method: :delete, id: 'logout')
+    link = h.link_to('Log out',
+                     h.destroy_admin_user_session_path,
+                     method: :delete,
+                     id: 'logout')
     h.content_tag(:li, link)
   end
-
 
   private
 
@@ -43,7 +46,4 @@ class AdminNavPresenter < BasePresenter
   def nav_link_class(path)
     h.request.fullpath == path ? 'active' : ''
   end
-
-
-
 end

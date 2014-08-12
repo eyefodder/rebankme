@@ -2,35 +2,50 @@
 # This code is licensed under MIT license (see LICENSE.txt for details)
 require 'spec_helper'
 
-
-
 describe UserPropertyQuestionFactory do
-    let(:user){build(:user)}
-    let(:factory){UserPropertyQuestionFactory}
+  let(:user) { build(:user) }
+  let(:factory) { UserPropertyQuestionFactory }
 
-    describe '#next_property_for(user)' do
+  describe '#next_property_for(user)' do
     it 'returns :is_delinquent first' do
       expect(factory.next_property_for(user)).to eq(:is_delinquent)
     end
 
-    it 'returns :has_predictable_income if :is_delinquent is true' do
-      user.is_delinquent = true
-      expect(factory.next_property_for(user)).to eq(:has_predictable_income)
+    describe 'is_delinquent: true' do
+      before do
+        user.is_delinquent = true
+      end
+      it 'returns :has_predictable_income' do
+        expect(factory.next_property_for(user)).to eq(:has_predictable_income)
+      end
     end
-    it 'returns :is_special_group if :is_delinquent is false' do
-      user.is_delinquent = false
-      expect(factory.next_property_for(user)).to eq(:special_group)
-    end
-    it 'returns :will_use_direct_deposit if :is_delinquent -> false and :is_special_group -> false' do
-      user.is_delinquent = false
-      user.special_group = SpecialGroup.NOT_SPECIAL
-      expect(factory.next_property_for(user)).to eq(:will_use_direct_deposit)
-    end
-    it 'returns :needs_debit_card if :is_delinquent, :is_special_group and :will_use_direct_deposit all false' do
-      user.is_delinquent = false
-      user.special_group = SpecialGroup.NOT_SPECIAL
-      user.will_use_direct_deposit = false
-      expect(factory.next_property_for(user)).to eq(:needs_debit_card)
+
+    describe 'is_delinquent: false' do
+      before do
+        user.is_delinquent = false
+      end
+      it 'returns :is_special_group ' do
+        expect(factory.next_property_for(user)).to eq(:special_group)
+      end
+
+      describe ':NOT_SPECIAL' do
+        before do
+          user.special_group = SpecialGroup.NOT_SPECIAL
+        end
+        it 'returns :will_use_direct_deposit' do
+          result = factory.next_property_for(user)
+          expect(result).to eq(:will_use_direct_deposit)
+        end
+        describe 'will_use_direct_deposit: false' do
+          before do
+            user.will_use_direct_deposit = false
+          end
+          it 'returns :needs_debit_card'  do
+            expect(factory.next_property_for(user)).to eq(:needs_debit_card)
+          end
+
+        end
+      end
     end
   end
 

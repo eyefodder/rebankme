@@ -1,29 +1,17 @@
 # (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
 # This code is licensed under MIT license (see LICENSE.txt for details)
 # require 'spec_helper'
-
 include PageContentSteps
 include DataEntrySteps
 include PathMatchers
-
 include ActionView::Helpers::TextHelper
-
-
-
-
-
-describe 'User Pages', :type => :request do
-  let(:user) {create(:user)}
-  let(:good_email){'eyefodder@gmail.com'}
-
-
-  subject {page}
-
-
-
+describe 'User Pages', type: :request do
+  let(:user) { create(:user) }
+  let(:good_email) { 'eyefodder@gmail.com' }
+  subject { page }
 
   describe 'account_opening_assistance' do
-    let(:account_type){AccountType.SAFE_ACCOUNT}
+    let(:account_type) { AccountType.SAFE_ACCOUNT }
 
     describe 'a user with no email' do
       before do
@@ -41,7 +29,8 @@ describe 'User Pages', :type => :request do
           click_submit_button
         end
         it 'displays the help me open page' do
-          expect(current_path).to eq account_opening_assistance_path(user, account_type)
+          expected = account_opening_assistance_path(user, account_type)
+          expect(current_path).to eq expected
         end
       end
     end
@@ -52,7 +41,10 @@ describe 'User Pages', :type => :request do
         user.save!
       end
       it 'via email' do
-        expect{visit account_opening_assistance_path(user, account_type)}.to change { ActionMailer::Base.deliveries.count }.by(1)
+        path = account_opening_assistance_path(user, account_type)
+        expect { visit path }.to change {
+          ActionMailer::Base.deliveries.count
+        }.by(1)
       end
     end
 
@@ -63,7 +55,8 @@ describe 'User Pages', :type => :request do
         visit account_opening_assistance_path(user, account_type)
       end
       it 'displays the help me open page' do
-        expect(current_path).to eq account_opening_assistance_path(user, account_type)
+        expected = account_opening_assistance_path(user, account_type)
+        expect(current_path).to eq expected
       end
 
     end
@@ -76,24 +69,31 @@ describe 'User Pages', :type => :request do
       end
 
       it 'has a title' do
-        expected_title = I18n.t('users.help_me_open.page_title', product: account_type.name)
-        expected_heading = I18n.t('users.help_me_open.heading', product: account_type.name)
+        expected_title = I18n.t('users.help_me_open.page_title',
+                                product: account_type.name)
+        expected_heading = I18n.t('users.help_me_open.heading',
+                                  product: account_type.name)
         expect(page).to have_page_title(expected_title)
         expect(page).to have_page_heading(expected_heading)
       end
       it 'has body copy' do
-        content = I18n.t('users.help_me_open.body_copy', product: account_type.name)
+        content = I18n.t('users.help_me_open.body_copy',
+                         product: account_type.name)
         expect(page).to have_body_copy(content).with_id('intro_text')
       end
       it 'has a list of required documents' do
-        expect(page).to have_css('h3', text: I18n.t('users.help_me_open.what_you_need.title'))
-        bullets = I18n.t('users.help_me_open.what_you_need.things_needed', default:{}).to_a.map{|obj| obj[1]}
+        title = I18n.t('users.help_me_open.what_you_need.title')
+        expect(page).to have_css('h3', text: title)
+        i18n_bullets = I18n.t('users.help_me_open.what_you_need.things_needed',
+                              default: {})
+        bullets = i18n_bullets.to_a.map { |obj| obj[1] }
         bullets.each  do |bullet|
           expect(page).to have_css('li', text: bullet)
         end
       end
       it "has a we'll be in touch section" do
-        expect(page).to have_css('h3', text: I18n.t('users.help_me_open.well_be_in_touch.title'))
+        title = I18n.t('users.help_me_open.well_be_in_touch.title')
+        expect(page).to have_css('h3', text: title)
         content = I18n.t('users.help_me_open.well_be_in_touch.body_copy')
         expect(page).to have_body_copy(content).with_id('in_touch_text')
       end
@@ -103,10 +103,10 @@ describe 'User Pages', :type => :request do
   end
 
   describe 'request email' do
-    let(:redirect_path){account_finder_start_path}
+    let(:redirect_path) { account_finder_start_path }
 
     before do
-      visit request_user_email_path(user,redirect_path: redirect_path )
+      visit request_user_email_path(user, redirect_path: redirect_path)
     end
     it 'should show user email entry' do
       expect(page).to have_css('#user_email')
@@ -135,7 +135,8 @@ describe 'User Pages', :type => :request do
         expect(current_path).to be_request_email_path
       end
       it 'should display an error' do
-        expect(page).to display_error_message(I18n.t('errors.messages.invalid_email_format'))
+        msg = I18n.t('errors.messages.invalid_email_format')
+        expect(page).to display_error_message(msg)
       end
     end
     describe 'clicking skip' do
@@ -146,7 +147,5 @@ describe 'User Pages', :type => :request do
         expect(current_path).to eq(redirect_path)
       end
     end
-
   end
-
 end

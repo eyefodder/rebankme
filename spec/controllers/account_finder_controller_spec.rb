@@ -2,7 +2,7 @@
 # This code is licensed under MIT license (see LICENSE.txt for details)
 require 'spec_helper'
 
-describe AccountFinderController,:type => :controller do
+describe AccountFinderController, type: :controller do
   # NB most tests are carried out as integration tests
   # but this one is in response to a bug where following a certain path
   # results in the user params not getting posted to the controller

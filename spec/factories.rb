@@ -1,7 +1,6 @@
 # (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
 # This code is licensed under MIT license (see LICENSE.txt for details)
 FactoryGirl.define do
-
   sequence :name, aliases: [:name_id, :code] do |n|
     "Name#{n}"
   end
@@ -19,6 +18,7 @@ FactoryGirl.define do
   factory :account_type do
     name_id
   end
+
   factory :special_group do
     name_id
   end
@@ -38,19 +38,15 @@ FactoryGirl.define do
     name
   end
 
-
-
   factory :branch do
     bank
     name
     zipcode '11205'
   end
+
   factory :bank_account do
     name
     account_type
     branch
-
   end
-
-
 end

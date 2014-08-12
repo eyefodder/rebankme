@@ -1,14 +1,13 @@
 # (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
 # This code is licensed under MIT license (see LICENSE.txt for details)
-require "codeclimate-test-reporter"
+require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
-
 
 require 'rubygems'
 require 'spork'
 
 Spork.prefork do
-  ENV["RAILS_ENV"] ||= 'test'
+  ENV['RAILS_ENV'] ||= 'test'
 
   # unless ENV['DRB']
   #   require 'simplecov'
@@ -22,7 +21,7 @@ Spork.prefork do
     SimpleCov::Formatter::RcovFormatter,
   ]
 
-  require File.expand_path("../../config/environment", __FILE__)
+  require File.expand_path('../../config/environment', __FILE__)
   require 'rspec/rails'
   require 'shoulda/matchers'
   require 'rspec/autorun'
@@ -30,24 +29,17 @@ Spork.prefork do
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-  Dir[Rails.root.join("spec/features/steps/**/*.rb")].each {|f|
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+  Dir[Rails.root.join('spec/features/steps/**/*.rb')].each do |f|
     require f
-  }
+  end
 
   # Checks for pending migrations before tests are run.
   # If you are not using ActiveRecord, you can remove this line.
   # commented out as its a rails 4.0 feature
-  # ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
+  ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
   RSpec.configure do |config|
-    # ## Mock Framework
-    #
-    # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-    #
-    # config.mock_with :mocha
-    # config.mock_with :flexmock
-    # config.mock_with :rr
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -66,8 +58,7 @@ Spork.prefork do
     # order dependency and want to debug it, you can fix the order by providing
     # the seed, which is printed after each run.
     #     --seed 1234
-    config.order = "random"
-    # config.include IntegrationMacros
+    config.order = 'random'
     config.include Capybara::DSL
 
     config.include FactoryGirl::Syntax::Methods
@@ -76,10 +67,10 @@ Spork.prefork do
 
     config.include I18n
 
-
-    config.include ActionView::TestCase::Behavior, example_group: {file_path: %r{spec/presenters}}
-    config.include ActionView::TestCase::Behavior, example_group: {file_path: %r{spec/requests}}
-
+    config.include ActionView::TestCase::Behavior,
+                   example_group: { file_path: /spec\/presenters/ }
+    config.include ActionView::TestCase::Behavior,
+                   example_group: { file_path: /spec\/requests/ }
 
     config.use_transactional_fixtures = true
 
@@ -89,10 +80,9 @@ Spork.prefork do
 
       DatabaseCleaner.clean
 
-
-      Geocoder.configure(:lookup => :test)
+      Geocoder.configure(lookup: :test)
       Geocoder::Lookup::Test.set_default_stub([])
-      Geocoder::Lookup::Test.add_stub( '00000', [])
+      Geocoder::Lookup::Test.add_stub('00000', [])
       Geocoder::Lookup::Test.add_stub(
         '34000', [
           {
@@ -118,7 +108,7 @@ Spork.prefork do
             'latitude'     => 40.6945036,
             'longitude'    => -73.9565551,
             'country_code' => 'US',
-            'state_code'   => 'NY',
+            'state_code'   => 'NY'
           }
         ]
         )
@@ -149,16 +139,12 @@ Spork.prefork do
           }
         ]
         )
-
-
     end
 
     config.before(:all) do
       FactoryGirl.lint
       Rails.application.load_seed
     end
-
-    # config.after(:each) { Warden.test_reset! }
 
     config.before(:each) do
       DatabaseCleaner.start
@@ -168,45 +154,11 @@ Spork.prefork do
       DatabaseCleaner.clean
     end
     config.after(:each) { Warden.test_reset! }
-
-    # http://blog.zerosum.org/2011/03/19/easy-rails-outh-integration-testing.html
-    # config.include IntegrationSpecHelper, :type => :request
-    # config.include IntegrationSpecHelper, :type => :bookmarklet
-
-# https://github.com/plataformatec/devise/wiki/How-To:-Controllers-tests-with-Rails-3-(and-rspec)
-    # config.include Devise::TestHelpers, :type => :controller
-
-    # config.include ActionView::TestCase::Behavior, example_group: {file_path: %r{spec/presenters}}
-# http://stackoverflow.com/questions/13420923/configuring-warden-for-use-in-rspec-controller-specs
-    # config.include Warden::Test::ControllerHelpers
-
-    # @see http://stackoverflow.com/questions/12512108/can-i-access-application-helper-methods-in-a-rspec-request
-    # bu must test helper methods too!
-
-   # config.include ApplicationHelper
-
- end
- Capybara.default_host = 'http://example.org'
-
-  # OmniAuth.config.test_mode = true
-  # OmniAuth.config.add_mock(:twitter, {
-  #   :uid => '12345',
-  #   :info => {nickname: 'poop', name: 'test name', urls:{Twitter: 'http://some-twitter-url.com'}},
-  #   :credentials => {}
-  #   })
-
+  end
+  Capybara.default_host = 'http://example.org'
 end
 
 Spork.each_run do
-  # if ENV['DRB']
-  #   require 'simplecov'
-  #   require 'simplecov-rcov'
-  #   SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
-  #   SimpleCov.start 'rails'
-  # end
-  # This code will be run each time you run your specs.
-  # require 'rspec/rails'
-  # require 'shoulda/matchers'
   require 'simplecov-rcov'
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
     CodeClimate::TestReporter::Formatter,
