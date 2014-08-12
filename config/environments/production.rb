@@ -79,5 +79,5 @@ Rebankme::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   #devise setup:
-   config.action_mailer.default_url_options = { host: 'rebankme.herokuapp.com' }
+   config.action_mailer.default_url_options = { host: 'www.rebankme.com' }
 end
