@@ -1,3 +1,5 @@
+# (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
+# This code is licensed under MIT license (see LICENSE.txt for details)
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #

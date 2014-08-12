@@ -1,3 +1,5 @@
+# (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
+# This code is licensed under MIT license (see LICENSE.txt for details)
 class GoogleSearchTermFactory
 
   def self.map_search_term_for(account_type, user)

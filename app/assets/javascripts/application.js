@@ -1,3 +1,6 @@
+// (c) 2014 Blue Ridge Foundation New York, author: Dylan Butman
+// This code is licensed under MIT license (see LICENSE.txt for details)
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //

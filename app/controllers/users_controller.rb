@@ -1,6 +1,6 @@
+# (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
+# This code is licensed under MIT license (see LICENSE.txt for details)
 class UsersController < ApplicationController
-
-
   def help_me_open
     @user = User.find(params[:user_id])
     @account_type = AccountType.find(params[:account_type_id])
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       track! :shown_help_me_open
       EmailSender.delay.notify_of_user_help_request(@user.id, @account_type.id)
     else
-      redirect_to request_user_email_path(@user, redirect_path: @redirect_path, allow_skip: 0)
+      request_email_redirect(@user, @redirect_path, allow_skip: 0)
     end
   end
 
@@ -26,19 +26,25 @@ class UsersController < ApplicationController
     if @user.update_attributes(request_email_params)
       redirect_to @redirect_path, only_path: true
     else
-
-      redirect_to request_user_email_path(@user, redirect_path: @redirect_path), flash:{error: @user.errors.full_messages}
+      request_email_redirect(@user,
+                             @redirect_path,
+                             {},
+                             error: @user.errors.full_messages)
     end
   end
 
   private
+
+  def request_email_redirect(user, path, options = {}, flash = {})
+    options = { redirect_path: path }.merge(options)
+    redirect_to request_user_email_path(user, options), flash: flash
+  end
 
   def set_item_from_params
     @user = User.find(params[:id])
   end
 
   def request_email_params
-    params.require(:user).permit( :email)
+    params.require(:user).permit(:email)
   end
-
 end
