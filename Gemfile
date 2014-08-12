@@ -82,6 +82,7 @@ group :development, :test do
 	gem 'spork-rails', '4.0.0'
 	gem 'guard-spork', '1.5.0'
 	gem 'ci_reporter'
+	gem 'ci_reporter_rspec'
 	gem 'launchy'
 	gem 'database_cleaner'
 	gem "therubyracer"
