@@ -1,3 +1,5 @@
+# (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
+# This code is licensed under MIT license (see LICENSE.txt for details)
 # @see http://www.schneems.com/post/15948562424/speed-up-capybara-tests-with-devise/
 # @see https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Capybara
 include Warden::Test::Helpers
