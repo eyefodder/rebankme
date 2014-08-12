@@ -5,7 +5,7 @@ $offWhite: #f7f7f7;
 $lightGrey: #DBDBDB;
 $medGrey: #808080;
 $darkGrey: #666666;
-$default-font: 'Source Sans Pro';
+$default-font: 'source-sans-pro';
 
 $app-bg-color: #fff;
 $base-font-color: #999;
@@ -59,12 +59,27 @@ form{
 
 input, .form-control{
   color: $darkGrey;
-  text-transform: uppercase;
   font-weight: bold;
   background: #e6e6e6;
   border: none;
   box-shadow: none !important;
   border-radius: 0px !important;
+}
+
+::-webkit-input-placeholder {
+   text-transform: uppercase;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-transform: uppercase;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-transform: uppercase;
+}
+
+:-ms-input-placeholder {
+   text-transform: uppercase;
 }
 
 a{
@@ -205,7 +220,7 @@ h3 {
 }
 
 .btn-chevron {
-
+  text-transform: none;
 }
 
 .btn-success {
@@ -268,6 +283,11 @@ h3 {
 ul{
   list-style-type: none;
   padding-left: 0px;
+
+  &.bullets {
+    list-style-type: disc;
+    padding-left: 15px;
+  }
 }
 
 ul.action-links li{
@@ -317,13 +337,6 @@ ul.action-links li{
   padding-top: 15px;
 }
 
-//
-
-// zip code form
-.enter-zip{
-  text-transform: uppercase;
-}
-//
 
 // account selection
 
@@ -335,4 +348,15 @@ ul.action-links li{
 
 .page-bottom{
   padding-bottom: 10px;
+}
+
+.other-banking-option {
+  &.selected_option {
+    border-left: 5px solid #ddd;
+    padding-left: 5px;
+  }
+  &.recommended_option {
+    border-left: 5px solid $accent-color;
+    padding-left: 5px;
+  }
 }
