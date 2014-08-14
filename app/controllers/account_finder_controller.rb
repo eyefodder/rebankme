@@ -6,67 +6,75 @@ class AccountFinderController < ApplicationController
     track! :shown_start_page if flash[:error].nil?
   end
 
-
   def next_type_question
-    begin
-      @user  = User.new(user_params)
-      set_optional_values(@user,params)
-
-      @account_type =  AccountTypeFactory.account_type_for(@user)
-
-      if @account_type.nil?
-        if @user.valid?
-          track! :started_account_type_finder unless @user.answered_any_questions?
-        else
-          redirect_to :back, flash:{error: @user.errors.full_messages}
-        end
-      else
-        @user.save!
-        track! :shown_account_type
-        render :account_type_found
-      end
-    rescue ActionController::ParameterMissing => e
-      log.warn('user parameters missing; have to go back to start')
-      track! :errored_during_account_type_finder
-      redirect_to account_finder_start_path
-    end
-
-
-
+    @user  = User.new(user_params)
+    set_optional_values(@user, params)
+    @account_type =  AccountTypeFactory.account_type_for(@user)
+    render_if_account_found
+    redirect_if_invalid_user
+    track_if_starting_account_finder
+  rescue ActionController::ParameterMissing
+    track! :errored_during_account_type_finder
+    redirect_to account_finder_start_path
   end
 
   def find_account
     @user = User.find(params[:user_id])
     @account_type = AccountTypeFactory.account_type_for(@user)
     @results = BankAccount.accounts_near(@user, @account_type)
-
     if @results.count == 0
       @results = nil
     else
-      @recommended_result = @results.first
-
-      @selected_result = params[:selected_account_id] ? BankAccount.find(params[:selected_account_id]) : @results.first # unless param passed
+      set_recommended_and_selected_results
     end
     track! :shown_find_account
   end
 
   private
 
-  def set_optional_values(user,params)
-    if params[:option_submit]
-      key = params[:option_submit].keys.first
-      value = params[:option_submit].values.first
-      if key == 'special_group'
-        user.set_option(key, value)
-      else
-        user[key] = (value != 'false')
-      end
+  def set_recommended_and_selected_results
+    @recommended_result = @results.first
+    s_id = params[:selected_account_id]
+    @selected_result = s_id ? BankAccount.find(s_id) : @results.first
+  end
+
+  def track_if_starting_account_finder
+    return if @user.answered_any_questions? || !@user.valid?
+    track! :started_account_type_finder
+  end
+
+  def redirect_if_invalid_user
+    return if @user.valid?
+    redirect_to :back, flash: { error: @user.errors.full_messages }
+  end
+
+  def render_if_account_found
+    return if @account_type.nil?
+    @user.save!
+    track! :shown_account_type
+    render :account_type_found
+  end
+
+  def set_optional_values(user, params)
+    return unless params[:option_submit]
+    key = params[:option_submit].keys.first
+    value = params[:option_submit].values.first
+    if key == 'special_group'
+      user.set_option(key, value)
+    else
+      user[key] = (value != 'false')
     end
   end
 
   def user_params
-    params.require(:user).permit(:zipcode,:is_delinquent, :has_predictable_income, :special_group_id, :will_use_direct_deposit, :needs_debit_card, :latitude, :longitude, :state_id)
+    params.require(:user).permit(:zipcode,
+                                 :is_delinquent,
+                                 :has_predictable_income,
+                                 :special_group_id,
+                                 :will_use_direct_deposit,
+                                 :needs_debit_card,
+                                 :latitude,
+                                 :longitude,
+                                 :state_id)
   end
-
-
 end

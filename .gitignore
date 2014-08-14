@@ -31,3 +31,8 @@ latest.dump
 ops/.vagrant
 ops/.vagrant/*
 ops/guest_bash_profile
+
+# ssl
+server.crt
+server.key
+bundle.pem

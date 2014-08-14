@@ -38,6 +38,8 @@ module Rebankme
     #load redis gem
     config.gem 'redis-namespace', :lib => 'redis/namespace'
     config.gem 'redis'
+
+    config.force_ssl = false
     end
 
 end

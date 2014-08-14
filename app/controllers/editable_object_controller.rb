@@ -10,9 +10,11 @@ class EditableObjectController < ApplicationController
   def index
     @items = @item_class.all
   end
+
   def new
     set_new_item
   end
+
   def create
     @item = @item_class.new(item_params)
     if @item.save
@@ -21,6 +23,7 @@ class EditableObjectController < ApplicationController
       after_failed_create
     end
   end
+
   def edit
     set_item_from_params
   end
@@ -32,6 +35,7 @@ class EditableObjectController < ApplicationController
     @item_class.find(params[:id]).destroy
     after_destroy
   end
+
   def update
     set_item_from_params
     if @item.update_attributes(item_params)
@@ -57,8 +61,6 @@ class EditableObjectController < ApplicationController
     @item = @item_class.new
   end
 
-
-
   def set_item_from_params
     @item = @item_class.find(params[:id])
   end
@@ -69,15 +71,14 @@ class EditableObjectController < ApplicationController
   end
 
   def after_successful_update
-    flash[:success] = "Item updated"
+    flash[:success] = 'Item updated'
     after_success
   end
+
   def after_destroy
-    flash[:success] = "Item deleted"
+    flash[:success] = 'Item deleted'
     after_success
   end
-
-
 
   def after_success
     redirect_to polymorphic_path(@item_class)
@@ -90,5 +91,4 @@ class EditableObjectController < ApplicationController
   def after_failed_update
     render 'edit'
   end
-
 end
