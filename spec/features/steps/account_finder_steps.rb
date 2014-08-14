@@ -2,8 +2,7 @@
 # This code is licensed under MIT license (see LICENSE.txt for details)
 module AccountFinderSteps
   extend RSpec::Matchers::DSL
-
-extend ActionView::Helpers::TextHelper
+  extend ActionView::Helpers::TextHelper
 
 
   RSpec::Matchers.define :have_find_account_button do |page_ref|
@@ -39,7 +38,7 @@ extend ActionView::Helpers::TextHelper
       end
     end
   end
-    shared_examples 'a multi choice question page' do
+  shared_examples 'a multi choice question page' do
     it 'has expected content' do
       expect(page).to display_account_finder_content(question_token)
     end
@@ -47,7 +46,9 @@ extend ActionView::Helpers::TextHelper
       expect(page).to display_account_finder_question(question_token)
     end
     it 'has yes / no buttons' do
-      expect(page).to display_choice_buttons([I18n.t('forms.actions.action_yes'), I18n.t('forms.actions.action_no')])
+      yes_btn = I18n.t('forms.actions.action_yes')
+      no_btn = I18n.t('forms.actions.action_no')
+      expect(page).to display_choice_buttons([yes_btn, no_btn])
     end
 
     it 'has start over button' do
@@ -70,7 +71,9 @@ extend ActionView::Helpers::TextHelper
       expect(page).to display_account_finder_question(question_token)
     end
     it 'has yes / no buttons' do
-      expect(page).to display_choice_buttons([I18n.t('forms.actions.action_yes'), I18n.t('forms.actions.action_no')])
+      yes_btn = I18n.t('forms.actions.action_yes')
+      no_btn = I18n.t('forms.actions.action_no')
+      expect(page).to display_choice_buttons([yes_btn, no_btn])
     end
 
     it 'has start over button' do
@@ -86,16 +89,16 @@ extend ActionView::Helpers::TextHelper
     end
   end
 
-  def it_should_be_at_right_destination(destination_info)
-    if destination_info.is_a?(Hash)
-      expect(page).to display_account_type_found_content(destination_info[:account_type])
+  def it_should_be_at_right_destination(info)
+    if info.is_a?(Hash)
+      expect(page).to display_account_type_found(info[:account_type])
     else
-      expect(page).to display_account_finder_content(destination_info)
+      expect(page).to display_account_finder_content(info)
     end
   end
 
   RSpec::Matchers.define :display_choice_buttons do |choices|
-    failure_message_for_should do |actual|
+    failure_message_for_should do
       "expected to find a button labelled '#{choice}'"
     end
     match do |page|
@@ -105,17 +108,19 @@ extend ActionView::Helpers::TextHelper
     end
   end
 
-  RSpec::Matchers.define :display_account_type_found_content do |account_type_id|
+  RSpec::Matchers.define :display_account_type_found do |act_type_id|
     match do |page|
-      product_name = I18n.t("#{account_type_id}.name")
-      expected_heading = I18n.t("account_finder.account_type_found.heading", product: product_name)
-      expected_title = I18n.t("account_finder.account_type_found.page_title", product: product_name)
+      product_name = I18n.t("#{act_type_id}.name")
+      expected_heading = I18n.t('account_finder.account_type_found.heading',
+                                product: product_name)
+      expected_title = I18n.t('account_finder.account_type_found.page_title',
+                              product: product_name)
       have_page_heading(expected_heading).matches?(page)
       have_page_title(expected_title).matches?(page)
     end
   end
 
-  shared_examples "a failed zipcode entry" do
+  shared_examples 'a failed zipcode entry' do
     before do
 
       populate_form_field(:user, :zipcode, zipcode)
@@ -126,7 +131,8 @@ extend ActionView::Helpers::TextHelper
       expect(page).to display_account_finder_content(:start)
     end
     it 'should display the zipcode form' do
-      expect(current_path).to eq(account_finder_start_path), 'should go back to zip entry'
+      failure_msg = 'should go back to zip entry'
+      expect(current_path).to eq(account_finder_start_path), failure_msg
     end
     it 'should fail validation and show an error' do
       expect(page).to display_error_message(expected_error)
@@ -145,5 +151,4 @@ extend ActionView::Helpers::TextHelper
       expect(page).to display_account_finder_content(:is_delinquent)
     end
   end
-
 end

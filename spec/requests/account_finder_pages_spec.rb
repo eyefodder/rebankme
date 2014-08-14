@@ -153,7 +153,7 @@ describe 'Account Finder Pages', :type => :request do
           it 'temporarily sends yes also to prepay_card' do
             click_yes_button
             pending("non nyc ppl should eventually get sent to second chance accounts") do
-              expect(page).to display_account_type_found_content(:second_chance)
+              expect(page).to display_account_type_found(:second_chance)
             end
           end
           it_behaves_like 'a question page' do
