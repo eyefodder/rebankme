@@ -1,29 +1,17 @@
 # (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
 # This code is licensed under MIT license (see LICENSE.txt for details)
 class AccountTypeFactory
-
+  # NB explicitly testing against 'false' as we want
+  # to avoid nil getting caught in false check
+  # ie there is a diff between user.has_predictable_income = false
+  # and user.has_predictable_income  = nil!
   def self.account_type_for(user)
-    # NB explicitly testing against 'false' as we want to avoid nil getting caught in false check
-    # ie there is a diff between user.has_predictable_income = false and user.has_predictable_income  = nil!
-
-    if matches_prepay_profile(user)
-      return AccountType.PREPAY_CARD
-    end
-    if matches_safe_or_second_chance(user)
-      return safe_or_second_chance(user)
-    end
-    if matches_special_group_profile(user)
-      return special_account_for(user)
-    end
-    if matches_regular_account_profile(user)
-      return AccountType.REGULAR_ACCOUNT
-    end
-    if matches_credit_union_or_safe_account(user)
-      return safe_or_credit_union(user)
-    end
+    return AccountType.PREPAY_CARD if matches_prepay_profile(user)
+    return safe_or_second_chance(user) if matches_safe_or_second_chance(user)
+    return special_account_for(user) if matches_special_group_profile(user)
+    return AccountType.REGULAR_ACCOUNT if matches_regular_account_profile(user)
+    return safe_or_credit_union(user) if match_cred_union_or_safe_account(user)
   end
-
-  private
 
   def self.safe_or_credit_union(user)
     if !user.in_new_york_city?
@@ -48,26 +36,42 @@ class AccountTypeFactory
     else
       AccountType.SPECIAL_GROUP
     end
-
   end
 
-  def self.matches_credit_union_or_safe_account(user)
-    user.is_delinquent == false && user.is_special_group == false && user.will_use_direct_deposit == false
-  end
   def self.safe_or_second_chance(user)
     user.in_new_york_city? ? AccountType.SAFE_ACCOUNT : AccountType.PREPAY_CARD
-    # user.in_new_york_city? ? AccountType.SAFE_ACCOUNT : AccountType.SECOND_CHANCE
   end
+
+  def self.match_cred_union_or_safe_account(user)
+    match_profile(user,
+                  is_delinquent: false,
+                  special_group?: false,
+                  will_use_direct_deposit: false)
+  end
+
   def self.matches_safe_or_second_chance(user)
-    user.is_delinquent && user.has_predictable_income
+    match_profile(user, is_delinquent: true, has_predictable_income: true)
   end
+
   def self.matches_prepay_profile(user)
-    user.is_delinquent && user.has_predictable_income == false
+    match_profile(user, is_delinquent: true, has_predictable_income: false)
   end
+
   def self.matches_special_group_profile(user)
-    user.is_delinquent == false && user.is_special_group
+    match_profile(user, is_delinquent: false, special_group?: true)
   end
+
   def self.matches_regular_account_profile(user)
-    user.is_delinquent == false && user.is_special_group == false && user.will_use_direct_deposit
+    match_profile(user,
+                  is_delinquent: false,
+                  special_group?: false,
+                  will_use_direct_deposit: true)
+  end
+
+  def self.match_profile(user, props_hash)
+    props_hash.each do |key, value|
+      return false if user.send(key) != value
+    end
+    true
   end
 end

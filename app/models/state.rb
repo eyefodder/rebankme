@@ -10,18 +10,21 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-
 class State < ActiveRecord::Base
-  validates_presence_of :name
-  validates_uniqueness_of :name, case_sensitive: false
-  validates_presence_of :code
-  validates_uniqueness_of :code, case_sensitive: false
+  validates :name, presence: true
+  validates :name, uniqueness: { case_sensitive: false }
+  validates :code, presence: true
+  validates :code, uniqueness: { case_sensitive: false }
+  CHASE_STATES = %w(AZ CA CO CT FL GA HI ID IL IN KY
+                    LA MA MI NJ NV NY OH OK OR TX UT WA WI WV)
+  US_BANK_STATES = %w(AZ AR CA CO ID IL IN IA KA KY MN MO
+                      MT NE NV ND OH OR SD TN UT WA WI WY)
 
   def chase_state?
-    %w{AZ CA CO CT FL GA HI ID IL IN KY LA MA MI NJ NV NY OH OK OR TX UT WA WI WV}.include? code
+    CHASE_STATES.include? code
   end
 
   def us_bank_state?
-    %w{AZ AR CA CO ID IL IN IA KA KY MN MO MT NE NV ND OH OR SD TN UT WA WI WY}.include? code
+    US_BANK_STATES.include? code
   end
 end

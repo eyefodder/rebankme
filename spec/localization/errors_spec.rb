@@ -4,14 +4,14 @@ require 'spec_helper'
 include Il8nSteps
 
 describe 'Errors Localizations' do
-  let(:expected_tokens){
+  let(:expected_tokens)do
     "errors:
       messages:
         zipcode_not_found:
         invalid_zipcode_format:
         zipcode_wrong_country:
         invalid_email_format:"
-  }
+  end
   it_should_behave_like 'localized content'
 
 end

@@ -9,11 +9,12 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-
 class SpecialGroup < ActiveRecord::Base
-  validates_presence_of :name_id
-  validates_uniqueness_of :name_id
+  validates :name_id, presence: true
+  validates :name_id, uniqueness: true
 
+  # rubocop:disable Style/MethodName
+  # because we want these to appear semantically as constants
   def self.STUDENT
     SpecialGroup.find_by(name_id: 'student')
   end
@@ -31,4 +32,6 @@ class SpecialGroup < ActiveRecord::Base
   def self.FALSE_VALUE
     SpecialGroup.NOT_SPECIAL
   end
+
+  # rubocop:enable Style/MethodName
 end

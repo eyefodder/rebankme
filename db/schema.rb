@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809180832) do
+ActiveRecord::Schema.define(version: 20140814210241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,7 +102,6 @@ ActiveRecord::Schema.define(version: 20140809180832) do
   create_table "users", force: true do |t|
     t.string   "zipcode"
     t.boolean  "is_delinquent"
-    t.boolean  "is_special_group"
     t.boolean  "will_use_direct_deposit"
     t.boolean  "has_predictable_income"
     t.boolean  "needs_debit_card"

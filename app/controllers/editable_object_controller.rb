@@ -66,7 +66,8 @@ class EditableObjectController < ApplicationController
   end
 
   def after_successful_create
-    flash[:success] = "Successfully created a new #{@item_class.model_name.human}: #{@item.name}"
+    flash[:success] = 'Successfully created a new ' \
+                      "#{@item_class.model_name.human}: #{@item.name}"
     after_success
   end
 

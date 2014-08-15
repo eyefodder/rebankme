@@ -19,29 +19,32 @@
 #  latitude   :float
 #  longitude  :float
 #
-
 class Branch < ActiveRecord::Base
-  validates_presence_of :name, :bank_id, :zipcode
+  validates :name, :bank_id, :zipcode, presence: true
   belongs_to :bank
   geocoded_by :full_address
-  after_validation :geocode, :if => lambda{ |obj|
-    obj.street_changed? || obj.city_changed? || obj.state_changed? || obj.zipcode_changed?
+  # rubocop:disable all
+  # rubocop disabled as it wants to change proc { to do
+  after_validation :geocode, if: lambda{ |obj|
+    # will geocode if any of these properties changed...
+    p = [:street_changed?, :city_changed?, :state_changed?, :zipcode_changed?]
+    p.each do |property|
+      return true if obj.send(property)
+    end
+    false
   }
-  # accepts_nested_attributes_for :address, allow_destroy: false
+  # rubocop:enable all
 
   def full_name
     "#{bank.name} - #{name}"
   end
 
   def full_address
+    fields = [:street, :city, :state, :zipcode]
     res = ''
-    [:street, :city, :state, :zipcode].each do |element|
-      unless self[element].blank?
-        res = res + "#{self[element]}, "
-      end
+    fields.each do |element|
+      res += "#{self[element]}, " unless self[element].blank?
     end
     res.chomp(', ')
   end
-
-
 end

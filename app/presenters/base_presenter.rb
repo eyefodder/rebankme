@@ -15,7 +15,7 @@ class BasePresenter
   end
 
   def body_copy(token_path, options = {})
-    options = merge_tag_options({ class: 'body_copy' }, options)
+    options = merge_options({ class: 'body_copy' }, options)
     formatted_copy("#{token_path}.body_copy", options)
   end
 
@@ -27,7 +27,7 @@ class BasePresenter
 
   private
 
-  def merge_tag_options(presenter_options, view_options)
+  def merge_options(presenter_options, view_options)
     presenter_options.merge(view_options) do |key, oldval, newval|
       key == :class ? (newval + ' ' + oldval) : newval
     end
@@ -61,6 +61,27 @@ class BasePresenter
     omitted_prefixes = [:delete, :show]
     suffix = "#{presented}_path"
     omitted_prefixes.include?(tag_action) ? suffix : "#{tag_action}_#{suffix}"
+  end
+
+  def self.returns_localized_content(properties)
+    properties.each do |property|
+      define_method(property) do
+        I18n.t(locale_token(property))
+      end
+    end
+  end
+
+  def self.wraps_localized_content(fields)
+    fields.each do |property, tag|
+      define_method(property) do |options = {}|
+        content_unless_nil(property, options, interpolation_args, tag)
+      end
+    end
+  end
+  def content_unless_nil(property, options, interpolation_args = {}, tag = :h3)
+    interpolation_args = { default: '' }.merge(interpolation_args)
+    text = h.raw(I18n.t(locale_token(property), interpolation_args))
+    h.content_tag(tag, text, options) unless text == ''
   end
 
   def self.presents(name)

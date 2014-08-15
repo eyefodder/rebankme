@@ -13,7 +13,7 @@
 require 'spec_helper'
 
 describe Bank do
-  let(:bank){build(:bank)}
+  let(:bank) { build(:bank) }
   describe 'validations' do
     it 'should require a name' do
       # expect(bank).to validate_presence_of(:name)

@@ -1,14 +1,13 @@
 # (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
 # This code is licensed under MIT license (see LICENSE.txt for details)
 module ApplicationHelper
-
-  def typekit_include_tag apikey
+  def typekit_include_tag(apikey)
     javascript_include_tag("http://use.typekit.com/#{apikey}.js") +
-    javascript_tag("try{Typekit.load()}catch(e){}")
+    javascript_tag('try{Typekit.load()}catch(e){}')
   end
 
-  def full_title(page_title="")
-    base_title = "Rebank Me"
+  def full_title(page_title = '')
+    base_title = 'Rebank Me'
     if page_title.empty?
       base_title
     else
@@ -23,8 +22,6 @@ module ApplicationHelper
     presenter
   end
 
-
-
   def flash_block
     output = ''
     flash.each do |type, message|
@@ -36,22 +33,31 @@ module ApplicationHelper
 
   def flash_container(type, message)
     if message.is_a?(Array)
-      raw(content_tag(:div, :class => "alert alert-#{type}", id: "#{type}-messages") do
-        content_tag(:a, raw("&times;"),:class => 'close', :data => {:dismiss => 'alert'}) +
-        content_tag(:ul) do
-          str = ''
-          message.each do |sub_message|
-            str = str + content_tag(:li, sub_message)
-          end
-          str.html_safe
-        end
-      end)
-
+      messages_from_array(type, message)
     else
-      raw(content_tag(:div, :class => "alert alert-#{type}") do
-        content_tag(:a, raw("&times;"),:class => 'close', :data => {:dismiss => 'alert'}) +
-        message
-      end)
+      message_from_string(type, message)
     end
+  end
+
+  private
+
+  def message_from_string(type, message)
+    raw(content_tag(:div, class: "alert alert-#{type}") do
+      content_tag(:a,
+                  raw('&times;'),
+                  class: 'close',
+                  data: { dismiss: 'alert' }) +
+      message
+    end)
+  end
+
+  def messages_from_array(type, messages)
+    options = { class: "alert alert-#{type}", id: "#{type}-messages" }
+    link_options = { class: 'close', data: { dismiss: 'alert' } }
+    msg_list = messages.reduce('') { |a, e| a << content_tag(:li, e) }
+    raw(content_tag(:div, options) do
+      content_tag(:a, raw('&times;'), link_options) +
+      content_tag(:ul, msg_list.html_safe)
+    end)
   end
 end

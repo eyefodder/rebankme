@@ -3,13 +3,10 @@
 class UserMailer < ActionMailer::Base
   add_template_helper(ApplicationHelper)
 
-
-
-
   default from: ActionMailer::Base.smtp_settings[:user_name]
 
   def cc_recipient
-     ActionMailer::Base.smtp_settings[:user_name]
+    ActionMailer::Base.smtp_settings[:user_name]
   end
 
   def help_request_recipient
@@ -17,13 +14,11 @@ class UserMailer < ActionMailer::Base
     @rebank_recipient ||= 'test@example.com'
   end
 
-
-
   def notify_of_user_help_request(user_id, account_type_id)
     @user = User.find(user_id)
     @account_type = AccountType.find(account_type_id)
-    mail( to: help_request_recipient, cc: cc_recipient,  subject: "#{@account_type.name} help request from #{@user.email}")
+    mail(to: help_request_recipient,
+         cc: cc_recipient,
+         subject: "#{@account_type.name} help request from #{@user.email}")
   end
-
-
 end

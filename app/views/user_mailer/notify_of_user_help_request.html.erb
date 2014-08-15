@@ -16,7 +16,7 @@
     <%= presenter.user_property_list %>
 
 
-    <% if @user.is_special_group %>
+    <% if @user.special_group? %>
     <li><%= "Special group: #{@user.special_group.name_id}" %></li>
     <% end %>
     <% if @user.state_id? %>

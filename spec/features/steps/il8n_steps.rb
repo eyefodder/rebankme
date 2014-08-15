@@ -8,15 +8,15 @@ module Il8nSteps
     expect(res).not_to eq "translation missing: en.#{token}"
   end
 
-  matcher :have_a_translation do |expected|
+  matcher :have_a_translation do |_expected|
     match do |actual|
       I18n.t(actual) != "translation missing: en.#{actual}"
     end
   end
 
-  def parsed_tokens(object,prefix="", &block)
+  def parsed_tokens(object, prefix = '', &block)
     if object.is_a?(String)
-      object = YAML::load(object)
+      object = YAML.load(object)
     end
     if object.nil?
       yield(prefix.chop)
@@ -28,14 +28,14 @@ module Il8nSteps
     end
   end
 
-  shared_examples "localized content" do
+  shared_examples 'localized content' do
     it 'has specified Localizations' do
       parsed_tokens(expected_tokens) do |parsed_token|
         expect(parsed_token).to have_a_translation
       end
     end
   end
-  shared_examples "templated localized content" do
+  shared_examples 'templated localized content' do
     it 'has specified Localizations' do
       token_groups.each do |token_group|
         parsed_tokens(token_template) do |template|

@@ -1,14 +1,13 @@
 # (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
 # This code is licensed under MIT license (see LICENSE.txt for details)
 class MetricsFunnel
-
   attr_accessor :metrics
 
   def initialize
     @metrics = []
   end
 
-  def has_metrics?
+  def metrics?
     @metrics.length > 0
   end
 
@@ -19,19 +18,18 @@ class MetricsFunnel
   end
 
   def min_count
-    min = metrics.min_by{ |x| x.count }
+    min = metrics.min_by { |x| x.count }
     min.count
   end
 
   def max_count
-    max = metrics.max_by{ |x| x.count }
+    max = metrics.max_by { |x| x.count }
     max.count
   end
-
 end
 
+# An individual metric within the overall funnel
 class FunnelMetric
-
   attr_accessor :name, :description, :count, :index, :funnel
 
   def initialize(name, description, count, index, funnel)
@@ -47,9 +45,8 @@ class FunnelMetric
   end
 
   def pct_retention
-    unless index==0
-      prev = funnel.metrics[index-1]
-      100.0 - (100.0 * (prev.count - @count) / prev.count)
-    end
+    return if index == 0
+    prev = funnel.metrics[index - 1]
+    100.0 - (100.0 * (prev.count - @count) / prev.count)
   end
 end

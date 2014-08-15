@@ -33,7 +33,7 @@ class UserPresenter < EditableObjectPresenter
     [:email,
      :zipcode,
      :is_delinquent,
-     :is_special_group,
+     :special_group?,
      :will_use_direct_deposit,
      :has_predictable_income,
      :needs_debit_card]

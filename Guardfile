@@ -1,7 +1,7 @@
 
 
- # notification :gntp, :sticky => false, :host => '10.0.1.28', :password => 'password'
-notification :gntp, :sticky => false, :host => '192.168.200.111', :password => 'password'
+ notification :gntp, :sticky => false, :host => '10.0.1.28', :password => 'password'
+# notification :gntp, :sticky => false, :host => '192.168.200.111', :password => 'password'
 
 require 'active_support/core_ext'
 

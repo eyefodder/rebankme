@@ -9,15 +9,15 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-
 class AccountType < ActiveRecord::Base
-  validates_presence_of :name_id
-  validates_uniqueness_of :name_id
+  validates :name_id, presence: true
+  validates :name_id, uniqueness: true
 
   def name
     I18n.t("#{name_id}.name")
   end
-
+  # rubocop:disable Style/MethodName
+  # because we want these to appear semantically as constants
   def self.PREPAY_CARD
     AccountType.where(name_id: 'prepay_card').first
   end
@@ -45,5 +45,10 @@ class AccountType < ActiveRecord::Base
   end
   def self.VETERANS_ACCOUNT
     AccountType.where(name_id: 'veterans_account').first
+  end
+  # rubocop:enable Style/MethodName
+
+  def special_group_account?
+    %w(veterans_account seniors_account student_account).include? name_id
   end
 end

@@ -3,10 +3,10 @@
 # include DataEntrySteps
 module EditableObjectSteps
   shared_context 'has index pages' do
-    let!(:objects) {[create(type), create(type), create(type)]}
-    let(:path_to_test){send("#{type.to_s.pluralize}_path")}
+    let!(:objects) { [create(type), create(type), create(type)] }
+    let(:path_to_test) { send("#{type.to_s.pluralize}_path") }
 
-    subject {page}
+    subject { page }
     before do
       as_admin
       visit path_to_test
@@ -23,7 +23,7 @@ module EditableObjectSteps
     end
     it 'lets me delete an item' do
       klass = type.to_s.camelize.constantize
-      expect{click_link(tag_id(:delete, objects.first))}.to change{klass.count}.by(-1)
+      expect { click_link(tag_id(:delete, objects.first)) }.to change { klass.count }.by(-1)
     end
     it 'has edit link for each item' do
       objects.each do |object|
@@ -42,7 +42,7 @@ module EditableObjectSteps
   end
 
   shared_context '#edit edits objects' do
-    let!(:item){create(type)}
+    let!(:item) { create(type) }
     before do
       as_admin
       visit edit_path(item)
@@ -62,9 +62,11 @@ module EditableObjectSteps
   def delete_path(object)
     send("#{type}_path", object)
   end
+
   def edit_path(object)
     send("edit_#{type}_path", object)
   end
+
   def new_path
     send("new_#{type}_path")
   end
@@ -72,5 +74,4 @@ module EditableObjectSteps
   def tag_id(action, object)
     "#{action}_#{type}_#{object.id}"
   end
-
 end

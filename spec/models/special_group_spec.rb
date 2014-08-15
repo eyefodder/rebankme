@@ -14,7 +14,7 @@ require 'spec_helper'
 
 describe SpecialGroup do
 
-  shared_examples "a predefined type" do
+  shared_examples 'a predefined type' do
     it 'exists' do
       expect(special_group).to_not be_nil
       expect(special_group).to be_an(SpecialGroup)
@@ -28,8 +28,7 @@ describe SpecialGroup do
     # end
   end
 
-
-  let(:special_group){build(:special_group)}
+  let(:special_group) { build(:special_group) }
   it 'should require a name' do
     expect(special_group).to validate_presence_of(:name_id)
   end
@@ -39,32 +38,32 @@ describe SpecialGroup do
 
   describe 'seeded content' do
     it 'should have seeded types' do
-      %w{veteran student senior not_special}.each do |expected|
+      %w(veteran student senior not_special).each do |expected|
         expect(SpecialGroup.find_by(name_id: expected)).not_to be_nil, "Expected to find a Special group with name_id: #{expected}"
       end
     end
     describe 'not special' do
-      let(:special_group){SpecialGroup.NOT_SPECIAL}
+      let(:special_group) { SpecialGroup.NOT_SPECIAL }
       it_behaves_like 'a predefined type' do
-        let(:name_id) {'not_special'}
+        let(:name_id) { 'not_special' }
       end
     end
     describe 'student' do
-      let(:special_group){SpecialGroup.STUDENT}
+      let(:special_group) { SpecialGroup.STUDENT }
       it_behaves_like 'a predefined type' do
-        let(:name_id) {'student'}
+        let(:name_id) { 'student' }
       end
     end
     describe 'veteran' do
-      let(:special_group){SpecialGroup.VETERAN}
+      let(:special_group) { SpecialGroup.VETERAN }
       it_behaves_like 'a predefined type' do
-        let(:name_id) {'veteran'}
+        let(:name_id) { 'veteran' }
       end
     end
     describe 'senior' do
-      let(:special_group){SpecialGroup.SENIOR}
+      let(:special_group) { SpecialGroup.SENIOR }
       it_behaves_like 'a predefined type' do
-        let(:name_id) {'senior'}
+        let(:name_id) { 'senior' }
       end
     end
   end

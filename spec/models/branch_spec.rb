@@ -23,7 +23,7 @@
 require 'spec_helper'
 
 describe Branch do
-  let(:branch){build(:branch)}
+  let(:branch) { build(:branch) }
   describe 'validations' do
     it 'should require a bank_id' do
       expect(branch).to validate_presence_of(:bank_id)
@@ -33,7 +33,7 @@ describe Branch do
       expect(branch).to validate_presence_of(:name)
     end
     it 'should require a unique name per bank' do
-       # expect(branch).to validate_uniqueness_of(:name).scoped_to(:bank_id)
+      # expect(branch).to validate_uniqueness_of(:name).scoped_to(:bank_id)
     end
     it 'should require a zipcode' do
       expect(branch).to validate_presence_of(:zipcode)
@@ -48,21 +48,21 @@ describe Branch do
 
   describe 'geocoding' do
     before do
-      branch.zipcode = '11205' #values in spec helper
+      branch.zipcode = '11205' # values in spec helper
       branch.valid?
     end
     it 'should have set the latitude' do
-      expect(branch.latitude).to eq 40.6945036 #values in spec helper
+      expect(branch.latitude).to eq 40.6945036 # values in spec helper
     end
     it 'should have set the longitude' do
-      expect(branch.longitude).to eq -73.9565551 #values in spec helper
+      expect(branch.longitude).to eq -73.9565551 # values in spec helper
     end
   end
 
   describe 'full_address' do
-    let(:street) {'118 E 10th st'}
-    let(:city) {'New York'}
-    let(:state) {'NY'}
+    let(:street) { '118 E 10th st' }
+    let(:city) { 'New York' }
+    let(:state) { 'NY' }
     it 'handles zip only' do
       expect(branch.full_address).to eq '11205'
     end

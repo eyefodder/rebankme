@@ -3,23 +3,22 @@
 require 'spec_helper'
 
 describe FindAnAccountPresenter do
-  let(:user){create(:user)}
-  let(:account_type){AccountType.SAFE_ACCOUNT}
-  let(:presenter){FindAnAccountPresenter.new(account_type, view)}
-  let(:token_branching_element){''}
-  let(:bank_account){create(:bank_account)}
+  let(:user) { create(:user) }
+  let(:account_type) { AccountType.SAFE_ACCOUNT }
+  let(:presenter) { FindAnAccountPresenter.new(account_type, view) }
+  let(:token_branching_element) { '' }
+  let(:bank_account) { create(:bank_account) }
 
   before do
     presenter.user = user
   end
-
 
   RSpec::Matchers.define :return_localized_content do |token, tag, interpolation_args|
     chain :with_options do |options|
       @options = options
     end
     match do |returned|
-      args = {default: ''}.merge(interpolation_args)
+      args = { default: '' }.merge(interpolation_args)
       content = I18n.t(token, args)
       if content == ''
         returned.nil?
@@ -42,21 +41,20 @@ describe FindAnAccountPresenter do
     end
   end
 
-
   shared_examples 'a localized content wrapping method' do
-    let(:token) {"account_finder.account_type.#{account_type.name_id}.#{token_branching_element}#{property}"}
-    let(:tag) {:h3}
-    let(:interpolation_args) {{}}
+    let(:token) { "account_finder.account_type.#{account_type.name_id}.#{token_branching_element}#{property}" }
+    let(:tag) { :h3 }
+    let(:interpolation_args) { {} }
 
     it 'that passes options to the node' do
-      options = {class: 'someclass', id: 'someid'}
+      options = { class: 'someclass', id: 'someid' }
       expect(presenter.send(property, options)).to return_localized_content(token, tag, interpolation_args).with_options(options)
     end
 
   end
 
   shared_examples 'a content wrapping method' do
-    let(:options) { {class: 'someclass', id: 'someid'}}
+    let(:options) { { class: 'someclass', id: 'someid' } }
     it 'that passes options to the node' do
       expect(presenter.send(method, options)).to return_wrapped_content(expected, tag).with_options(options)
     end
@@ -65,17 +63,13 @@ describe FindAnAccountPresenter do
   shared_examples 'a google map block' do
 
     it 'with specified query' do
-      src = URI::encode("https://www.google.com/maps/embed/v1/#{api_method}?key=#{ApiKeys.google_maps}&q=#{query}")
-      expected = view.render(partial: 'account_finder/account_type/google_map', locals: {src: src})
+      src = URI.encode("https://www.google.com/maps/embed/v1/#{api_method}?key=#{ApiKeys.google_maps}&q=#{query}")
+      expected = view.render(partial: 'account_finder/account_type/google_map', locals: { src: src })
       expect(presenter.send(method)).to eq(expected)
 
     end
 
   end
-
-
-
-
 
   describe 'localized content strings' do
     def expect_to_return_localized_string(presenter, property)
@@ -103,21 +97,21 @@ describe FindAnAccountPresenter do
   describe 'branched content' do
 
     describe 'VETERANS ACCOUNT' do
-      let(:account_type){AccountType.VETERANS_ACCOUNT}
+      let(:account_type) { AccountType.VETERANS_ACCOUNT }
       describe 'chase state' do
         before do
           user.state =  State.find_by(code: 'NY')
           user.save!(validate: false)
         end
         it_behaves_like 'a localized content wrapping method' do
-          let(:token_branching_element) {"chase_states."}
-          let(:property) {:intro_heading}
+          let(:token_branching_element) { 'chase_states.' }
+          let(:property) { :intro_heading }
         end
 
         it_behaves_like 'a google map block' do
-          let(:query) {"Chase Branches near #{user.zipcode}"}
-          let(:api_method) {:search}
-          let(:method){:google_map_search}
+          let(:query) { "Chase Branches near #{user.zipcode}" }
+          let(:api_method) { :search }
+          let(:method) { :google_map_search }
         end
       end
       describe 'non chase state' do
@@ -126,8 +120,8 @@ describe FindAnAccountPresenter do
           user.save!(validate: false)
         end
         it_behaves_like 'a localized content wrapping method' do
-          let(:token_branching_element) {"non_chase_states."}
-          let(:property) {:intro_heading}
+          let(:token_branching_element) { 'non_chase_states.' }
+          let(:property) { :intro_heading }
         end
         it 'returns nil for map search' do
           expect(presenter.google_map_search).to be_nil
@@ -136,21 +130,21 @@ describe FindAnAccountPresenter do
     end
 
     describe 'SENIORS_ACCOUNT' do
-      let(:account_type){AccountType.SENIORS_ACCOUNT}
+      let(:account_type) { AccountType.SENIORS_ACCOUNT }
       describe 'U.S. Bank States' do
         before do
           user.state =  State.find_by(code: 'ID')
           user.save!(validate: false)
         end
         it_behaves_like 'a localized content wrapping method' do
-          let(:token_branching_element) {"us_bank_states."}
-          let(:property) {:intro_heading}
+          let(:token_branching_element) { 'us_bank_states.' }
+          let(:property) { :intro_heading }
         end
 
         it_behaves_like 'a google map block' do
-          let(:query) {"USBank Branches near #{user.zipcode}"}
-          let(:api_method) {:search}
-          let(:method){:google_map_search}
+          let(:query) { "USBank Branches near #{user.zipcode}" }
+          let(:api_method) { :search }
+          let(:method) { :google_map_search }
         end
 
       end
@@ -160,13 +154,13 @@ describe FindAnAccountPresenter do
           user.save!(validate: false)
         end
         it_behaves_like 'a localized content wrapping method' do
-          let(:token_branching_element) {"non_us_bank_states."}
-          let(:property) {:intro_heading}
+          let(:token_branching_element) { 'non_us_bank_states.' }
+          let(:property) { :intro_heading }
         end
         it_behaves_like 'a google map block' do
-          let(:query) {"Credit Unions near #{user.zipcode}"}
-          let(:api_method) {:search}
-          let(:method){:google_map_search}
+          let(:query) { "Credit Unions near #{user.zipcode}" }
+          let(:api_method) { :search }
+          let(:method) { :google_map_search }
         end
       end
     end
@@ -175,51 +169,48 @@ describe FindAnAccountPresenter do
   describe 'content blocks' do
     describe '#intro_heading' do
       it_behaves_like 'a localized content wrapping method' do
-        let(:property) {:intro_heading}
+        let(:property) { :intro_heading }
       end
     end
     describe '#intro' do
       it_behaves_like 'a localized content wrapping method' do
-        let(:property) {:intro}
-        let(:tag) {:div}
+        let(:property) { :intro }
+        let(:tag) { :div }
       end
     end
     describe '#we_recommend_heading' do
       it_behaves_like 'a localized content wrapping method' do
-        let(:property) {:we_recommend_heading}
-        let(:tag) {:div}
+        let(:property) { :we_recommend_heading }
+        let(:tag) { :div }
       end
     end
 
     describe '#why_chosen_heading' do
       it_behaves_like 'a localized content wrapping method' do
-        let(:property) {:why_chosen_heading}
+        let(:property) { :why_chosen_heading }
       end
     end
     describe '#why_chosen_description' do
       it_behaves_like 'a localized content wrapping method' do
-        let(:property) {:why_chosen_description}
-        let(:tag) {:div}
-        let(:interpolation_args) {{zipcode: user.zipcode}}
+        let(:property) { :why_chosen_description }
+        let(:tag) { :div }
+        let(:interpolation_args) { { zipcode: user.zipcode } }
       end
     end
     describe '#geolocated_results_heading' do
       it_behaves_like 'a localized content wrapping method' do
-        let(:property) {:geolocated_results_heading}
-        let(:interpolation_args) {{zipcode: user.zipcode}}
-        let(:tag) {:h4}
+        let(:property) { :geolocated_results_heading }
+        let(:interpolation_args) { { zipcode: user.zipcode } }
+        let(:tag) { :h4 }
       end
     end
     describe '#geolocated_results_subheading' do
       it_behaves_like 'a localized content wrapping method' do
-        let(:property) {:geolocated_results_subheading}
-        let(:interpolation_args) {{zipcode: user.zipcode, num_results: 0}}
-        let(:tag) {:div}
+        let(:property) { :geolocated_results_subheading }
+        let(:interpolation_args) { { zipcode: user.zipcode, num_results: 0 } }
+        let(:tag) { :div }
       end
     end
-
-
-
 
   end
 
@@ -232,7 +223,7 @@ describe FindAnAccountPresenter do
         presenter.recommended_option = bank_account
       end
       it 'renders a block' do
-        expected = view.render(partial:'account_finder/account_type/recommended_option', locals:{presenter: presenter})
+        expected = view.render(partial: 'account_finder/account_type/recommended_option', locals: { presenter: presenter })
         expect(presenter.recommended_option_block).to eq expected
       end
     end
@@ -244,32 +235,32 @@ describe FindAnAccountPresenter do
     end
     describe '#recommended_account_name' do
       it_behaves_like 'a content wrapping method' do
-        let(:method) {:recommended_account_name}
-        let(:expected) {bank_account.name}
-        let(:tag) {:h4}
+        let(:method) { :recommended_account_name }
+        let(:expected) { bank_account.name }
+        let(:tag) { :h4 }
       end
     end
     describe '#recommended_branch_address' do
       it_behaves_like 'a content wrapping method' do
-        let(:method) {:recommended_branch_address}
-        let(:expected) {bank_account.branch.full_address}
-        let(:tag) {:div}
+        let(:method) { :recommended_branch_address }
+        let(:expected) { bank_account.branch.full_address }
+        let(:tag) { :div }
       end
     end
 
     describe '#recommended_branch_name' do
       it_behaves_like 'a content wrapping method' do
-        let(:method) {:recommended_branch_name}
-        let(:expected) {bank_account.branch.full_name}
-        let(:tag) {:div}
+        let(:method) { :recommended_branch_name }
+        let(:expected) { bank_account.branch.full_name }
+        let(:tag) { :div }
       end
     end
 
     describe '#recommended_available_at' do
       it_behaves_like 'a localized content wrapping method' do
-        let(:property) {:recommended_available_at}
-        let(:interpolation_args) {{zipcode: user.zipcode, num_results: 0}}
-        let(:tag) {:div}
+        let(:property) { :recommended_available_at }
+        let(:interpolation_args) { { zipcode: user.zipcode, num_results: 0 } }
+        let(:tag) { :div }
       end
     end
   end
@@ -278,7 +269,7 @@ describe FindAnAccountPresenter do
     it 'returns a link to help me open page' do
       text = I18n.t('account_finder.account_type.help_to_open_cta')
       path = account_opening_assistance_path(user, account_type)
-      expect(presenter.cta_button).to have_tag(:a, text: text, with: {href: path})
+      expect(presenter.cta_button).to have_tag(:a, text: text, with: { href: path })
     end
   end
 
@@ -288,16 +279,16 @@ describe FindAnAccountPresenter do
     end
     describe '#option_heading' do
       it_behaves_like 'a localized content wrapping method' do
-        let(:property) {:option_heading}
-        let(:interpolation_args) {{branch_name: bank_account.branch.full_name}}
-        let(:tag) {:h3}
+        let(:property) { :option_heading }
+        let(:interpolation_args) { { branch_name: bank_account.branch.full_name } }
+        let(:tag) { :h3 }
       end
     end
     describe '#option_subheading' do
       it_behaves_like 'a localized content wrapping method' do
-        let(:property) {:option_subheading}
-        let(:interpolation_args) {{branch_address: bank_account.branch.full_address}}
-        let(:tag) {:div}
+        let(:property) { :option_subheading }
+        let(:interpolation_args) { { branch_address: bank_account.branch.full_address } }
+        let(:tag) { :div }
       end
     end
 
@@ -312,24 +303,24 @@ describe FindAnAccountPresenter do
       end
 
       it_behaves_like 'a google map block' do
-        let(:query) {"#{bank_account.branch.bank.name}+#{bank_account.branch.full_address}"}
-        let(:api_method) {:place}
-        let(:method){:geolocated_choice_map}
+        let(:query) { "#{bank_account.branch.bank.name}+#{bank_account.branch.full_address}" }
+        let(:api_method) { :place }
+        let(:method) { :geolocated_choice_map }
       end
 
     end
   end
 
   describe 'results' do
-    let(:bank_account_2){create(:bank_account)}
-    let(:results){[bank_account, bank_account_2]}
+    let(:bank_account_2) { create(:bank_account) }
+    let(:results) { [bank_account, bank_account_2] }
 
     before do
       presenter.results = results
     end
     describe '#geolocated_options_block' do
       it 'returns rendered block' do
-        expected = view.render(partial: 'account_finder/account_type/geolocated_options', locals: {presenter: presenter})
+        expected = view.render(partial: 'account_finder/account_type/geolocated_options', locals: { presenter: presenter })
         expect(presenter.geolocated_options_block).to eq expected
       end
       describe 'with no results' do
@@ -365,9 +356,9 @@ describe FindAnAccountPresenter do
 
     describe '#geolocated_result_link' do
       it 'returns wrapped link' do
-        src = account_finder_path(user, selected_account_id: bank_account_2.id )
-        content = "thing"
-        expected = view.link_to(content, src, id: "select_account_#{bank_account_2.id}"  )
+        src = account_finder_path(user, selected_account_id: bank_account_2.id)
+        content = 'thing'
+        expected = view.link_to(content, src, id: "select_account_#{bank_account_2.id}")
         result = presenter.geolocated_result_link(bank_account_2) do
           content
         end
@@ -377,28 +368,27 @@ describe FindAnAccountPresenter do
   end
 
   describe 'online only methods' do
-    let(:account_type){AccountType.PREPAY_CARD}
-    let(:presenter){FindAnAccountPresenter.new(account_type, view)}
-
+    let(:account_type) { AccountType.PREPAY_CARD }
+    let(:presenter) { FindAnAccountPresenter.new(account_type, view) }
 
     describe 'online_options' do
       it 'makes an array from localized content' do
-        expected = I18n.t("account_finder.account_type.#{account_type.name_id}.online_options").to_a.map{|obj| obj[1]}
+        expected = I18n.t("account_finder.account_type.#{account_type.name_id}.online_options").to_a.map { |obj| obj[1] }
         expect(expected.empty?).to be_false
         expect(presenter.online_options).to eq expected
       end
     end
 
     describe '#online_option_feature_bullets' do
-      let(:list_options) {{class: 'listclass'}}
-      let(:bullet_options) {{class: 'bulletclass'}}
-      let(:bullets){{0=>"$4.95 per month", 1=>"No overdraft fees", 2=>"Uses the VISA network"}}
+      let(:list_options) { { class: 'listclass' } }
+      let(:bullet_options) { { class: 'bulletclass' } }
+      let(:bullets) { { 0 => '$4.95 per month', 1 => 'No overdraft fees', 2 => 'Uses the VISA network' } }
       it 'returns list as rendered bullets' do
         result = presenter.online_option_feature_bullets(bullets, list_options, bullet_options)
-        expect(result).to have_tag(:ul, with: list_options ) do
-          with_tag(:li, text: "$4.95 per month", with: bullet_options)
-          with_tag(:li, text: "No overdraft fees", with: bullet_options)
-          with_tag(:li, text: "Uses the VISA network", with: bullet_options)
+        expect(result).to have_tag(:ul, with: list_options) do
+          with_tag(:li, text: '$4.95 per month', with: bullet_options)
+          with_tag(:li, text: 'No overdraft fees', with: bullet_options)
+          with_tag(:li, text: 'Uses the VISA network', with: bullet_options)
         end
       end
     end
@@ -407,38 +397,31 @@ describe FindAnAccountPresenter do
   describe 'google_map_search' do
 
     describe 'credit union' do
-      let(:account_type) {AccountType.CREDIT_UNION}
+      let(:account_type) { AccountType.CREDIT_UNION }
       it_behaves_like 'a google map block' do
-        let(:query) {"Credit Unions near #{user.zipcode}"}
-        let(:api_method) {:search}
-        let(:method){:google_map_search}
+        let(:query) { "Credit Unions near #{user.zipcode}" }
+        let(:api_method) { :search }
+        let(:method) { :google_map_search }
       end
     end
 
     describe 'regular accounts' do
-      let(:account_type) {AccountType.REGULAR_ACCOUNT}
+      let(:account_type) { AccountType.REGULAR_ACCOUNT }
       it_behaves_like 'a google map block' do
-        let(:query) {"Free Checking near #{user.zipcode}"}
-        let(:api_method) {:search}
-        let(:method){:google_map_search}
+        let(:query) { "Free Checking near #{user.zipcode}" }
+        let(:api_method) { :search }
+        let(:method) { :google_map_search }
       end
     end
     describe 'student accounts' do
-      let(:account_type) {AccountType.STUDENT_ACCOUNT}
+      let(:account_type) { AccountType.STUDENT_ACCOUNT }
       it_behaves_like 'a google map block' do
-        let(:query) {"Free Student Checking near #{user.zipcode}"}
-        let(:api_method) {:search}
-        let(:method){:google_map_search}
+        let(:query) { "Free Student Checking near #{user.zipcode}" }
+        let(:api_method) { :search }
+        let(:method) { :google_map_search }
       end
     end
 
-
-
   end
-
-
-
-
-
 
 end

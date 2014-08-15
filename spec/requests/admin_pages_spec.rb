@@ -4,15 +4,13 @@
 include PageContentSteps
 include AdminSteps
 
+describe 'Admin Pages', type: :request do
 
-
-describe 'Admin Pages', :type => :request do
-
-  subject {page}
+  subject { page }
 
   describe 'root admin page' do
     include_context 'is an admin only page' do
-      let(:path_to_test){admin_path}
+      let(:path_to_test) { admin_path }
     end
   end
 
@@ -62,12 +60,12 @@ describe 'Admin Pages', :type => :request do
     it 'has each metric in the table' do
       name_cell_text =  page.all('table#site-metrics-table td.metric-name').map(&:text)
       expected_metric_names = [:shown_home_page,
-        :shown_start_page,
-        :started_account_type_finder,
-        :shown_account_type,
-        :shown_find_account,
-        :shown_request_email,
-        :shown_help_me_open]
+                               :shown_start_page,
+                               :started_account_type_finder,
+                               :shown_account_type,
+                               :shown_find_account,
+                               :shown_request_email,
+                               :shown_help_me_open]
       expected_metric_names.each do |metric_id|
         name = Vanity.playground.metric(metric_id).name
         expect(name_cell_text).to include(name)
@@ -75,13 +73,6 @@ describe 'Admin Pages', :type => :request do
 
     end
 
-
   end
 
-
-
 end
-
-
-
-

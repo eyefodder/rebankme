@@ -1,26 +1,11 @@
 # (c) 2014 Blue Ridge Foundation New York, author: Paul Barnes-Hoggett
 # This code is licensed under MIT license (see LICENSE.txt for details)
 class UserPropertyQuestionFactory
-def self.next_property_for(user)
-    if user.is_delinquent
-      :has_predictable_income
-    elsif user.is_delinquent == false
-      if user.is_special_group == false
-        if user.will_use_direct_deposit == false
-          :needs_debit_card
-        else
-          :will_use_direct_deposit
-        end
-      else
-        :special_group
-      end
-    else
-      :is_delinquent
-    end
+  def self.next_property_for(user)
+    return :is_delinquent if user.is_delinquent.nil?
+    return :has_predictable_income if user.is_delinquent
+    return :special_group if user.special_group?.nil?
+    return :will_use_direct_deposit if user.will_use_direct_deposit.nil?
+    :needs_debit_card
   end
 end
-
-# So:
-# what we want to do is change :is_special_group to :special_group, and drop the sub/^is_/ from user setoption
-# then, ensure values are set correctly for is_delinquent: temporarily
-# then, ensure special_group_id is passed through form
