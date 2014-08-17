@@ -45,9 +45,15 @@ describe 'Account Finder Pages', type: :request do
 
   describe 'find account page' do
     let(:good_zipcode) { '11205' }
-    let(:account_1) { create(:bank_account, account_type: AccountType.SAFE_ACCOUNT) }
-    let(:account_2) { create(:bank_account, account_type: AccountType.PREPAY_CARD) }
-    let(:account_3) { create(:bank_account, account_type: AccountType.SAFE_ACCOUNT) }
+    let(:account_1) do
+      create(:bank_account, account_type: AccountType.SAFE_ACCOUNT)
+    end
+    let(:account_2) do
+      create(:bank_account, account_type: AccountType.PREPAY_CARD)
+    end
+    let(:account_3) do
+      create(:bank_account, account_type: AccountType.SAFE_ACCOUNT)
+    end
 
     before do
       BankAccount.destroy_all
@@ -74,14 +80,19 @@ describe 'Account Finder Pages', type: :request do
 
       within('div.recommended_option') do
         expect(page).to have_css('h4', text: account_1.name)
-        expect(page).to have_css('div.recommend-branch-name', text: account_1.branch.full_name)
-        expect(page).to have_css('div.recommended-branch-address', text: account_1.branch.full_address)
+        expect(page).to have_css('div.recommend-branch-name',
+                                 text: account_1.branch.full_name)
+        expect(page).to have_css('div.recommended-branch-address',
+                                 text: account_1.branch.full_address)
       end
     end
 
     it 'displays other options heading' do
       within('div.other-branches') do
-        expect(page).to have_css('h4', text: I18n.t('account_finder.account_type.safe_account.geolocated_results_heading', zipcode: good_zipcode))
+        expected_text = I18n.t('account_finder.account_type.safe_account.' \
+                               'geolocated_results_heading',
+                               zipcode: good_zipcode)
+        expect(page).to have_css('h4', text: expected_text)
       end
     end
     it 'displays the recommended result as selected' do
@@ -142,7 +153,7 @@ describe 'Account Finder Pages', type: :request do
         describe '> has predictable income ' do
           it 'temporarily sends yes also to prepay_card' do
             click_yes_button
-            pending('non nyc ppl should eventually get sent to second chance accounts') do
+            pending('non nyc ppl should get sent to second chance accounts') do
               expect(page).to display_account_type_found(:second_chance)
             end
           end
@@ -221,7 +232,9 @@ describe 'Account Finder Pages', type: :request do
       end
       describe 'with valid zipcode format but foreign zip' do
         it_behaves_like 'a failed zipcode entry' do
-          let(:expected_error) { I18n.t('errors.messages.zipcode_wrong_country') }
+          let(:expected_error) do
+            I18n.t('errors.messages.zipcode_wrong_country')
+          end
           let(:zipcode) { '34000' }
         end
       end
@@ -233,7 +246,9 @@ describe 'Account Finder Pages', type: :request do
       end
       describe 'with invalid zipcode format' do
         it_behaves_like 'a failed zipcode entry' do
-          let(:expected_error) { I18n.t('errors.messages.invalid_zipcode_format') }
+          let(:expected_error) do
+            I18n.t('errors.messages.invalid_zipcode_format')
+          end
           let(:zipcode) { nil }
         end
       end

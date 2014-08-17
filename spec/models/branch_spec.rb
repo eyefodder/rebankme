@@ -52,10 +52,10 @@ describe Branch do
       branch.valid?
     end
     it 'should have set the latitude' do
-      expect(branch.latitude).to eq 40.6945036 # values in spec helper
+      expect(branch.latitude).to eq(40.6945036) # values in spec helper
     end
     it 'should have set the longitude' do
-      expect(branch.longitude).to eq -73.9565551 # values in spec helper
+      expect(branch.longitude).to eq(-73.9565551) # values in spec helper
     end
   end
 

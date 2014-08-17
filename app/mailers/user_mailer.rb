@@ -14,7 +14,7 @@ class UserMailer < ActionMailer::Base
     @rebank_recipient ||= 'test@example.com'
   end
 
-  def notify_of_user_help_request(user_id, account_type_id)
+  def notify_of_help_request(user_id, account_type_id)
     @user = User.find(user_id)
     @account_type = AccountType.find(account_type_id)
     mail(to: help_request_recipient,

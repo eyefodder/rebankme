@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @redirect_path = account_opening_assistance_path(@user, @account_type)
     if @user.email?
       track! :shown_help_me_open
-      EmailSender.delay.notify_of_user_help_request(@user.id, @account_type.id)
+      EmailSender.delay.notify_of_help_request(@user.id, @account_type.id)
     else
       request_email_redirect(@user, @redirect_path, allow_skip: 0)
     end

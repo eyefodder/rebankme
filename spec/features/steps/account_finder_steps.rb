@@ -7,7 +7,8 @@ module AccountFinderSteps
   RSpec::Matchers.define :have_find_account_button do |page_ref|
     match do |page|
       product_name = I18n.t("#{page_ref}.name")
-      expected_text = I18n.t('account_finder.account_type_found.cta', product: product_name)
+      expected_text = I18n.t('account_finder.account_type_found.cta',
+                             product: product_name)
       have_link(expected_text).matches?(page)
     end
   end
@@ -23,7 +24,8 @@ module AccountFinderSteps
     locale_content = I18n.t("account_finder.#{page_ref}.question")
     # content = simple_format(locale_content)
     failure_message_for_should do |_actual|
-      "expected to find <div class='account-finder-question'> with content: \n#{locale_content}"
+      "expected to find <div class='account-finder-question'>" \
+      " with content: \n#{locale_content}"
     end
     match do |page|
       node = page.find('div.account-finder-question')

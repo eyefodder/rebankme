@@ -7,7 +7,7 @@ include DataEntrySteps
 include EditableObjectSteps
 
 describe 'Bank Pages', type: :request do
-  let (:required_properties) { [:name] }
+  let(:required_properties) { [:name] }
   let(:type) { :bank }
   let(:post_create_path) { banks_path }
   let(:admin_paths) { [:index, :new, :edit] }

@@ -13,7 +13,8 @@ describe MetricsFunnelPresenter do
 
     it 'returns a rendered partial if funnel has metrics' do
       funnel.add_metric('name', 'desc', 2)
-      expected = view.render(partial: 'admin/metrics_table', locals: { presenter: presenter, funnel: funnel })
+      expected = view.render(partial: 'admin/metrics_table',
+                             locals: { presenter: presenter, funnel: funnel })
       expect(presenter.metrics_table).to eq expected
     end
   end
@@ -44,9 +45,9 @@ describe MetricsFunnelPresenter do
                          aria: {
                            valuenow: first.count,
                            valuemin: funnel.min_count,
-                           valuemax: funnel.max_count,
+                           valuemax: funnel.max_count
                          },
-                         style: "width: #{first.pct_of_max}%; min-width: 20px;",
+                         style: "width: #{first.pct_of_max}%; min-width: 20px;"
               )
       end
       expect(presenter.metric_as_prog_bar first).to eq(expected)

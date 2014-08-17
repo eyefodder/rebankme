@@ -9,8 +9,10 @@ describe AccountTypeFinderPresenter do
 
   describe '#start_over_button' do
     it 'returns a start over link' do
-      # expected = view.link_to(I18n.t("forms.actions.start_over"), account_finder_start_path, class: 'btn btn-default btn-block')
-      expect(presenter.start_over_button).to have_tag(:a, with: { href: account_finder_start_path }, text: I18n.t('forms.actions.start_over'))
+      result = presenter.start_over_button
+      expect(result).to have_tag(:a,
+                                 with: { href: account_finder_start_path },
+                                 text: I18n.t('forms.actions.start_over'))
     end
     it 'returns a start over link with styling' do
       options = { class: 'btn btn-default btn-block' }
@@ -21,35 +23,43 @@ describe AccountTypeFinderPresenter do
   describe '#page_heading' do
     # let(:token){presenter.next_property_token}
     it 'returns title from localized file' do
-      expect(presenter.page_heading).to eq(I18n.t("account_finder.#{token}.title"))
+      result = presenter.page_heading
+      expect(result).to eq(I18n.t("account_finder.#{token}.title"))
     end
   end
 
   describe '#page_title' do
     # let(:token){presenter.next_property_token}
     it 'returns title from localized file' do
-      expect(presenter.page_title).to eq(I18n.t("account_finder.#{token}.title"))
+      result = presenter.page_title
+      expect(result).to eq(I18n.t("account_finder.#{token}.title"))
     end
   end
 
   describe '#next_question_tag' do
     # let(:token){presenter.next_property_token}
     it 'returns a tag with from localized content' do
-      expected_content = view.simple_format(I18n.t("account_finder.#{token}.question"))
-      expected = view.content_tag(:div, expected_content)
+      content = view.simple_format(I18n.t("account_finder.#{token}.question"))
+      expected = view.content_tag(:div, content)
       expect(presenter.next_question_tag).to eq(expected)
     end
     it 'adds options to the tag' do
       options = { class: 'someclass', id: 'someid' }
-      expected_content = view.simple_format(I18n.t("account_finder.#{token}.question"))
-      expected = view.content_tag(:div, expected_content, options)
+      content = view.simple_format(I18n.t("account_finder.#{token}.question"))
+      expected = view.content_tag(:div, content, options)
       expect(presenter.next_question_tag(options)).to eq(expected)
     end
   end
 
   describe '#yes_button' do
     it 'returns default stuff' do
-      expect(presenter.yes_button).to have_tag(:button, text: expected_label_for(:yes), with: { name: "user[#{token}]", type: 'submit', value: true, id: 'next_question_yes' })
+      result = presenter.yes_button
+      expect(result).to have_tag(:button,
+                                 text: expected_label_for(:yes),
+                                 with: { name: "user[#{token}]",
+                                         type: 'submit',
+                                         value: true,
+                                         id: 'next_question_yes' })
     end
     it 'allows you to pass html options' do
       options = { class: 'someclass' }
@@ -59,7 +69,13 @@ describe AccountTypeFinderPresenter do
 
   describe '#no_button' do
     it 'returns default stuff' do
-      expect(presenter.no_button).to have_tag(:button, text: expected_label_for(:no), with: { name: "user[#{token}]", type: 'submit', value: false, id: 'next_question_no' })
+      result = presenter.no_button
+      expect(result).to have_tag(:button,
+                                 text: expected_label_for(:no),
+                                 with: { name: "user[#{token}]",
+                                         type: 'submit',
+                                         value: false,
+                                         id: 'next_question_no' })
     end
     it 'allows you to pass html options' do
       options = { class: 'someclass' }
@@ -68,8 +84,10 @@ describe AccountTypeFinderPresenter do
   end
 
   def expected_label_for(action)
-    token = UserPropertyQuestionFactory.next_property_for(user)
-    I18n.t("account_finder.#{token}.action_#{action}", default: I18n.t("forms.actions.action_#{action}"))
+    prop = UserPropertyQuestionFactory.next_property_for(user)
+    token = "account_finder.#{prop}.action_#{action}"
+    default = I18n.t("forms.actions.action_#{action}")
+    I18n.t(token, default: default)
   end
 
 end

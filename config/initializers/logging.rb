@@ -1,3 +1,3 @@
 Logging.logger.root.add_appenders(Logging.appenders.stdout)
-Logging.logger.root.add_appenders(Logging.appenders.file(Rails.root.join('log', "#{Rails.env}.log"))) if Rails.env.development?
-# Logging.logger.root.info {"\n\n\nSTARTING NEW LOGGING SESSION"}
+logfile = Logging.appenders.file(Rails.root.join('log', "#{Rails.env}.log"))
+Logging.logger.root.add_appenders(logfile) if Rails.env.development?

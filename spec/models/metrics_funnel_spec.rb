@@ -20,7 +20,9 @@ describe MetricsFunnel do
 
   describe 'adding a metric' do
     it 'increases count by 1' do
-      expect { funnel.add_metric(:name, :description, 12) }.to change { funnel.metrics.count }.by(1)
+      expect do
+        funnel.add_metric(:name, :description, 12)
+      end.to change { funnel.metrics.count }.by(1)
     end
 
     it 'has an index property' do
@@ -53,9 +55,9 @@ describe FunnelMetric do
   let!(:third) { funnel.add_metric(:name, :description, 25) }
 
   it '#pct_of_max returns % of max number in funnel' do
-    expect(first.pct_of_max).to eq (40.0)
-    expect(second.pct_of_max).to eq (100.0)
-    expect(third.pct_of_max).to eq (50.0)
+    expect(first.pct_of_max).to eq 40.0
+    expect(second.pct_of_max).to eq 100.0
+    expect(third.pct_of_max).to eq 50.0
   end
 
   it '#pct_retention returns nil for first number' do

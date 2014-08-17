@@ -15,9 +15,7 @@ module Il8nSteps
   end
 
   def parsed_tokens(object, prefix = '', &block)
-    if object.is_a?(String)
-      object = YAML.load(object)
-    end
+    object = YAML.load(object) if object.is_a?(String)
     if object.nil?
       yield(prefix.chop)
     else

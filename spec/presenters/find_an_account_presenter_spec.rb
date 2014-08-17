@@ -13,12 +13,12 @@ describe FindAnAccountPresenter do
     presenter.user = user
   end
 
-  RSpec::Matchers.define :return_localized_content do |token, tag, interpolation_args|
+  RSpec::Matchers.define :return_localized_content do |token, tag, inter_args|
     chain :with_options do |options|
       @options = options
     end
     match do |returned|
-      args = { default: '' }.merge(interpolation_args)
+      args = { default: '' }.merge(inter_args)
       content = I18n.t(token, args)
       if content == ''
         returned.nil?
@@ -42,13 +42,19 @@ describe FindAnAccountPresenter do
   end
 
   shared_examples 'a localized content wrapping method' do
-    let(:token) { "account_finder.account_type.#{account_type.name_id}.#{token_branching_element}#{property}" }
+    let(:token) do
+      "account_finder.account_type.#{account_type.name_id}." \
+      "#{token_branching_element}#{property}"
+    end
     let(:tag) { :h3 }
-    let(:interpolation_args) { {} }
+    let(:args) { {} }
 
     it 'that passes options to the node' do
       options = { class: 'someclass', id: 'someid' }
-      expect(presenter.send(property, options)).to return_localized_content(token, tag, interpolation_args).with_options(options)
+      result = presenter.send(property, options)
+      expect(result).to return_localized_content(token,
+                                                 tag,
+                                                 args).with_options(options)
     end
 
   end
@@ -56,15 +62,19 @@ describe FindAnAccountPresenter do
   shared_examples 'a content wrapping method' do
     let(:options) { { class: 'someclass', id: 'someid' } }
     it 'that passes options to the node' do
-      expect(presenter.send(method, options)).to return_wrapped_content(expected, tag).with_options(options)
+      result = presenter.send(method, options)
+      expect(result).to return_wrapped_content(expected,
+                                               tag).with_options(options)
     end
   end
 
   shared_examples 'a google map block' do
 
     it 'with specified query' do
-      src = URI.encode("https://www.google.com/maps/embed/v1/#{api_method}?key=#{ApiKeys.google_maps}&q=#{query}")
-      expected = view.render(partial: 'account_finder/account_type/google_map', locals: { src: src })
+      src = URI.encode("https://www.google.com/maps/embed/v1/#{api_method}" \
+                       "?key=#{ApiKeys.google_maps}&q=#{query}")
+      expected = view.render(partial: 'account_finder/account_type/google_map',
+                             locals: { src: src })
       expect(presenter.send(method)).to eq(expected)
 
     end
@@ -73,7 +83,10 @@ describe FindAnAccountPresenter do
 
   describe 'localized content strings' do
     def expect_to_return_localized_string(presenter, property)
-      expect(presenter.send(property)).to eq(I18n.t("account_finder.account_type.#{account_type.name_id}.#{property}"))
+      result = presenter.send(property)
+      expected = I18n.t('account_finder.account_type.' \
+                        "#{account_type.name_id}.#{property}")
+      expect(result).to eq(expected)
     end
 
     describe '#sub_heading' do
@@ -194,20 +207,20 @@ describe FindAnAccountPresenter do
       it_behaves_like 'a localized content wrapping method' do
         let(:property) { :why_chosen_description }
         let(:tag) { :div }
-        let(:interpolation_args) { { zipcode: user.zipcode } }
+        let(:args) { { zipcode: user.zipcode } }
       end
     end
     describe '#geolocated_results_heading' do
       it_behaves_like 'a localized content wrapping method' do
         let(:property) { :geolocated_results_heading }
-        let(:interpolation_args) { { zipcode: user.zipcode } }
+        let(:args) { { zipcode: user.zipcode } }
         let(:tag) { :h4 }
       end
     end
     describe '#geolocated_results_subheading' do
       it_behaves_like 'a localized content wrapping method' do
         let(:property) { :geolocated_results_subheading }
-        let(:interpolation_args) { { zipcode: user.zipcode, num_results: 0 } }
+        let(:args) { { zipcode: user.zipcode, num_results: 0 } }
         let(:tag) { :div }
       end
     end
@@ -223,7 +236,9 @@ describe FindAnAccountPresenter do
         presenter.recommended_option = bank_account
       end
       it 'renders a block' do
-        expected = view.render(partial: 'account_finder/account_type/recommended_option', locals: { presenter: presenter })
+        partial = 'account_finder/account_type/recommended_option'
+        expected = view.render(partial: partial,
+                               locals: { presenter: presenter })
         expect(presenter.recommended_option_block).to eq expected
       end
     end
@@ -259,7 +274,7 @@ describe FindAnAccountPresenter do
     describe '#recommended_available_at' do
       it_behaves_like 'a localized content wrapping method' do
         let(:property) { :recommended_available_at }
-        let(:interpolation_args) { { zipcode: user.zipcode, num_results: 0 } }
+        let(:args) { { zipcode: user.zipcode, num_results: 0 } }
         let(:tag) { :div }
       end
     end
@@ -269,7 +284,9 @@ describe FindAnAccountPresenter do
     it 'returns a link to help me open page' do
       text = I18n.t('account_finder.account_type.help_to_open_cta')
       path = account_opening_assistance_path(user, account_type)
-      expect(presenter.cta_button).to have_tag(:a, text: text, with: { href: path })
+      expect(presenter.cta_button).to have_tag(:a,
+                                               text: text,
+                                               with: { href: path })
     end
   end
 
@@ -280,14 +297,14 @@ describe FindAnAccountPresenter do
     describe '#option_heading' do
       it_behaves_like 'a localized content wrapping method' do
         let(:property) { :option_heading }
-        let(:interpolation_args) { { branch_name: bank_account.branch.full_name } }
+        let(:args) { { branch_name: bank_account.branch.full_name } }
         let(:tag) { :h3 }
       end
     end
     describe '#option_subheading' do
       it_behaves_like 'a localized content wrapping method' do
         let(:property) { :option_subheading }
-        let(:interpolation_args) { { branch_address: bank_account.branch.full_address } }
+        let(:args) { { branch_address: bank_account.branch.full_address } }
         let(:tag) { :div }
       end
     end
@@ -303,7 +320,9 @@ describe FindAnAccountPresenter do
       end
 
       it_behaves_like 'a google map block' do
-        let(:query) { "#{bank_account.branch.bank.name}+#{bank_account.branch.full_address}" }
+        let(:query) do
+          "#{bank_account.branch.bank.name}+#{bank_account.branch.full_address}"
+        end
         let(:api_method) { :place }
         let(:method) { :geolocated_choice_map }
       end
@@ -320,7 +339,9 @@ describe FindAnAccountPresenter do
     end
     describe '#geolocated_options_block' do
       it 'returns rendered block' do
-        expected = view.render(partial: 'account_finder/account_type/geolocated_options', locals: { presenter: presenter })
+        partial = 'account_finder/account_type/geolocated_options'
+        expected = view.render(partial: partial,
+                               locals: { presenter: presenter })
         expect(presenter.geolocated_options_block).to eq expected
       end
       describe 'with no results' do
@@ -335,13 +356,16 @@ describe FindAnAccountPresenter do
 
     describe '#geolocated_option_title' do
       it 'returns branch name' do
-        expect(presenter.geolocated_option_title bank_account_2).to eq bank_account_2.branch.full_name
+        result = presenter.geolocated_option_title bank_account_2
+        expected = bank_account_2.branch.full_name
+        expect(result).to eq expected
       end
     end
 
     describe '#geolocated_option_street' do
       it 'returns branch street' do
-        expect(presenter.geolocated_option_street bank_account_2).to eq bank_account_2.branch.street
+        result = presenter.geolocated_option_street bank_account_2
+        expect(result).to eq bank_account_2.branch.street
       end
     end
 
@@ -350,7 +374,8 @@ describe FindAnAccountPresenter do
         distance = user.distance_to(bank_account_2.branch)
         content = view.number_to_human(distance, units: :miles)
         expected = view.content_tag(:span, content)
-        expect(presenter.geolocated_distance_from_user(bank_account_2)).to eq expected
+        result = presenter.geolocated_distance_from_user(bank_account_2)
+        expect(result).to eq expected
       end
     end
 
@@ -358,7 +383,9 @@ describe FindAnAccountPresenter do
       it 'returns wrapped link' do
         src = account_finder_path(user, selected_account_id: bank_account_2.id)
         content = 'thing'
-        expected = view.link_to(content, src, id: "select_account_#{bank_account_2.id}")
+        expected = view.link_to(content,
+                                src,
+                                id: "select_account_#{bank_account_2.id}")
         result = presenter.geolocated_result_link(bank_account_2) do
           content
         end
@@ -373,7 +400,9 @@ describe FindAnAccountPresenter do
 
     describe 'online_options' do
       it 'makes an array from localized content' do
-        expected = I18n.t("account_finder.account_type.#{account_type.name_id}.online_options").to_a.map { |obj| obj[1] }
+        token = 'account_finder.account_type.' \
+                "#{account_type.name_id}.online_options"
+        expected = I18n.t(token).to_a.map { |obj| obj[1] }
         expect(expected.empty?).to be_false
         expect(presenter.online_options).to eq expected
       end
@@ -382,9 +411,15 @@ describe FindAnAccountPresenter do
     describe '#online_option_feature_bullets' do
       let(:list_options) { { class: 'listclass' } }
       let(:bullet_options) { { class: 'bulletclass' } }
-      let(:bullets) { { 0 => '$4.95 per month', 1 => 'No overdraft fees', 2 => 'Uses the VISA network' } }
+      let(:bullets) do
+        { 0 => '$4.95 per month',
+          1 => 'No overdraft fees',
+          2 => 'Uses the VISA network' }
+      end
       it 'returns list as rendered bullets' do
-        result = presenter.online_option_feature_bullets(bullets, list_options, bullet_options)
+        result = presenter.online_option_feature_bullets(bullets,
+                                                         list_options,
+                                                         bullet_options)
         expect(result).to have_tag(:ul, with: list_options) do
           with_tag(:li, text: '$4.95 per month', with: bullet_options)
           with_tag(:li, text: 'No overdraft fees', with: bullet_options)

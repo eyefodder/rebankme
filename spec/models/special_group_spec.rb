@@ -39,7 +39,9 @@ describe SpecialGroup do
   describe 'seeded content' do
     it 'should have seeded types' do
       %w(veteran student senior not_special).each do |expected|
-        expect(SpecialGroup.find_by(name_id: expected)).not_to be_nil, "Expected to find a Special group with name_id: #{expected}"
+        result = SpecialGroup.find_by(name_id: expected)
+        fail_msg = "Expected to find a Special group with name_id: #{expected}"
+        expect(result).not_to be_nil, fail_msg
       end
     end
     describe 'not special' do

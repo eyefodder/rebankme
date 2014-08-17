@@ -58,7 +58,8 @@ describe 'Admin Pages', type: :request do
       expect(page).to have_css('table#site-metrics-table')
     end
     it 'has each metric in the table' do
-      name_cell_text =  page.all('table#site-metrics-table td.metric-name').map(&:text)
+      selector = 'table#site-metrics-table td.metric-name'
+      name_cell_text =  page.all(selector).map(&:text)
       expected_metric_names = [:shown_home_page,
                                :shown_start_page,
                                :started_account_type_finder,

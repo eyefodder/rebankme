@@ -18,26 +18,32 @@ module EditableObjectSteps
     end
     it 'has delete link for each item' do
       objects.each do |object|
-        expect(page).to have_delete_link(object), "cant find the delete button for #{object.name}"
+        fail_msg = "cant find the delete button for #{object.name}"
+        expect(page).to have_delete_link(object), fail_msg
       end
     end
     it 'lets me delete an item' do
       klass = type.to_s.camelize.constantize
-      expect { click_link(tag_id(:delete, objects.first)) }.to change { klass.count }.by(-1)
+      expect do
+        click_link(tag_id(:delete, objects.first))
+      end.to change { klass.count }.by(-1)
     end
     it 'has edit link for each item' do
       objects.each do |object|
         expect(page).to have_edit_link(object)
       end
     end
-
+    # rubocop:disable Style/PredicateName
     def have_edit_link(object)
       have_link("edit_#{type}_#{object.id}", edit_path(object))
     end
 
     def have_delete_link(object)
-      have_xpath(".//a[@href='#{delete_path(object)}' and @data-method='delete' and @class='action_delete' and @id='#{tag_id(:delete, object)}' ]")
+      have_xpath(".//a[@href='#{delete_path(object)}' and " \
+                 "@data-method='delete' and @class='action_delete' and " \
+                 "@id='#{tag_id(:delete, object)}' ]")
     end
+    # rubocop:enable Style/PredicateName
 
   end
 
