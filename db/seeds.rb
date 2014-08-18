@@ -19,12 +19,14 @@ end
 end
 
 # Admin Users
-emails = %w(avi@significancelabs.org
-            paul@significancelabs.org
-            stephanie@significancelabs.org)
-emails.each do |email|
-  user = AdminUser.where(email: email)
-  user.first_or_create!(password: 'changeme', password_confirmation: 'changeme')
+email_str = ENV['ADMIN_USERS']
+unless email_str.nil?
+  emails = email_str.split(',')
+  emails.each do |email|
+    user = AdminUser.where(email: email)
+    user.first_or_create!(password: 'changeme',
+                          password_confirmation: 'changeme')
+  end
 end
 
 # banks and branches:
