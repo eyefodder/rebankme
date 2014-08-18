@@ -1,7 +1,0 @@
-#!/bin/bash
-
-#make sure the file is executable
-# chmod 777 notify-send
-#copy this file to soemwhere on your path - like /usr/local/bin
-
-growlnotify -t "Vagrant VM" -m "$*"

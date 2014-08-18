@@ -18,19 +18,19 @@ if [ "$(ruby -e 'print RUBY_VERSION')" = '2.1.2' ]
   then
   echo "ruby already installed, skipping"
 else
- echo "Installing ruby 2.1.2"
- rm -rf /opt/vagrant_ruby
- echo 'downloading'
- curl --remote-name http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz >/dev/null 2>&1
- tar zxf ruby-2.1.2.tar.gz >/dev/null 2>&1
- cd ruby-2.1.2/
- echo 'configure'
- ./configure >/dev/null 2>&1
- echo 'make (this could take a while, while I make ruby, you should make tea...)'
- make  >/dev/null 2>&1
- echo 'install'
- make install >/dev/null 2>&1
- echo "ruby installed"
+  echo "Installing ruby 2.1.2"
+  rm -rf /opt/vagrant_ruby
+  echo 'downloading'
+  curl --remote-name http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz >/dev/null 2>&1
+  tar zxf ruby-2.1.2.tar.gz >/dev/null 2>&1
+  cd ruby-2.1.2/
+  echo 'configure'
+  ./configure >/dev/null 2>&1
+  echo 'make (this could take a while, while I make ruby, you should make tea...)'
+  make  >/dev/null 2>&1
+  echo 'install'
+  make install >/dev/null 2>&1
+  echo "ruby installed"
 fi
 
 echo "install puppet"
@@ -43,8 +43,3 @@ gem install bundler -v 1.6.5
 
 echo 'install foreman'
 gem install foreman
-
-
- # echo 'applying puppet manifest'
- # puppet apply --verbose /etc/puppet/manifests/setup_postgres_role.pp
- # echo 'BOOM! - done.'

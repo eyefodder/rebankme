@@ -5,63 +5,33 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
-  # config.vm.box = "hashicorp/precise64"
-
-  #with guest additions
-  # config.vm.box = "bkersten/precise64"
-
   config.vm.box = "precise64_vb_4_3_12_utf8"
   config.vm.box_url = "https://s3.amazonaws.com/eyefodder-vagrant-boxes/precise64_vb_4_3_12_utf8.box"
-
-
-  # config.vm.box = "precise64"
-  # config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.host_name = 'rebankme'
 
   config.vm.network :forwarded_port, guest: 5000, host: 3001
   config.vm.network :forwarded_port, id: 'ssh', guest: 22, host: 2222
-  # config.vm.define "web" do |web|
 
-  # config.vm.synced_folder "../", "/app"
   config.vm.synced_folder "./puppet", "/etc/puppet"
   config.vm.synced_folder "../", "/app", type: "rsync", rsync__exclude: [".git/", "ops/*", "tmp/", "log/", ".#*"]
-  # end
 
   config.vm.provider 'virtualbox' do |vb|
-    # Use VBoxManage to customize the VM. For example to change memory:
     vb.customize ["modifyvm", :id, "--memory", "1024"]
     vb.name = 'rebankme'
   end
 
   # FIRST-RUN PROVISIONING
-   # config.vm.provision 'shell', path: 'set_locale.sh'
-   config.vm.provision 'shell', path: 'provision_2.sh'
-
+  config.vm.provision 'shell', path: 'first_run_provision.sh'
   config.vm.provision "puppet" do |puppet|
     puppet.manifests_path =  "puppet/manifests"
     puppet.manifest_file = "default.pp"
     puppet.module_path = 'puppet/modules'
   end
-
-   config.vm.provision 'shell', path: 'init_rails_environment.sh', privileged: false
-
-
-
+  config.vm.provision 'shell', path: 'init_rails_environment.sh', privileged: false
   if File.exists?('guest_bash_profile')
     config.vm.provision 'file', source: 'guest_bash_profile', destination: '~/.bash_profile' , run: 'always'
   end
 
-  # # EACH UP PROVISIONING
-
-
-
-
-
-
-
-
-  config.vm.provision 'shell', path: 'start_app.sh', privileged: false, run: 'always'
-
-
+  # EACH UP PROVISIONING
+  config.vm.provision 'shell', path: 'prep_rails_app.sh', privileged: false, run: 'always'
 end
