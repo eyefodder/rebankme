@@ -5,7 +5,10 @@
 include Warden::Test::Helpers
 Warden.test_mode!
 def as_admin(user = nil, &block)
-  current_admin_user = user || AdminUser.first
+  user ||= AdminUser.first_or_create!(email: 'test@example.com',
+                                      password: 'changeme',
+                                      password_confirmation: 'changeme')
+  current_admin_user = user
   if !request.try(:nil?) && request.try(:present?)
     sign_in(current_admin_user)
   else
