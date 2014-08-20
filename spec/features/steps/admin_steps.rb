@@ -38,6 +38,14 @@ module AdminSteps
     end
   end
 
+  def test_admin_user(password)
+    email = 'test@example.com'
+    user = AdminUser.where(email: email).first_or_create!(email: email,
+                                                          password: 'changeme',
+                                                          password_confirmation: 'changeme' )
+    user
+  end
+
   shared_context 'is an admin only page' do
     subject { page }
     before do
@@ -50,7 +58,8 @@ module AdminSteps
     end
     describe 'successfully logging in' do
       before do
-        fill_in('admin_user_email', with: 'paul@significancelabs.org')
+        user = test_admin_user('changeme')
+        fill_in('admin_user_email', with: user.email)
         fill_in('admin_user_password', with: 'changeme')
         click_button('Sign in')
       end
